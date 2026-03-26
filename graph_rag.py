@@ -27,14 +27,13 @@ def create_clinical_graph():
 # Initialize graph
 knowledge_graph = create_clinical_graph()
 
-def extract_entities(user_message: str, model: str = "gpt-oss:20b", ollama_url: str = "http://localhost:11434/api/chat") -> list:
+def extract_entities(user_message: str, model: str = "gemma3:latest", ollama_url: str = "http://localhost:11434/api/chat") -> list:
     """
     Uses an LLM to extract key entities from the user message.
     """
     system_prompt = (
         "You are an entity extraction system. Extract the core entities from the user's message. "
         "Return ONLY a comma-separated list of entities. Do not add any conversational text. "
-        "Example: 'What is the capital of Switzerland?' -> 'Switzerland'"
     )
     
     payload = {
