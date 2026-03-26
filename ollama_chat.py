@@ -57,5 +57,5 @@ def chat_loop(model: str):
             print(f"Error: {e}")
 
 if __name__ == "__main__":
-    # Change 'gpt-oss:20b' to any model you have in Ollama
-    chat_loop("gpt-oss:20b")
+    # Change 'gemma3:latest' to any model you have in Ollama
+    chat_loop("gemma3:latest")

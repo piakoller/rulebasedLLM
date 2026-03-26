@@ -3,7 +3,7 @@ import requests
 import os
 
 class FrameDialogueManager:
-    def __init__(self, prompt_path="frame_prompt.txt", ollama_model="gpt-oss:20b", ollama_url="http://localhost:11434/api/chat"):
+    def __init__(self, prompt_path="frame_prompt.txt", ollama_model="gemma3:latest", ollama_url="http://localhost:11434/api/chat"):
         self.model = ollama_model
         self.ollama_url = ollama_url
         
@@ -57,7 +57,7 @@ class FrameDialogueManager:
 
 if __name__ == "__main__":
     # Simple test loop
-    manager = FrameDialogueManager(ollama_model="gpt-oss:20b")
+    manager = FrameDialogueManager(ollama_model="gemma3:latest")
     print("Frame Dialogue Manager Initialized. (Type 'exit' to quit)")
     
     # Trigger the first greeting from the chatbot
