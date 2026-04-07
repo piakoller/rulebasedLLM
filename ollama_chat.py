@@ -48,11 +48,23 @@ def chat_loop(model: str):
         if user_message.lower() in ["exit", "quit"]:
             print("Exiting chat.")
             break
-        # Apply rules via dialogue state manager
+
         rule_response = dsm.handle_message(user_message, apply_rules)
-        if rule_response:
-            print(f"Bot (rule): {rule_response}")
+        mandatory_prefix = ""
+        direct_response = None
+        stop_chat = False
+
+        if isinstance(rule_response, dict):
+            mandatory_prefix = rule_response.get("mandatory_prefix", "")
+            direct_response = rule_response.get("direct_response")
+            stop_chat = bool(rule_response.get("stop_chat", False))
+        elif isinstance(rule_response, str):
+            direct_response = rule_response
+
+        if stop_chat and direct_response:
+            print(f"Bot (rule): {direct_response}")
             continue
+
         # Otherwise, send to Ollama
         try:
             # GraphRAG Integration
@@ -64,7 +76,15 @@ def chat_loop(model: str):
                     print(f"[GraphRAG Context Retrieved for: {', '.join(entities)}]")
             
             response = ollama_chat(model, user_message, context=context)
-            print(f"Bot (model): {response}")
+            verification = graph_rag.verify_llm_response(response, entities, graph=knowledge_graph)
+            if not verification.get("verified", True):
+                response = verification.get("safe_fallback", response)
+
+            final_response = f"{mandatory_prefix}{response}".strip()
+            if direct_response and not mandatory_prefix:
+                final_response = f"{direct_response} {final_response}".strip()
+
+            print(f"Bot (model): {final_response}")
         except Exception as e:
             print(f"Error: {e}")
 

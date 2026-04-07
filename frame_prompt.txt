@@ -36,10 +36,14 @@ FRAME: emotion_check
 goal: Identify and validate the user's emotional state.
 required_slots:
   - emotion_detected
+  - patient_perception
   - validation_statement
 optional_slots: ["normalization_statement"]
 forbidden: ["clinical recommendations", "dosimetry details"]
 next_frames: ["therapy_explanation", "safety_instructions"]
+
+SPIKES_MAPPING:
+  - P (Perception): capture the patient's own understanding and perception in the emotion_check frame through patient_perception.
 
 FRAME: therapy_explanation
 goal: Explain the therapy in clear, empathetic, non-technical language.
@@ -50,6 +54,10 @@ required_slots:
 optional_slots: ["common_experiences"]
 forbidden: ["dosing", "prognosis", "numerical dosimetry"]
 next_frames: ["safety_instructions", "dosimetry_explanation"]
+
+SPIKES_MAPPING:
+  - K (Knowledge): chunk information into short, digestible parts.
+  - Chunk rule: provide a maximum of two sentences of medical facts before asking for understanding or checking in with the patient.
 
 FRAME: safety_instructions
 goal: Provide general, guideline-aligned safety information.

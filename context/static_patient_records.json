@@ -1,0 +1,26 @@
+[
+  {
+    "patient_id": "Patient A",
+    "therapy": "PRRT",
+    "scheduled_date": "2026-04-14",
+    "perception": "The patient understands that the treatment is intended to target the tumour in a focused way, but is anxious about what the day will feel like.",
+    "concerns": ["scared", "treatment day", "radiation safety"],
+    "notes": "Prefers simple explanations and reassurance before technical details."
+  },
+  {
+    "patient_id": "Patient B",
+    "therapy": "Diagnostic nuclear medicine appointment",
+    "scheduled_date": "2026-04-18",
+    "perception": "The patient has a general idea of the scan but wants to know how long it takes and whether it is uncomfortable.",
+    "concerns": ["what to expect", "comfort", "timing"],
+    "notes": "Respond best to short, step-by-step answers."
+  },
+  {
+    "patient_id": "Patient C",
+    "therapy": "Dosimetry review",
+    "scheduled_date": "2026-04-21",
+    "perception": "The patient knows dosimetry is used to personalise care but does not want numerical details right now.",
+    "concerns": ["dosimetry", "personalisation", "high-level explanation"],
+    "notes": "Avoid technical measurement values and keep the explanation gentle."
+  }
+]

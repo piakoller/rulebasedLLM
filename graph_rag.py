@@ -11,9 +11,11 @@ import json
 import os
 import re
 from pathlib import Path
+from typing import Optional
 
 import networkx as nx
 import requests
+from pydantic import BaseModel, Field
 
 BASE_DIR = Path(__file__).resolve().parent
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/chat")
@@ -31,6 +33,23 @@ CHUNK_SIZE = 1800
 CHUNK_OVERLAP = 250
 
 _knowledge_graph: nx.Graph | None = None
+
+
+class KnowledgeGraphFactResult(BaseModel):
+    """Structured output for graph-based fact verification."""
+
+    query: str
+    entities: list[str] = Field(default_factory=list)
+    verified: bool = False
+    subject: str = ""
+    relation: str = ""
+    object: str = ""
+    answer: str = ""
+    evidence: list[str] = Field(default_factory=list)
+    fallback: str = (
+        "I want to keep this safe and only share what I can confirm from the provided document. "
+        "If you want, I can explain the confirmed parts more simply or focus on one question at a time."
+    )
 
 
 def create_clinical_graph() -> nx.Graph:
@@ -303,6 +322,64 @@ def get_knowledge_graph(document_roots: list[Path] | None = None) -> nx.Graph:
     return _knowledge_graph
 
 
+def _find_verified_relation(graph: nx.Graph, entities: list[str]) -> tuple[str, str, str, list[str]]:
+    """Find a supported edge between extracted entities."""
+    normalized_entities = [entity.lower().strip() for entity in entities if entity and entity.strip()]
+    if len(normalized_entities) < 2:
+        return "", "", "", []
+
+    graph_nodes = list(graph.nodes())
+    for left in graph_nodes:
+        left_lower = str(left).lower()
+        if not any(entity == left_lower or entity in left_lower or left_lower in entity for entity in normalized_entities):
+            continue
+        for right in graph.neighbors(left):
+            right_lower = str(right).lower()
+            if not any(entity == right_lower or entity in right_lower or right_lower in entity for entity in normalized_entities):
+                continue
+            edge_data = graph.get_edge_data(left, right) or {}
+            relation = str(edge_data.get("relation", "connected to")).strip() or "connected to"
+            evidence = [f"{left} -- {relation} -- {right}"]
+            return str(left), relation, str(right), evidence
+    return "", "", "", []
+
+
+def get_knowledge_graph_fact(query: str, graph: Optional[nx.Graph] = None) -> KnowledgeGraphFactResult:
+    """Tool for verifying a clinical relationship against the knowledge graph."""
+    graph = graph or get_knowledge_graph()
+    entities = extract_entities(query)
+
+    subject, relation, object_, evidence = _find_verified_relation(graph, entities)
+    if subject and relation and object_:
+        answer = f"Yes. The graph supports that {subject} {relation} {object_}."
+        return KnowledgeGraphFactResult(
+            query=query,
+            entities=entities,
+            verified=True,
+            subject=subject,
+            relation=relation,
+            object=object_,
+            answer=answer,
+            evidence=evidence,
+        )
+
+    context = retrieve_context(entities, graph=graph)
+    answer = (
+        "I could not verify that relationship directly from the current knowledge graph. "
+        "I can only provide high-level, document-grounded information."
+    )
+    if context:
+        answer = f"{answer} Relevant context is available from the graph, but the exact relationship is not confirmed."
+
+    return KnowledgeGraphFactResult(
+        query=query,
+        entities=entities,
+        verified=False,
+        answer=answer,
+        evidence=[context] if context else [],
+    )
+
+
 def retrieve_context(entities: list[str], graph: nx.Graph | None = None) -> str:
     """Search the graph for the entities and return their local neighborhood."""
     graph = graph or get_knowledge_graph()
@@ -341,3 +418,100 @@ def retrieve_context(entities: list[str], graph: nx.Graph | None = None) -> str:
     if not context_lines:
         return ""
     return "Knowledge Graph Context:\n" + "\n".join(context_lines)
+
+
+def _normalize_text(text: str) -> str:
+    return re.sub(r"\s+", " ", text.lower()).strip()
+
+
+def _graph_has_relation(graph: nx.Graph, source: str, target: str) -> bool:
+    if graph.has_edge(source, target):
+        return True
+
+    source_lower = source.lower()
+    target_lower = target.lower()
+    for left, right, data in graph.edges(data=True):
+        left_lower = str(left).lower()
+        right_lower = str(right).lower()
+        relation_text = str(data.get("relation", "")).lower()
+        if {source_lower, target_lower} == {left_lower, right_lower}:
+            return True
+        if source_lower in left_lower and target_lower in right_lower:
+            return True
+        if source_lower in relation_text and target_lower in relation_text:
+            return True
+    return False
+
+
+def verify_llm_response(response: str, entities: list[str], graph: nx.Graph | None = None) -> dict:
+    """Verify whether response-level medical relationships exist in the graph.
+
+    Returns a dictionary with:
+      - verified: bool
+      - flagged_relations: list[str]
+      - safe_fallback: str
+    """
+    graph = graph or get_knowledge_graph()
+    normalized_response = _normalize_text(response)
+    flagged_relations = []
+    verified_relations = []
+
+    if not normalized_response:
+        return {
+            "verified": False,
+            "flagged_relations": ["empty response"],
+            "safe_fallback": (
+                "I want to keep this safe and only share what I can confirm from the provided document. "
+                "If you want, I can explain the confirmed parts more simply or focus on one question at a time."
+            ),
+            "verified_relations": [],
+        }
+
+    for entity in entities:
+        entity_lower = entity.lower().strip()
+        if not entity_lower:
+            continue
+
+        matched_node = None
+        for node in graph.nodes():
+            node_lower = str(node).lower()
+            if entity_lower == node_lower or entity_lower in node_lower or node_lower in entity_lower:
+                matched_node = node
+                break
+
+        if matched_node is None:
+            continue
+
+        neighbor_mentions = []
+        for neighbor in graph.neighbors(matched_node):
+            neighbor_mentions.append(str(neighbor))
+
+        if neighbor_mentions and not any(neighbor.lower() in normalized_response for neighbor in neighbor_mentions):
+            continue
+
+    graph_nodes = list(graph.nodes())
+    for i, left in enumerate(graph_nodes):
+        left_lower = str(left).lower()
+        if left_lower not in normalized_response:
+            continue
+        for right in graph_nodes[i + 1 :]:
+            right_lower = str(right).lower()
+            if right_lower not in normalized_response:
+                continue
+            if not _graph_has_relation(graph, str(left), str(right)):
+                flagged_relations.append(f"{left} <-> {right}")
+            else:
+                verified_relations.append(f"{left} <-> {right}")
+
+    verified = len(flagged_relations) == 0
+    safe_fallback = (
+        "I want to keep this safe and only share what I can confirm from the provided document. "
+        "If you want, I can explain the confirmed parts more simply or focus on one question at a time."
+    )
+
+    return {
+        "verified": verified,
+        "flagged_relations": flagged_relations,
+        "safe_fallback": safe_fallback,
+        "verified_relations": verified_relations,
+    }
