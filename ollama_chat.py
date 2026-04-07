@@ -1,9 +1,15 @@
 
-import requests
 import json
+from pathlib import Path
+
+import requests
+
 from rules import apply_rules
 from dialogue_manager import DialogueStateManager
-from graph_rag import extract_entities, retrieve_context
+import graph_rag
+
+
+DOCUMENT_ROOT = Path(__file__).resolve().parent / "context"
 
 # Function to chat with Ollama model
 def ollama_chat(model: str, user_message: str, context: str = "", ollama_url: str = "http://localhost:11434/api/chat"):    
@@ -31,6 +37,12 @@ def ollama_chat(model: str, user_message: str, context: str = "", ollama_url: st
 def chat_loop(model: str):
     print(f"Chatting with Ollama model: {model}")
     dsm = DialogueStateManager()
+    knowledge_graph = graph_rag.get_knowledge_graph([DOCUMENT_ROOT])
+    if knowledge_graph.number_of_nodes() == 0:
+        print(f"[GraphRAG] No supported documents found in: {DOCUMENT_ROOT}")
+    else:
+        print(f"[GraphRAG] Loaded document graph from: {DOCUMENT_ROOT}")
+
     while True:
         user_message = input("You: ")
         if user_message.lower() in ["exit", "quit"]:
@@ -44,10 +56,10 @@ def chat_loop(model: str):
         # Otherwise, send to Ollama
         try:
             # GraphRAG Integration
-            entities = extract_entities(user_message, model=model)
+            entities = graph_rag.extract_entities(user_message, model=model)
             context = ""
             if entities:
-                context = retrieve_context(entities)
+                context = graph_rag.retrieve_context(entities, graph=knowledge_graph)
                 if context:
                     print(f"[GraphRAG Context Retrieved for: {', '.join(entities)}]")
             
