@@ -19,7 +19,7 @@ from pydantic import BaseModel, Field
 
 BASE_DIR = Path(__file__).resolve().parent
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/chat")
-EXTRACTION_MODEL = os.getenv("GRAPH_RAG_EXTRACTION_MODEL", "gemma3:latest")
+EXTRACTION_MODEL = os.getenv("GRAPH_RAG_EXTRACTION_MODEL", "gemma3:27b")
 ANSWER_MODEL = os.getenv("GRAPH_RAG_ANSWER_MODEL", EXTRACTION_MODEL)
 DOCUMENT_ROOTS = [
     Path(path.strip())

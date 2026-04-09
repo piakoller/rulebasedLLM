@@ -89,5 +89,5 @@ def chat_loop(model: str):
             print(f"Error: {e}")
 
 if __name__ == "__main__":
-    # Change 'gemma3:latest' to any model you have in Ollama
-    chat_loop("gemma3:latest")
+    # Change 'gemma3:27b' to any model you have in Ollama
+    chat_loop("gemma3:27b")

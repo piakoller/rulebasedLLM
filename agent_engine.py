@@ -25,7 +25,7 @@ from rules import DISTRESS_KEYWORDS, apply_rules, sentiment_analyzer
 BASE_DIR = Path(__file__).resolve().parent
 FRAME_PROMPT_PATH = BASE_DIR / "frame_prompt.txt"
 STATIC_PATIENT_DATA_PATH = BASE_DIR / "context" / "static_patient_records.json"
-DEFAULT_OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "gemma3:latest")
+DEFAULT_OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "gemma3:27b")
 DEFAULT_OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/chat")
 DEFAULT_DOCUMENT_ROOT = BASE_DIR / "context"
 MAX_REASONING_STEPS = 2
