@@ -1,53 +1,266 @@
-# Empathic LLM: Clinical Theranostics Conversational Agent
+# Empathic LLM with DPO Study System
 
-This project is a prototype conversational agent for nuclear medicine patients undergoing theranostics and related targeted therapies. It combines three layers of control:
+A clinical conversational agent for nuclear medicine patients with integrated Direct Preference Optimization (DPO) data collection infrastructure. The system combines hybrid rule-based and LLM-driven responses with built-in preference learning and iterative improvement through collected human feedback.
 
-- a frame-based dialogue manager for structured conversation flow
-- a rule-based empathy layer for mandatory supportive language
-- a GraphRAG layer for checking clinical facts against a knowledge graph built from documents
+## Project Overview
 
-The goal is to keep the assistant warm and responsive while preventing unsafe medical output such as dosing, prognosis, or unsupported claims.
+This repository contains:
+- **Conversational Agent**: Frame-based dialogue manager with rule-based empathy layer and GraphRAG fact verification
+- **Tool Integration**: LLM-callable tools for dynamic patient context retrieval and knowledge graph queries
+- **DPO Study System**: Streamlit interface for collecting human preference data on response pairs
+- **Analysis Pipeline**: Post-collection analysis, statistics, and conversion to training formats (DPO/SFT)
+- **Sample Questions**: Pre-curated 90-question library across clinical categories for consistent testing
 
-## What lives in this repository
+## Directory Structure
 
-- `frame_dialogue_manager.py` - frame-based JSON dialogue manager
-- `frame_prompt.txt` - the frame prompt used to steer the LLM
-- `dialogue_manager.py` - a lightweight finite-state manager used by the rule-based chatbot
-- `rules.py` - rule logic, including the new distress detector and empathy prefix
-- `graph_rag.py` - document-driven GraphRAG and response verification logic
-- `ollama_chat.py` - the main chat loop that combines rules, graph retrieval, and Ollama responses
-- `agent_engine.py` - the agentic Thought-Action-Observation orchestrator
-- `ollama_agent_chat.py` - the agentic chat loop that prints the final frame JSON
-- `context/static_patient_records.json` - local de-identified patient context for personalization
+```
+rulebasedLLM/
+├── README.md                          # This file
+├── requirements_study.txt             # Python dependencies
+│
+├── docs/                              # Documentation
+│   ├── QUICKSTART.md                 # 30-second setup guide
+│   ├── DPO_STUDY_GUIDE.md            # Implementation guide and troubleshooting
+│   ├── SYSTEM_SUMMARY.md             # Architecture and workflow overview
+│   ├── STUDY_UI_SETUP.md             # Detailed UI setup and configuration
+│   └── USING_SAMPLE_QUESTIONS.md     # Sample questions library usage
+│
+├── ui/                                # User interfaces
+│   └── study_ui.py                   # Streamlit preference data collection interface
+│
+├── core/                              # Core agent and dialogue engines
+│   ├── agent_engine.py               # Agentic orchestrator with tool integration
+│   ├── dialogue_manager.py           # Lightweight state manager
+│   ├── frame_dialogue_manager.py     # Frame-based JSON dialogue manager
+│   ├── rules.py                      # Rule logic (distress, empathy, safety)
+│   ├── graph_rag.py                  # GraphRAG and fact verification
+│   ├── ollama_chat.py                # Main chat loop (rules + graph + LLM)
+│   ├── ollama_agent_chat.py          # Agentic chat with frame JSON output
+│   ├── demo_dpo_system.py            # 4 worked examples of system usage
+│   └── example_tool_calls.py         # Tool call syntax examples
+│
+├── tools/                             # Analysis and utility tools
+│   ├── analyze_study_data.py         # Post-collection preference analysis
+│   ├── prepare_dpo_data.py           # Convert study data to training formats
+│   └── sample_questions_util.py      # Question library management utility
+│
+└── data/                              # Configuration and data files
+    ├── sample_questions.json          # 90 clinical questions (9 categories)
+    ├── frame_prompt.txt               # LLM steering prompt
+    └── context/
+        └── static_patient_records.json # De-identified patient context
+```
 
-## High-level architecture
+## Quick Start
 
-The chatbot runs as a layered pipeline:
+### 1. Install dependencies
+```bash
+pip install -r requirements_study.txt
+```
 
-1. The user enters a message.
-2. `DialogueStateManager` updates the conversation state.
-3. `rules.py` checks for rule triggers such as distress or farewell.
-4. `graph_rag.py` extracts entities from the user message and retrieves related context from a NetworkX knowledge graph.
-5. The agent engine looks up static patient context from a local JSON file.
-6. Ollama generates a structured frame response using the graph context and patient context.
-7. `verify_llm_response()` checks whether the medical relationships mentioned in the generated response are supported by the graph.
-8. The final response is assembled from:
-   - a mandatory empathy prefix, if distress was detected
-   - the validated LLM response, or a safe fallback if the response appears unsupported
+### 2. Launch the study UI
+```bash
+streamlit run ui/study_ui.py
+```
+The interface opens at `http://localhost:8501`. 
 
-This means the chatbot is not purely rule-based and not purely generative. It is a hybrid system in which rules constrain tone, the graph constrains facts, and the LLM handles natural language generation.
+**Quick workflow:**
+1. Enter a question or load from sample library
+2. Click "Generate Answers" to get original and revised responses
+3. Compare side-by-side (randomized A/B assignment)
+4. Select preferred answer and click "Log Preference"
+5. Results auto-save to `study_data.jsonl`
 
-## Conversation flow in practice
+### 3. Access sample questions
+```bash
+# View all 90 questions
+python tools/sample_questions_util.py all
 
-A typical interaction looks like this:
+# Filter by category
+python tools/sample_questions_util.py oncology_and_cancer
 
-- The user asks a question or expresses concern.
-- The sentiment rule checks for distress words such as scared, terrified, pain, worried, or anxious.
-- If distress is detected, the assistant must begin with a supportive empathy prefix.
-- The graph retriever extracts entities from the message and looks up related concepts in the knowledge graph.
-- The LLM answers with that context in mind.
-- The verifier checks whether the response mentions relationships that exist in the graph.
-- If the answer looks hallucinated or unverified, the assistant falls back to a safe response that only states what can be confirmed.
+# Get random question
+python tools/sample_questions_util.py random
+
+# Export to CSV
+python tools/sample_questions_util.py export csv
+```
+
+### 4. Analyze collected preferences
+```bash
+python tools/analyze_study_data.py
+```
+Generates: preference statistics, position bias detection, answer quality metrics
+
+### 5. Prepare training data
+```bash
+python tools/prepare_dpo_data.py
+```
+Outputs:
+- `dpo_training_data.jsonl` - for trl.DPOTrainer
+- `sft_training_data.jsonl` - SFT format (preferred answers only)
+- `preference_training_data.jsonl` - All preferences with metadata
+
+## Core Systems
+
+### Agent Architecture
+
+Three-layer hybrid system:
+
+1. **Dialogue Control** (`frame_dialogue_manager.py`)
+   - Structured conversation flow using JSON frames
+   - Context-aware branching based on user responses
+
+2. **Safety & Tone** (`rules.py`)
+   - Distress detection (scared, terrified, pain, anxious, worried)
+   - Mandatory empathy prefixes for distressed users
+   - Medical claim validation
+
+3. **Fact Verification** (`graph_rag.py`)
+   - Entity extraction from user messages
+   - Knowledge graph retrieval (NetworkX-based)
+   - Response verification against established relationships
+
+4. **Tool Integration** (`agent_engine.py`)
+   - ACTION syntax for dynamic tool calls (e.g., `ACTION: get_patient_context(patient_id="A")`)
+   - Three available tools: `get_patient_context`, `search_knowledge_graph`, `verify_fact`
+   - Observation capture and response refinement
+
+### DPO Study System
+
+**Data Collection** (`study_ui.py`):
+- Dual-response comparison: original draft vs. revised response
+- Random 50/50 A/B assignment to prevent position bias
+- Auto-logging to append-only `study_data.jsonl`
+- Cached engine initialization for performance
+
+**Analysis** (`analyze_study_data.py`):
+- Preference distribution and statistics
+- Position bias detection
+- Revision effectiveness (did revision change preference?)
+- Answer quality metrics
+
+**Training Data Export** (`prepare_dpo_data.py`):
+- Convert preferences to DPO format (chosen/rejected pairs)
+- SFT format (preferred responses only)
+- Preference format (all info with metadata)
+
+### Sample Questions Library
+
+**Content** (`data/sample_questions.json`):
+- 90 clinical questions across 9 categories
+- Categories:
+  - Oncology and Cancer (treatment, prognosis, side effects)
+  - Nuclear Medicine Theranostics (procedures, isotopes)
+  - Symptoms and Side Effects (management, timeline)
+  - Treatment Planning and Monitoring (protocols, expectations)
+  - Psychosocial and Emotional (coping, support resources)
+  - Recovery and Long-term Outcomes (lifestyle, follow-up)
+  - Treatment Modalities (types, approaches)
+  - Practical Questions (logistics, scheduling, costs)
+  - Misconceptions and Clarifications (myths vs. facts)
+
+**Management** (`tools/sample_questions_util.py`):
+- View all or filter by category
+- Get random questions for testing
+- Export to CSV or TXT formats
+- Perfect for consistent UI/UX testing
+
+## Documentation
+
+Start here based on your role:
+
+- **[QUICKSTART.md](docs/QUICKSTART.md)** (5 min)
+  - 30-second setup guide
+  - Core commands and entry points
+  - Troubleshooting first steps
+
+- **[DPO_STUDY_GUIDE.md](docs/DPO_STUDY_GUIDE.md)** (20 min)
+  - Complete implementation walkthrough
+  - Data flow overview
+  - Customization examples
+  - Common troubleshooting scenarios
+
+- **[SYSTEM_SUMMARY.md](docs/SYSTEM_SUMMARY.md)** (15 min)
+  - Architecture overview
+  - Component responsibilities
+  - Workflow diagram and description
+  - Integration points
+
+- **[STUDY_UI_SETUP.md](docs/STUDY_UI_SETUP.md)** (10 min)
+  - Detailed UI configuration
+  - UI state management and caching
+  - Session handling
+  - Advanced options
+
+- **[USING_SAMPLE_QUESTIONS.md](docs/USING_SAMPLE_QUESTIONS.md)** (10 min)
+  - Sample questions library structure
+  - Access methods (code and CLI)
+  - Category descriptions
+  - Custom question addition
+
+## Key Features
+
+✅ **Hybrid Control System**
+- Rule-based safety constraints + LLM flexibility
+- Graph-verified facts prevent hallucinations
+- Distress detection triggers empathy prefixes
+
+✅ **Tool Integration**
+- LLM can call tools during reasoning
+- Dynamic patient context retrieval
+- Knowledge graph queries via ACTION syntax
+
+✅ **DPO Study Infrastructure**
+- Minimalist UI for preference collection
+- Dual-response comparison (original vs. revision)
+- Automatic position bias prevention
+- Append-only data logging
+
+✅ **Analysis & Training Ready**
+- Post-collection statistics and insights
+- Conversion to multiple training formats
+- Ready for trl.DPOTrainer integration
+
+✅ **Sample Questions Library**
+- 90 pre-curated clinical questions
+- 9 categories for comprehensive testing
+- Multiple access methods (CLI, code, API)
+
+## Technical Stack
+
+- **Core**: Python 3.8+, Pydantic for type safety
+- **LLM**: Ollama (local inference)
+- **UI**: Streamlit (minimalist, caching-optimized)
+- **Graph**: NetworkX (knowledge representation)
+- **Training**: Integration ready for HuggingFace trl.DPOTrainer
+- **Data**: Append-only JSONL (study_data.jsonl)
+
+## Data Files
+
+- `study_data.jsonl` - Auto-generated during study collection, append-only
+- `dpo_training_data.jsonl` - Auto-generated from preference analysis
+- `sft_training_data.jsonl` - Auto-generated, SFT format
+- `preference_training_data.jsonl` - Auto-generated, full metadata
+
+## Typical Workflow
+
+1. **Setup** → Install dependencies, run `requirements_study.txt`
+2. **Demo** → Run `core/demo_dpo_system.py` to see 4 worked examples
+3. **Study** → Launch `streamlit run ui/study_ui.py`
+4. **Collect** → Use sample questions or custom prompts to gather preferences
+5. **Analyze** → Run `tools/analyze_study_data.py` after collection
+6. **Train** → Export to training format and integrate with trl.DPOTrainer
+
+## References
+
+- [Demo Examples](core/demo_dpo_system.py) - 4 worked system examples
+- [Tool Syntax](core/example_tool_calls.py) - ACTION: format and parsing
+- [Clinical Context](data/context/static_patient_records.json) - Patient personalization data
+
+## License & Attribution
+
+This is a research prototype combining clinical AI safety principles with direct preference optimization techniques.
 
 This is designed to keep the system clinically conservative.
 

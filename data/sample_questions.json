@@ -1,0 +1,110 @@
+{
+  "oncology_and_cancer": [
+    "What is targeted therapy and how does it differ from traditional chemotherapy?",
+    "What are the most common side effects of targeted therapy?",
+    "How does personalized medicine approach cancer treatment?",
+    "What should patients expect during the first week of targeted therapy?",
+    "Are there any dietary restrictions I should follow during targeted therapy treatment?",
+    "How often will I need imaging studies during my cancer treatment?",
+    "What does it mean when a tumor is described as HER2-positive?",
+    "Can targeted therapy be combined with other cancer treatments?",
+    "What is immunotherapy and how is it different from targeted therapy?",
+    "What support services are available for cancer patients?"
+  ],
+  "nuclear_medicine_theranostics": [
+    "What is theranostics in nuclear medicine?",
+    "How does targeted radionuclide therapy work?",
+    "What preparations do I need before diagnostic imaging?",
+    "Are there radiation safety precautions I should take at home after treatment?",
+    "How long does the diagnostic imaging procedure usually take?",
+    "What is the purpose of performing imaging at multiple timepoints?",
+    "Can I spend time with family and friends after my nuclear medicine treatment?",
+    "How is personalized dosimetry used in nuclear medicine treatment planning?",
+    "What types of imaging will I need before starting treatment?",
+    "How do we know the treatment is working?"
+  ],
+  "symptoms_and_side_effects": [
+    "I've been experiencing fatigue during my treatment. Is this normal?",
+    "What can I do to manage nausea and loss of appetite?",
+    "Why might I experience skin reactions during treatment?",
+    "Is hair loss a side effect of targeted therapy?",
+    "What should I do if I develop a fever during treatment?",
+    "How long do side effects typically last after treatment ends?",
+    "Can I exercise during my cancer treatment?",
+    "What pain management options are available?",
+    "Why might my blood counts change during treatment?",
+    "Will the side effects I'm experiencing affect my treatment plan?"
+  ],
+  "treatment_planning_and_monitoring": [
+    "How is my personalized treatment plan developed?",
+    "What tests do I need before starting my cancer treatment?",
+    "How often will I have follow-up appointments during treatment?",
+    "What happens during a treatment planning session?",
+    "How do doctors decide the right dose of radiation for me?",
+    "What is the purpose of CT scans in treatment planning?",
+    "How long will my treatment course take?",
+    "What should I do if I need to reschedule a treatment?",
+    "How will we monitor whether the treatment is effective?",
+    "What happens if a side effect becomes severe during treatment?"
+  ],
+  "psychosocial_and_emotional": [
+    "I'm feeling anxious about my upcoming treatment. What resources can help?",
+    "How can I talk with my family about my cancer diagnosis?",
+    "Are there support groups for patients undergoing my type of treatment?",
+    "Will my treatment affect my ability to work?",
+    "How can I maintain physical and emotional wellness during treatment?",
+    "What financial resources are available for cancer patients?",
+    "Is it normal to feel overwhelmed by a cancer diagnosis?",
+    "How can I maintain hope and positive outlook during treatment?",
+    "What should I tell my children about my diagnosis?",
+    "Are there counseling services available?"
+  ],
+  "recovery_and_long_term_outcomes": [
+    "What should I expect immediately after treatment ends?",
+    "How long does recovery typically take?",
+    "When can I return to normal activities?",
+    "What long-term side effects should I be aware of?",
+    "How often will I need follow-up imaging after treatment?",
+    "What is a survivorship plan?",
+    "Can another cancer develop after my treatment?",
+    "How important is follow-up care after treatment?",
+    "What lifestyle changes can reduce recurrence risk?",
+    "When can I stop worrying about my cancer returning?"
+  ],
+  "treatment_modalities": [
+    "What is the difference between internal and external radiation therapy?",
+    "How does intensity-modulated radiation therapy (IMRT) work?",
+    "What is brachytherapy and when is it used?",
+    "How does proton therapy differ from standard radiation?",
+    "What is combination therapy and why might it be recommended?",
+    "How does hormonal therapy work for certain cancers?",
+    "What are monoclonal antibodies and how do they help treatment?",
+    "What is CAR-T cell therapy?",
+    "How long does a typical radiation therapy session last?",
+    "What is the difference between adjuvant and neoadjuvant therapy?"
+  ],
+  "practical_questions": [
+    "What should I bring to my treatment appointments?",
+    "Will I be able to drive to and from my treatment sessions?",
+    "What clothing is best to wear during treatment?",
+    "Can I bring family members to my appointments?",
+    "What should I do if I miss a scheduled treatment?",
+    "Are treatment scheduling accommodations available?",
+    "What happens if I experience side effects between appointments?",
+    "Should I keep a symptom diary during treatment?",
+    "Can I take other medications while undergoing treatment?",
+    "What questions should I ask my medical team?"
+  ],
+  "misconceptions_and_clarifications": [
+    "Does cancer treatment always cause severe side effects?",
+    "Will radiation therapy make me radioactive?",
+    "Is cancer always a death sentence?",
+    "Will alternative medicine cure my cancer?",
+    "Does stress cause cancer?",
+    "Is cancer contagious?",
+    "Will my cancer definitely come back?",
+    "Are all cancer treatments equally effective?",
+    "Do I have to choose between quality of life and treatment?",
+    "Is it too late to start treatment if I wait?"
+  ]
+}
