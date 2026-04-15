@@ -20,6 +20,8 @@ import requests
 from pydantic import BaseModel, Field, ValidationError
 
 import graph_rag
+import ontology_rag
+from ontology_tool import verify_clinical_relationship, UMLSVerificationResult
 from rules import DISTRESS_KEYWORDS, apply_rules, sentiment_analyzer
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -459,6 +461,50 @@ class AgentEngine:
                     }
                 )
             
+            elif tool_call.function_name == "query_medical_ontology":
+                # Query the medical ontology for deterministic entity mapping and relationships
+                terms = tool_call.arguments.get("terms", "")
+                if not terms:
+                    return ToolResult(
+                        tool_name=tool_call.function_name,
+                        success=False,
+                        error="Missing 'terms' argument"
+                    )
+                result = ontology_rag.query_medical_ontology(terms)
+                return ToolResult(
+                    tool_name=tool_call.function_name,
+                    success=result.success,
+                    result={
+                        "mapped_entities": result.mapped_entities,
+                        "relationships": result.relationships,
+                        "success": result.success
+                    } if result.success else None,
+                    error=result.error if not result.success else ""
+                )
+            
+            elif tool_call.function_name == "query_umls_ontology":
+                # Query the UMLS ontology for verified clinical relationships
+                term = tool_call.arguments.get("term", "")
+                if not term:
+                    return ToolResult(
+                        tool_name=tool_call.function_name,
+                        success=False,
+                        error="Missing 'term' argument"
+                    )
+                result = verify_clinical_relationship(term)
+                return ToolResult(
+                    tool_name=tool_call.function_name,
+                    success=result.found,
+                    result={
+                        "term": result.term,
+                        "cui": result.cui,
+                        "found": result.found,
+                        "relationships": result.relationships,
+                        "summary": result.summary
+                    },
+                    error=result.error if not result.found else ""
+                )
+            
             else:
                 return ToolResult(
                     tool_name=tool_call.function_name,
@@ -578,6 +624,7 @@ class AgentEngine:
             "- Validate emotion before giving technical explanations.\n"
             "- Never mention dosing, prognosis, or numerical dosimetry.\n"
             "- In therapy_explanation, use at most two sentences of medical facts before checking understanding.\n"
+            "- CRITICAL: If a medical relationship is not explicitly verified by the query_umls_ontology or query_medical_ontology tool, you MUST state that you cannot confirm the clinical relationship.\n"
             "- Output valid JSON only and follow this schema exactly:\n"
             '{"active_frame":"...","filled_slots":{...},"agent_response":"...","next_frame":"..."}\n\n'
             "Available Tools (optional):\n"
@@ -586,8 +633,11 @@ class AgentEngine:
             "- ACTION: get_patient_context(patient_id=\"Patient_ID\") - Retrieve static patient context from the local database\n"
             "- ACTION: search_knowledge_graph(query=\"your_query\") - Search the knowledge graph for clinical facts\n"
             "- ACTION: verify_fact(statement=\"your_statement\") - Verify if a statement is supported by the knowledge graph\n"
+            "- ACTION: query_umls_ontology(term=\"medical_term\") - Use this to retrieve medically verified relationships for a specific drug, therapy, or side effect from the NIH UMLS database. Returns CUI and verified relationships.\n"
+            "- ACTION: query_medical_ontology(terms=\"term1, term2\") - Deterministically verify medical relationships using the static medical ontology. Use this to confirm any clinical relationships before making statements about them.\n"
             "Each tool call will be executed and the result will be added to observations for the next iteration.\n"
             "Only use tools when you need additional information to answer the user's question accurately.\n"
+            "When discussing medical relationships or treatments, prioritize using query_umls_ontology to verify facts from the official medical ontology.\n"
         )
         if revised:
             system_message += "\nThe previous draft did not comply with empathy or safety requirements. Revise it carefully."
