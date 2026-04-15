@@ -2,16 +2,32 @@
 
 This module provides a wrapper around the UMLS client to verify medical relationships
 and provide formatted summaries for the LLM agent.
+
+Configuration:
+  Use the real UMLS API (requires UMLS_API_KEY):
+    export UMLS_CLIENT_MODE=real
+  
+  Use the mock UMLS client (no API key needed):
+    export UMLS_CLIENT_MODE=mock  # default
 """
 
 import logging
+import os
 from typing import Any, Optional
 
 from pydantic import BaseModel, Field
 
-from umls_client import UMLSClient, UMLSClientError, get_concept_relations, search_concept
+# Determine which client to use based on environment variable
+UMLS_CLIENT_MODE = os.getenv("UMLS_CLIENT_MODE", "mock").lower()
+
+if UMLS_CLIENT_MODE == "real":
+    from umls_client import UMLSClient, UMLSClientError, get_concept_relations, search_concept
+else:
+    # Default to mock unless explicitly set to "real"
+    from umls_client_mock import UMLSClient, UMLSClientError, get_concept_relations, search_concept
 
 logger = logging.getLogger(__name__)
+logger.info(f"Using {UMLS_CLIENT_MODE.upper()} UMLS client")
 
 
 class UMLSVerificationResult(BaseModel):

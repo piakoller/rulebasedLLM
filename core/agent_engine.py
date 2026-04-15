@@ -22,7 +22,8 @@ from pydantic import BaseModel, Field, ValidationError
 import graph_rag
 import ontology_rag
 from ontology_tool import verify_clinical_relationship, UMLSVerificationResult
-from rules import DISTRESS_KEYWORDS, apply_rules, sentiment_analyzer
+from rules import DISTRESS_KEYWORDS, apply_rules, sentiment_analyzer, detect_language
+from empathy_framing import create_empathic_response_to_umls_result
 
 BASE_DIR = Path(__file__).resolve().parent
 FRAME_PROMPT_PATH = BASE_DIR / "frame_prompt.txt"
@@ -405,7 +406,7 @@ class AgentEngine:
         self.document_roots = document_roots or [DEFAULT_DOCUMENT_ROOT]
         self.knowledge_graph = graph_rag.get_knowledge_graph(self.document_roots)
 
-    def _execute_tool(self, tool_call: ToolCall) -> ToolResult:
+    def _execute_tool(self, tool_call: ToolCall, user_message: str = "") -> ToolResult:
         """Execute a tool call and return the result."""
         try:
             if tool_call.function_name == "get_patient_context":
@@ -492,16 +493,32 @@ class AgentEngine:
                         error="Missing 'term' argument"
                     )
                 result = verify_clinical_relationship(term)
+                
+                # Check if user is distressed
+                user_distressed = any(kw in user_message.lower() for kw in DISTRESS_KEYWORDS) if user_message else False
+                
+                # Create empathic response if available
+                tool_result = {
+                    "term": result.term,
+                    "cui": result.cui,
+                    "found": result.found,
+                    "relationships": result.relationships,
+                    "summary": result.summary
+                }
+                
+                # Add empathic framing if we have user message
+                if user_message and result.found:
+                    empathic_response = create_empathic_response_to_umls_result(
+                        tool_result,
+                        user_message,
+                        user_distressed
+                    )
+                    tool_result["empathic_framing"] = empathic_response
+                
                 return ToolResult(
                     tool_name=tool_call.function_name,
                     success=result.found,
-                    result={
-                        "term": result.term,
-                        "cui": result.cui,
-                        "found": result.found,
-                        "relationships": result.relationships,
-                        "summary": result.summary
-                    },
+                    result=tool_result,
                     error=result.error if not result.found else ""
                 )
             
@@ -761,7 +778,7 @@ class AgentEngine:
             tool_results: list[ToolResult] = []
             if tool_calls:
                 for tool_call in tool_calls:
-                    tool_result = self._execute_tool(tool_call)
+                    tool_result = self._execute_tool(tool_call, user_message=user_message)
                     tool_results.append(tool_result)
                 
                 # Add tool results to observation summary for the next reasoning step

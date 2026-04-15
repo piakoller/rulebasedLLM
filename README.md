@@ -562,6 +562,80 @@ The system is intentionally layered because each layer solves a different proble
 
 That combination makes the assistant more suitable for a clinical setting than a plain free-form chatbot.
 
+## Testing the Empathy Layer
+
+The system now includes comprehensive empathy layer testing:
+
+**Unit Tests** (`test_empathy_pipeline.py`):
+```bash
+python test_empathy_pipeline.py
+```
+Tests individual components:
+- Language detection (German + English)
+- Distress detection (28 keywords)
+- Empathy framing (3 categories × 2 languages)
+- UMLS result wrapping
+
+**Integration Tests** (`test_integrated_empathy_agent.py`):
+```bash
+python test_integrated_empathy_agent.py
+```
+Tests complete pipeline:
+- German patient with side effect concerns
+- German patient with treatment anxiety
+- English patient for comparison
+
+**System Tests** (`test_mock_umls.py`):
+```bash
+python test_mock_umls.py
+```
+Tests full TAO loop with:
+- Single term verification
+- Multiple terms
+- German-to-English translation
+- Agent tool simulation
+
+**All tests pass with mock UMLS — no API key required!**
+
+## Empathy Layer Architecture
+
+The system now includes an integrated empathy layer that combines:
+
+1. **Language Detection** (`rules.detect_language()`)
+   - Automatic German/English detection
+   - Keyword scoring (40+ indicators per language)
+   - Fallback to German umlaut detection
+
+2. **Distress Detection** (`rules.DISTRESS_KEYWORDS`)
+   - 28 keywords total (14 German, 14 English)
+   - Examples: "angst", "nervös", "besorg" (German)
+   - Examples: "scared", "terrified", "worried" (English)
+
+3. **Empathic Framing** (`core/empathy_framing.py`)
+   - 3 framing categories: side effects, therapy purpose, relationships
+   - Templates provide different versions for distressed patients
+   - Both German and English templates
+   - Wraps UMLS facts with emotional support
+
+4. **Agent Integration** (`core/agent_engine.py`)
+   - `_execute_tool()` now takes user_message parameter
+   - `query_umls_ontology` handler applies empathy framing
+   - Returns both clinical facts AND empathic context
+   - Detects distress level and tailors response accordingly
+
+**Example workflow:**
+
+```
+German patient: "Ich bin nervös vor Nebenwirkungen"
+     ↓ (Detects German language and "nervös" distress keyword)
+Agent translates to English: "side effects"
+     ↓ (Queries UMLS for "Renal Toxicity" relationship)
+UMLS returns: [verified relationships]
+     ↓ (Applies empathy framing for distressed German patient)
+Agent response: "Ich verstehe Ihre Besorgnis. Die Forschung zeigt..."
+     (I understand your concern. Research shows...)
+```
+
 ## If you want to extend it
 
 Good next steps include:
@@ -570,16 +644,39 @@ Good next steps include:
 - adding citation output that references document chunks directly
 - refining the verifier with more precise relation extraction
 - connecting the frame manager and GraphRAG into a single orchestrated pipeline
-- adding unit tests for distress detection, graph verification, and safe fallback behavior
+- adding more languages (French, Italian, Spanish) to the empathy layer
+- integrating sentiment analysis models for better distress detection
+- testing empathy layer with German-speaking patient cohort
 
 ## Summary
 
 This repository now combines:
 
-- structured clinical dialogue via frames
-- mandatory empathy behavior for distressed users
-- document-driven GraphRAG for medical grounding
-- graph-based verification to reduce hallucinations
-- conservative safety rules to keep the bot clinically bounded
+- **Structured clinical dialogue** via frames
+- **Mandatory empathy behavior** for distressed users (rule-based + LLM)
+- **Document-driven GraphRAG** for medical grounding
+- **Graph-based verification** to reduce hallucinations
+- **Conservative safety rules** to keep the bot clinically bounded
+- **Multilingual support** with automatic language detection
+- **UMLS ontology verification** for verified medical facts
+- **Empathic framing** of clinical information for emotional intelligence
+- **Distress-aware responses** that adapt tone for anxious patients
+- **German language support** for nuclear medicine patients in German-speaking regions
 
-That is the intended operating model of the agent.
+That is the intended operating model of the agent: **clinically valid information delivered with emotional care.**
+
+## Files
+
+**New/Updated for Empathy Layer:**
+- `core/empathy_framing.py` (NEW) — Templates and framing logic
+- `core/rules.py` (UPDATED) — Enhanced language detection and distress keywords
+- `core/agent_engine.py` (UPDATED) — Empathy framing integration in tool execution
+- `test_empathy_pipeline.py` (NEW) — Comprehensive empathy unit tests
+- `test_integrated_empathy_agent.py` (NEW) — Empathy integration scenarios
+- `EMPATHY_LAYER_IMPLEMENTATION.md` (NEW) — Detailed technical documentation
+
+**Core Clinical AI:**
+- `core/umls_client.py` — NIH UMLS REST API integration with retry logic
+- `core/umls_client_mock.py` — Mock UMLS for API-key-free testing
+- `core/ontology_tool.py` — UMLS verification wrapper
+- `test_mock_umls.py` — Full system test without API key
