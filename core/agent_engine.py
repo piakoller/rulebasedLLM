@@ -625,6 +625,7 @@ class AgentEngine:
             "- Never mention dosing, prognosis, or numerical dosimetry.\n"
             "- In therapy_explanation, use at most two sentences of medical facts before checking understanding.\n"
             "- CRITICAL: If a medical relationship is not explicitly verified by the query_umls_ontology or query_medical_ontology tool, you MUST state that you cannot confirm the clinical relationship.\n"
+            "- LANGUAGE: Always respond to the user in the language they used (German, English, etc.), even though your tool calls and observations are in English.\n"
             "- Output valid JSON only and follow this schema exactly:\n"
             '{"active_frame":"...","filled_slots":{...},"agent_response":"...","next_frame":"..."}\n\n'
             "Available Tools (optional):\n"
@@ -633,7 +634,7 @@ class AgentEngine:
             "- ACTION: get_patient_context(patient_id=\"Patient_ID\") - Retrieve static patient context from the local database\n"
             "- ACTION: search_knowledge_graph(query=\"your_query\") - Search the knowledge graph for clinical facts\n"
             "- ACTION: verify_fact(statement=\"your_statement\") - Verify if a statement is supported by the knowledge graph\n"
-            "- ACTION: query_umls_ontology(term=\"medical_term\") - Use this to retrieve medically verified relationships for a specific drug, therapy, or side effect from the NIH UMLS database. Returns CUI and verified relationships.\n"
+            "- ACTION: query_umls_ontology(term=\"english_medical_term\") - You MUST translate any German or Swiss-German medical terms into standard English before calling this tool. Use this to retrieve medically verified relationships for a specific drug, therapy, or side effect from the NIH UMLS database. Returns CUI and verified relationships.\n"
             "- ACTION: query_medical_ontology(terms=\"term1, term2\") - Deterministically verify medical relationships using the static medical ontology. Use this to confirm any clinical relationships before making statements about them.\n"
             "Each tool call will be executed and the result will be added to observations for the next iteration.\n"
             "Only use tools when you need additional information to answer the user's question accurately.\n"
