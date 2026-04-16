@@ -85,7 +85,7 @@ python demo_dpo_system.py
 ```python
 from agent_engine import AgentEngine
 
-engine = AgentEngine(model="gemma3:27b")
+engine = AgentEngine(model="hf.co/unsloth/medgemma-1.5-4b-it-GGUF:BF16")
 
 # Get both original and final response
 comparison = engine.handle_message_for_study("Your question")

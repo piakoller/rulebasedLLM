@@ -9,7 +9,7 @@ from __future__ import annotations
 from agent_engine import AgentEngine
 
 
-def chat_loop(model: str = "gemma3:27b"):
+def chat_loop(model: str = "hf.co/unsloth/medgemma-1.5-4b-it-GGUF:BF16"):
     engine = AgentEngine(model=model)
     print(f"Chatting with Ollama model: {model}")
     print(f"[GraphRAG] Current document roots: {', '.join(str(path) for path in engine.document_roots)}")

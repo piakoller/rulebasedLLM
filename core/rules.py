@@ -72,6 +72,8 @@ def detect_language(text: str) -> str:
     Returns 'de' for German, 'en' for English.
     Uses word boundaries and common German characteristics.
     """
+    import re
+    
     text_lower = text.lower()
     
     # German-specific patterns and words (expanded)
@@ -117,9 +119,11 @@ def detect_language(text: str) -> str:
         "that", "this", "not", "only", "also", "more", "some",
     }
     
-    # Count word occurrences
-    german_score = sum(1 for word in german_indicators if word in text_lower)
-    english_score = sum(1 for word in english_indicators if word in text_lower)
+    # Count word occurrences using word boundaries to avoid substring matches
+    german_score = sum(1 for word in german_indicators 
+                      if re.search(r'\b' + re.escape(word) + r'\b', text_lower))
+    english_score = sum(1 for word in english_indicators 
+                       if re.search(r'\b' + re.escape(word) + r'\b', text_lower))
     
     # If one is clearly higher, use that
     if german_score > english_score:

@@ -23,12 +23,16 @@ import graph_rag
 import ontology_rag
 from ontology_tool import verify_clinical_relationship, UMLSVerificationResult
 from rules import DISTRESS_KEYWORDS, apply_rules, sentiment_analyzer, detect_language
-from empathy_framing import create_empathic_response_to_umls_result
+from empathy_framing import (
+    create_empathic_response_to_umls_result,
+    classify_emotional_state,
+    get_nurse_instruction,
+)
 
 BASE_DIR = Path(__file__).resolve().parent
 FRAME_PROMPT_PATH = BASE_DIR / "frame_prompt.txt"
 STATIC_PATIENT_DATA_PATH = BASE_DIR / "context" / "static_patient_records.json"
-DEFAULT_OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "gemma3:27b")
+DEFAULT_OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "hf.co/unsloth/medgemma-1.5-4b-it-GGUF:BF16")
 DEFAULT_OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/chat")
 DEFAULT_DOCUMENT_ROOT = BASE_DIR / "context"
 MAX_REASONING_STEPS = 2
@@ -561,6 +565,10 @@ class AgentEngine:
         lowered = user_message.lower()
         emotion_hit = next((keyword for keyword in DISTRESS_KEYWORDS if keyword in lowered), "")
         forbidden_hit = next((topic for topic in FORBIDDEN_TOPICS if topic in lowered), "")
+        
+        # Classify emotional state using NURSE protocol
+        emotional_state = classify_emotional_state(user_message)
+        
         if any(marker in lowered for marker in ["bye", "goodbye", "quit", "exit"]):
             intent = "farewell"
         elif "?" in user_message or lowered.startswith(("what", "how", "why", "when", "is ", "are ")):
@@ -572,6 +580,7 @@ class AgentEngine:
         return {
             "intent": intent,
             "emotion_detected": emotion_hit,
+            "emotional_state": emotional_state,
             "forbidden_topic": forbidden_hit,
         }
 
@@ -606,6 +615,7 @@ class AgentEngine:
             [
                 f"User message: {user_message}",
                 f"Intent: {analysis['intent']}",
+                f"Emotional state: {analysis.get('emotional_state', 'neutral')}",
                 f"Emotion detected: {analysis['emotion_detected'] or 'none'}",
                 f"Forbidden topic: {analysis['forbidden_topic'] or 'none'}",
                 f"Patient context: {patient_context.summary or 'none'}",
@@ -616,7 +626,7 @@ class AgentEngine:
             ]
         )
 
-    def _build_prompt(self, user_message: str, observation_summary: str, revised: bool = False) -> list[dict[str, str]]:
+    def _build_prompt(self, user_message: str, observation_summary: str, emotional_state: str = "neutral", revised: bool = False) -> list[dict[str, str]]:
         spec = self.frame_specs.get(self.current_frame)
         required_slots = ", ".join(spec.required_slots) if spec else ""
         optional_slots = ", ".join(spec.optional_slots) if spec else ""
@@ -627,6 +637,9 @@ class AgentEngine:
         if spec:
             missing_slots = [slot for slot in spec.required_slots if slot not in filled_slots]
 
+        # Get emotional context to inform LLM (not prescriptive rules)
+        emotional_context = get_nurse_instruction(emotional_state)
+
         system_message = (
             f"{self.system_prompt}\n\n"
             f"Current active frame: {self.current_frame}\n"
@@ -636,6 +649,8 @@ class AgentEngine:
             f"Allowed next frames: {allowed_next}\n"
             f"Already filled slots: {json.dumps(filled_slots, ensure_ascii=False)}\n"
             f"Missing slots: {', '.join(missing_slots) if missing_slots else 'none'}\n\n"
+            "Patient's Emotional State:\n"
+            f"{emotional_context}\n\n"
             "Behavioral constraints:\n"
             "- Ask before telling when facts are not yet needed or the patient is distressed.\n"
             "- Validate emotion before giving technical explanations.\n"
@@ -677,22 +692,24 @@ class AgentEngine:
         patient_context: StaticPatientContextResult,
         graph_fact: graph_rag.KnowledgeGraphFactResult,
     ) -> FrameResponse:
-        prefix = sentiment_analyzer(user_message)
-        empathy_prefix = prefix.get("mandatory_prefix", "") if prefix else ""
+        # Note: Empathy is now handled via system_message injection in _build_prompt(),
+        # not through hardcoded prefixes. This keeps fallback responses clear and lets
+        # the LLM integrate empathy naturally when needed.
+        
         if analysis["forbidden_topic"]:
             response_text = (
-                f"{empathy_prefix}I can keep this at a high level, but I should not provide {analysis['forbidden_topic']} details. "
+                f"I can keep this at a high level, but I should not provide {analysis['forbidden_topic']} details. "
                 "If you would like, I can explain the general purpose of the treatment or what patients usually experience."
             ).strip()
             next_frame = "safety_instructions"
         elif self.current_frame == "emotion_check":
             response_text = (
-                f"{empathy_prefix}It sounds like this may feel difficult. Before I explain more, what have you been told so far about the treatment?"
+                "It sounds like this may feel difficult. Before I explain more, what have you been told so far about the treatment?"
             ).strip()
             next_frame = "emotion_check"
         else:
             response_text = (
-                f"{empathy_prefix}I want to stay careful and only share what I can confirm. "
+                "I want to stay careful and only share what I can confirm. "
                 "If you want, I can give a simple high-level explanation or focus on your immediate concerns."
             ).strip()
             next_frame = self._select_next_frame(analysis, patient_context, graph_fact)
@@ -745,12 +762,10 @@ class AgentEngine:
         rule_state = "start" if self.current_frame == "greeting" else self.current_frame
         rule_result = apply_rules(user_message, state=rule_state, context=self.frame_memory)
         direct_response = ""
-        mandatory_prefix = ""
         if isinstance(rule_result, dict):
             direct_response = rule_result.get("direct_response", "")
-            mandatory_prefix = rule_result.get("mandatory_prefix", "")
             if rule_result.get("stop_chat"):
-                response_text = f"{mandatory_prefix}{direct_response}".strip()
+                response_text = direct_response.strip()
                 output = FrameResponse(
                     active_frame="closing",
                     filled_slots={"closing_message": response_text},
@@ -763,14 +778,17 @@ class AgentEngine:
 
         patient_context = get_static_patient_context(user_message, data_path=self.patient_data_path)
         graph_fact = graph_rag.get_knowledge_graph_fact(user_message, graph=self.knowledge_graph)
-        empathy_seed = mandatory_prefix or direct_response or ""
-        empathy = check_empathy_compliance(empathy_seed, user_message=user_message)
+        # Empathy compliance check is now based on NURSE instructions in the prompt
+        empathy = check_empathy_compliance(direct_response, user_message=user_message)
 
         observation_summary = self._build_observation_summary(user_message, patient_context, graph_fact, empathy, analysis)
+        
+        # Get emotional state from analysis
+        emotional_state = analysis.get("emotional_state", "neutral")
 
         draft_response: Optional[FrameResponse] = None
         for attempt in range(self.max_reasoning_steps):
-            messages = self._build_prompt(user_message, observation_summary, revised=attempt > 0)
+            messages = self._build_prompt(user_message, observation_summary, emotional_state=emotional_state, revised=attempt > 0)
             raw_content = self._call_ollama(messages)
             
             # Extract and execute tool calls from the response
@@ -796,9 +814,6 @@ class AgentEngine:
 
             if direct_response and candidate.agent_response:
                 candidate.agent_response = f"{direct_response} {candidate.agent_response}".strip()
-
-            if mandatory_prefix and not candidate.agent_response.startswith(mandatory_prefix):
-                candidate.agent_response = f"{mandatory_prefix}{candidate.agent_response}".strip()
 
             compliance = check_empathy_compliance(candidate.agent_response, user_message=user_message)
             graph_verification = graph_rag.verify_llm_response(candidate.agent_response, graph_fact.entities, graph=self.knowledge_graph)

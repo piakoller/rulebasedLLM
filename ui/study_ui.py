@@ -16,7 +16,7 @@ from agent_engine import AgentEngine
 
 # Configuration
 STUDY_DATA_PATH = Path("study_data.jsonl")
-DEFAULT_MODEL = "gemma3:27b"
+DEFAULT_MODEL = "hf.co/unsloth/medgemma-1.5-4b-it-GGUF:BF16"
 
 
 @st.cache_resource

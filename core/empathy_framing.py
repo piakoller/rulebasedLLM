@@ -1,10 +1,183 @@
-"""Empathic framing for clinical UMLS information.
+"""Dynamic NURSE protocol-based empathy system for clinical conversations.
 
-This module provides ways to present verified medical information
-with emotional support and compassionate language.
+Maps emotional states to NURSE protocol instructions (Name, Understand, Respect, 
+Support, Explore) and uses the LLM to classify emotional state and apply appropriate 
+empathic strategies.
 """
 
+import json
+from typing import Optional, Literal
 from rules import detect_language
+
+# Emotional State Context: Gives the LLM awareness of patient's emotional state
+# The LLM has full freedom to generate empathy naturally, not follow a rigid script
+EMOTIONAL_STATE_CONTEXT = {
+    "anxiety": {
+        "state_description": "Patient is worried or nervous about treatment/condition",
+        "context_for_llm": (
+            "The patient is experiencing anxiety/worry about their treatment. "
+            "They need reassurance grounded in facts, acknowledgment that their concern is legitimate, "
+            "and understanding of what will be monitored or managed. "
+            "Generate a natural, conversational response that addresses their worry—you choose the best way to do this."
+        ),
+    },
+    "frustration": {
+        "state_description": "Patient is irritated, feels unheard, or impatient",
+        "context_for_llm": (
+            "The patient is frustrated or impatient. They likely feel unheard or are experiencing delays. "
+            "Acknowledge their frustration directly and naturally, explain why it makes sense, "
+            "and provide clear next steps or concrete information. Be action-oriented. "
+            "Choose how best to address their frustration in your response."
+        ),
+    },
+    "fear": {
+        "state_description": "Patient is experiencing fear, terror, or feeling unsafe",
+        "context_for_llm": (
+            "The patient is experiencing fear or feeling unsafe. Use calm, steady language. "
+            "Address their specific fear directly and naturally. Emphasize what will protect them, "
+            "what will be monitored, and why safety measures are in place. "
+            "Normalize their fear—it's a rational response to medical situations. "
+            "Generate your own empathic approach based on what you think will best address their fear."
+        ),
+    },
+    "overwhelm": {
+        "state_description": "Patient has too much information or too many decisions",
+        "context_for_llm": (
+            "The patient is feeling overwhelmed. They may have received too much information, "
+            "have too many decisions to make, or feel lost. "
+            "Respond with simplicity and respect for their pace. Focus on the most important thing first. "
+            "Use shorter responses and let them guide what they want to understand next. "
+            "How you structure and pace your response matters more than specific phrases."
+        ),
+    },
+    "neutral": {
+        "state_description": "Patient shows no clear emotional distress",
+        "context_for_llm": (
+            "The patient is asking straightforward questions without apparent emotional distress. "
+            "Respond clearly and professionally. Answer their question, offer context, and be honest. "
+            "No need for extra reassurance or emotional language—clarity and accuracy are what they need."
+        ),
+    },
+}
+
+
+def classify_emotional_state(
+    user_message: str,
+    conversation_history: Optional[list[dict]] = None,
+    llm_classifier=None,
+) -> Literal["anxiety", "frustration", "fear", "overwhelm", "neutral"]:
+    """
+    Classify the user's emotional state using the LLM.
+    
+    Falls back to keyword heuristics if LLM is unavailable.
+    
+    Args:
+        user_message: The user's current message
+        conversation_history: Optional previous messages for context
+        llm_classifier: Optional LLM function for classification
+        
+    Returns:
+        One of: "anxiety", "frustration", "fear", "overwhelm", "neutral"
+    """
+    if llm_classifier:
+        try:
+            classification_prompt = f"""Classify the emotional state of this patient message. 
+Only respond with the emotion classification (no explanation).
+
+Emotional states:
+- anxiety: worry, nervousness, concern about treatment
+- frustration: irritation, feeling unheard, impatience
+- fear: terror, extreme worry, feeling unsafe
+- overwhelm: too much information, too many decisions
+- neutral: no clear emotional distress
+
+Message: {user_message}
+
+Classification (one word only):"""
+            
+            result = llm_classifier(classification_prompt)
+            emotion = result.strip().lower()
+            
+            # Validate the result
+            if emotion in EMOTIONAL_STATE_CONTEXT:
+                return emotion
+        except Exception:
+            pass
+    
+    # Fallback to keyword heuristics
+    lowered = user_message.lower()
+    
+    # Fear keywords (English + German)
+    fear_keywords = [
+        "terrified", "terrify", "petrified", "scared stiff", "freeze", "panic",
+        "terror", "afraid", "beängstigt", "furchtbar", "panik"
+    ]
+    if any(word in lowered for word in fear_keywords):
+        return "fear"
+    
+    # Overwhelm keywords (English + German)
+    overwhelm_keywords = [
+        "overwhelm", "too much", "can't think", "confused", "dizzy", "too many",
+        "zuviel", "zu viel", "überfordert", "verwirrt", "durcheinander", "kopf raucht",
+        "so much information", "don't know where to start", "information overload"
+    ]
+    if any(word in lowered for word in overwhelm_keywords):
+        return "overwhelm"
+    
+    # Frustration keywords (English + German)
+    frustration_keywords = [
+        "frustrated", "irritated", "annoyed", "tired of", "enough", "impatient",
+        "frustriert", "genervt", "ungeduldig", "reicht mir", "zu lange",
+        "taking forever", "why can't you", "wait", "waiting", "weeks"
+    ]
+    if any(word in lowered for word in frustration_keywords):
+        return "frustration"
+    
+    # Anxiety keywords (English + German)
+    anxiety_keywords = [
+        "nervous", "worried", "anxious", "concerned", "apprehensive", "uneasy",
+        "sorge", "sorgen", "nervös", "angespannt", "besorg", "besorgnis",
+        "side effects", "will it", "what if"
+    ]
+    if any(word in lowered for word in anxiety_keywords):
+        return "anxiety"
+    
+    return "neutral"
+
+
+def get_nurse_instruction(emotional_state: str) -> str:
+    """
+    Get context about patient's emotional state to inform LLM response generation.
+    
+    This provides the LLM with awareness of what the patient needs, WITHOUT prescribing
+    HOW to respond. The LLM has full freedom to generate empathy naturally.
+    
+    Args:
+        emotional_state: One of "anxiety", "frustration", "fear", "overwhelm", "neutral"
+        
+    Returns:
+        Context guidance for the LLM to use as it sees fit
+    """
+    if emotional_state not in EMOTIONAL_STATE_CONTEXT:
+        return EMOTIONAL_STATE_CONTEXT["neutral"]["context_for_llm"]
+    
+    return EMOTIONAL_STATE_CONTEXT[emotional_state]["context_for_llm"]
+
+
+def get_nurse_protocol_details(emotional_state: str) -> dict:
+    """
+    Get details about an emotional state and what the patient likely needs.
+    
+    Args:
+        emotional_state: One of "anxiety", "frustration", "fear", "overwhelm", "neutral"
+        
+    Returns:
+        Dictionary with state description and context for LLM
+    """
+    return EMOTIONAL_STATE_CONTEXT.get(
+        emotional_state, 
+        EMOTIONAL_STATE_CONTEXT["neutral"]
+    )
 
 
 def frame_clinical_information_empathically(

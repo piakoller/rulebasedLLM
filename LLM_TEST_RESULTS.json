@@ -1,0 +1,163 @@
+[
+  {
+    "category": "Patient Question",
+    "question": "Wie wissen wir, dass die Behandlung wirkt?",
+    "language": "de",
+    "emotional_state": "neutral",
+    "expected_emotion": "unknown",
+    "llm_full_response": "Okay, ich verstehe. Sie m\u00f6chten wissen, wie wir feststellen, ob Ihre Krebsbehandlung wirkt.\n\nEs gibt verschiedene M\u00f6glichkeiten, dies zu \u00fcberpr\u00fcfen:\n\n1.  **Bildgebende Verfahren:** Dazu geh\u00f6ren CT-Scans, MRTs, PET-Scans oder Ultraschall. Diese werden verwendet, um die Gr\u00f6\u00dfe und das Aussehen von Tumoren zu \u00fcberwachen. Eine Verkleinerung des Tumors oder eine Ver\u00e4nderung seines Aussehens kann ein Zeichen daf\u00fcr sein, dass die Behandlung wirkt. Regelm\u00e4\u00dfige Scans (z.B. alle paar Wochen oder Monate) helfen dabei, den Verlauf zu verfolgen.\n2.  **Blutuntersuchungen:** Bestimmte Tumormarker (Substanzen im Blut, die von Krebszellen produziert werden) k\u00f6nnen gemessen werden. Ein R\u00fcckgang dieser Marker kann ein Hinweis auf eine erfolgreiche Behandlung sein. Allerdings sind Tumormarker nicht immer zuverl\u00e4ssig und nicht f\u00fcr alle Krebsarten geeignet.\n3.  **Klinische Untersuchung:** \u00c4rzte f\u00fchren regelm\u00e4\u00dfige k\u00f6rperliche Untersuchungen durch, um nach Ver\u00e4nderungen zu suchen, z. B. verkleinerte Lymphknoten oder das Verschwinden von Symptomen.\n4.  **Symptome:** Die Linderung von Symptomen wie Schmerzen, M\u00fcdigkeit oder Kurzatmigkeit kann ebenfalls ein Zeichen daf\u00fcr sein, dass die Behandlung wirkt.\n5.  **Biopsie:** In einigen F\u00e4llen kann eine erneute Biopsie (Entnahme einer Gewebeprobe) erforderlich sein, um festzustellen, ob Krebszellen noch vorhanden sind und wie sie auf die Behandlung reagieren.\n6.  **Operation:** Wenn ein Tumor operabel ist, kann die Operation selbst dazu dienen, zu \u00fcberpr\u00fcfen, wie gut er auf eine vorherige Behandlung (z.B. Chemotherapie oder Strahlentherapie) angesprochen hat.\n\nEs ist wichtig zu verstehen, dass nicht alle diese Methoden immer verf\u00fcgbar sind oder f\u00fcr jede Krebsart geeignet sind. Die spezifischen Tests und der Zeitplan h\u00e4ngen von Ihrer Krebsart, dem Stadium, der Art der Behandlung und den individuellen Umst\u00e4nden ab. Ihr behandelndes Team wird Ihnen genau erkl\u00e4ren, welche Tests durchgef\u00fchrt werden und wie die Ergebnisse interpretiert werden.\n\nHaben Sie Fragen zu einem bestimmten Aspekt oder einer bestimmten Methode?\n",
+    "llm_thinking": "",
+    "llm_patient_response": "Okay, ich verstehe. Sie m\u00f6chten wissen, wie wir feststellen, ob Ihre Krebsbehandlung wirkt.\n\nEs gibt verschiedene M\u00f6glichkeiten, dies zu \u00fcberpr\u00fcfen:\n\n1.  **Bildgebende Verfahren:** Dazu geh\u00f6ren CT-Scans, MRTs, PET-Scans oder Ultraschall. Diese werden verwendet, um die Gr\u00f6\u00dfe und das Aussehen von Tumoren zu \u00fcberwachen. Eine Verkleinerung des Tumors oder eine Ver\u00e4nderung seines Aussehens kann ein Zeichen daf\u00fcr sein, dass die Behandlung wirkt. Regelm\u00e4\u00dfige Scans (z.B. alle paar Wochen oder Monate) helfen dabei, den Verlauf zu verfolgen.\n2.  **Blutuntersuchungen:** Bestimmte Tumormarker (Substanzen im Blut, die von Krebszellen produziert werden) k\u00f6nnen gemessen werden. Ein R\u00fcckgang dieser Marker kann ein Hinweis auf eine erfolgreiche Behandlung sein. Allerdings sind Tumormarker nicht immer zuverl\u00e4ssig und nicht f\u00fcr alle Krebsarten geeignet.\n3.  **Klinische Untersuchung:** \u00c4rzte f\u00fchren regelm\u00e4\u00dfige k\u00f6rperliche Untersuchungen durch, um nach Ver\u00e4nderungen zu suchen, z. B. verkleinerte Lymphknoten oder das Verschwinden von Symptomen.\n4.  **Symptome:** Die Linderung von Symptomen wie Schmerzen, M\u00fcdigkeit oder Kurzatmigkeit kann ebenfalls ein Zeichen daf\u00fcr sein, dass die Behandlung wirkt.\n5.  **Biopsie:** In einigen F\u00e4llen kann eine erneute Biopsie (Entnahme einer Gewebeprobe) erforderlich sein, um festzustellen, ob Krebszellen noch vorhanden sind und wie sie auf die Behandlung reagieren.\n6.  **Operation:** Wenn ein Tumor operabel ist, kann die Operation selbst dazu dienen, zu \u00fcberpr\u00fcfen, wie gut er auf eine vorherige Behandlung (z.B. Chemotherapie oder Strahlentherapie) angesprochen hat.\n\nEs ist wichtig zu verstehen, dass nicht alle diese Methoden immer verf\u00fcgbar sind oder f\u00fcr jede Krebsart geeignet sind. Die spezifischen Tests und der Zeitplan h\u00e4ngen von Ihrer Krebsart, dem Stadium, der Art der Behandlung und den individuellen Umst\u00e4nden ab. Ihr behandelndes Team wird Ihnen genau erkl\u00e4ren, welche Tests durchgef\u00fchrt werden und wie die Ergebnisse interpretiert werden.\n\nHaben Sie Fragen zu einem bestimmten Aspekt oder einer bestimmten Methode?\n",
+    "quality_checks": {
+      "Has clinical accuracy": true,
+      "Clinical keywords score": "12.5%",
+      "Is clinically detailed": false,
+      "Has empathy (when needed)": true,
+      "Empathy keywords score": "100.0%",
+      "UMLS/Database referenced": false,
+      "NURSE framework detected": true,
+      "NURSE elements found": 3
+    },
+    "quality_details": {
+      "clinical": {
+        "has_clinical_terms": true,
+        "keywords_found": [
+          "behandlung",
+          "chemotherapie"
+        ],
+        "score": 0.125,
+        "details": "Found 2 clinical keywords in de"
+      },
+      "empathy": {
+        "is_empathic": true,
+        "keywords_found": [],
+        "score": 1.0,
+        "details": "Neutral state requires factual response (empathy not required)"
+      },
+      "umls": {
+        "api_referenced": false,
+        "keywords_found": [],
+        "has_medical_coding": false,
+        "details": "UMLS reference not detected in response/thinking"
+      },
+      "nurse": {
+        "nurse_framework_used": true,
+        "keywords_found": [
+          "verf\u00fcgbar",
+          "verstehen",
+          "k\u00f6nnen"
+        ],
+        "num_elements": 3,
+        "score": 0.1111111111111111,
+        "details": "Found 3 NURSE framework indicators"
+      }
+    },
+    "success": true
+  },
+  {
+    "category": "Patient Question",
+    "question": "Was sollte ich tun, wenn ich eine Behandlung verschieben muss?",
+    "language": "de",
+    "emotional_state": "neutral",
+    "expected_emotion": "unknown",
+    "llm_full_response": "Wenn Sie eine Krebsbehandlung verschieben m\u00fcssen, sollten Sie folgende Schritte unternehmen:\n\n1.  **Sprechen Sie sofort mit Ihrem Arzt oder dem Behandlungsteam.** Informieren Sie sie so schnell wie m\u00f6glich \u00fcber den Grund f\u00fcr die notwendige Verschiebung. Dies erm\u00f6glicht es ihnen, die Situation zu beurteilen und einen neuen Plan zu erstellen.\n2.  **Besprechen Sie die Gr\u00fcnde f\u00fcr die Verschiebung.** Ist es ein medizinischer Notfall, eine Reisebeschr\u00e4nkung, finanzielle Probleme oder etwas anderes? Je klarer der Grund, desto besser kann das Team reagieren.\n3.  **Kl\u00e4ren Sie die Auswirkungen der Verschiebung.** Fragen Sie nach den m\u00f6glichen Konsequenzen einer Verz\u00f6gerung Ihrer Behandlung. Wie wirkt sich dies auf Ihren Behandlungsplan, Ihre Prognose und m\u00f6gliche Nebenwirkungen aus?\n4.  **Erstellen Sie gemeinsam einen neuen Zeitplan.** Arbeiten Sie mit dem Team zusammen, um einen neuen Termin f\u00fcr Ihre Behandlung zu finden, sobald die Gr\u00fcnde f\u00fcr die Verschiebung behoben sind.\n5.  **Halten Sie R\u00fccksprache \u00fcber notwendige Vorkehrungen w\u00e4hrend der Pause.** Gibt es etwas, das Sie w\u00e4hrend der Verz\u00f6gerung tun m\u00fcssen (z.B. bestimmte Medikamente einnehmen, Symptome beobachten)?\n6.  **Dokumentieren Sie die Verschiebung.** Stellen Sie sicher, dass die Verschiebung in Ihrer Patientenakte vermerkt wird, damit alle Beteiligten informiert sind.\n\nEs ist wichtig zu verstehen, dass jede Verschiebung der Behandlung sorgf\u00e4ltig abgewogen werden muss, da sie m\u00f6glicherweise Auswirkungen auf den Erfolg der Therapie haben kann. Ihr Behandlungsteam wird Sie dabei unterst\u00fctzen, die beste Vorgehensweise zu finden.\n",
+    "llm_thinking": "",
+    "llm_patient_response": "Wenn Sie eine Krebsbehandlung verschieben m\u00fcssen, sollten Sie folgende Schritte unternehmen:\n\n1.  **Sprechen Sie sofort mit Ihrem Arzt oder dem Behandlungsteam.** Informieren Sie sie so schnell wie m\u00f6glich \u00fcber den Grund f\u00fcr die notwendige Verschiebung. Dies erm\u00f6glicht es ihnen, die Situation zu beurteilen und einen neuen Plan zu erstellen.\n2.  **Besprechen Sie die Gr\u00fcnde f\u00fcr die Verschiebung.** Ist es ein medizinischer Notfall, eine Reisebeschr\u00e4nkung, finanzielle Probleme oder etwas anderes? Je klarer der Grund, desto besser kann das Team reagieren.\n3.  **Kl\u00e4ren Sie die Auswirkungen der Verschiebung.** Fragen Sie nach den m\u00f6glichen Konsequenzen einer Verz\u00f6gerung Ihrer Behandlung. Wie wirkt sich dies auf Ihren Behandlungsplan, Ihre Prognose und m\u00f6gliche Nebenwirkungen aus?\n4.  **Erstellen Sie gemeinsam einen neuen Zeitplan.** Arbeiten Sie mit dem Team zusammen, um einen neuen Termin f\u00fcr Ihre Behandlung zu finden, sobald die Gr\u00fcnde f\u00fcr die Verschiebung behoben sind.\n5.  **Halten Sie R\u00fccksprache \u00fcber notwendige Vorkehrungen w\u00e4hrend der Pause.** Gibt es etwas, das Sie w\u00e4hrend der Verz\u00f6gerung tun m\u00fcssen (z.B. bestimmte Medikamente einnehmen, Symptome beobachten)?\n6.  **Dokumentieren Sie die Verschiebung.** Stellen Sie sicher, dass die Verschiebung in Ihrer Patientenakte vermerkt wird, damit alle Beteiligten informiert sind.\n\nEs ist wichtig zu verstehen, dass jede Verschiebung der Behandlung sorgf\u00e4ltig abgewogen werden muss, da sie m\u00f6glicherweise Auswirkungen auf den Erfolg der Therapie haben kann. Ihr Behandlungsteam wird Sie dabei unterst\u00fctzen, die beste Vorgehensweise zu finden.\n",
+    "quality_checks": {
+      "Has clinical accuracy": true,
+      "Clinical keywords score": "18.8%",
+      "Is clinically detailed": true,
+      "Has empathy (when needed)": true,
+      "Empathy keywords score": "100.0%",
+      "UMLS/Database referenced": false,
+      "NURSE framework detected": true,
+      "NURSE elements found": 1
+    },
+    "quality_details": {
+      "clinical": {
+        "has_clinical_terms": true,
+        "keywords_found": [
+          "therapie",
+          "prognose",
+          "behandlung"
+        ],
+        "score": 0.1875,
+        "details": "Found 3 clinical keywords in de"
+      },
+      "empathy": {
+        "is_empathic": true,
+        "keywords_found": [],
+        "score": 1.0,
+        "details": "Neutral state requires factual response (empathy not required)"
+      },
+      "umls": {
+        "api_referenced": false,
+        "keywords_found": [],
+        "has_medical_coding": false,
+        "details": "UMLS reference not detected in response/thinking"
+      },
+      "nurse": {
+        "nurse_framework_used": true,
+        "keywords_found": [
+          "verstehen"
+        ],
+        "num_elements": 1,
+        "score": 0.037037037037037035,
+        "details": "Found 1 NURSE framework indicators"
+      }
+    },
+    "success": true
+  },
+  {
+    "category": "Patient Question",
+    "question": "Gibt es Strahlenschutzmassnahmen, die ich nach der Behandlung zu Hause ergreifen sollte?",
+    "language": "de",
+    "emotional_state": "neutral",
+    "expected_emotion": "unknown",
+    "llm_full_response": "Ja, es gibt einige Vorsichtsmassnahmen, die Sie nach einer Strahlentherapie zu Hause beachten sollten, obwohl die Strahlenquelle (Ihr K\u00f6rper) sehr schwach ist. Diese Massnahmen zielen haupts\u00e4chlich darauf ab, andere Personen in Ihrem Umfeld zu sch\u00fctzen und sind besonders wichtig, wenn Sie eine Behandlung mit radioaktiven Isotopen erhalten haben (wie bei bestimmten Formen der Nuklearmedizin).\n\nHier sind einige allgemeine Empfehlungen:\n\n1.  **Abstand:** Halten Sie einen gewissen Abstand zu anderen Menschen aufrecht, insbesondere zu Kindern und schwangeren Frauen. Ein Abstand von etwa einem Meter kann ausreichend sein, um die Strahlenbelastung f\u00fcr andere zu minimieren. Dies ist besonders wichtig in den ersten Stunden bis Tagen nach der Behandlung, wenn Ihre K\u00f6rperaktivit\u00e4t am h\u00f6chsten ist.\n\n2.  **Dauer:** Begrenzen Sie die Zeit, die andere Personen in unmittelbarer N\u00e4he verbringen. Kurze Besuche sind besser als lange Aufenthalte.\n\n3.  **Hygiene:** Waschen Sie sich gr\u00fcndlich, besonders nach dem Toilettengang oder vor dem Essen. Dies hilft, eventuelle radioaktive Partikel zu entfernen, die m\u00f6glicherweise auf Ihre Haut gelangt sind oder ausgeschieden werden.\n\n4.  **Ausscheidungen:** Verwenden Sie nach dem Toilettengang separate Handt\u00fccher und entsorgen Sie diese gegebenenfalls gem\u00e4\u00df den Anweisungen Ihres Behandlungsteams (z.B. in einem speziellen Beh\u00e4lter). Sp\u00fclen Sie die Toilette mehrmals, um eventuelle radioaktive Stoffe zu verd\u00fcnnen.\n\n5.  **Kontakt:** Vermeiden Sie engen K\u00f6rperkontakt wie Umarmungen oder K\u00fcssen, besonders mit Kindern und schwangeren Frauen, bis Ihr Arzt Ihnen sagt, dass Ihre K\u00f6rperaktivit\u00e4t unbedechend ist.\n\n6.  **Schlaf:** Schlafen Sie idealerweise alleine, um die Strahlenbelastung f\u00fcr Ihren Partner/Ihre Partnerin zu minimieren.\n\n7.  **Anweisungen des Behandlungsteams:** Befolgen Sie immer die spezifischen Anweisungen Ihres behandelnden Arztes oder des Strahlenschutzbeauftragten. Diese k\u00f6nnen je nach Art der Behandlung und den verwendeten radioaktiven Stoffen variieren. Fragen Sie, wenn Ihnen etwas unklar ist.\n\n**Wichtig:** Die Notwendigkeit und Intensit\u00e4t dieser Massnahmen h\u00e4ngt stark von der Art Ihrer Strahlentherapie ab. Bei externer Strahlentherapie (von au\u00dfen) gibt es in der Regel keine spezifischen Vorsichtsmassnahmen f\u00fcr zu Hause, da Ihr K\u00f6rper nicht radioaktiv wird. Diese Empfehlungen gelten haupts\u00e4chlich f\u00fcr Behandlungen mit Radioisotopen.\n\nFragen Sie Ihr Behandlungsteam unbedingt nach den spezifischen Vorsichtsmassnahmen, die f\u00fcr Ihren individuellen Fall gelten. Sie k\u00f6nnen Ihnen genauere Informationen geben und Ihre Fragen beantworten.\n",
+    "llm_thinking": "",
+    "llm_patient_response": "Ja, es gibt einige Vorsichtsmassnahmen, die Sie nach einer Strahlentherapie zu Hause beachten sollten, obwohl die Strahlenquelle (Ihr K\u00f6rper) sehr schwach ist. Diese Massnahmen zielen haupts\u00e4chlich darauf ab, andere Personen in Ihrem Umfeld zu sch\u00fctzen und sind besonders wichtig, wenn Sie eine Behandlung mit radioaktiven Isotopen erhalten haben (wie bei bestimmten Formen der Nuklearmedizin).\n\nHier sind einige allgemeine Empfehlungen:\n\n1.  **Abstand:** Halten Sie einen gewissen Abstand zu anderen Menschen aufrecht, insbesondere zu Kindern und schwangeren Frauen. Ein Abstand von etwa einem Meter kann ausreichend sein, um die Strahlenbelastung f\u00fcr andere zu minimieren. Dies ist besonders wichtig in den ersten Stunden bis Tagen nach der Behandlung, wenn Ihre K\u00f6rperaktivit\u00e4t am h\u00f6chsten ist.\n\n2.  **Dauer:** Begrenzen Sie die Zeit, die andere Personen in unmittelbarer N\u00e4he verbringen. Kurze Besuche sind besser als lange Aufenthalte.\n\n3.  **Hygiene:** Waschen Sie sich gr\u00fcndlich, besonders nach dem Toilettengang oder vor dem Essen. Dies hilft, eventuelle radioaktive Partikel zu entfernen, die m\u00f6glicherweise auf Ihre Haut gelangt sind oder ausgeschieden werden.\n\n4.  **Ausscheidungen:** Verwenden Sie nach dem Toilettengang separate Handt\u00fccher und entsorgen Sie diese gegebenenfalls gem\u00e4\u00df den Anweisungen Ihres Behandlungsteams (z.B. in einem speziellen Beh\u00e4lter). Sp\u00fclen Sie die Toilette mehrmals, um eventuelle radioaktive Stoffe zu verd\u00fcnnen.\n\n5.  **Kontakt:** Vermeiden Sie engen K\u00f6rperkontakt wie Umarmungen oder K\u00fcssen, besonders mit Kindern und schwangeren Frauen, bis Ihr Arzt Ihnen sagt, dass Ihre K\u00f6rperaktivit\u00e4t unbedechend ist.\n\n6.  **Schlaf:** Schlafen Sie idealerweise alleine, um die Strahlenbelastung f\u00fcr Ihren Partner/Ihre Partnerin zu minimieren.\n\n7.  **Anweisungen des Behandlungsteams:** Befolgen Sie immer die spezifischen Anweisungen Ihres behandelnden Arztes oder des Strahlenschutzbeauftragten. Diese k\u00f6nnen je nach Art der Behandlung und den verwendeten radioaktiven Stoffen variieren. Fragen Sie, wenn Ihnen etwas unklar ist.\n\n**Wichtig:** Die Notwendigkeit und Intensit\u00e4t dieser Massnahmen h\u00e4ngt stark von der Art Ihrer Strahlentherapie ab. Bei externer Strahlentherapie (von au\u00dfen) gibt es in der Regel keine spezifischen Vorsichtsmassnahmen f\u00fcr zu Hause, da Ihr K\u00f6rper nicht radioaktiv wird. Diese Empfehlungen gelten haupts\u00e4chlich f\u00fcr Behandlungen mit Radioisotopen.\n\nFragen Sie Ihr Behandlungsteam unbedingt nach den spezifischen Vorsichtsmassnahmen, die f\u00fcr Ihren individuellen Fall gelten. Sie k\u00f6nnen Ihnen genauere Informationen geben und Ihre Fragen beantworten.\n",
+    "quality_checks": {
+      "Has clinical accuracy": true,
+      "Clinical keywords score": "6.2%",
+      "Is clinically detailed": false,
+      "Has empathy (when needed)": true,
+      "Empathy keywords score": "100.0%",
+      "UMLS/Database referenced": false,
+      "NURSE framework detected": true,
+      "NURSE elements found": 1
+    },
+    "quality_details": {
+      "clinical": {
+        "has_clinical_terms": true,
+        "keywords_found": [
+          "behandlung"
+        ],
+        "score": 0.0625,
+        "details": "Found 1 clinical keywords in de"
+      },
+      "empathy": {
+        "is_empathic": true,
+        "keywords_found": [],
+        "score": 1.0,
+        "details": "Neutral state requires factual response (empathy not required)"
+      },
+      "umls": {
+        "api_referenced": false,
+        "keywords_found": [],
+        "has_medical_coding": false,
+        "details": "UMLS reference not detected in response/thinking"
+      },
+      "nurse": {
+        "nurse_framework_used": true,
+        "keywords_found": [
+          "k\u00f6nnen"
+        ],
+        "num_elements": 1,
+        "score": 0.037037037037037035,
+        "details": "Found 1 NURSE framework indicators"
+      }
+    },
+    "success": true
+  }
+]

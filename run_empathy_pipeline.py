@@ -1,0 +1,139 @@
+#!/usr/bin/env python3
+"""
+Test the refactored empathy pipeline with sample questions.
+Shows the new context-aware approach giving LLM full freedom.
+"""
+
+import sys
+import json
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent / "core"))
+
+from empathy_framing import (
+    classify_emotional_state,
+    get_nurse_instruction,
+    EMOTIONAL_STATE_CONTEXT,
+)
+from rules import detect_language
+
+def load_sample_questions(limit=5):
+    """Load sample questions from data/sample_questions.json"""
+    with open("data/sample_questions.json", "r", encoding="utf-8") as f:
+        data = json.load(f)
+    
+    # Flatten all questions and take first 'limit' questions
+    all_questions = []
+    for category, questions in data.items():
+        all_questions.extend([(q, category) for q in questions])
+    
+    return all_questions[:limit]
+
+def run_pipeline_on_question(question: str, category: str):
+    """Run the refactored empathy pipeline on a single question"""
+    print("\n" + "=" * 75)
+    print(f"CATEGORY: {category}")
+    print("=" * 75)
+    print(f"\n📝 PATIENT QUESTION:")
+    print(f"   {question[:100]}{'...' if len(question) > 100 else ''}")
+    
+    # Step 1: Language Detection
+    language = detect_language(question)
+    print(f"\n1️⃣  LANGUAGE DETECTION:")
+    print(f"   Language: {language}")
+    
+    # Step 2: Emotion Classification
+    emotional_state = classify_emotional_state(question)
+    print(f"\n2️⃣  EMOTION CLASSIFICATION:")
+    print(f"   Emotional State: {emotional_state}")
+    
+    # Step 3: Get Emotional Context
+    context = get_nurse_instruction(emotional_state)
+    print(f"\n3️⃣  EMOTIONAL CONTEXT (for LLM):")
+    print(f"   {context[:150]}...")
+    
+    # Step 4: Show what state details
+    state_details = EMOTIONAL_STATE_CONTEXT[emotional_state]
+    print(f"\n4️⃣  PATIENT NEEDS:")
+    print(f"   {state_details['state_description']}")
+    
+    # Step 5: Explain LLM freedom
+    print(f"\n5️⃣  LLM RESPONSE APPROACH:")
+    print(f"   The LLM will:")
+    if emotional_state == "anxiety":
+        print(f"   • Provide reassurance grounded in facts")
+        print(f"   • Acknowledge the concern is legitimate")
+        print(f"   • Explain what will be monitored")
+        print(f"   • Choose how to naturally integrate these elements")
+    elif emotional_state == "frustration":
+        print(f"   • Acknowledge the frustration directly")
+        print(f"   • Explain why the reaction is valid")
+        print(f"   • Provide clear next steps/action")
+        print(f"   • Choose how to be action-oriented")
+    elif emotional_state == "fear":
+        print(f"   • Address the specific fear directly")
+        print(f"   • Use calm, steady language")
+        print(f"   • Emphasize safety measures and monitoring")
+        print(f"   • Normalize fear as natural response")
+    elif emotional_state == "overwhelm":
+        print(f"   • Acknowledge the overwhelm")
+        print(f"   • Respect the patient's pace")
+        print(f"   • Simplify information")
+        print(f"   • Focus on one concept at a time")
+    else:  # neutral
+        print(f"   • Answer clearly and professionally")
+        print(f"   • Provide context as needed")
+        print(f"   • Invite follow-up questions")
+        print(f"   • Maintain clinical accuracy")
+    
+    print(f"\n✨ KEY: LLM chooses HOW to respond, not WHAT to say")
+    print(f"   (No forced prefixes, no step-by-step checklist)")
+
+def main():
+    print("\n" + "=" * 75)
+    print("REFACTORED EMPATHY PIPELINE - CONTEXT-AWARE APPROACH")
+    print("=" * 75)
+    print("\nThis pipeline demonstrates:")
+    print("  ✓ Emotional state classification (5 states)")
+    print("  ✓ Context guidance (not prescriptive rules)")
+    print("  ✓ LLM full freedom to generate natural empathy")
+    print("  ✓ No hardcoded prefixes or step-by-step checklists")
+    
+    # Load sample questions
+    sample_questions = load_sample_questions(limit=4)
+    
+    print(f"\n📚 LOADING {len(sample_questions)} SAMPLE QUESTIONS...\n")
+    
+    # Run pipeline on each question
+    for i, (question, category) in enumerate(sample_questions, 1):
+        print(f"\n{'#' * 75}")
+        print(f"QUESTION {i}/{len(sample_questions)}")
+        print(f"{'#' * 75}")
+        
+        run_pipeline_on_question(question, category)
+    
+    # Summary
+    print("\n" + "=" * 75)
+    print("PIPELINE SUMMARY")
+    print("=" * 75)
+    print("\n✅ PROCESSED QUESTIONS:")
+    for i, (question, category) in enumerate(sample_questions, 1):
+        emotion = classify_emotional_state(question)
+        lang = detect_language(question)
+        print(f"\n  {i}. [{category}] ({lang})")
+        print(f"     Emotion: {emotion}")
+        print(f"     Q: {question[:70]}...")
+    
+    print("\n" + "=" * 75)
+    print("✅ PIPELINE COMPLETE")
+    print("=" * 75)
+    print("\nKey Results:")
+    print("  • All questions classified with emotional states")
+    print("  • Emotional context retrieved for LLM guidance")
+    print("  • Languages detected (German/English)")
+    print("  • No hardcoded rules or forced responses")
+    print("  • LLM has full freedom to respond naturally")
+    print("\n📍 Next: Integrate with full agent for end-to-end testing\n")
+
+if __name__ == "__main__":
+    main()
