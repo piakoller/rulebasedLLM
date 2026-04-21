@@ -53,3 +53,7 @@ htmlcov/
 *.log
 Thumbs.db
 .DS_Store
+
+# Vector stores (large binary artifacts)
+data/vector_store/
+data/vector_store_psma/
