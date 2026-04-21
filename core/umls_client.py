@@ -2,6 +2,7 @@
 
 This module provides a robust interface to the NIH UMLS (Unified Medical Language System)
 REST API for retrieving Concept Unique Identifiers (CUIs) and their verified relationships.
+It also includes a mock mode for testing without an API key.
 
 The UMLS API requires a valid API key set in the UMLS_API_KEY environment variable.
 """
@@ -30,25 +31,218 @@ class UMLSClientError(Exception):
     pass
 
 
-class UMLSClient:
-    """Client for interacting with the NIH UMLS REST API."""
+# Mock UMLS database with realistic nuclear medicine/theranostics data
+MOCK_UMLS_DB = {
+    # Radioisotopes and Therapeutics
+    "Lutetium Lu 177 dotatate": {
+        "cui": "C4050279",
+        "relations": [
+            {
+                "relatedId": "C2348916",
+                "relationLabel": "used_for",
+                "relatedConceptName": "Peptide Receptor Radionuclide Therapy"
+            },
+            {
+                "relatedId": "C0022646",
+                "relationLabel": "has_adverse_effect",
+                "relatedConceptName": "Renal Toxicity"
+            },
+            {
+                "relatedId": "C0015967",
+                "relationLabel": "has_adverse_effect",
+                "relatedConceptName": "Fever"
+            },
+            {
+                "relatedId": "C0015672",
+                "relationLabel": "has_adverse_effect",
+                "relatedConceptName": "Fatigue"
+            },
+            {
+                "relatedId": "C0004134",
+                "relationLabel": "has_mechanism",
+                "relatedConceptName": "Beta Decay"
+            }
+        ]
+    },
+    "Lutetium-177": {
+        "cui": "C4050279",
+        "relations": []
+    },
+    "Lu-177": {
+        "cui": "C4050279",
+        "relations": []
+    },
+    "Pluvicto": {
+        "cui": "C4050279",
+        "relations": []
+    },
+    "Lutathera": {
+        "cui": "C4050279",
+        "relations": []
+    },
     
-    def __init__(self, api_key: Optional[str] = None):
+    # Therapies
+    "Peptide Receptor Radionuclide Therapy": {
+        "cui": "C2348916",
+        "relations": [
+            {
+                "relatedId": "C4050279",
+                "relationLabel": "uses_agent",
+                "relatedConceptName": "Lutetium Lu 177 dotatate"
+            },
+            {
+                "relatedId": "C0031809",
+                "relationLabel": "type_of",
+                "relatedConceptName": "Radiotherapy"
+            },
+            {
+                "relatedId": "C0006271",
+                "relationLabel": "used_for",
+                "relatedConceptName": "Breast Neoplasms"
+            }
+        ]
+    },
+    "PRRT": {
+        "cui": "C2348916",
+        "relations": []
+    },
+    
+    # Side Effects
+    "Renal Toxicity": {
+        "cui": "C0022646",
+        "relations": [
+            {
+                "relatedId": "C0020538",
+                "relationLabel": "affects",
+                "relatedConceptName": "Hypertension"
+            },
+            {
+                "relatedId": "C0020557",
+                "relationLabel": "affects",
+                "relatedConceptName": "Hyperkalemia"
+            }
+        ]
+    },
+    "Kidney Damage": {
+        "cui": "C0022646",
+        "relations": []
+    },
+    "Nephrotoxicity": {
+        "cui": "C0022646",
+        "relations": []
+    },
+    
+    # Organs
+    "Kidney": {
+        "cui": "C0022646",
+        "relations": [
+            {
+                "relatedId": "C0020557",
+                "relationLabel": "has_function",
+                "relatedConceptName": "Filtration"
+            },
+            {
+                "relatedId": "C0011570",
+                "relationLabel": "produces",
+                "relatedConceptName": "Urine"
+            }
+        ]
+    },
+    
+    # Imaging
+    "Positron Emission Tomography": {
+        "cui": "C0162565",
+        "relations": [
+            {
+                "relatedId": "C0025078",
+                "relationLabel": "uses",
+                "relatedConceptName": "Positron"
+            },
+            {
+                "relatedId": "C0040808",
+                "relationLabel": "type_of",
+                "relatedConceptName": "Tomography"
+            }
+        ]
+    },
+    "PET": {
+        "cui": "C0162565",
+        "relations": []
+    },
+    "PET Scan": {
+        "cui": "C0162565",
+        "relations": []
+    },
+    
+    # General symptoms
+    "Fatigue": {
+        "cui": "C0015672",
+        "relations": [
+            {
+                "relatedId": "C0020538",
+                "relationLabel": "causes",
+                "relatedConceptName": "Hypertension"
+            }
+        ]
+    },
+    "Nausea": {
+        "cui": "C0027497",
+        "relations": []
+    },
+    
+    # Dosimetry
+    "Dosimetry": {
+        "cui": "C0012749",
+        "relations": [
+            {
+                "relatedId": "C0020538",
+                "relationLabel": "used_for",
+                "relatedConceptName": "Personalized Medicine"
+            }
+        ]
+    },
+    "Personalized Medicine": {
+        "cui": "C2718059",
+        "relations": [
+            {
+                "relatedId": "C0180686",
+                "relationLabel": "involves",
+                "relatedConceptName": "Genetic Testing"
+            }
+        ]
+    }
+}
+
+
+class UMLSClient:
+    """Client for interacting with the NIH UMLS REST API or a mock database."""
+    
+    def __init__(self, api_key: Optional[str] = None, mock: bool = False):
         """
-        Initialize the UMLS client with an API key.
+        Initialize the UMLS client.
         
         Args:
             api_key: UMLS API key. If None, reads from UMLS_API_KEY environment variable.
+            mock: If True, uses the local mock database instead of hitting the API.
             
         Raises:
-            UMLSClientError: If no API key is found.
+            UMLSClientError: If no API key is found and mock is False.
         """
-        self.api_key = api_key or os.getenv("UMLS_API_KEY")
-        if not self.api_key:
-            raise UMLSClientError(
-                "UMLS_API_KEY not found. Set it as an environment variable or pass it to the constructor."
-            )
-        self.session = requests.Session()
+        self.mock = mock or os.getenv("UMLS_USE_MOCK", "false").lower() == "true"
+        
+        if self.mock:
+            logger.info("Initialized UMLS client in MOCK mode (no API key required)")
+            self.api_key = "MOCK_KEY"
+            self.session = None
+        else:
+            self.api_key = api_key or os.getenv("UMLS_API_KEY")
+            if not self.api_key:
+                raise UMLSClientError(
+                    "UMLS_API_KEY not found. Set it as an environment variable, "
+                    "pass it to the constructor, or enable mock mode."
+                )
+            self.session = requests.Session()
+            logger.debug("Initialized UMLS client for production API")
     
     def _make_request(
         self,
@@ -56,17 +250,10 @@ class UMLSClient:
         params: dict[str, Any],
         description: str = "UMLS API request"
     ) -> Optional[dict[str, Any]]:
-        """
-        Make an HTTP GET request to UMLS API with retry logic.
-        
-        Args:
-            url: The API endpoint URL.
-            params: Query parameters.
-            description: Friendly description for logging.
+        """Make an HTTP GET request to UMLS API with retry logic."""
+        if self.mock:
+            return None
             
-        Returns:
-            Parsed JSON response, or None if request fails after retries.
-        """
         params["apiKey"] = self.api_key
         
         for attempt in range(MAX_RETRIES):
@@ -74,7 +261,6 @@ class UMLSClient:
                 response = self.session.get(url, params=params, timeout=REQUEST_TIMEOUT)
                 
                 if response.status_code == 429:
-                    # Rate limit hit
                     logger.warning(f"{description}: Rate limited. Retrying after {RETRY_DELAY}s...")
                     time.sleep(RETRY_DELAY)
                     continue
@@ -82,188 +268,106 @@ class UMLSClient:
                 response.raise_for_status()
                 return response.json()
             
-            except requests.exceptions.Timeout:
-                logger.warning(f"{description}: Request timeout (attempt {attempt + 1}/{MAX_RETRIES})")
-                if attempt < MAX_RETRIES - 1:
-                    time.sleep(RETRY_DELAY)
-            
-            except requests.exceptions.ConnectionError as e:
-                logger.warning(f"{description}: Connection error (attempt {attempt + 1}/{MAX_RETRIES}): {e}")
-                if attempt < MAX_RETRIES - 1:
-                    time.sleep(RETRY_DELAY)
-            
-            except requests.exceptions.HTTPError as e:
-                if response.status_code == 404:
-                    logger.debug(f"{description}: Not found (404)")
-                    return None
-                logger.error(f"{description}: HTTP error {response.status_code}: {e}")
-                return None
-            
             except requests.exceptions.RequestException as e:
-                logger.error(f"{description}: Request failed: {e}")
-                return None
-        
-        logger.error(f"{description}: Failed after {MAX_RETRIES} retries")
+                logger.error(f"{description}: Request failed (attempt {attempt + 1}/{MAX_RETRIES}): {e}")
+                if attempt < MAX_RETRIES - 1:
+                    time.sleep(RETRY_DELAY)
+                else:
+                    return None
         return None
     
     def search_concept(self, query: str) -> Optional[str]:
-        """
-        Search for a medical concept and return its CUI (Concept Unique Identifier).
-        
-        Args:
-            query: Medical term or concept to search for (e.g., "Lutetium Lu 177 dotatate").
-            
-        Returns:
-            The CUI of the top matching concept, or None if not found.
-            
-        Example:
-            >>> client = UMLSClient()
-            >>> cui = client.search_concept("Lutetium Lu 177 dotatate")
-            >>> print(cui)
-            C4050279
-        """
+        """Search for a medical concept and return its CUI."""
         if not query or not query.strip():
-            logger.debug("Empty search query provided")
             return None
         
-        logger.debug(f"Searching for concept: {query}")
+        query_normalized = query.strip()
         
-        params = {
-            "string": query.strip(),
-            "searchType": "exact",  # Try exact match first
-            "pageNumber": 1,
-            "pageSize": 1
-        }
+        if self.mock:
+            logger.debug(f"[MOCK] Searching for concept: {query_normalized}")
+            # Try exact match
+            if query_normalized in MOCK_UMLS_DB:
+                return MOCK_UMLS_DB[query_normalized]["cui"]
+            # Try case-insensitive
+            for term, data in MOCK_UMLS_DB.items():
+                if term.lower() == query_normalized.lower():
+                    return data["cui"]
+            return None
         
-        response = self._make_request(UMLS_SEARCH_URL, params, f"Searching for '{query}'")
+        # Real API logic
+        params = {"string": query_normalized, "searchType": "exact", "pageNumber": 1, "pageSize": 1}
+        response = self._make_request(UMLS_SEARCH_URL, params, f"Searching for '{query_normalized}'")
         
         if not response:
-            # Fall back to approximate search
-            logger.debug(f"Exact search failed for '{query}', trying approximate search...")
             params["searchType"] = "approximate"
-            response = self._make_request(UMLS_SEARCH_URL, params, f"Approximate search for '{query}'")
-        
-        if not response:
-            logger.debug(f"No concept found for query: {query}")
-            return None
-        
-        # Extract the top result
-        results = response.get("result", {}).get("results", [])
-        if not results:
-            logger.debug(f"No results returned for query: {query}")
-            return None
-        
-        cui = results[0].get("ui")
-        concept_name = results[0].get("name")
-        
-        if cui:
-            logger.debug(f"Found CUI '{cui}' for '{query}' (concept: '{concept_name}')")
-        
-        return cui
+            response = self._make_request(UMLS_SEARCH_URL, params, f"Approximate search for '{query_normalized}'")
+            
+        if response:
+            results = response.get("result", {}).get("results", [])
+            if results:
+                return results[0].get("ui")
+        return None
     
     def get_concept_relations(self, cui: str) -> list[dict[str, Any]]:
-        """
-        Retrieve the relationships for a given CUI, filtered to English terms only.
-        
-        Args:
-            cui: Concept Unique Identifier (e.g., "C4050279").
-            
-        Returns:
-            List of relationship dictionaries with keys:
-                - relatedId: CUI of related concept
-                - relationLabel: Type of relationship (e.g., "has_part_or_component")
-                - relatedConceptName: Name of the related concept (English only)
-            
-        Example:
-            >>> client = UMLSClient()
-            >>> relations = client.get_concept_relations("C4050279")
-            >>> for rel in relations:
-            ...     print(f"{rel['relationLabel']}: {rel['relatedConceptName']}")
-        """
+        """Retrieve relationships for a given CUI."""
         if not cui or not cui.strip():
-            logger.debug("Empty CUI provided to get_concept_relations")
             return []
+            
+        cui_str = cui.strip()
         
-        logger.debug(f"Fetching relations for CUI: {cui}")
-        
-        url = UMLS_RELATIONS_URL.format(cui=cui.strip())
-        response = self._make_request(url, {}, f"Fetching relations for {cui}")
+        if self.mock:
+            logger.debug(f"[MOCK] Fetching relations for CUI: {cui_str}")
+            for term, data in MOCK_UMLS_DB.items():
+                if data["cui"] == cui_str:
+                    return data.get("relations", [])
+            return []
+            
+        # Real API logic
+        url = UMLS_RELATIONS_URL.format(cui=cui_str)
+        response = self._make_request(url, {}, f"Fetching relations for {cui_str}")
         
         if not response:
-            logger.debug(f"No relations found for CUI: {cui}")
             return []
-        
-        relations: list[dict[str, Any]] = []
-        results = response.get("result", [])
-        
-        for item in results:
-            # Get the relationship label
+            
+        relations = []
+        for item in response.get("result", []):
             relation_label = item.get("relationLabel", "")
-            
-            # Get the related concept info - use the actual API field names
             related_name = item.get("relatedIdName", "")
-            
-            # Skip if no label or name
-            if not relation_label or not related_name:
-                continue
-            
-            relations.append({
-                "relationLabel": relation_label,
-                "relatedConceptName": related_name,
-                "additionalLabel": item.get("additionalRelationLabel", "")
-            })
-        
-        logger.debug(f"Found {len(relations)} relations for CUI {cui}")
+            if relation_label and related_name:
+                relations.append({
+                    "relationLabel": relation_label,
+                    "relatedConceptName": related_name,
+                    "additionalLabel": item.get("additionalRelationLabel", "")
+                })
         return relations
     
     def close(self):
         """Close the session and clean up resources."""
         if self.session:
             self.session.close()
-            logger.debug("UMLS client session closed")
 
 
-# Module-level convenience functions using a shared client instance
+# Shared client functionality
 _client_instance: Optional[UMLSClient] = None
 
-
 def _get_client() -> UMLSClient:
-    """Get or create the shared client instance."""
     global _client_instance
     if _client_instance is None:
-        _client_instance = UMLSClient()
+        # Check if we should default to mock
+        use_mock = not os.getenv("UMLS_API_KEY")
+        _client_instance = UMLSClient(mock=use_mock)
     return _client_instance
 
-
 def search_concept(query: str) -> Optional[str]:
-    """
-    Search for a medical concept and return its CUI.
-    
-    Args:
-        query: Medical term or concept to search for.
-        
-    Returns:
-        The CUI of the top matching concept, or None if not found.
-    """
     try:
         return _get_client().search_concept(query)
-    except UMLSClientError as e:
-        logger.error(f"UMLS client error: {e}")
+    except Exception as e:
+        logger.error(f"UMLS search error: {e}")
         return None
 
-
 def get_concept_relations(cui: str) -> list[dict[str, Any]]:
-    """
-    Retrieve the relationships for a given CUI.
-    
-    Args:
-        cui: Concept Unique Identifier.
-        
-    Returns:
-        List of relationship dictionaries.
-    """
     try:
         return _get_client().get_concept_relations(cui)
-    except UMLSClientError as e:
-        logger.error(f"UMLS client error: {e}")
+    except Exception as e:
+        logger.error(f"UMLS relations error: {e}")
         return []

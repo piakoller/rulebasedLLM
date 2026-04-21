@@ -22,19 +22,22 @@ from pydantic import BaseModel, Field, ValidationError
 import core.vector_rag as vector_rag
 import ontology_rag
 from ontology_tool import verify_clinical_relationship, UMLSVerificationResult
-from rules import DISTRESS_KEYWORDS, apply_rules, sentiment_analyzer, detect_language
 from empathy_framing import (
     create_empathic_response_to_umls_result,
     classify_emotional_state,
     get_nurse_instruction,
+    detect_language,
+    DISTRESS_KEYWORDS,
+    apply_rules,
+    sentiment_analyzer,
 )
 
-BASE_DIR = Path(__file__).resolve().parent
-FRAME_PROMPT_PATH = BASE_DIR / "frame_prompt.txt"
-STATIC_PATIENT_DATA_PATH = BASE_DIR / "context" / "static_patient_records.json"
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+FRAME_PROMPT_PATH = PROJECT_ROOT / "data" / "frame_prompt.txt"
+STATIC_PATIENT_DATA_PATH = PROJECT_ROOT / "data" / "context" / "static_patient_records.json"
 DEFAULT_OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "hf.co/unsloth/medgemma-1.5-4b-it-GGUF:BF16")
 DEFAULT_OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/chat")
-DEFAULT_DOCUMENT_ROOT = BASE_DIR / "context"
+DEFAULT_DOCUMENT_ROOT = PROJECT_ROOT / "data" / "context"
 MAX_REASONING_STEPS = 2
 
 FORBIDDEN_TOPICS = {
@@ -84,10 +87,10 @@ class EmpathyComplianceResult(BaseModel):
 
 
 class FrameResponse(BaseModel):
-    active_frame: str
+    active_frame: Optional[str] = None
     filled_slots: dict[str, str] = Field(default_factory=dict)
     agent_response: str
-    next_frame: str
+    next_frame: Optional[str] = None
 
 
 class ToolCall(BaseModel):
@@ -397,18 +400,22 @@ class AgentEngine:
         patient_data_path: Path = STATIC_PATIENT_DATA_PATH,
         prompt_path: Path = FRAME_PROMPT_PATH,
         max_reasoning_steps: int = MAX_REASONING_STEPS,
+        use_frames: bool = True,
+        use_graph_rag: bool = True,
     ) -> None:
         self.model = model
         self.ollama_url = ollama_url
         self.patient_data_path = patient_data_path
         self.max_reasoning_steps = max_reasoning_steps
-        self.system_prompt = load_frame_prompt(prompt_path)
-        self.frame_specs = parse_frame_specs(self.system_prompt)
-        self.current_frame = "greeting"
+        self.use_frames = use_frames
+        self.use_graph_rag = use_graph_rag
+        self.system_prompt = load_frame_prompt(prompt_path) if use_frames else "You are a helpful clinical assistant."
+        self.frame_specs = parse_frame_specs(self.system_prompt) if use_frames else {}
+        self.current_frame = "greeting" if use_frames else None
         self.frame_memory: dict[str, dict[str, str]] = {}
         self.conversation_history: list[dict[str, str]] = [{"role": "system", "content": self.system_prompt}]
         self.document_roots = document_roots or [DEFAULT_DOCUMENT_ROOT]
-        self.knowledge_graph = vector_rag.get_knowledge_graph(self.document_roots)
+        self.knowledge_graph = vector_rag.get_knowledge_graph(self.document_roots) if use_graph_rag else None
 
     def _execute_tool(self, tool_call: ToolCall, user_message: str = "") -> ToolResult:
         """Execute a tool call and return the result."""
@@ -436,16 +443,36 @@ class AgentEngine:
                         success=False,
                         error="Missing 'query' argument"
                     )
-                result = vector_rag.get_knowledge_graph_fact(query, graph=self.knowledge_graph)
-                return ToolResult(
-                    tool_name=tool_call.function_name,
-                    success=True,
-                    result={
-                        "answer": result.answer,
-                        "verified": result.verified,
-                        "entities": result.entities
-                    }
-                )
+                if self.use_graph_rag:
+                    result = vector_rag.get_knowledge_graph_fact(query, graph=self.knowledge_graph)
+                    return ToolResult(
+                        tool_name=tool_call.function_name,
+                        success=True,
+                        result={
+                            "answer": result.answer,
+                            "verified": result.verified,
+                            "entities": result.entities
+                        }
+                    )
+                else:
+                    # Fallback to basic RAG retrieval
+                    results = vector_rag.retrieve_similar_documents(query, top_k=3)
+                    if results:
+                        context_text = "\n".join([r.get("text", "") for r in results if isinstance(r, dict)])
+                        return ToolResult(
+                            tool_name=tool_call.function_name,
+                            success=True,
+                            result={
+                                "answer": f"Based on document retrieval, I found the following context: {context_text[:500]}...",
+                                "verified": True,
+                                "entities": []
+                            }
+                        )
+                    return ToolResult(
+                        tool_name=tool_call.function_name,
+                        success=False,
+                        error="No relevant information found in documents."
+                    )
             
             elif tool_call.function_name == "verify_fact":
                 # Verify if a statement is supported by the knowledge graph
@@ -627,12 +654,32 @@ class AgentEngine:
         )
 
     def _build_prompt(self, user_message: str, observation_summary: str, emotional_state: str = "neutral", revised: bool = False, language: str | None = None) -> list[dict[str, str]]:
+        # If frames are disabled, return a simple system/user prompt that does not expect JSON
+        emotional_context = get_nurse_instruction(emotional_state)
+        lang_directive = f"Respond in the user's language: {language}." if language else "Respond in the user's language (German, English, etc.)."
+
+        if not self.use_frames:
+            system_message = (
+                f"You are a helpful, empathic clinical assistant.\n\n"
+                f"Emotional context and guidance for this turn:\n{emotional_context}\n\n"
+                "Behavioral constraints:\n"
+                "- Do not provide dosing, prognosis, or numerical dosimetry.\n"
+                "- Use supportive, patient-centered language when the user appears distressed.\n"
+                "- If you cannot verify a clinical relationship, say so clearly.\n"
+                f"{lang_directive}\n"
+            )
+            user_message_block = f"User message: {user_message}\n\nObservations:\n{observation_summary}\n\nPlease provide a concise, empathic answer."
+            return [
+                {"role": "system", "content": system_message},
+                {"role": "user", "content": user_message_block},
+            ]
+
         spec = self.frame_specs.get(self.current_frame)
         required_slots = ", ".join(spec.required_slots) if spec else ""
         optional_slots = ", ".join(spec.optional_slots) if spec else ""
         allowed_next = ", ".join(spec.next_frames) if spec else ""
         goal = spec.goal if spec else ""
-        filled_slots = self.frame_memory.get(self.current_frame, {})
+        filled_slots = self.frame_memory.get(self.current_frame, {}) if self.current_frame else {}
         missing_slots = []
         if spec:
             missing_slots = [slot for slot in spec.required_slots if slot not in filled_slots]

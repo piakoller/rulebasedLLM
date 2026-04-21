@@ -169,7 +169,7 @@ def _ollama_chat(messages: list[dict], model: str = EXTRACTION_MODEL, ollama_url
         "messages": messages,
         "stream": False,
     }
-    response = requests.post(ollama_url, json=payload, timeout=120)
+    response = requests.post(ollama_url, json=payload, timeout=300)
     response.raise_for_status()
     data = response.json()
     return data.get("message", {}).get("content", "")
@@ -299,7 +299,9 @@ def create_graph_from_documents(document_roots: list[Path] | None = None, model:
     if not document_paths:
         return create_clinical_graph()
 
-    for document_path in document_paths:
+    print(f"🔍 Found {len(document_paths)} documents. Building clinical knowledge graph...")
+    for i, document_path in enumerate(document_paths, 1):
+        print(f"📄 [{i}/{len(document_paths)}] Processing: {document_path.name}...")
         try:
             text = load_document_text(document_path)
         except Exception as exc:
@@ -307,7 +309,10 @@ def create_graph_from_documents(document_roots: list[Path] | None = None, model:
             continue
 
         chunks = chunk_text(text)
+        print(f"   - Document has {len(chunks)} chunks.")
         for index, chunk in enumerate(chunks, start=1):
+            if index % 5 == 1:
+                print(f"   - Extracting facts from chunk {index}/{len(chunks)}...")
             source_label = f"{document_path.name}#chunk-{index}"
             facts = extract_graph_facts(chunk, model=model)
             for entity in facts.get("entities", []):

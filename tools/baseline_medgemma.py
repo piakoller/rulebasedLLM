@@ -12,8 +12,10 @@ import json
 import requests
 from pathlib import Path
 
-# Reuse sample question loader and config constants from the empathy test file
-sys.path.insert(0, str(Path(__file__).parent))
+# Ensure imports resolve when running from tools/
+repo_root = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(repo_root))
+
 from tests.test_empathy_with_llm import load_sample_questions, OLLAMA_MODEL, OLLAMA_URL, TIMEOUT
 
 
@@ -84,7 +86,7 @@ def main():
         res = test_baseline_question(q["question"])
         results.append(res)
 
-    out_file = Path(__file__).parent / "LLM_TEST_RESULTS_BASELINE.json"
+    out_file = repo_root / "results" / "LLM_TEST_RESULTS_BASELINE.json"
     with open(out_file, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
 

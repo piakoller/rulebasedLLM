@@ -7,7 +7,8 @@ empathic strategies.
 
 import json
 from typing import Optional, Literal
-from rules import detect_language
+import os
+import requests
 
 # Emotional State Context: Gives the LLM awareness of patient's emotional state
 # The LLM has full freedom to generate empathy naturally, not follow a rigid script
@@ -61,6 +62,80 @@ EMOTIONAL_STATE_CONTEXT = {
 }
 
 
+# --- Lightweight replacements for the previous `rules` module ---
+# Distress keywords used across the pipeline (English + German samples)
+DISTRESS_KEYWORDS = [
+    "nervous", "worried", "anxious", "sorge", "sorgen", "ängst", "angst", "panik",
+    "überfordert", "überfordert", "frustriert", "genervt", "scared", "afraid",
+    "terrified", "nervös", "besorgt", "besorgnis", "sorgen"
+]
+
+
+def detect_language(text: str) -> str:
+    """Simple language heuristic: returns 'de' for German-like text else 'en'."""
+    if not text:
+        return "en"
+    lowered = text.lower()
+    german_markers = ["ich", "sie", "nicht", "nebenwirkung", "nebenwirkungen", "therapie", "behandlung", "dass", "ist", "sind"]
+    if any(marker in lowered for marker in german_markers):
+        return "de"
+    return "en"
+
+
+def sentiment_analyzer(text: str) -> dict | None:
+    """Very small sentiment helper: returns a mandatory prefix when distress keywords present."""
+    if not text:
+        return None
+    lowered = text.lower()
+    if any(kw in lowered for kw in DISTRESS_KEYWORDS):
+        return {"mandatory_prefix": "I’m sorry you’re going through this. "}
+    return None
+
+
+def apply_rules(user_message: str, state: str = "start", context: dict | None = None) -> dict:
+    """Minimal rule replacement used by the agent.
+
+    Returns a dict that may contain keys: direct_response, stop_chat, mandatory_prefix
+    """
+    if not user_message:
+        return {}
+    lowered = user_message.lower()
+    # Simple terminal rule
+    if any(term in lowered for term in ["bye", "goodbye", "quit", "exit"]):
+        return {"direct_response": "Goodbye.", "stop_chat": True}
+    # No other rules by default
+    return {}
+
+
+# --- LLM-based classifier helper ---
+DEFAULT_OLLAMA_MODEL_EMPATHY = os.getenv("OLLAMA_MODEL", "hf.co/unsloth/medgemma-1.5-4b-it-GGUF:BF16")
+DEFAULT_OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/chat")
+
+
+def make_ollama_classifier(model: str | None = None, ollama_url: str | None = None, timeout: int = 30):
+    """Return a function that calls an Ollama-compatible chat endpoint.
+
+    The returned function accepts a single `prompt` string and returns the
+    assistant's text. On any network/error it returns an empty string so callers
+    can fall back to heuristics.
+    """
+    model = model or DEFAULT_OLLAMA_MODEL_EMPATHY
+    ollama_url = ollama_url or DEFAULT_OLLAMA_URL
+
+    def classifier(prompt: str) -> str:
+        try:
+            payload = {"model": model, "messages": [{"role": "user", "content": prompt}], "stream": False}
+            resp = requests.post(ollama_url, json=payload, timeout=timeout)
+            resp.raise_for_status()
+            data = resp.json()
+            return data.get("message", {}).get("content", "") or ""
+        except Exception:
+            return ""
+
+    return classifier
+
+
+
 def classify_emotional_state(
     user_message: str,
     conversation_history: Optional[list[dict]] = None,
@@ -81,24 +156,43 @@ def classify_emotional_state(
     """
     if llm_classifier:
         try:
-            classification_prompt = f"""Classify the emotional state of this patient message. 
-Only respond with the emotion classification (no explanation).
+            # Increased sensitivity to implied anxiety: include guidance for questions
+            # that ask about probabilities, risks, or personal outcomes.
+            classification_prompt = f"""
+You are a clinical conversation emotion classifier. Read the patient's message and pick exactly one label from this closed set: anxiety, frustration, fear, overwhelm, neutral.
 
-Emotional states:
-- anxiety: worry, nervousness, concern about treatment
-- frustration: irritation, feeling unheard, impatience
-- fear: terror, extreme worry, feeling unsafe
-- overwhelm: too much information, too many decisions
-- neutral: no clear emotional distress
+Rules (must follow exactly):
+- Output exactly one of: anxiety, frustration, fear, overwhelm, neutral (lowercase), and nothing else.
+
+Interpretation guidance:
+- anxiety: the patient expresses or implies worry about outcomes, risks, uncertainty, or personal impact (examples: "Will this cure me?", "How likely is it to work?", "Is this risky?", "I'm concerned about side effects", "My PSA is rising, I'm worried").
+- fear: explicit, intense fear or statements about danger to life/safety (examples: "I'm terrified", "Will I die?", "I'm afraid I will die").
+- frustration: irritation, complaints, feeling ignored, or impatience (examples: "I've waited for weeks", "Nobody answers me").
+- overwhelm: explicit statements of being overwhelmed by information, decisions, or logistics (examples: "I can't cope with all this", "too much to handle").
+- neutral: informational, logistical, or clinical questions without emotional content or implied worry.
+
+Important heuristics (apply when the message is ambiguous):
+- Questions about prognosis, probability, treatment efficacy, risks, or "will I" style outcome questions should lean toward *anxiety* unless the message includes clear words that indicate extreme fear (then label *fear*).
+- Personal-impact questions (how it will affect me, my life, my family, my function) often indicate anxiety.
+
+Examples (input -> output):
+"I'm nervous about the treatment" -> anxiety
+"Will I die from this?" -> fear
+"I've been waiting for weeks and nobody answers" -> frustration
+"I feel overwhelmed with all these forms and appointments" -> overwhelm
+"When is my next scan scheduled?" -> neutral
+"Is this treatment likely to work for me?" -> anxiety
+"Is it risky for me to go home after the therapy?" -> anxiety
+"My PSA keeps rising, I'm worried" -> anxiety
 
 Message: {user_message}
 
-Classification (one word only):"""
-            
+Classification (one word only):
+"""
+
             result = llm_classifier(classification_prompt)
             emotion = result.strip().lower()
-            
-            # Validate the result
+            # Validate the result strictly against allowed labels
             if emotion in EMOTIONAL_STATE_CONTEXT:
                 return emotion
         except Exception:

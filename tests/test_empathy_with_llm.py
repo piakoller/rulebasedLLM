@@ -18,7 +18,7 @@ from empathy_framing import (
     get_nurse_instruction,
     EMOTIONAL_STATE_CONTEXT,
 )
-from rules import detect_language
+from empathy_framing import detect_language
 
 # Bilingual keyword dictionaries for quality assessment
 CLINICAL_KEYWORDS = {

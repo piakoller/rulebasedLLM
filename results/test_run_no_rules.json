@@ -1,0 +1,25 @@
+{
+  "results": [
+    {
+      "index": 1,
+      "category": "oncology_and_cancer",
+      "question": "Was ist zielgerichtete Therapie und wie unterscheidet sie sich von traditioneller Chemotherapie?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 2,
+      "category": "oncology_and_cancer",
+      "question": "Was sind die häufigsten Nebenwirkungen einer zielgerichteten Therapie?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 3,
+      "category": "oncology_and_cancer",
+      "question": "Wie geht die Präzisionsmedizin an die Krebsbehandlung heran?",
+      "language": "de",
+      "emotional_state": "neutral"
+    }
+  ]
+}

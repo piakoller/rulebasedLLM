@@ -67,12 +67,12 @@ You now have a complete Direct Preference Optimization (DPO) data collection and
 
 | File | Purpose | Type |
 |------|---------|------|
-| `study_ui.py` | Main Streamlit UI for data collection | Application |
-| `analyze_study_data.py` | Post-collection analysis tool | Script |
-| `prepare_dpo_data.py` | Converts study data to training formats | Script |
+| `ui/study_ui.py` | Main Streamlit UI for data collection | Application |
+| `tools/analyze_study_data.py` | Post-collection analysis tool (Planned) | Script |
+| `tools/prepare_dpo_data.py` | Converts study data to training formats (Planned) | Script |
 | `requirements_study.txt` | Python dependencies | Config |
-| `STUDY_UI_SETUP.md` | Quick start guide | Documentation |
-| `DPO_STUDY_GUIDE.md` | Comprehensive implementation guide | Documentation |
+| `docs/QUICKSTART.md` | Quick start guide | Documentation |
+| `docs/SYSTEM_SUMMARY.md` | Complete system summary | Documentation |
 
 ## Quick Start (5 Minutes)
 

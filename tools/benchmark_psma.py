@@ -20,7 +20,7 @@ from tests.test_empathy_with_llm import OLLAMA_MODEL, OLLAMA_URL
 import baseline_medgemma
 import vector_rag
 from core.agent_engine import AgentEngine
-from rules import detect_language
+from empathy_framing import detect_language
 
 OUT = Path("results/psma_benchmark.json")
 QUESTIONS_FILE = Path("data/psma_sample_questions.json")

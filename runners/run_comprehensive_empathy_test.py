@@ -7,14 +7,17 @@ Demonstrates the context-aware approach with anxiety, fear, frustration, and ove
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent / "core"))
+# Ensure imports resolve when running the script from the repo root
+repo_root = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(repo_root / "core"))
+sys.path.insert(0, str(repo_root))
 
 from empathy_framing import (
     classify_emotional_state,
     get_nurse_instruction,
     EMOTIONAL_STATE_CONTEXT,
 )
-from rules import detect_language
+from empathy_framing import detect_language
 
 # Test cases with different emotional states
 TEST_QUESTIONS = [

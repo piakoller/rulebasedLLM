@@ -17,17 +17,9 @@ from typing import Any, Optional
 
 from pydantic import BaseModel, Field
 
-# Determine which client to use based on environment variable
-UMLS_CLIENT_MODE = os.getenv("UMLS_CLIENT_MODE", "mock").lower()
-
-if UMLS_CLIENT_MODE == "real":
-    from umls_client import UMLSClient, UMLSClientError, get_concept_relations, search_concept
-else:
-    # Default to mock unless explicitly set to "real"
-    from umls_client_mock import UMLSClient, UMLSClientError, get_concept_relations, search_concept
+from umls_client import UMLSClient, UMLSClientError, get_concept_relations, search_concept
 
 logger = logging.getLogger(__name__)
-logger.info(f"Using {UMLS_CLIENT_MODE.upper()} UMLS client")
 
 
 class UMLSVerificationResult(BaseModel):

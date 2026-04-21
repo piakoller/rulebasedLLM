@@ -1,0 +1,125 @@
+{
+  "results": [
+    {
+      "index": 1,
+      "category": "psma_therapy",
+      "question": "Kann ich durch eine PSMA-Therapie von meinem Krebs geheilt werden?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {},
+        "agent_response": "{\n\"response\": \"PSMA-Therapie ist eine Behandlungsmethode für bestimmte Krebsarten, wie zum Beispiel Prostatakrebs. Sie zielt darauf ab, Krebszellen zu zerstören oder zu verlangsamen. Es ist wichtig, dass Sie mit Ihrem behandelnden Arzt sprechen, um zu erfahren, ob diese Therapie für Ihren spezifischen Krebs geeignet ist und welche Chancen es auf eine Heilung gibt.\",\n\"empathy_score\": 0.90,\n\"empathy_issues\": [\n\"Could be warmer and more patient-centered.\"\n]\n}",
+        "next_frame": null
+      }
+    },
+    {
+      "index": 2,
+      "category": "psma_therapy",
+      "question": "Stellt die radioaktive Strahlung durch die PSMA-Therapie ein Risiko für mich dar?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {},
+        "agent_response": "{\n\"response\": \"Die PSMA-Therapie verwendet radioaktive Strahlung, um Krebszellen zu zerstören. Obwohl die Strahlendosis relativ gering ist und die Sicherheit gut untersucht wurde, kann es bei jeder medizinischen Behandlung ein gewisses Risiko geben. Es ist wichtig, dass Sie sich mit Ihrem Arzt über alle möglichen Risiken und Vorteile der Therapie sprechen, um sicherzustellen, dass sie für Sie geeignet ist.\"\n}",
+        "next_frame": null
+      }
+    },
+    {
+      "index": 3,
+      "category": "psma_therapy",
+      "question": "Welche Nebenwirkungen gibt es im Rahmen der PSMA-Therapie?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {},
+        "agent_response": "{\n\"response\": \"Die PSMA-Therapie kann verschiedene Nebenwirkungen haben. Dazu gehören oft Übelkeit und Erbrechen, besonders in den ersten Tagen nach der Behandlung. Auch Müdigkeit oder Schläfrigkeit können auftreten. Manchmal können auch Kopfschmerzen oder eine leichte Unruhegefühl entstehen. Es ist wichtig, mit Ihrem Arzt über mögliche Nebenwirkungen zu sprechen, bevor Sie die Therapie beginnen.\"\n}",
+        "next_frame": null
+      }
+    },
+    {
+      "index": 4,
+      "category": "psma_therapy",
+      "question": "Welche Strahlenschutzmassnahmen muss ich nach der PSMA-Therapie nach Entlassung aus dem Krankenhaus einhalten?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {},
+        "agent_response": "{\n\"response\": \"Nach der PSMA-Therapie sind Strahlenschutzmassnahmen wichtig. Es ist ratsam, die Empfehlungen des Radiologischen Instituts zu beachten, das den Behandlungsplan erstellt hat. Diese Massnahmen umfassen oft die Vermeidung von Röntgenuntersuchungen und die Einhaltung von Schutzvorschriften bei der Arbeit mit Röntgenquellen. Wichtig ist auch, sich über mögliche Nebenwirkungen informieren und bei Fragen oder Bedenken direkt mit dem behandelnden Arzt oder dem Radiologischen Institut zu sprechen.\"\n}",
+        "next_frame": null
+      }
+    },
+    {
+      "index": 5,
+      "category": "psma_therapy",
+      "question": "Wie wahrscheinlich ist es, dass die PSMA-Therapie eine gute Wirkung erzielt?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {},
+        "agent_response": "{\n\"response\": \"Die PSMA-Therapie kann bei vielen Patienten eine gute Wirkung zeigen, aber die Erfolgsaussichten sind individuell unterschiedlich. Die genaue Wirksamkeit hängt von verschiedenen Faktoren ab, wie zum Beispiel dem Stadium der Erkrankung und dem individuellen Gesundheitszustand des Patienten. Es ist wichtig, dass Sie sich mit einem Facharzt über die spezifischen Chancen und Risiken der Therapie für Ihren Fall beraten lassen.\"\n}",
+        "next_frame": null
+      }
+    },
+    {
+      "index": 6,
+      "category": "psma_therapy",
+      "question": "Wird mir durch die PSMA-Therapie übel werden?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {},
+        "agent_response": "{\n\"response\": \"Es ist möglich, dass Sie Übelkeit während der PSMA-Therapie spüren. Dies kann auf verschiedene Faktoren zurückzuführen sein, wie zum Beispiel die Behandlung selbst oder Nebenwirkungen von Medikamenten.\",\n\"confidence_score\": 0.95,\n\"reasoning\": \"The user is asking about a potential side effect of the PSMA therapy. The response directly addresses this question by stating it's possible and mentions potential causes without being overly technical or dismissive. It uses neutral language appropriate for a clinical assistant.\"\n}",
+        "next_frame": null
+      }
+    },
+    {
+      "index": 7,
+      "category": "psma_therapy",
+      "question": "Werden mir durch die PSMA-Therapie die Haare ausfallen?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {},
+        "agent_response": "{\n\"response\": \"Die PSMA-Therapie kann zu Haarausfall führen, aber der Grad und die Dauer können stark variieren. Es ist wichtig, dies mit Ihrem Arzt oder Ihrer Ärztin zu besprechen, um die spezifischen Auswirkungen auf Ihren Körper zu verstehen.\"\n}",
+        "next_frame": null
+      }
+    },
+    {
+      "index": 8,
+      "category": "psma_therapy",
+      "question": "Kann ich durch die PSMA-Therapie sterben?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {},
+        "agent_response": "{\n\"response\": \"Die PSMA-Therapie ist eine Behandlungsmethode für bestimmte Krebsarten, wie zum Beispiel Prostatakrebs. Sie ist darauf ausgelegt, den Tumor zu reduzieren oder zu entfernen. Die Überlebensrate hängt stark von der Art und dem Stadium des Krebses sowie von anderen individuellen Faktoren ab. Es ist wichtig, dass Sie sich mit Ihrem behandelnden Arzt über die spezifischen Risiken und Vorteile der Therapie für Ihren Fall sprechen.\"\n}",
+        "next_frame": null
+      }
+    },
+    {
+      "index": 9,
+      "category": "psma_therapy",
+      "question": "Wie lange muss ich für eine PSMA-Therapie im Krankenhaus bleiben?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {},
+        "agent_response": "{\n\"response\": \"Die Dauer der PSMA-Therapie im Krankenhaus hängt von verschiedenen Faktoren ab, wie z.B. der Art der Therapie und den individuellen Bedürfnissen. In der Regel dauert die Behandlung selbst nicht sehr lange, aber es ist wichtig, dass Sie sich auf den Tag vorbereiten und wissen, was Sie erwartet. Wenn Sie weitere Fragen haben, sprechen Sie bitte mit Ihrem behandelnden Arzt.\"\n}",
+        "next_frame": null
+      }
+    },
+    {
+      "index": 10,
+      "category": "psma_therapy",
+      "question": "Darf ich während meines Aufenthaltes im Rahmen einer PSMA-Therapie Besuch erhalten?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {},
+        "agent_response": "{\n\"response\": \"Ja, Sie können während Ihres Aufenthalts im Rahmen der PSMA-Therapie Besuch erhalten. Es ist wichtig, dass Sie sich auf den Tag vorbereiten und sich an die Anweisungen des medizinischen Personals halten, insbesondere bezüglich der Strahlensicherheit. Wir sind hier, um Ihnen bei Fragen zu helfen.\"\n}",
+        "next_frame": null
+      }
+    },
+    {
+      "index": 11,
+      "category": "psma_therapy",
+      "question": "Mein PSA-Wert steigt trotz der PSMA-Therapie weiter an. Ist das ein Problem?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {},
+        "agent_response": "{\n\"response\": \"Es ist verständlich, dass Sie sich Sorgen machen, wenn Ihr PSA-Wert trotz der PSMA-Therapie ansteigt. Das kann frustrierend sein und die Angst vor dem Fortschreiten des Tumors erhöhen. Es ist wichtig, dass Sie mit Ihrem behandelnden Arzt darüber sprechen, um die Ursachen zu verstehen und gemeinsam weitere Schritte zu planen.\"\n}",
+        "next_frame": null
+      }
+    }
+  ]
+}

@@ -18,7 +18,7 @@ from empathy_framing import (
     get_nurse_protocol_details,
     EMOTIONAL_STATE_CONTEXT,
 )
-from rules import detect_language
+from empathy_framing import detect_language
 
 
 def test_emotional_state_classification():

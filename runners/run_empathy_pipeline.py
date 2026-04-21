@@ -8,15 +8,19 @@ import sys
 import json
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent / "core"))
+# Ensure imports resolve when running the script from the repo root or tests/ directory
+repo_root = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(repo_root / "core"))
+sys.path.insert(0, str(repo_root))
 
 from empathy_framing import (
     classify_emotional_state,
     get_nurse_instruction,
     EMOTIONAL_STATE_CONTEXT,
+    detect_language,
+    make_ollama_classifier,
 )
 from agent_engine import AgentEngine, FrameResponse
-from rules import detect_language
 
 def load_sample_questions(path: str = "data/sample_questions.json", limit: int | None = None):
     """Load sample questions from a JSON file.
@@ -37,7 +41,7 @@ def load_sample_questions(path: str = "data/sample_questions.json", limit: int |
 
     return all_questions[:limit]
 
-def run_pipeline_on_question(question: str, category: str):
+def run_pipeline_on_question(question: str, category: str, llm_classifier=None):
     """Run the refactored empathy pipeline on a single question"""
     print("\n" + "=" * 75)
     print(f"CATEGORY: {category}")
@@ -51,7 +55,7 @@ def run_pipeline_on_question(question: str, category: str):
     print(f"   Language: {language}")
     
     # Step 2: Emotion Classification
-    emotional_state = classify_emotional_state(question)
+    emotional_state = classify_emotional_state(question, llm_classifier=llm_classifier)
     print(f"\n2️⃣  EMOTION CLASSIFICATION:")
     print(f"   Emotional State: {emotional_state}")
     
@@ -114,6 +118,9 @@ def main():
     parser.add_argument("--limit", "-l", type=int, default=None, help="Optional maximum number of questions to process (default: all)")
     parser.add_argument("--out", "-o", default=None, help="Optional output JSON file to save results")
     parser.add_argument("--no-agent", dest="use_agent", action="store_false", help="Do not run the full AgentEngine (only run pipeline classification)")
+    parser.add_argument("--llm-classifier", dest="llm_classifier", action="store_true", help="Use an LLM-based classifier (requires Ollama/medgemma endpoint)")
+    parser.add_argument("--no-graph", dest="use_graph", action="store_false", help="Skip GraphRAG build and use basic RAG instead")
+    parser.set_defaults(use_graph=True)
     args = parser.parse_args()
 
     # Load sample questions
@@ -121,8 +128,12 @@ def main():
 
     print(f"\n📚 LOADING {len(sample_questions)} SAMPLE QUESTIONS FROM {args.questions}...\n")
     
-    # Initialize agent if requested
-    agent = AgentEngine() if True else None
+    # Initialize agent if requested; run with framing disabled for independent questions
+    agent = AgentEngine(use_frames=False, use_graph_rag=args.use_graph) if args.use_agent else None
+
+    # Optionally create an Ollama-based classifier (falls back to heuristics on error)
+    llm_classifier = make_ollama_classifier() if args.llm_classifier else None
+    
 
     results = []
     # Run pipeline on each question
@@ -131,23 +142,35 @@ def main():
         print(f"QUESTION {i}/{len(sample_questions)}")
         print(f"{'#' * 75}")
 
-        run_pipeline_on_question(question, category)
+        run_pipeline_on_question(question, category, llm_classifier=llm_classifier)
 
-        # Run the full agent for end-to-end testing (LLM + RAG retrieval)
-        try:
-            frame_response: FrameResponse = agent.handle_message(question)
+        # Run the full agent for end-to-end testing (LLM + RAG retrieval) if enabled
+        if agent is not None:
+            try:
+                frame_response: FrameResponse = agent.handle_message(question)
+                record = {
+                    "index": i,
+                    "category": category,
+                    "question": question,
+                    "agent_response": frame_response.model_dump(),
+                }
+            except Exception as e:
+                record = {
+                    "index": i,
+                    "category": category,
+                    "question": question,
+                    "error": str(e),
+                }
+        else:
+            # When --no-agent is specified, include only pipeline classification info
+            language = detect_language(question)
+            emotional_state = classify_emotional_state(question, llm_classifier=llm_classifier)
             record = {
                 "index": i,
                 "category": category,
                 "question": question,
-                "agent_response": frame_response.model_dump(),
-            }
-        except Exception as e:
-            record = {
-                "index": i,
-                "category": category,
-                "question": question,
-                "error": str(e),
+                "language": language,
+                "emotional_state": emotional_state,
             }
         results.append(record)
     
@@ -157,7 +180,7 @@ def main():
     print("=" * 75)
     print("\n✅ PROCESSED QUESTIONS:")
     for i, (question, category) in enumerate(sample_questions, 1):
-        emotion = classify_emotional_state(question)
+        emotion = classify_emotional_state(question, llm_classifier=llm_classifier)
         lang = detect_language(question)
         print(f"\n  {i}. [{category}] ({lang})")
         print(f"     Emotion: {emotion}")

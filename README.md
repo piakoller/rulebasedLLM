@@ -9,8 +9,10 @@ This README explains the full pipeline from a clean clone through collecting pre
 - `core/` — agent orchestration, UMLS/ontology helpers, grounding and framing logic.
 - `tools/` — ingestion, analysis, benchmarks, utilities for the pipeline.
 - `ui/study_ui.py` — Streamlit-based UI for collecting human preferences (paired A/B).
-- `data/` — sample questions, framing prompt, and de-identified context used for tests/examples.
-- `tests/` — automation and pipeline runners used for batch experiments.
+- `data/` — sample questions, framing prompt, and de-identified clinical context.
+- `runners/` — batch experiment runners and pipeline automation.
+- `results/` — output files and experiment data.
+- `tests/` — unit and integration tests.
 
 Always refer to the files under `core/` and `tools/` for implementation details.
 
@@ -43,7 +45,7 @@ Set the following optionally in your shell or an env file:
 
 - `OLLAMA_URL` — endpoint for local Ollama (if used).
 - `OLLAMA_MODEL` — model name to use for generation.
-- `GRAPH_RAG_DOCUMENT_ROOTS` — comma-separated folders to scan for documents (default: `data/,docs/,context/`).
+- `GRAPH_RAG_DOCUMENT_ROOTS` — comma-separated folders to scan for documents (default: `data/context/,docs/`).
 
 The system will run with mock grounding for tests if real UMLS credentials are not available.
 
@@ -91,10 +93,10 @@ Notes:
 
 5) Run the automated empathy pipeline over a questions set (batch run)
 
-Use the pipeline runner to generate pairs or single responses for a question set. The repo includes a pipeline runner under `tests/` used in experiments:
+Use the pipeline runner to generate pairs or single responses for a question set. The repo includes a pipeline runner under `runners/` used in experiments:
 
 ```bash
-python tests/run_empathy_pipeline.py --questions data/psma_sample_questions.json --out results/psma_run_results.json
+python runners/run_empathy_pipeline.py --questions data/psma_sample_questions.json --out results/psma_run_results.json
 ```
 
 This creates a result JSON (or results folder) containing original/revised responses, grounding metadata, and scoring fields used later by analysis tools.
@@ -142,12 +144,10 @@ Outputs:
 
 9) Tests and CI
 
-Run unit/integration tests locally with pytest or the top-level test scripts:
+Run unit/integration tests locally with pytest:
 
 ```bash
 pytest tests/ -q
-# or run individual scripts used in prior experiments
-python tests/test_empathy_pipeline.py
 ```
 
 ## Removing large vector stores from git
@@ -196,7 +196,7 @@ python tools/ingest_pdfs_vectorstore.py --docs docs/ --out data/vector_store
 python core/ontology_rag.py --build
 
 # run batch pipeline over sample questions
-python tests/run_empathy_pipeline.py --questions data/psma_sample_questions.json --out results/psma_run_results.json
+python runners/run_empathy_pipeline.py --questions data/psma_sample_questions.json --out results/psma_run_results.json
 
 # analyze and prepare training data
 python tools/analyze_study_data.py --in results/psma_run_results.json

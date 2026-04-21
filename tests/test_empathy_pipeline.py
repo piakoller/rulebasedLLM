@@ -12,7 +12,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent / "core"))
 
-from rules import detect_language, DISTRESS_KEYWORDS
+from empathy_framing import detect_language, DISTRESS_KEYWORDS
 from empathy_framing import frame_clinical_information_empathically, create_empathic_response_to_umls_result
 
 
