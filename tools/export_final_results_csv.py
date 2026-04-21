@@ -36,7 +36,8 @@ def main():
             'Agentic Response (Dual-Pillar Final)'
         ])
         
-        for item in final_data:
+        items = final_data.get('results', []) if isinstance(final_data, dict) else final_data
+        for item in items:
             if not isinstance(item, dict):
                 continue
             i = item.get('index', '')
