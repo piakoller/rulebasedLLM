@@ -200,29 +200,18 @@ class UMLSClient:
             # Get the relationship label
             relation_label = item.get("relationLabel", "")
             
-            # Get the related concept info
-            related_id = item.get("relatedIdInverted")  # Target CUI
+            # Get the related concept info - use the actual API field names
+            related_name = item.get("relatedIdName", "")
             
-            # Extract related concept details from nested structure
-            related_name = None
-            if isinstance(item.get("relatedId"), dict):
-                related_name = item["relatedId"].get("name")
-            else:
-                # Try to get from relatedIdInverted
-                if isinstance(item.get("relatedIdInverted"), dict):
-                    related_name = item["relatedIdInverted"].get("name")
-            
-            # Filter for English terms only
-            language = item.get("relatedId", {}).get("language", "")
-            if language and language != "ENG":
+            # Skip if no label or name
+            if not relation_label or not related_name:
                 continue
             
-            if related_id and related_name:
-                relations.append({
-                    "relatedId": related_id,
-                    "relationLabel": relation_label,
-                    "relatedConceptName": related_name
-                })
+            relations.append({
+                "relationLabel": relation_label,
+                "relatedConceptName": related_name,
+                "additionalLabel": item.get("additionalRelationLabel", "")
+            })
         
         logger.debug(f"Found {len(relations)} relations for CUI {cui}")
         return relations

@@ -91,9 +91,12 @@ OLLAMA_URL = "http://localhost:11434/api/chat"
 TIMEOUT = 120  # Increased timeout for initial model load
 NUM_RANDOM_QUESTIONS = 3  # Number of random questions to test
 
+from core.umls_grounding import extract_medical_terms, get_umls_grounding
+
+
 def load_sample_questions(num_questions: int = 3) -> list[dict]:
-    """Load random questions from sample_questions.json"""
-    sample_file = Path(__file__).parent / "data" / "sample_questions.json"
+    """Load random questions from data/psma_sample_questions.json"""
+    sample_file = Path(__file__).parent / "data" / "psma_sample_questions.json"
     
     try:
         with open(sample_file, "r", encoding="utf-8") as f:
@@ -220,26 +223,21 @@ def detect_empathy(response_text: str, language: str, emotional_state: str) -> d
         "details": f"Found {len(found_keywords)} empathy keywords in {language}"
     }
 
-def detect_umls_api_usage(response_text: str, thinking_text: str, language: str) -> dict:
+def detect_umls_api_usage(umls_grounding: dict) -> dict:
     """
-    Detect if UMLS API or verified medical terminology was used.
-    Checks both response and thinking process for references.
+    Detect if UMLS API was actually called and used.
+    Checks the grounding data from pre-LLM UMLS verification.
     """
-    response_lower = response_text.lower()
-    thinking_lower = thinking_text.lower()
-    full_text = (response_lower + " " + thinking_lower).lower()
-    
-    keywords = UMLS_KEYWORDS.get(language, UMLS_KEYWORDS.get("en", set()))
-    found_keywords = [kw for kw in keywords if re.search(r'\b' + re.escape(kw) + r'\b', full_text)]
-    
-    # Also check for typical UMLS patterns
-    has_medical_coding = bool(re.search(r'\b(CUI|ICD|SNOMED|RxNorm)\b', full_text, re.IGNORECASE))
+    api_called = umls_grounding.get("grounded", False)
+    num_verified = umls_grounding.get("num_verified", 0)
+    terms = umls_grounding.get("terms_verified", [])
     
     return {
-        "api_referenced": len(found_keywords) > 0 or has_medical_coding,
-        "keywords_found": found_keywords,
-        "has_medical_coding": has_medical_coding,
-        "details": f"UMLS reference{'s' if found_keywords else ' not'} detected in response/thinking"
+        "api_referenced": api_called,
+        "api_called": api_called,
+        "num_verified_concepts": num_verified,
+        "verified_terms": [t["term"] for t in terms],
+        "details": f"UMLS API called: {num_verified} verified concepts found" if api_called else "UMLS API: No verified concepts"
     }
 
 def detect_nurse_framework(response_text: str, language: str) -> dict:
@@ -319,18 +317,34 @@ def test_question_with_llm(question: str, category: str, expected_emotion: str):
         "expected_emotion": expected_emotion,
     }
     
-    # Step 2: Get emotional context
+    # Step 2a: Get UMLS grounding (pre-LLM enhancement)
+    print(f"\n🔬 UMLS VERIFICATION (Hybrid: German + English):")
+    umls_grounding = get_umls_grounding(question, language=language)
+    if umls_grounding["grounded"]:
+        print(f"   ✓ Found {umls_grounding['num_verified']} verified concepts from {umls_grounding['num_searches']} searches")
+        for term_info in umls_grounding["terms_verified"]:
+            tag = "(translated)" if term_info.get("is_translated") else "(original)"
+            print(f"     • {term_info['term']} {tag} → CUI: {term_info['cui']}")
+    else:
+        print(f"   (Searched {umls_grounding.get('num_searches', 0)} terms, none verified)")
+    
+    result_data["umls_grounding"] = umls_grounding
+    
+    # Step 2b: Get emotional context
     context = get_nurse_instruction(emotional_state)
     print(f"\n💡 EMOTIONAL CONTEXT (for LLM):")
     print(f"   {context[:100]}...")
     
-    # Step 3: Build system message with emotional context
+    # Step 3: Build system message with emotional context AND UMLS grounding
     system_message = f"""You are a compassionate clinical assistant for patients undergoing cancer treatment.
 
 Your role is to provide accurate medical information combined with emotional support.
 
 Patient's Emotional State:
 {context}
+
+Verified Medical Concepts (from NIH UMLS):
+{umls_grounding['context'] if umls_grounding['grounded'] else "No pre-grounding available for this question."}
 
 Clinical Guidelines:
 - Always verify information with established medical facts
@@ -378,7 +392,7 @@ Behavioral Constraints:
     # Use helper functions for intelligent quality assessment
     clinical_analysis = detect_clinical_accuracy(parsed_response["patient_response"], language)
     empathy_analysis = detect_empathy(parsed_response["patient_response"], language, emotional_state)
-    umls_analysis = detect_umls_api_usage(parsed_response["patient_response"], parsed_response["thinking"], language)
+    umls_analysis = detect_umls_api_usage(umls_grounding)  # Use actual grounding data
     nurse_analysis = detect_nurse_framework(parsed_response["patient_response"], language)
     
     # Create comprehensive quality assessment
@@ -388,7 +402,8 @@ Behavioral Constraints:
         "Is clinically detailed": clinical_analysis["score"] >= 0.15,
         "Has empathy (when needed)": empathy_analysis["is_empathic"],
         "Empathy keywords score": f"{empathy_analysis['score']:.1%}",
-        "UMLS/Database referenced": umls_analysis["api_referenced"],
+        "UMLS API Called": umls_analysis["api_called"],
+        "Verified concepts found": umls_analysis["num_verified_concepts"],
         "NURSE framework detected": nurse_analysis["nurse_framework_used"],
         "NURSE elements found": nurse_analysis["num_elements"],
     }
@@ -487,32 +502,6 @@ def main():
     with open(output_file, "w") as f:
         json.dump(results, f, indent=2)
     print(f"\n📝 Full results saved to: {output_file}")
-    
-    print("\n" + "=" * 85)
-    print(" " * 15 + "KEY INSIGHTS FROM LLM RESPONSES")
-    print("=" * 85)
-    print("""
-✨ What the LLM sees with context-aware approach:
-
-1. EMOTIONAL CONTEXT (Not prescriptive rules)
-   "Patient is experiencing anxiety. They need reassurance grounded in facts..."
-   
-2. LLM FREEDOM (Not a checklist)
-   ✓ Chooses how to integrate empathy naturally
-   ✓ Generates authentic, conversational responses
-   ✓ Adapts tone to patient's emotional state
-   ✓ No forced prefixes or required structure
-
-3. CLINICAL SAFETY (Maintained)
-   ✓ System message enforces guidelines
-   ✓ LLM stays factual while being empathic
-   ✓ Responses are evidence-based, not generic
-
-THIS IS DIFFERENT FROM:
-   ❌ Forcing "I'm sorry you're going through this..." prefix
-   ❌ Requiring LLM to follow 5-step NURSE checklist
-   ❌ Constraining response style or structure
-    """)
     
     print("=" * 85)
 

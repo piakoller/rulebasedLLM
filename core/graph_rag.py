@@ -16,6 +16,12 @@ from typing import Optional
 import networkx as nx
 import requests
 from pydantic import BaseModel, Field
+import numpy as np
+
+try:
+    from sentence_transformers import SentenceTransformer
+except Exception:
+    SentenceTransformer = None
 
 BASE_DIR = Path(__file__).resolve().parent
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/chat")
@@ -28,6 +34,7 @@ DOCUMENT_ROOTS = [
 ]
 if not DOCUMENT_ROOTS:
     DOCUMENT_ROOTS = [BASE_DIR / "context", BASE_DIR / "docs", BASE_DIR / "data"]
+VECTOR_STORE_DIR = Path(os.getenv("GRAPH_RAG_VECTOR_STORE", BASE_DIR / "data" / "vector_store"))
 SUPPORTED_SUFFIXES = {".pdf", ".txt", ".md", ".markdown"}
 CHUNK_SIZE = 1800
 CHUNK_OVERLAP = 250
@@ -364,6 +371,12 @@ def get_knowledge_graph_fact(query: str, graph: Optional[nx.Graph] = None) -> Kn
         )
 
     context = retrieve_context(entities, graph=graph)
+    # If graph didn't confirm relation, try RAG vector store retrieval for supporting context
+    rag_contexts = []
+    try:
+        rag_contexts = retrieve_similar_documents(" ".join(entities) or query, top_k=3)
+    except Exception:
+        rag_contexts = []
     answer = (
         "I could not verify that relationship directly from the current knowledge graph. "
         "I can only provide high-level, document-grounded information."
@@ -376,8 +389,60 @@ def get_knowledge_graph_fact(query: str, graph: Optional[nx.Graph] = None) -> Kn
         entities=entities,
         verified=False,
         answer=answer,
-        evidence=[context] if context else [],
+        evidence=([context] if context else []) + rag_contexts,
     )
+
+
+def _load_vector_store(outdir: Path | None = None) -> tuple[np.ndarray, list[dict]]:
+    outdir = Path(outdir or VECTOR_STORE_DIR)
+    emb_path = outdir / "embeddings.npy"
+    meta_path = outdir / "metadata.json"
+    if not emb_path.exists() or not meta_path.exists():
+        return np.zeros((0, 1), dtype=np.float32), []
+    embs = np.load(str(emb_path))
+    with meta_path.open("r", encoding="utf-8") as fh:
+        metadata = json.load(fh)
+    return embs, metadata
+
+
+def _embed_query_text(text: str, model_name: str | None = None) -> np.ndarray:
+    if SentenceTransformer is None:
+        raise RuntimeError("sentence-transformers is required for RAG retrieval. Install with: pip install sentence-transformers")
+    model = SentenceTransformer(model_name or "all-MiniLM-L6-v2")
+    emb = model.encode([text], convert_to_numpy=True, show_progress_bar=False)
+    return np.array(emb, dtype=np.float32)
+
+
+def retrieve_similar_documents(text: str, top_k: int = 5, model_name: str | None = None, outdir: Path | None = None) -> list[dict]:
+    """Return top_k metadata entries from the vector store similar to `text`.
+
+    Each returned item is a dict with keys: `score` (cosine), and the original metadata fields.
+    """
+    embs, metadata = _load_vector_store(outdir=outdir)
+    if embs.size == 0 or not metadata:
+        return []
+
+    try:
+        q_emb = _embed_query_text(text, model_name=model_name)
+    except Exception:
+        return []
+
+    # Normalize for cosine similarity
+    def _norm(x: np.ndarray) -> np.ndarray:
+        denom = np.linalg.norm(x, axis=1, keepdims=True)
+        denom[denom == 0] = 1.0
+        return x / denom
+
+    embs_norm = _norm(embs)
+    q_norm = q_emb / (np.linalg.norm(q_emb) or 1.0)
+    scores = (embs_norm @ q_norm.reshape(-1)).astype(float)
+    top_idx = list(np.argsort(scores)[-top_k:][::-1])
+    results = []
+    for i in top_idx:
+        item = dict(metadata[i]) if i < len(metadata) else {"id": i}
+        item["score"] = float(scores[i])
+        results.append(item)
+    return results
 
 
 def retrieve_context(entities: list[str], graph: nx.Graph | None = None) -> str:
