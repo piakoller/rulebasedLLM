@@ -138,6 +138,9 @@ def main():
     results = []
     # Run pipeline on each question
     for i, (question, category) in enumerate(sample_questions, 1):
+        if agent is not None:
+            agent.reset()
+        
         print(f"\n{'#' * 75}")
         print(f"QUESTION {i}/{len(sample_questions)}")
         print(f"{'#' * 75}")

@@ -418,6 +418,12 @@ class AgentEngine:
         self.document_roots = document_roots or [DEFAULT_DOCUMENT_ROOT]
         self.knowledge_graph = vector_rag.get_knowledge_graph(self.document_roots) if use_graph_rag else None
 
+    def reset(self) -> None:
+        """Reset the agent's memory for a new conversation."""
+        self.current_frame = "greeting" if self.use_frames else None
+        self.frame_memory = {}
+        self.conversation_history = [{"role": "system", "content": self.system_prompt}]
+
     def _execute_tool(self, tool_call: ToolCall, user_message: str = "") -> ToolResult:
         """Execute a tool call and return the result."""
         try:
@@ -674,6 +680,7 @@ class AgentEngine:
                 f"{dual_pillar_context}\n\n"
                 f"Patient's Emotional State (NURSE framework guidance):\n{emotional_context}\n\n"
                 "Behavioral constraints:\n"
+                "- Do not greet the patient (no 'Hallo', 'Guten Tag', 'Dear'). Start your answer directly.\n"
                 "- Do not provide dosing, prognosis, or numerical dosimetry.\n"
                 "- Validate emotion before giving technical explanations.\n"
                 "- If you cannot verify a clinical relationship via UMLS, say so clearly.\n"
@@ -721,6 +728,7 @@ class AgentEngine:
             "Patient's Emotional State (NURSE framework guidance):\n"
             f"{emotional_context}\n\n"
             "Behavioral constraints:\n"
+            "- Do not greet the patient (no 'Hallo', 'Guten Tag', 'Dear'). Start your answer directly.\n"
             "- Ask before telling when facts are not yet needed or the patient is distressed.\n"
             "- Validate emotion before giving technical explanations.\n"
             "- Never mention dosing, prognosis, or numerical dosimetry.\n"
