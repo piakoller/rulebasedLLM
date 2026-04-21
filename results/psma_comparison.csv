@@ -1,0 +1,55 @@
+﻿Index,Category,Question,Baseline Response,Agentic Response
+1,psma_therapy,Kann ich durch eine PSMA-Therapie von meinem Krebs geheilt werden?,"Ob eine PSMA-Therapie Ihren Krebs heilen kann, hängt von verschiedenen Faktoren ab, einschließlich der Art und des Stadiums Ihres Krebses sowie Ihrer individuellen Situation. PSMA-Therapien (wie Lutetium-177 PSMA) sind vielversprechend, insbesondere bei Prostatakrebs, können aber nicht in allen Fällen eine Heilung garantieren. Konsultieren Sie Ihren behandelnden Arzt für eine persönliche Einschätzung.
+","Ich kann Ihnen keine definitive Auskunft darüber geben, ob eine PSMA-Therapie Sie von Ihrem Krebs heilen wird. Die Wirksamkeit und das Ergebnis einer Krebstherapie hängen stark von verschiedenen Faktoren ab, darunter die Art und das Stadium Ihres Krebses, Ihre allgemeine Gesundheit und Ihr individueller Reaktion auf die Behandlung.
+
+Eine PSMA-Therapie ist eine vielversprechende Behandlungsoption für bestimmte Arten von Prostatakrebs, insbesondere solche, die sich ausgebreitet haben und nicht mehr auf Standardtherapien ansprechen. Sie zielt darauf ab, Krebszellen zu zerstören, die das PSMA (Prostate-Specific Membrane Antigen) auf ihrer Oberfläche tragen.
+
+Ob diese Therapie in Ihrem speziellen Fall zu einer Heilung führen kann, lässt sich pauschal nicht sagen. Um Ihnen eine fundiertere Einschätzung geben zu können, müsste ich mehr über Ihre spezifische Situation wissen. Sprechen Sie am besten mit Ihrem behandelnden Arzt oder Onkologen, der Ihnen aufgrund Ihrer persönlichen Krankengeschichte und Untersuchungsergebnisse detailliertere Informationen zur PSMA-Therapie und ihren Erfolgsaussichten geben kann."
+2,psma_therapy,Stellt die radioaktive Strahlung durch die PSMA-Therapie ein Risiko für mich dar?,"Die PSMA-Therapie beinhaltet die Verabreichung einer radioaktiven Substanz. Diese Substanz setzt Gammastrahlung frei, die das umliegende Gewebe schädigen kann. Es gibt Risiken, aber die Ärzte treffen Vorkehrungen, um die Strahlenbelastung für Sie und andere zu minimieren. Besprechen Sie spezifische Bedenken mit Ihrem Arzt.
+","Die PSMA-Therapie beinhaltet die Verwendung radioaktiver Substanzen, um Krebszellen zu behandeln. Wie jede Form der Radioaktivität gibt es damit verbundene Risiken. Diese Risiken werden sorgfältig abgewogen gegenüber dem potenziellen Nutzen für den Patienten. Möchten Sie mehr darüber erfahren, wie diese Risiken minimiert werden oder welche spezifischen Vorsichtsmaßnahmen getroffen werden?"
+3,psma_therapy,Welche Nebenwirkungen gibt es im Rahmen der PSMA-Therapie?,"Mögliche Nebenwirkungen der PSMA-Therapie sind:
+
+*   Übelkeit und Erbrechen
+*   Müdigkeit (Fatigue)
+*   Niedrige Blutzellzahlen (Neutropenie, Thrombozytopenie, Anämie)
+*   Nierenschäden (vor allem bei höherer Dosis)
+*   Knochenmarksuppression
+*   Hautreaktionen
+*   Schwindel
+*   Kopfschmerzen",Gerne beantworte ich Ihre Frage zu den Nebenwirkungen der PSMA-Therapie.
+4,psma_therapy,Welche Strahlenschutzmassnahmen muss ich nach der PSMA-Therapie nach Entlassung aus dem Krankenhaus einhalten?,"Nach einer PSMA-Therapie mit Lutetium-177 benötigen Sie keine speziellen Strahlenschutzmaßnahmen zu Hause, da die Radioaktivität in Ihrem Körper schnell abnimmt und die Ausscheidung über den Urin erfolgt. Es gibt keine Gefahr für Ihre Umgebung oder Mitmenschen.","Nach Ihrer PSMA-Therapie und Entlassung aus dem Krankenhaus sind bestimmte Vorsichtsmassnahmen zu beachten, um die Strahlenbelastung für Ihr Umfeld zu minimieren. Dazu gehört in der Regel, dass Sie für eine gewisse Zeit, meist einige Tage bis Wochen, einen gewissen Abstand zu anderen Personen halten sollten, insbesondere zu Kindern und schwangeren Frauen. Es ist wichtig, sich über die spezifischen Empfehlungen Ihrer behandelnden Ärzte zu informieren, da diese je nach Art und Dosis der Therapie variieren können."
+5,psma_therapy,"Wie wahrscheinlich ist es, dass die PSMA-Therapie eine gute Wirkung erzielt?","Die Erfolgswahrscheinlichkeit der PSMA-Therapie hängt von verschiedenen Faktoren ab, wie z.B. dem Stadium des Prostatakrebses, den vorherigen Behandlungen und den individuellen Eigenschaften des Tumors. Ihr behandelnder Arzt kann Ihnen die spezifische Erfolgswahrscheinlichkeit in Ihrem Fall am besten einschätzen.
+","Die Erfolgswahrscheinlichkeit der PSMA-Therapie hängt von verschiedenen Faktoren ab, einschließlich des Stadiums und der Art des Prostatakrebses, sowie von individuellen Patienteneigenschaften. Generell wird die Therapie als vielversprechend angesehen, insbesondere bei Patienten, deren Krebs sich ausgebreitet hat und auf andere Behandlungen nicht mehr gut anspricht. Um eine konkretere Aussage zu Ihrer persönlichen Situation treffen zu können, benötige ich weitere Informationen."
+6,psma_therapy,Wird mir durch die PSMA-Therapie übel werden?,"Es ist möglich, dass Ihnen durch die PSMA-Therapie übel wird. Übelkeit ist eine häufige Nebenwirkung.","Ich kann Ihnen keine definitive Antwort geben, ob Ihnen die PSMA-Therapie Übelkeit verursachen wird, da dies von Person zu Person unterschiedlich ist. Übelkeit und Erbrechen sind jedoch bekannte mögliche Nebenwirkungen vieler Krebsbehandlungen, einschließlich solcher, die radioaktive Substanzen verwenden. Möchten Sie mehr über häufige Nebenwirkungen der PSMA-Therapie erfahren oder darüber, wie man sie lindern kann?"
+7,psma_therapy,Werden mir durch die PSMA-Therapie die Haare ausfallen?,"Nein, eine PSMA-Therapie führt normalerweise nicht zu Haarausfall.
+","Ich kann Ihnen keine definitive Antwort geben, ob Ihnen durch die PSMA-Therapie die Haare ausfallen werden. Haarausfall ist eine mögliche Nebenwirkung vieler Krebsbehandlungen, aber es hängt von verschiedenen Faktoren ab, einschließlich der spezifischen Art der PSMA-Therapie (z.B. Radioimmuntherapie mit Lutetium-177) und Ihrer individuellen Reaktion darauf.
+
+Um Ihnen eine genauere Auskunft zu geben, müsste ich mehr über die geplante Therapie erfahren. Generell wird Haarausfall bei dieser Art von Therapie weniger häufig beobachtet als beispielsweise bei Chemotherapie, kann aber dennoch vorkommen. Möchten Sie mehr darüber wissen, wie häufig diese Nebenwirkung auftritt oder welche Faktoren dazu beitragen können?"
+8,psma_therapy,Kann ich durch die PSMA-Therapie sterben?,"Eine PSMA-Therapie birgt, wie jede Krebstherapie, Risiken und mögliche Nebenwirkungen. Tod ist eine sehr seltene, aber nicht völlig ausgeschlossene Folge schwerwiegender Komplikationen. Bitte besprechen Sie Ihre individuellen Risiken und Bedenken ausführlich mit Ihrem behandelnden Arzt.
+","Als KI-Assistent kann ich Ihnen keine medizinische Beratung geben. Es ist wichtig, dass Sie sich mit Ihren Ärzten über die Risiken und Vorteile der PSMA-Therapie besprechen, einschließlich potenzieller schwerwiegender Nebenwirkungen oder Komplikationen. Sie können Ihnen die spezifischen Informationen geben, die auf Ihre individuelle Situation zugeschnitten sind."
+9,psma_therapy,Wie lange muss ich für eine PSMA-Therapie im Krankenhaus bleiben?,"Die Aufenthaltsdauer für eine PSMA-Therapie im Krankenhaus beträgt in der Regel 1 bis 3 Tage.
+","Ich kann Ihnen leider keine genaue Antwort geben, da dies von verschiedenen Faktoren abhängt, wie z.B. dem individuellen Behandlungsplan und Ihrem allgemeinen Gesundheitszustand. Die Aufenthaltsdauer kann variieren. Ich empfehle Ihnen, sich direkt bei Ihrem behandelnden Arzt oder der Klinik zu erkundigen, um eine präzise Auskunft zu erhalten."
+10,psma_therapy,Darf ich während meines Aufenthaltes im Rahmen einer PSMA-Therapie Besuch erhalten?,"Ja, Besuche sind während der PSMA-Therapie in der Regel erlaubt. Es gelten jedoch die allgemeinen Hygienevorschriften und möglicherweise spezifische Regeln des jeweiligen Therapiezentrums. Bitte informieren Sie sich bei Ihrem Behandlungsteam über detaillierte Bestimmungen.
+","Ich kann Ihnen leider keine definitive Antwort darauf geben, ob Sie während Ihrer PSMA-Therapie Besuch erhalten dürfen. Die Regeln für Besuche können je nach Klinik und den aktuellen Infektionsschutzbestimmungen variieren.
+
+Um dies herauszufinden, empfehle ich Ihnen:
+
+1.  **Kontaktieren Sie die Klinik/das Behandlungszentrum:** Dort erhalten Sie die aktuellsten Informationen zu Besuchergeldern während Ihrer spezifischen Therapie.
+2.  **Fragen Sie Ihren behandelnden Arzt:** Er kann Ihnen Auskunft über die geltenden Richtlinien geben und möglicherweise individuelle Vereinbarungen treffen.
+
+Ich hoffe, diese Hinweise helfen Ihnen weiter."
+11,psma_therapy,Mein PSA-Wert steigt trotz der PSMA-Therapie weiter an. Ist das ein Problem?,"Ja, ein steigender PSA-Wert während einer PSMA-Therapie ist besorgniserregend und deutet darauf hin, dass die Therapie möglicherweise nicht ausreichend wirkt. Dies sollte mit Ihrem behandelnden Arzt besprochen werden.
+","Ich verstehe Ihre Frage. Ein Anstieg des PSA-Werts während einer PSMA-Therapie kann verschiedene Gründe haben und ist oft ein komplexes Thema.
+
+Um Ihnen eine fundiertere Antwort geben zu können, benötige ich möglicherweise weitere Informationen. Zum Beispiel:
+
+*   **Wie hoch war Ihr PSA-Wert vor der Therapie?**
+*   **Wie hoch ist Ihr aktueller PSA-Wert?**
+*   **Wie schnell steigt der Wert an?** (z.B. pro Woche/Monat)
+*   **Welche Art von PSMA-Therapie erhalten Sie genau?** (z.B. Lutetium-177 PSMA, Actinium-225 PSMA)
+*   **Haben Sie andere Behandlungen parallel zur PSMA-Therapie?**
+*   **Wie fühlen Sie sich allgemein?** Haben Sie Symptome?
+
+Ein PSA-Anstieg während der Therapie bedeutet nicht zwangsläufig, dass die Therapie versagt hat. Es kann auch bedeuten, dass die Therapie kurzzeitig eine starke Reaktion hervorruft (Tumorabbau), oder dass sich Tumorzellen entwickeln, die weniger gut auf die Behandlung ansprechen. Manchmal steigt der PSA-Wert auch aufgrund von Entzündungen oder anderen Faktoren.
+
+Bitte beachten Sie, dass ich Ihnen als KI keine medizinische Beratung geben kann. Die Interpretation Ihres PSA-Werts und die Bedeutung für Ihre Therapie sollte immer mit Ihrem behandelnden Arzt besprochen werden."

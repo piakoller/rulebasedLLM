@@ -91,6 +91,7 @@ class FrameResponse(BaseModel):
     filled_slots: dict[str, str] = Field(default_factory=dict)
     agent_response: str
     next_frame: Optional[str] = None
+    tools_called: list[str] = Field(default_factory=list)
 
 
 class ToolCall(BaseModel):
@@ -654,21 +655,39 @@ class AgentEngine:
         )
 
     def _build_prompt(self, user_message: str, observation_summary: str, emotional_state: str = "neutral", revised: bool = False, language: str | None = None) -> list[dict[str, str]]:
-        # If frames are disabled, return a simple system/user prompt that does not expect JSON
+        # Get emotional context to inform LLM via NURSE framework
         emotional_context = get_nurse_instruction(emotional_state)
         lang_directive = f"Respond in the user's language: {language}." if language else "Respond in the user's language (German, English, etc.)."
+
+        # Define Dual-Pillar RAG Architecture context for the LLM
+        dual_pillar_context = (
+            "You are part of a Dual-Pillar Retrieval-Augmented Generation framework:\n"
+            "Pillar 1 (Ontology-Grounded RAG): Use the query_umls_ontology tool to verify clinical relationships. "
+            "Translate German terms to English before calling this tool.\n"
+            "Pillar 2 (Vector RAG): Use search_knowledge_graph to retrieve context from medical guidelines.\n"
+            "Always prioritize verified information from Pillar 1 for clinical facts."
+        )
 
         if not self.use_frames:
             system_message = (
                 f"You are a helpful, empathic clinical assistant.\n\n"
-                f"Emotional context and guidance for this turn:\n{emotional_context}\n\n"
+                f"{dual_pillar_context}\n\n"
+                f"Patient's Emotional State (NURSE framework guidance):\n{emotional_context}\n\n"
                 "Behavioral constraints:\n"
                 "- Do not provide dosing, prognosis, or numerical dosimetry.\n"
-                "- Use supportive, patient-centered language when the user appears distressed.\n"
-                "- If you cannot verify a clinical relationship, say so clearly.\n"
+                "- Validate emotion before giving technical explanations.\n"
+                "- If you cannot verify a clinical relationship via UMLS, say so clearly.\n"
                 f"{lang_directive}\n"
+                "- MANDATORY: Always start your response with a 'thinking' block explaining which medical terms you will verify in UMLS.\n"
+                "- MANDATORY: You must call query_umls_ontology for any medication, therapy name, or side effect mentioned.\n"
+                "- Output your final answer as a JSON object with 'thinking' and 'response' keys.\n"
+                "Example: {\"thinking\": \"Reflecting on PSMA therapy risks...\", \"response\": \"Your empathic answer here...\"}\n\n"
+                "Available Tools:\n"
+                "You may call tools by outputting lines like: ACTION: function_name(arg1=\"value1\")\n"
+                "- ACTION: search_knowledge_graph(query=\"query\") - Pillar 2: Search guideline-based knowledge graph\n"
+                "- ACTION: query_umls_ontology(term=\"term\") - Pillar 1: Verify medical relationships in UMLS (Standard English terms only)\n"
             )
-            user_message_block = f"User message: {user_message}\n\nObservations:\n{observation_summary}\n\nPlease provide a concise, empathic answer."
+            user_message_block = f"User message: {user_message}\n\nObservations:\n{observation_summary}\n\nPlease provide a concise, empathic answer using the Dual-Pillar framework."
             return [
                 {"role": "system", "content": system_message},
                 {"role": "user", "content": user_message_block},
@@ -691,6 +710,7 @@ class AgentEngine:
 
         system_message = (
             f"{self.system_prompt}\n\n"
+            f"{dual_pillar_context}\n\n"
             f"Current active frame: {self.current_frame}\n"
             f"Frame goal: {goal}\n"
             f"Required slots: {required_slots}\n"
@@ -698,7 +718,7 @@ class AgentEngine:
             f"Allowed next frames: {allowed_next}\n"
             f"Already filled slots: {json.dumps(filled_slots, ensure_ascii=False)}\n"
             f"Missing slots: {', '.join(missing_slots) if missing_slots else 'none'}\n\n"
-            "Patient's Emotional State:\n"
+            "Patient's Emotional State (NURSE framework guidance):\n"
             f"{emotional_context}\n\n"
             "Behavioral constraints:\n"
             "- Ask before telling when facts are not yet needed or the patient is distressed.\n"
@@ -713,10 +733,10 @@ class AgentEngine:
             "You may call tools by outputting lines like: ACTION: function_name(arg1=\"value1\", arg2=\"value2\")\n"
             "Available tools:\n"
             "- ACTION: get_patient_context(patient_id=\"Patient_ID\") - Retrieve static patient context from the local database\n"
-            "- ACTION: search_knowledge_graph(query=\"your_query\") - Search the knowledge graph for clinical facts\n"
+            "- ACTION: search_knowledge_graph(query=\"your_query\") - Pillar 2: Search guideline-based knowledge graph for clinical facts\n"
             "- ACTION: verify_fact(statement=\"your_statement\") - Verify if a statement is supported by the knowledge graph\n"
-            "- ACTION: query_umls_ontology(term=\"english_medical_term\") - You MUST translate any German or Swiss-German medical terms into standard English before calling this tool. Use this to retrieve medically verified relationships for a specific drug, therapy, or side effect from the NIH UMLS database. Returns CUI and verified relationships.\n"
-            "- ACTION: query_medical_ontology(terms=\"term1, term2\") - Deterministically verify medical relationships using the static medical ontology. Use this to confirm any clinical relationships before making statements about them.\n"
+            "- ACTION: query_umls_ontology(term=\"english_medical_term\") - Pillar 1: You MUST translate any German or Swiss-German medical terms into standard English before calling this tool. Use this to retrieve medically verified relationships from the NIH UMLS database.\n"
+            "- ACTION: query_medical_ontology(terms=\"term1, term2\") - Deterministically verify medical relationships using the static medical ontology.\n"
             "Each tool call will be executed and the result will be added to observations for the next iteration.\n"
             "Only use tools when you need additional information to answer the user's question accurately.\n"
             "When discussing medical relationships or treatments, prioritize using query_umls_ontology to verify facts from the official medical ontology.\n"
@@ -795,8 +815,29 @@ class AgentEngine:
     def _parse_frame_response(self, raw_content: str) -> FrameResponse:
         try:
             payload = json.loads(raw_content)
-            return FrameResponse.model_validate(payload)
+            
+            # Case 1: Full FrameResponse schema
+            if "agent_response" in payload:
+                return FrameResponse.model_validate(payload)
+            
+            # Case 2: Simplified "response" schema (common when use_frames=False)
+            if "response" in payload:
+                return FrameResponse(
+                    active_frame=self.current_frame,
+                    filled_slots={"thinking": payload.get("thinking", "")},
+                    agent_response=payload["response"],
+                    next_frame=self.current_frame
+                )
+            
+            # Fallback if it's a valid JSON but unknown schema
+            return FrameResponse(
+                active_frame=self.current_frame,
+                filled_slots={},
+                agent_response=str(payload),
+                next_frame=self.current_frame
+            )
         except Exception:
+            # Fallback for plain text responses
             return FrameResponse(
                 active_frame=self.current_frame,
                 filled_slots={},
@@ -837,6 +878,7 @@ class AgentEngine:
         emotional_state = analysis.get("emotional_state", "neutral")
 
         draft_response: Optional[FrameResponse] = None
+        all_tools_called: list[str] = []
         for attempt in range(self.max_reasoning_steps):
             # Determine user language and include it in the system prompt
             user_lang = detect_language(user_message)
@@ -848,6 +890,7 @@ class AgentEngine:
             tool_results: list[ToolResult] = []
             if tool_calls:
                 for tool_call in tool_calls:
+                    all_tools_called.append(tool_call.function_name)
                     tool_result = self._execute_tool(tool_call, user_message=user_message)
                     tool_results.append(tool_result)
                 
@@ -920,6 +963,7 @@ class AgentEngine:
                 draft_response.next_frame = allowed[0]
 
         self.current_frame = draft_response.next_frame or self.current_frame
+        draft_response.tools_called = list(set(all_tools_called))
         self.conversation_history.append({"role": "assistant", "content": draft_response.model_dump_json()})
         return draft_response
 
