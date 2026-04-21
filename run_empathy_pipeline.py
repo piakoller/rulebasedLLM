@@ -15,18 +15,26 @@ from empathy_framing import (
     get_nurse_instruction,
     EMOTIONAL_STATE_CONTEXT,
 )
+from agent_engine import AgentEngine, FrameResponse
 from rules import detect_language
 
-def load_sample_questions(limit=5):
-    """Load sample questions from data/sample_questions.json"""
-    with open("data/sample_questions.json", "r", encoding="utf-8") as f:
+def load_sample_questions(path: str = "data/sample_questions.json", limit: int | None = None):
+    """Load sample questions from a JSON file.
+
+    The JSON is expected to be a mapping of category -> list of questions.
+    If `limit` is None, return all questions.
+    """
+    with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
-    
-    # Flatten all questions and take first 'limit' questions
+
+    # Flatten all questions
     all_questions = []
     for category, questions in data.items():
         all_questions.extend([(q, category) for q in questions])
-    
+
+    if limit is None:
+        return all_questions
+
     return all_questions[:limit]
 
 def run_pipeline_on_question(question: str, category: str):
@@ -99,18 +107,49 @@ def main():
     print("  ✓ LLM full freedom to generate natural empathy")
     print("  ✓ No hardcoded prefixes or step-by-step checklists")
     
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Run the refactored empathy pipeline on sample questions")
+    parser.add_argument("--questions", "-q", default="data/sample_questions.json", help="Path to sample questions JSON (category -> [questions])")
+    parser.add_argument("--limit", "-l", type=int, default=None, help="Optional maximum number of questions to process (default: all)")
+    parser.add_argument("--out", "-o", default=None, help="Optional output JSON file to save results")
+    parser.add_argument("--no-agent", dest="use_agent", action="store_false", help="Do not run the full AgentEngine (only run pipeline classification)")
+    args = parser.parse_args()
+
     # Load sample questions
-    sample_questions = load_sample_questions(limit=4)
+    sample_questions = load_sample_questions(path=args.questions, limit=args.limit)
+
+    print(f"\n📚 LOADING {len(sample_questions)} SAMPLE QUESTIONS FROM {args.questions}...\n")
     
-    print(f"\n📚 LOADING {len(sample_questions)} SAMPLE QUESTIONS...\n")
-    
+    # Initialize agent if requested
+    agent = AgentEngine() if True else None
+
+    results = []
     # Run pipeline on each question
     for i, (question, category) in enumerate(sample_questions, 1):
         print(f"\n{'#' * 75}")
         print(f"QUESTION {i}/{len(sample_questions)}")
         print(f"{'#' * 75}")
-        
+
         run_pipeline_on_question(question, category)
+
+        # Run the full agent for end-to-end testing (LLM + RAG retrieval)
+        try:
+            frame_response: FrameResponse = agent.handle_message(question)
+            record = {
+                "index": i,
+                "category": category,
+                "question": question,
+                "agent_response": frame_response.model_dump(),
+            }
+        except Exception as e:
+            record = {
+                "index": i,
+                "category": category,
+                "question": question,
+                "error": str(e),
+            }
+        results.append(record)
     
     # Summary
     print("\n" + "=" * 75)
@@ -134,6 +173,17 @@ def main():
     print("  • No hardcoded rules or forced responses")
     print("  • LLM has full freedom to respond naturally")
     print("\n📍 Next: Integrate with full agent for end-to-end testing\n")
+
+    # If --out was provided, save results
+    if args and getattr(args, "out", None):
+        out_path = Path(args.out)
+        try:
+            out_path.parent.mkdir(parents=True, exist_ok=True)
+            with out_path.open("w", encoding="utf-8") as f:
+                json.dump({"results": results}, f, ensure_ascii=False, indent=2)
+            print(f"\nSaved pipeline results to {out_path}")
+        except Exception as e:
+            print(f"Failed to save results to {out_path}: {e}")
 
 if __name__ == "__main__":
     main()

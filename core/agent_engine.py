@@ -626,7 +626,7 @@ class AgentEngine:
             ]
         )
 
-    def _build_prompt(self, user_message: str, observation_summary: str, emotional_state: str = "neutral", revised: bool = False) -> list[dict[str, str]]:
+    def _build_prompt(self, user_message: str, observation_summary: str, emotional_state: str = "neutral", revised: bool = False, language: str | None = None) -> list[dict[str, str]]:
         spec = self.frame_specs.get(self.current_frame)
         required_slots = ", ".join(spec.required_slots) if spec else ""
         optional_slots = ", ".join(spec.optional_slots) if spec else ""
@@ -639,6 +639,8 @@ class AgentEngine:
 
         # Get emotional context to inform LLM (not prescriptive rules)
         emotional_context = get_nurse_instruction(emotional_state)
+
+        lang_directive = f"Respond in the user's language: {language}." if language else "Respond in the user's language (German, English, etc.)."
 
         system_message = (
             f"{self.system_prompt}\n\n"
@@ -671,6 +673,7 @@ class AgentEngine:
             "Each tool call will be executed and the result will be added to observations for the next iteration.\n"
             "Only use tools when you need additional information to answer the user's question accurately.\n"
             "When discussing medical relationships or treatments, prioritize using query_umls_ontology to verify facts from the official medical ontology.\n"
+            f"LANGUAGE DIRECTIVE: {lang_directive}\n"
         )
         if revised:
             system_message += "\nThe previous draft did not comply with empathy or safety requirements. Revise it carefully."
@@ -788,7 +791,9 @@ class AgentEngine:
 
         draft_response: Optional[FrameResponse] = None
         for attempt in range(self.max_reasoning_steps):
-            messages = self._build_prompt(user_message, observation_summary, emotional_state=emotional_state, revised=attempt > 0)
+            # Determine user language and include it in the system prompt
+            user_lang = detect_language(user_message)
+            messages = self._build_prompt(user_message, observation_summary, emotional_state=emotional_state, revised=attempt > 0, language=user_lang)
             raw_content = self._call_ollama(messages)
             
             # Extract and execute tool calls from the response
@@ -835,6 +840,22 @@ class AgentEngine:
 
         if draft_response is None:
             draft_response = self._fallback_response(user_message, analysis, patient_context, graph_fact)
+        # Attach RAG contexts (if available) to the draft response for transparency
+        try:
+            rag_results = graph_rag.retrieve_similar_documents(user_message, top_k=3, outdir=None)
+        except Exception:
+            rag_results = []
+
+        if rag_results:
+            # Build a concise context summary
+            ctx_lines = []
+            for item in rag_results:
+                src = item.get("source", "unknown source")
+                score = item.get("score", 0.0)
+                text = item.get("text", "").strip().replace("\n", " ")
+                snippet = (text[:240] + "...") if len(text) > 240 else text
+                ctx_lines.append(f"{src} (score={score:.3f}): {snippet}")
+            draft_response.filled_slots.setdefault("rag_context", "\n".join(ctx_lines))
 
         required_slots = self.frame_specs.get(self.current_frame).required_slots if self.current_frame in self.frame_specs else []
         current_memory = self.frame_memory.setdefault(self.current_frame, {})
@@ -902,7 +923,8 @@ class AgentEngine:
         revision_reason = ""
         
         for attempt in range(self.max_reasoning_steps):
-            messages = self._build_prompt(user_message, observation_summary, revised=attempt > 0)
+            user_lang = detect_language(user_message)
+            messages = self._build_prompt(user_message, observation_summary, revised=attempt > 0, language=user_lang)
             raw_content = self._call_ollama(messages)
             
             # Extract and execute tool calls from the response

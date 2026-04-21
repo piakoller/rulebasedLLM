@@ -47,5 +47,19 @@
     "relationships_count": 0,
     "summary": "",
     "error": "Term 'Kann' not found in UMLS database"
+  },
+  "nebenwirkung": {
+    "found": false,
+    "cui": null,
+    "relationships_count": 0,
+    "summary": "",
+    "error": "Term 'nebenwirkung' not found in UMLS database"
+  },
+  "side effect": {
+    "found": false,
+    "cui": null,
+    "relationships_count": 0,
+    "summary": "",
+    "error": "Term 'side effect' not found in UMLS database"
   }
 }

@@ -288,7 +288,7 @@ def call_ollama(messages: list[dict]) -> str:
         print(f"\n  ❌ ERROR: {str(e)}")
         return None
 
-def test_question_with_llm(question: str, category: str, expected_emotion: str):
+def run_question_with_llm(question: str, category: str, expected_emotion: str):
     """Test a single question with LLM using context-aware empathy."""
     print("\n" + "=" * 85)
     print(f"CATEGORY: {category}")
@@ -472,7 +472,7 @@ def main():
         print(f"TEST {i}/{len(TEST_QUESTIONS)}")
         print(f"{'#' * 85}")
         
-        result_data = test_question_with_llm(
+        result_data = run_question_with_llm(
             question=test_case["question"],
             category=test_case["category"],
             expected_emotion=test_case["expected_emotion"]
