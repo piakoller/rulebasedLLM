@@ -1,0 +1,666 @@
+{
+  "model": "hf.co/unsloth/medgemma-27b-it-GGUF:Q4_K_M",
+  "rows": [
+    {
+      "index": 1,
+      "category": "psma_therapy",
+      "question": "Kann ich durch eine PSMA-Therapie von meinem Krebs geheilt werden?",
+      "baseline_response": "Ob eine PSMA-Therapie Ihren Krebs heilen kann, hängt von verschiedenen Faktoren ab, einschließlich der Art und des Stadiums Ihres Krebses sowie Ihrer individuellen Situation. PSMA-Therapien (wie Lutetium-177 PSMA) sind vielversprechend, insbesondere bei Prostatakrebs, können aber nicht in allen Fällen eine Heilung garantieren. Konsultieren Sie Ihren behandelnden Arzt für eine persönliche Einschätzung.\n",
+      "pipeline_response": {
+        "active_frame": "greeting",
+        "filled_slots": {},
+        "agent_response": "Ich kann Ihnen keine definitive Auskunft darüber geben, ob eine PSMA-Therapie Sie von Ihrem Krebs heilen wird. Die Wirksamkeit und das Ergebnis einer Krebstherapie hängen stark von verschiedenen Faktoren ab, darunter die Art und das Stadium Ihres Krebses, Ihre allgemeine Gesundheit und Ihr individueller Reaktion auf die Behandlung.\n\nEine PSMA-Therapie ist eine vielversprechende Behandlungsoption für bestimmte Arten von Prostatakrebs, insbesondere solche, die sich ausgebreitet haben und nicht mehr auf Standardtherapien ansprechen. Sie zielt darauf ab, Krebszellen zu zerstören, die das PSMA (Prostate-Specific Membrane Antigen) auf ihrer Oberfläche tragen.\n\nOb diese Therapie in Ihrem speziellen Fall zu einer Heilung führen kann, lässt sich pauschal nicht sagen. Um Ihnen eine fundiertere Einschätzung geben zu können, müsste ich mehr über Ihre spezifische Situation wissen. Sprechen Sie am besten mit Ihrem behandelnden Arzt oder Onkologen, der Ihnen aufgrund Ihrer persönlichen Krankengeschichte und Untersuchungsergebnisse detailliertere Informationen zur PSMA-Therapie und ihren Erfolgsaussichten geben kann.",
+        "next_frame": "eliciting_cancer_type"
+      },
+      "graph_fact": {
+        "entities": [
+          "extend survival",
+          "potentially leading to long-term control or survival improvement",
+          "Prostatakrebs<unused95>PSMA-Therapie",
+          "Prostatakrebs"
+        ],
+        "verified": false,
+        "answer": "I could not verify that relationship directly from the current knowledge graph. I can only provide high-level, document-grounded information.",
+        "evidence": []
+      },
+      "rag_results": [
+        {
+          "id": 3,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 3,
+          "text": "nenTumorherdinder 68Ga-PSMA-11- PET/CT zu entdecken, bei ca. 40–50% und steigt kontinuierlich bis zu einem PSAvon3ng/mlauf>90%an.Sieerreicht jedochwieinder .Abb.2ersichtlichnie 100%, da schätzungsweise 5–10% aller PC entweder nicht ausreichend oder überhaupt kein PSMA exprimieren. Aus präklinischen Arbeiten ist be- kannt, dass PC mit höherem GSC auch intensiver PSMA exprimieren [16, 17]. Zwar konnte in der 68Ga-PSMA-11- PET/CT eine Tendenz der Tumorde- tektion zugunsten höherer GSC, jedoch kein signiﬁkanter Unterschied zwischen höherenundniedrigerenGSCfestgestellt werden.Dennochkannmanzusammen- fassen, dass höhere GSC die Detektion von Tumorherden in der68Ga-PSMA- 11-PET/CT begünstigen. Dies ist bei al- len anderen molekularen Bildgebungen nicht zu erwarten. »HöhereGSCbegünstigendie DetektionvonTumorherdenin der68Ga-PSMA-11-PET/CT Die Speziﬁtät der68Ga-PSMA-11-PET/ CTistalssehrhoch(>95%)einzustufen, was in mehreren Studien bestätigt wur- de [15, 18–20]. Daher geht die Tendenz dahin, jede umschriebene Mehrspeiche- rungineinemmorphologischsichtbaren Korrelat bei Patienten mit einem bio- chemischen PC-Rezidiv praktisch bis zumBeweisdesGegenteilsalseinenPC- Herd zu werten. Dennoch muss man an dieser Stelle betonen, dass PSMA entgegen seines Namens nicht spezi- ﬁsch für Prostata ist. Bereits seit den 1980er-Jahren ist bekannt, dass PSMA auch in der Neovaskulatur einer Viel- zahl solider Tumoren exprimiert wird. Entsprechend sind in den letzten Jahren multipleFallbeschreibungenvonPSMA- positiven Entitäten nicht-prostatischen Ursprungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich",
+          "score": 0.5586593151092529
+        },
+        {
+          "id": 834,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 17,
+          "text": "spekten Befunde anzugeben. Die Anreicherungen sollten als schwach, mittelgradig oder intensiv im Vergleich zum Hintergrundsignal (z. B. Muskulatur, Leber) eingeschätzt und im Befundbericht beschrieben werden. PC-Herde erscheinen als fokale Mehrspeicherung. Dabei ist die Speicherintensität abhängig vom PSMA-Expressi- onsgrad und daher selbst innerhalb von klinisch gleich- wertigen Gruppen (PSA-Höhe, GSC, Größe der Tumorher- de usw.) zum Teil stark variabel. Ein SUV-Schwellen- wert existiert nicht. Nach aktuellem Kenntnisstand besitzt 68Ga-PSMA-11 eine sehr gute Spezifität und einen hohen positiven Vorhersagewert von 90 –100 %, so dass jeder CT-morphologisch nachweisbare Herd mit einer Speiche- rung, die über das umgebende Hintergrundsignal hinaus- geht, bei Patienten mit gesichertem PC, besonders in der Rezidivsituation, mit hoher Wahrscheinlichkeit als PC- Herd eingestuft werden sollte [4, 9]. Bei Verwendung von 18F-PSMA-1007 sollten ossäre, fokale Mehrspeiche- rungen ohne CT-Korrelat mit Vorsicht und unter sorgfäl- tiger Berücksichtigung klinischer Informationen inter- pretiert werden, um keine falsch-positiven ossären Metastasen in die Bildgebung hineinzuinterpretieren. Wie die Spezifität anderer, neuerer PSMA-Liganden ist, ist aktuell noch unklar. C. Physiologische Verteilung von PSMA-Liganden Die Biodistribution der meisten PSMA-Liganden zeigt nach aktuellem Kenntnisstand (spezifische und unspezifi- sche) Speicherungen in den Tränen- und den Speichel- drüsen, in Leber, Milz, Nieren, Teilen des Darmtraktes (v. a. proximaler Dünndarm, partiell auch im Colon) sowie in Ganglien des vegetativen Nervensystems ( ▶ Abb. 1, 2) [30, 43, 44]. Der ungebundene Anteil der meisten PSMA- Liganden wird über die Nieren und die ableitenden Harn- wege ausgeschieden. Aus diesem Grund mü",
+          "score": 0.5397217273712158
+        },
+        {
+          "id": 4,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 4,
+          "text": "ungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich vor Augen führen, dass die Zahl der entdeckten PSMA-exprimierenden En- titäten nicht-prostatischen Ursprungs nur einen minimalen Bruchteil der PC- Herde darstellt, die täglich weltweit in der PSMA-PET/CT entdeckt werden. Aus präklinischen Publikationen ist zudem bekannt, dass eine kurzzeitige Androgenentzugstherapie (ADT) die P S M A - E x p r e s s i o ni nT u m o r m o d e l l e n steigern kann [23]. Dies konnte bisher jedochinderKliniknichtzweifelsfreire- produziertwerden.AufderanderenSeite wurde jedoch erstmals in 2018 gezeigt, dasseineLangzeit-ADTeinensigniﬁkant negativen Einﬂuss auf die Sichtbarkeit undDetektionvonkastrationssensitiven PC-Herden in der PSMA-PET/CT hat [24].UnterderLangzeit-ADTwarennur noch wenige Tumorherde auch weiter- hin sichtbar. Konsequenterweise ist die Empfehlung mittlerweile dahingehend, dass bei der Rezidivsuche die PSMA- PET/CTentwedernochvorBeginnoder aber spätestens 2 Wochen nach Beginn einer ADT durchgeführt werden sollte. Es bleibt weiterhin unbekannt, wie langeeinebereitslaufendeADTpausiert werdensollte,umdiemaximaleSichtbar- keitderPC-HerdeinderPSMA-PET/CT zu garantieren. 1430 DerUrologe12·2019 Primärtumorstaging bei Intermediate-undHigh-risk-PC Ein weiteres sinnvolles Einsatzgebiet der PSMA-PET/CT ist das Primärstaging bei Intermediate- und High-risk-PC. In mehreren Studien konnte gezeigt wer- den, dass die PSMA-PET/CT imstande ist, extraprostatische PC-Manifestatio- nen mit noch nie zuvor vorhandener Sensitivität und Speziﬁtät darzustellen [25–30]. Besonders wichtig ist dies für die ",
+          "score": 0.5194475650787354
+        },
+        {
+          "id": 860,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 43,
+          "text": "sten Frage 5 Welche ist aktuell die häufigste Indikation für die PSMA-PET/CT? A Primärtumor-Diagnose B Primärtumor-Staging C Biochemisches Rezidiv D Bestrahlungsplanung E Indikationsstellung einer PSMA-Radioligandentherapie Frage 6 Welche Aussage zur Pharmakokinetik von PSMA-Liganden ist richtig? A Die aktuell für den klinischen Einsatz verfügbaren PSMA-Ligan- den zeigen praktisch dieselbe Pharmakokinetik B Der Akquisitionszeitpunkt spielt bei den PSMA-Tracern keine bedeutende Rolle C Die meisten Herde des Prostatakarzinoms zeigen in späten Aufnahmen einen höheren Uptake und Kontrast D Die meisten Herde des Prostatakarzinoms zeigen in späten Aufnahmen einen niedrigeren Kontrast E Der Tumorkontrast ist bei der PSMA-PET/CT primär von der applizierten Aktivität abhängig Frage 7 Vor allem Bei welchem die aufgelisteten PSMA-Tracer sollten foka- le Anreicherungen im Skelett mit Vorsicht interpretiert werden? A 68Ga-PSMA-11 B 18F-DCFPyL C 18F-JK-PSMA-7 D 18F-PSMA-1007 E 68Ga-PSMA-617 Frage 8 Auslöschungsartefakte in der PET (reduziertes PET-Signal) kommen beim Einsatz bestimmter PET/CT-Geräte vor allem um welches Organ vor? AS p e i c h e l d r ü s e n B Leber C Lungen D Milz E Harnblase ▶ Weitere Fragen auf der folgenden Seite... 18 Afshar-Oromieh A et al. DGN-Handlungsempfehlung (S1-Leitlinie) –… Nuklearmedizin 2023; 62: 5 –19 | © 2023. Thieme. All rights reserved. Continuing Medical Education Dieses Dokument wurde zum persönlichen Gebrauch heruntergeladen. Vervielfältigung nur mit Zustimmung des Verlages. Punkte sammeln auf CME .thieme.de Frage 9 Zur Detektion von Lebermetastasen wird bei welchem der aufge- führten Tracer aufgrund eines hohen Lebersignals eine kontrast- mittelverstärkte CT in Ergänzung zur PET-Akquisition empfohlen? A 68Ga-PSMA-11 B 18F-DCFPyL C 18F-JK-PSMA",
+          "score": 0.5163156390190125
+        },
+        {
+          "id": 859,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 42,
+          "text": "e/CXL51QQ oder über den QR-Code kommen Sie direkt zur Startseite des Wissenstests und zum Artikel. Sie finden dort auch den genauen Einsendeschluss. Sollten Sie Fragen zur Online-Teilnahme haben, finden Sie unter https://cme.thieme.de/hilfe eine ausführ- liche Anleitung. Wir wünschen viel Erfolg beim Beantworten der Fragen! VNR 2760512023163514490 Frage 1 Welcher der PSMA-Tracer ist in Deutschland offiziell zugelassen? A 18F-PSMA-1007 B 18F- rhPSMA-7c C 18F-JK-PSMA-7 D 68Ga-PSMA-11 E kein Tracer ist in Deutschland zugelassen Frage 2 Welches der folgenden Organe zeigt in der Regel keine physiolo- gische Aufnahme von PSMA-Liganden? A Tränendrüsen BH e r z m u s k u l a t u r C Dünndarm D Milz E Ganglien Frage 3 Welche Aussage zur Spezifität von PSMA ist falsch? A PSMA wird in der Neovaskulatur solider Tumore exprimiert B PSMA wird in entzündlichen Lymphknoten exprimiert C PSMA wird in Schilddrüsenadenomen exprimiert D PSMA wird in M. Paget (Osteodystrophia deformans) expri- miert E PSMA ist spezifisch ausschließlich für das Prostatakarzinom Frage 4 Welche Aussage über die Vorbereitung einer PSMA-PET/CT ist falsch? A Die PSMA-PET/CT sollte bei hormonsensitivem PC vor Beginn einer Androgen-Entzugs-Therapie durchgeführt werden B Patienten sollten vor der Untersuchung mindestens 2 Stunden nüchtern sein C Vor Akquisition sollte eine Hydrierung der Patienten erfolgen D Unmittelbar vor der Akquisition sollte die Harnblase entleert werden E Bisher sind keine Medikament e bekannt, die vor einer PSMA- PET/CT zwingend pausiert werden müssten Frage 5 Welche ist aktuell die häufigste Indikation für die PSMA-PET/CT? A Primärtumor-Diagnose B Primärtumor-Staging C Biochemisches Rezidiv D Bestrahlungsplanung E Indikationsstellung einer PSMA-Radioligandentherapie Frage 6 Welche Aussage zur",
+          "score": 0.5158555507659912
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "category": "psma_therapy",
+      "question": "Stellt die radioaktive Strahlung durch die PSMA-Therapie ein Risiko für mich dar?",
+      "baseline_response": "Die PSMA-Therapie beinhaltet die Verabreichung einer radioaktiven Substanz. Diese Substanz setzt Gammastrahlung frei, die das umliegende Gewebe schädigen kann. Es gibt Risiken, aber die Ärzte treffen Vorkehrungen, um die Strahlenbelastung für Sie und andere zu minimieren. Besprechen Sie spezifische Bedenken mit Ihrem Arzt.\n",
+      "pipeline_response": {
+        "active_frame": "greeting",
+        "filled_slots": {},
+        "agent_response": "Die PSMA-Therapie beinhaltet die Verwendung radioaktiver Substanzen, um Krebszellen zu behandeln. Wie jede Form der Radioaktivität gibt es damit verbundene Risiken. Diese Risiken werden sorgfältig abgewogen gegenüber dem potenziellen Nutzen für den Patienten. Möchten Sie mehr darüber erfahren, wie diese Risiken minimiert werden oder welche spezifischen Vorsichtsmaßnahmen getroffen werden?",
+        "next_frame": "therapy_explanation"
+      },
+      "graph_fact": {
+        "entities": [
+          "object",
+          "\"PSMA-Therapie\"",
+          "and \"Risiko\".\n\n4.  **Format as a comma-separated list:** radioactive radiation",
+          "PSMA therapy",
+          "risk.<unused95>radioaktive Strahlung",
+          "PSMA-Therapie",
+          "Risiko"
+        ],
+        "verified": false,
+        "answer": "I could not verify that relationship directly from the current knowledge graph. I can only provide high-level, document-grounded information.",
+        "evidence": []
+      },
+      "rag_results": [
+        {
+          "id": 860,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 43,
+          "text": "sten Frage 5 Welche ist aktuell die häufigste Indikation für die PSMA-PET/CT? A Primärtumor-Diagnose B Primärtumor-Staging C Biochemisches Rezidiv D Bestrahlungsplanung E Indikationsstellung einer PSMA-Radioligandentherapie Frage 6 Welche Aussage zur Pharmakokinetik von PSMA-Liganden ist richtig? A Die aktuell für den klinischen Einsatz verfügbaren PSMA-Ligan- den zeigen praktisch dieselbe Pharmakokinetik B Der Akquisitionszeitpunkt spielt bei den PSMA-Tracern keine bedeutende Rolle C Die meisten Herde des Prostatakarzinoms zeigen in späten Aufnahmen einen höheren Uptake und Kontrast D Die meisten Herde des Prostatakarzinoms zeigen in späten Aufnahmen einen niedrigeren Kontrast E Der Tumorkontrast ist bei der PSMA-PET/CT primär von der applizierten Aktivität abhängig Frage 7 Vor allem Bei welchem die aufgelisteten PSMA-Tracer sollten foka- le Anreicherungen im Skelett mit Vorsicht interpretiert werden? A 68Ga-PSMA-11 B 18F-DCFPyL C 18F-JK-PSMA-7 D 18F-PSMA-1007 E 68Ga-PSMA-617 Frage 8 Auslöschungsartefakte in der PET (reduziertes PET-Signal) kommen beim Einsatz bestimmter PET/CT-Geräte vor allem um welches Organ vor? AS p e i c h e l d r ü s e n B Leber C Lungen D Milz E Harnblase ▶ Weitere Fragen auf der folgenden Seite... 18 Afshar-Oromieh A et al. DGN-Handlungsempfehlung (S1-Leitlinie) –… Nuklearmedizin 2023; 62: 5 –19 | © 2023. Thieme. All rights reserved. Continuing Medical Education Dieses Dokument wurde zum persönlichen Gebrauch heruntergeladen. Vervielfältigung nur mit Zustimmung des Verlages. Punkte sammeln auf CME .thieme.de Frage 9 Zur Detektion von Lebermetastasen wird bei welchem der aufge- führten Tracer aufgrund eines hohen Lebersignals eine kontrast- mittelverstärkte CT in Ergänzung zur PET-Akquisition empfohlen? A 68Ga-PSMA-11 B 18F-DCFPyL C 18F-JK-PSMA",
+          "score": 0.5219470262527466
+        },
+        {
+          "id": 4,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 4,
+          "text": "ungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich vor Augen führen, dass die Zahl der entdeckten PSMA-exprimierenden En- titäten nicht-prostatischen Ursprungs nur einen minimalen Bruchteil der PC- Herde darstellt, die täglich weltweit in der PSMA-PET/CT entdeckt werden. Aus präklinischen Publikationen ist zudem bekannt, dass eine kurzzeitige Androgenentzugstherapie (ADT) die P S M A - E x p r e s s i o ni nT u m o r m o d e l l e n steigern kann [23]. Dies konnte bisher jedochinderKliniknichtzweifelsfreire- produziertwerden.AufderanderenSeite wurde jedoch erstmals in 2018 gezeigt, dasseineLangzeit-ADTeinensigniﬁkant negativen Einﬂuss auf die Sichtbarkeit undDetektionvonkastrationssensitiven PC-Herden in der PSMA-PET/CT hat [24].UnterderLangzeit-ADTwarennur noch wenige Tumorherde auch weiter- hin sichtbar. Konsequenterweise ist die Empfehlung mittlerweile dahingehend, dass bei der Rezidivsuche die PSMA- PET/CTentwedernochvorBeginnoder aber spätestens 2 Wochen nach Beginn einer ADT durchgeführt werden sollte. Es bleibt weiterhin unbekannt, wie langeeinebereitslaufendeADTpausiert werdensollte,umdiemaximaleSichtbar- keitderPC-HerdeinderPSMA-PET/CT zu garantieren. 1430 DerUrologe12·2019 Primärtumorstaging bei Intermediate-undHigh-risk-PC Ein weiteres sinnvolles Einsatzgebiet der PSMA-PET/CT ist das Primärstaging bei Intermediate- und High-risk-PC. In mehreren Studien konnte gezeigt wer- den, dass die PSMA-PET/CT imstande ist, extraprostatische PC-Manifestatio- nen mit noch nie zuvor vorhandener Sensitivität und Speziﬁtät darzustellen [25–30]. Besonders wichtig ist dies für die ",
+          "score": 0.5060246586799622
+        },
+        {
+          "id": 3,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 3,
+          "text": "nenTumorherdinder 68Ga-PSMA-11- PET/CT zu entdecken, bei ca. 40–50% und steigt kontinuierlich bis zu einem PSAvon3ng/mlauf>90%an.Sieerreicht jedochwieinder .Abb.2ersichtlichnie 100%, da schätzungsweise 5–10% aller PC entweder nicht ausreichend oder überhaupt kein PSMA exprimieren. Aus präklinischen Arbeiten ist be- kannt, dass PC mit höherem GSC auch intensiver PSMA exprimieren [16, 17]. Zwar konnte in der 68Ga-PSMA-11- PET/CT eine Tendenz der Tumorde- tektion zugunsten höherer GSC, jedoch kein signiﬁkanter Unterschied zwischen höherenundniedrigerenGSCfestgestellt werden.Dennochkannmanzusammen- fassen, dass höhere GSC die Detektion von Tumorherden in der68Ga-PSMA- 11-PET/CT begünstigen. Dies ist bei al- len anderen molekularen Bildgebungen nicht zu erwarten. »HöhereGSCbegünstigendie DetektionvonTumorherdenin der68Ga-PSMA-11-PET/CT Die Speziﬁtät der68Ga-PSMA-11-PET/ CTistalssehrhoch(>95%)einzustufen, was in mehreren Studien bestätigt wur- de [15, 18–20]. Daher geht die Tendenz dahin, jede umschriebene Mehrspeiche- rungineinemmorphologischsichtbaren Korrelat bei Patienten mit einem bio- chemischen PC-Rezidiv praktisch bis zumBeweisdesGegenteilsalseinenPC- Herd zu werten. Dennoch muss man an dieser Stelle betonen, dass PSMA entgegen seines Namens nicht spezi- ﬁsch für Prostata ist. Bereits seit den 1980er-Jahren ist bekannt, dass PSMA auch in der Neovaskulatur einer Viel- zahl solider Tumoren exprimiert wird. Entsprechend sind in den letzten Jahren multipleFallbeschreibungenvonPSMA- positiven Entitäten nicht-prostatischen Ursprungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich",
+          "score": 0.5042514204978943
+        },
+        {
+          "id": 834,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 17,
+          "text": "spekten Befunde anzugeben. Die Anreicherungen sollten als schwach, mittelgradig oder intensiv im Vergleich zum Hintergrundsignal (z. B. Muskulatur, Leber) eingeschätzt und im Befundbericht beschrieben werden. PC-Herde erscheinen als fokale Mehrspeicherung. Dabei ist die Speicherintensität abhängig vom PSMA-Expressi- onsgrad und daher selbst innerhalb von klinisch gleich- wertigen Gruppen (PSA-Höhe, GSC, Größe der Tumorher- de usw.) zum Teil stark variabel. Ein SUV-Schwellen- wert existiert nicht. Nach aktuellem Kenntnisstand besitzt 68Ga-PSMA-11 eine sehr gute Spezifität und einen hohen positiven Vorhersagewert von 90 –100 %, so dass jeder CT-morphologisch nachweisbare Herd mit einer Speiche- rung, die über das umgebende Hintergrundsignal hinaus- geht, bei Patienten mit gesichertem PC, besonders in der Rezidivsituation, mit hoher Wahrscheinlichkeit als PC- Herd eingestuft werden sollte [4, 9]. Bei Verwendung von 18F-PSMA-1007 sollten ossäre, fokale Mehrspeiche- rungen ohne CT-Korrelat mit Vorsicht und unter sorgfäl- tiger Berücksichtigung klinischer Informationen inter- pretiert werden, um keine falsch-positiven ossären Metastasen in die Bildgebung hineinzuinterpretieren. Wie die Spezifität anderer, neuerer PSMA-Liganden ist, ist aktuell noch unklar. C. Physiologische Verteilung von PSMA-Liganden Die Biodistribution der meisten PSMA-Liganden zeigt nach aktuellem Kenntnisstand (spezifische und unspezifi- sche) Speicherungen in den Tränen- und den Speichel- drüsen, in Leber, Milz, Nieren, Teilen des Darmtraktes (v. a. proximaler Dünndarm, partiell auch im Colon) sowie in Ganglien des vegetativen Nervensystems ( ▶ Abb. 1, 2) [30, 43, 44]. Der ungebundene Anteil der meisten PSMA- Liganden wird über die Nieren und die ableitenden Harn- wege ausgeschieden. Aus diesem Grund mü",
+          "score": 0.4936246871948242
+        },
+        {
+          "id": 839,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 22,
+          "text": " des PC gehalten werden können [43, 44]. In diesem Zusammenhang wird empfohlen, neben der typischen Lokalisation entlang der Nervenstränge auch auf die CT-morphologisch sichtbaren, länglichen Ausläufer solcher Ganglien zu achten, um sie von Lymph- knoten unterscheiden zu können. Da die PSMA-Liganden-PET/C T eine relativ junge Unter- suchungsmethode ist, kann davon ausgegangen werden, dass in Zukunft weitere Publikationen zu PSMA-exprimie- renden Entitäten erscheinen werden. IX. Strahlenexposition durch die PSMA-Liganden PET/CT A. Strahlenexposition der Patienten Die dosimetrischen Daten zur Strahlenexposition bei An- wendung von PSMA-Liganden haben für 68Ga-PSMA-11 eine mittlere effektive Dosis von ca. 2 × 10 –2 mSv/MBq er- geben [37, 38, 40, 41]. Für 18F-PSMA-1007 ergaben sich ähnliche Werte [55]. Die Applikation von 150 MBq bei ei- nem Patienten mit 75 kg Körpergewicht führt zu einer ef- fektiven Dosis von ca. 3 mSv für die PSMA-PET. Die am stärksten exponierten Organe sind Niere (ca. 2,2 × 10 –1 mSv/MBq) und Harnblasenwand (ca. 6,1 × 10 –2 mSv/ MBq). Die Strahlenexposition der CT kann durch die bei jeder CT-Untersuchung bereitgestellten Werte des com- puted tomography dose index (CTDIvol) und des Dosis- längenproduktes (DLP) anhand spezieller Konversionsfak- toren als effektive Dosis in mSv berechnet werden, um die Gesamtexposition der PET/CT zu ermitteln [56]. In der Regel beläuft sich die Strahlenexposition einer Low- Dose Ganzkörper-CT auf 2 –3 mSv und die einer diagnos- tischen Ganzkörper-CT auf 10 –20 mSv [57]. Die vom Bundesamt für Strahlenschutz vorgegeben Dosisrefe- renzwerte bei CT-Untersuc hungen sollten nicht über- schritten werden [44]. B. Strahlenexposition des Personals Die Grundsätze des Strahlenschutzes und die aktuelle Strahlenschutzgesetzgebung sind",
+          "score": 0.48544934391975403
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "category": "psma_therapy",
+      "question": "Welche Nebenwirkungen gibt es im Rahmen der PSMA-Therapie?",
+      "baseline_response": "Mögliche Nebenwirkungen der PSMA-Therapie sind:\n\n*   Übelkeit und Erbrechen\n*   Müdigkeit (Fatigue)\n*   Niedrige Blutzellzahlen (Neutropenie, Thrombozytopenie, Anämie)\n*   Nierenschäden (vor allem bei höherer Dosis)\n*   Knochenmarksuppression\n*   Hautreaktionen\n*   Schwindel\n*   Kopfschmerzen",
+      "pipeline_response": {
+        "active_frame": "greeting",
+        "filled_slots": {},
+        "agent_response": "Gerne beantworte ich Ihre Frage zu den Nebenwirkungen der PSMA-Therapie.",
+        "next_frame": "therapy_explanation"
+      },
+      "graph_fact": {
+        "entities": [
+          "PSMA-Therapie"
+        ],
+        "verified": false,
+        "answer": "I could not verify that relationship directly from the current knowledge graph. I can only provide high-level, document-grounded information.",
+        "evidence": []
+      },
+      "rag_results": [
+        {
+          "id": 6,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 6,
+          "text": "dizinVerlagGmbH,einTeilvonSpringerNature2019 A.Afshar-Oromieh·I.Alberts·C.Sachpekidis·A.Rominger Prostataspeziﬁsche Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms Zusammenfassung Hintergrund.DiePositronenemissionsto- mographie/Computertomographie(PET/CT) mitLigandendesProstataspeziﬁschenMem- branantigens(PSMA)unddiePSMA-Therapie habensichseitihrerklinischenEinführungin 2011weltweitrasantausgebreitet. Fragestellung.AktuelleErkenntnissesowohl überdie PSMA-PET/CTalsauchüberdie PSMA-Therapiewerdenzusammengefasst. MaterialundMethode. Erkenntnisseaus derLiteraturundErfahrungenderAutoren wurdenzusammengetragen. Ergebnisse.EszeigtsicheinesehrhoheSensi- tivitätundSpeziﬁtätderPSMA-PET/CTsowohl beimRezidivprostatakarzinom(-PC)alsauch beimPrimärstagingdesPCmitmittleremund hohemRisikoproﬁl.DieErgebnissederPSMA- TherapiealsDrittlinientherapiebeiPatienten mitmetastasiertem,kastrationsresistentem PCsindvielversprechend. Schlussfolgerungen.DiePSMA-PET/CThat sichmittlerweilealsGoldstandard inder DiagnostikdesRezidiv-PCetabliertundist dabei,dieselbeRolleauchbeimPrimärstaging desPCmitmittleremundhohemRisikoproﬁl zuübernehmen.DiePSMA-Therapiewird ineinerstetswachsendenZahlanZentren alsDrittlinientherapiebeimetastasiertem, kastrationsresistentemPC routinemäßig durchgeführt. Schlüsselwörter PET/CT·Radiotherapie·Radioliganden· Rezidiv·Tumormarker Prostate-speciﬁc membrane antigen (PSMA)-based diagnostics and treatment of prostate cancer Abstract Background.Sincetheirclinicalintroduction in2011,PSMA-PET/CT(PSMA:prostate- speciﬁcmembraneantigen)aswellasPSMA therapyofprostatecancer(PC)havespread rapidlyworldwide. Objectives. To summarizethe current knowledgeaboutbothPSMA-PET/CTand PSMAtherapyofPC. Methods.Theknowledgederivedfromthe literatureaswellastheauthors’experie",
+          "score": 0.5646219849586487
+        },
+        {
+          "id": 3,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 3,
+          "text": "nenTumorherdinder 68Ga-PSMA-11- PET/CT zu entdecken, bei ca. 40–50% und steigt kontinuierlich bis zu einem PSAvon3ng/mlauf>90%an.Sieerreicht jedochwieinder .Abb.2ersichtlichnie 100%, da schätzungsweise 5–10% aller PC entweder nicht ausreichend oder überhaupt kein PSMA exprimieren. Aus präklinischen Arbeiten ist be- kannt, dass PC mit höherem GSC auch intensiver PSMA exprimieren [16, 17]. Zwar konnte in der 68Ga-PSMA-11- PET/CT eine Tendenz der Tumorde- tektion zugunsten höherer GSC, jedoch kein signiﬁkanter Unterschied zwischen höherenundniedrigerenGSCfestgestellt werden.Dennochkannmanzusammen- fassen, dass höhere GSC die Detektion von Tumorherden in der68Ga-PSMA- 11-PET/CT begünstigen. Dies ist bei al- len anderen molekularen Bildgebungen nicht zu erwarten. »HöhereGSCbegünstigendie DetektionvonTumorherdenin der68Ga-PSMA-11-PET/CT Die Speziﬁtät der68Ga-PSMA-11-PET/ CTistalssehrhoch(>95%)einzustufen, was in mehreren Studien bestätigt wur- de [15, 18–20]. Daher geht die Tendenz dahin, jede umschriebene Mehrspeiche- rungineinemmorphologischsichtbaren Korrelat bei Patienten mit einem bio- chemischen PC-Rezidiv praktisch bis zumBeweisdesGegenteilsalseinenPC- Herd zu werten. Dennoch muss man an dieser Stelle betonen, dass PSMA entgegen seines Namens nicht spezi- ﬁsch für Prostata ist. Bereits seit den 1980er-Jahren ist bekannt, dass PSMA auch in der Neovaskulatur einer Viel- zahl solider Tumoren exprimiert wird. Entsprechend sind in den letzten Jahren multipleFallbeschreibungenvonPSMA- positiven Entitäten nicht-prostatischen Ursprungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich",
+          "score": 0.5557478666305542
+        },
+        {
+          "id": 4,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 4,
+          "text": "ungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich vor Augen führen, dass die Zahl der entdeckten PSMA-exprimierenden En- titäten nicht-prostatischen Ursprungs nur einen minimalen Bruchteil der PC- Herde darstellt, die täglich weltweit in der PSMA-PET/CT entdeckt werden. Aus präklinischen Publikationen ist zudem bekannt, dass eine kurzzeitige Androgenentzugstherapie (ADT) die P S M A - E x p r e s s i o ni nT u m o r m o d e l l e n steigern kann [23]. Dies konnte bisher jedochinderKliniknichtzweifelsfreire- produziertwerden.AufderanderenSeite wurde jedoch erstmals in 2018 gezeigt, dasseineLangzeit-ADTeinensigniﬁkant negativen Einﬂuss auf die Sichtbarkeit undDetektionvonkastrationssensitiven PC-Herden in der PSMA-PET/CT hat [24].UnterderLangzeit-ADTwarennur noch wenige Tumorherde auch weiter- hin sichtbar. Konsequenterweise ist die Empfehlung mittlerweile dahingehend, dass bei der Rezidivsuche die PSMA- PET/CTentwedernochvorBeginnoder aber spätestens 2 Wochen nach Beginn einer ADT durchgeführt werden sollte. Es bleibt weiterhin unbekannt, wie langeeinebereitslaufendeADTpausiert werdensollte,umdiemaximaleSichtbar- keitderPC-HerdeinderPSMA-PET/CT zu garantieren. 1430 DerUrologe12·2019 Primärtumorstaging bei Intermediate-undHigh-risk-PC Ein weiteres sinnvolles Einsatzgebiet der PSMA-PET/CT ist das Primärstaging bei Intermediate- und High-risk-PC. In mehreren Studien konnte gezeigt wer- den, dass die PSMA-PET/CT imstande ist, extraprostatische PC-Manifestatio- nen mit noch nie zuvor vorhandener Sensitivität und Speziﬁtät darzustellen [25–30]. Besonders wichtig ist dies für die ",
+          "score": 0.5324627161026001
+        },
+        {
+          "id": 860,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 43,
+          "text": "sten Frage 5 Welche ist aktuell die häufigste Indikation für die PSMA-PET/CT? A Primärtumor-Diagnose B Primärtumor-Staging C Biochemisches Rezidiv D Bestrahlungsplanung E Indikationsstellung einer PSMA-Radioligandentherapie Frage 6 Welche Aussage zur Pharmakokinetik von PSMA-Liganden ist richtig? A Die aktuell für den klinischen Einsatz verfügbaren PSMA-Ligan- den zeigen praktisch dieselbe Pharmakokinetik B Der Akquisitionszeitpunkt spielt bei den PSMA-Tracern keine bedeutende Rolle C Die meisten Herde des Prostatakarzinoms zeigen in späten Aufnahmen einen höheren Uptake und Kontrast D Die meisten Herde des Prostatakarzinoms zeigen in späten Aufnahmen einen niedrigeren Kontrast E Der Tumorkontrast ist bei der PSMA-PET/CT primär von der applizierten Aktivität abhängig Frage 7 Vor allem Bei welchem die aufgelisteten PSMA-Tracer sollten foka- le Anreicherungen im Skelett mit Vorsicht interpretiert werden? A 68Ga-PSMA-11 B 18F-DCFPyL C 18F-JK-PSMA-7 D 18F-PSMA-1007 E 68Ga-PSMA-617 Frage 8 Auslöschungsartefakte in der PET (reduziertes PET-Signal) kommen beim Einsatz bestimmter PET/CT-Geräte vor allem um welches Organ vor? AS p e i c h e l d r ü s e n B Leber C Lungen D Milz E Harnblase ▶ Weitere Fragen auf der folgenden Seite... 18 Afshar-Oromieh A et al. DGN-Handlungsempfehlung (S1-Leitlinie) –… Nuklearmedizin 2023; 62: 5 –19 | © 2023. Thieme. All rights reserved. Continuing Medical Education Dieses Dokument wurde zum persönlichen Gebrauch heruntergeladen. Vervielfältigung nur mit Zustimmung des Verlages. Punkte sammeln auf CME .thieme.de Frage 9 Zur Detektion von Lebermetastasen wird bei welchem der aufge- führten Tracer aufgrund eines hohen Lebersignals eine kontrast- mittelverstärkte CT in Ergänzung zur PET-Akquisition empfohlen? A 68Ga-PSMA-11 B 18F-DCFPyL C 18F-JK-PSMA",
+          "score": 0.524470329284668
+        },
+        {
+          "id": 834,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 17,
+          "text": "spekten Befunde anzugeben. Die Anreicherungen sollten als schwach, mittelgradig oder intensiv im Vergleich zum Hintergrundsignal (z. B. Muskulatur, Leber) eingeschätzt und im Befundbericht beschrieben werden. PC-Herde erscheinen als fokale Mehrspeicherung. Dabei ist die Speicherintensität abhängig vom PSMA-Expressi- onsgrad und daher selbst innerhalb von klinisch gleich- wertigen Gruppen (PSA-Höhe, GSC, Größe der Tumorher- de usw.) zum Teil stark variabel. Ein SUV-Schwellen- wert existiert nicht. Nach aktuellem Kenntnisstand besitzt 68Ga-PSMA-11 eine sehr gute Spezifität und einen hohen positiven Vorhersagewert von 90 –100 %, so dass jeder CT-morphologisch nachweisbare Herd mit einer Speiche- rung, die über das umgebende Hintergrundsignal hinaus- geht, bei Patienten mit gesichertem PC, besonders in der Rezidivsituation, mit hoher Wahrscheinlichkeit als PC- Herd eingestuft werden sollte [4, 9]. Bei Verwendung von 18F-PSMA-1007 sollten ossäre, fokale Mehrspeiche- rungen ohne CT-Korrelat mit Vorsicht und unter sorgfäl- tiger Berücksichtigung klinischer Informationen inter- pretiert werden, um keine falsch-positiven ossären Metastasen in die Bildgebung hineinzuinterpretieren. Wie die Spezifität anderer, neuerer PSMA-Liganden ist, ist aktuell noch unklar. C. Physiologische Verteilung von PSMA-Liganden Die Biodistribution der meisten PSMA-Liganden zeigt nach aktuellem Kenntnisstand (spezifische und unspezifi- sche) Speicherungen in den Tränen- und den Speichel- drüsen, in Leber, Milz, Nieren, Teilen des Darmtraktes (v. a. proximaler Dünndarm, partiell auch im Colon) sowie in Ganglien des vegetativen Nervensystems ( ▶ Abb. 1, 2) [30, 43, 44]. Der ungebundene Anteil der meisten PSMA- Liganden wird über die Nieren und die ableitenden Harn- wege ausgeschieden. Aus diesem Grund mü",
+          "score": 0.5203725099563599
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "category": "psma_therapy",
+      "question": "Welche Strahlenschutzmassnahmen muss ich nach der PSMA-Therapie nach Entlassung aus dem Krankenhaus einhalten?",
+      "baseline_response": "Nach einer PSMA-Therapie mit Lutetium-177 benötigen Sie keine speziellen Strahlenschutzmaßnahmen zu Hause, da die Radioaktivität in Ihrem Körper schnell abnimmt und die Ausscheidung über den Urin erfolgt. Es gibt keine Gefahr für Ihre Umgebung oder Mitmenschen.",
+      "pipeline_response": {
+        "active_frame": "greeting",
+        "filled_slots": {},
+        "agent_response": "Nach Ihrer PSMA-Therapie und Entlassung aus dem Krankenhaus sind bestimmte Vorsichtsmassnahmen zu beachten, um die Strahlenbelastung für Ihr Umfeld zu minimieren. Dazu gehört in der Regel, dass Sie für eine gewisse Zeit, meist einige Tage bis Wochen, einen gewissen Abstand zu anderen Personen halten sollten, insbesondere zu Kindern und schwangeren Frauen. Es ist wichtig, sich über die spezifischen Empfehlungen Ihrer behandelnden Ärzte zu informieren, da diese je nach Art und Dosis der Therapie variieren können.",
+        "next_frame": "therapy_explanation"
+      },
+      "graph_fact": {
+        "entities": [
+          "but maybe too broad? The user is asking *about* them",
+          "PSMA-Therapie"
+        ],
+        "verified": false,
+        "answer": "I could not verify that relationship directly from the current knowledge graph. I can only provide high-level, document-grounded information.",
+        "evidence": []
+      },
+      "rag_results": [
+        {
+          "id": 834,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 17,
+          "text": "spekten Befunde anzugeben. Die Anreicherungen sollten als schwach, mittelgradig oder intensiv im Vergleich zum Hintergrundsignal (z. B. Muskulatur, Leber) eingeschätzt und im Befundbericht beschrieben werden. PC-Herde erscheinen als fokale Mehrspeicherung. Dabei ist die Speicherintensität abhängig vom PSMA-Expressi- onsgrad und daher selbst innerhalb von klinisch gleich- wertigen Gruppen (PSA-Höhe, GSC, Größe der Tumorher- de usw.) zum Teil stark variabel. Ein SUV-Schwellen- wert existiert nicht. Nach aktuellem Kenntnisstand besitzt 68Ga-PSMA-11 eine sehr gute Spezifität und einen hohen positiven Vorhersagewert von 90 –100 %, so dass jeder CT-morphologisch nachweisbare Herd mit einer Speiche- rung, die über das umgebende Hintergrundsignal hinaus- geht, bei Patienten mit gesichertem PC, besonders in der Rezidivsituation, mit hoher Wahrscheinlichkeit als PC- Herd eingestuft werden sollte [4, 9]. Bei Verwendung von 18F-PSMA-1007 sollten ossäre, fokale Mehrspeiche- rungen ohne CT-Korrelat mit Vorsicht und unter sorgfäl- tiger Berücksichtigung klinischer Informationen inter- pretiert werden, um keine falsch-positiven ossären Metastasen in die Bildgebung hineinzuinterpretieren. Wie die Spezifität anderer, neuerer PSMA-Liganden ist, ist aktuell noch unklar. C. Physiologische Verteilung von PSMA-Liganden Die Biodistribution der meisten PSMA-Liganden zeigt nach aktuellem Kenntnisstand (spezifische und unspezifi- sche) Speicherungen in den Tränen- und den Speichel- drüsen, in Leber, Milz, Nieren, Teilen des Darmtraktes (v. a. proximaler Dünndarm, partiell auch im Colon) sowie in Ganglien des vegetativen Nervensystems ( ▶ Abb. 1, 2) [30, 43, 44]. Der ungebundene Anteil der meisten PSMA- Liganden wird über die Nieren und die ableitenden Harn- wege ausgeschieden. Aus diesem Grund mü",
+          "score": 0.4744861125946045
+        },
+        {
+          "id": 3,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 3,
+          "text": "nenTumorherdinder 68Ga-PSMA-11- PET/CT zu entdecken, bei ca. 40–50% und steigt kontinuierlich bis zu einem PSAvon3ng/mlauf>90%an.Sieerreicht jedochwieinder .Abb.2ersichtlichnie 100%, da schätzungsweise 5–10% aller PC entweder nicht ausreichend oder überhaupt kein PSMA exprimieren. Aus präklinischen Arbeiten ist be- kannt, dass PC mit höherem GSC auch intensiver PSMA exprimieren [16, 17]. Zwar konnte in der 68Ga-PSMA-11- PET/CT eine Tendenz der Tumorde- tektion zugunsten höherer GSC, jedoch kein signiﬁkanter Unterschied zwischen höherenundniedrigerenGSCfestgestellt werden.Dennochkannmanzusammen- fassen, dass höhere GSC die Detektion von Tumorherden in der68Ga-PSMA- 11-PET/CT begünstigen. Dies ist bei al- len anderen molekularen Bildgebungen nicht zu erwarten. »HöhereGSCbegünstigendie DetektionvonTumorherdenin der68Ga-PSMA-11-PET/CT Die Speziﬁtät der68Ga-PSMA-11-PET/ CTistalssehrhoch(>95%)einzustufen, was in mehreren Studien bestätigt wur- de [15, 18–20]. Daher geht die Tendenz dahin, jede umschriebene Mehrspeiche- rungineinemmorphologischsichtbaren Korrelat bei Patienten mit einem bio- chemischen PC-Rezidiv praktisch bis zumBeweisdesGegenteilsalseinenPC- Herd zu werten. Dennoch muss man an dieser Stelle betonen, dass PSMA entgegen seines Namens nicht spezi- ﬁsch für Prostata ist. Bereits seit den 1980er-Jahren ist bekannt, dass PSMA auch in der Neovaskulatur einer Viel- zahl solider Tumoren exprimiert wird. Entsprechend sind in den letzten Jahren multipleFallbeschreibungenvonPSMA- positiven Entitäten nicht-prostatischen Ursprungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich",
+          "score": 0.4250550866127014
+        },
+        {
+          "id": 829,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 12,
+          "text": "tur, sondern der eher geringen Ausbeute aus dem Generator ( 68Ga) bzw. der höheren Ausbeute aus dem Zyklotron ( 18F) geschuldet. Höhere injizierte Aktivi- täten erlauben eine bessere Count-Statistik und einen größeren Abstand zwischen Injektion und Akquisition mit möglicher weiterer Verbesserung des Tumor-zu-Hin- tergrund-Kontrastes. Die S trahlenexposition pro MBq verabreichter Aktivität fällt ähnlich aus (siehe Kapitel IX). Die genannten injizierten Aktivitäten können prinzipiell je nach Indikation und Spezifikationen des Untersuchungs- protokolls nach oben oder nach unten korrigiert werden, beispielsweise können auch höhere Aktivitäten an 68Ga- markierte PSMA-Liganden verabreicht werden, wenn die PET/CT-Bilder zu späteren Zeitpunkten als 1 Stunde p. i. akquiriert werden. E. Zeitpunkt der Akquisition Systematische Untersuchungen zum optimalen Zeit- punkt der Akquisition der unterschiedlichen verfügbaren PSMA-Liganden sind bisher nicht durchgeführt worden. Die meisten Erfahrungen sind für 68Ga-PSMA-11 verfüg- bar. Ausgehend von der ersten Publikation zu 68 Ga- PSMA-11 wird an den meisten Zentren die Datenakquisi- tion 1 h p. i. gestartet, da bereits nach dieser Einwirkzeit eine hohe Sensitivität der PET/CT gezeigt werden konnte [36]. Dennoch wurde in mehreren Publikationen berich- tet, dass bei späteren Akquisitionszeitpunkten (z. B. 3 h p. i.) trotz der relativ kurzen Halbwertszeit von 68Ga die Mehrheit der PC-Herde einen höheren Kontrast und eine höhere Speicherintensität zeigten. Diese Eigenschaft, die der Pharmakokinetik von 68Ga-PSMA-11 zugeschrieben wird, wurde in der Folge bestätigt und auch für weitere PSMA-Liganden beschrieben [28, 34, 37 –41]. Für Verlauf- suntersuchungen und v. a. qu antitative Analysen ist es somit wichtig, die Zeit zwischen der PSMA-Ligand",
+          "score": 0.4180627763271332
+        },
+        {
+          "id": 839,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 22,
+          "text": " des PC gehalten werden können [43, 44]. In diesem Zusammenhang wird empfohlen, neben der typischen Lokalisation entlang der Nervenstränge auch auf die CT-morphologisch sichtbaren, länglichen Ausläufer solcher Ganglien zu achten, um sie von Lymph- knoten unterscheiden zu können. Da die PSMA-Liganden-PET/C T eine relativ junge Unter- suchungsmethode ist, kann davon ausgegangen werden, dass in Zukunft weitere Publikationen zu PSMA-exprimie- renden Entitäten erscheinen werden. IX. Strahlenexposition durch die PSMA-Liganden PET/CT A. Strahlenexposition der Patienten Die dosimetrischen Daten zur Strahlenexposition bei An- wendung von PSMA-Liganden haben für 68Ga-PSMA-11 eine mittlere effektive Dosis von ca. 2 × 10 –2 mSv/MBq er- geben [37, 38, 40, 41]. Für 18F-PSMA-1007 ergaben sich ähnliche Werte [55]. Die Applikation von 150 MBq bei ei- nem Patienten mit 75 kg Körpergewicht führt zu einer ef- fektiven Dosis von ca. 3 mSv für die PSMA-PET. Die am stärksten exponierten Organe sind Niere (ca. 2,2 × 10 –1 mSv/MBq) und Harnblasenwand (ca. 6,1 × 10 –2 mSv/ MBq). Die Strahlenexposition der CT kann durch die bei jeder CT-Untersuchung bereitgestellten Werte des com- puted tomography dose index (CTDIvol) und des Dosis- längenproduktes (DLP) anhand spezieller Konversionsfak- toren als effektive Dosis in mSv berechnet werden, um die Gesamtexposition der PET/CT zu ermitteln [56]. In der Regel beläuft sich die Strahlenexposition einer Low- Dose Ganzkörper-CT auf 2 –3 mSv und die einer diagnos- tischen Ganzkörper-CT auf 10 –20 mSv [57]. Die vom Bundesamt für Strahlenschutz vorgegeben Dosisrefe- renzwerte bei CT-Untersuc hungen sollten nicht über- schritten werden [44]. B. Strahlenexposition des Personals Die Grundsätze des Strahlenschutzes und die aktuelle Strahlenschutzgesetzgebung sind",
+          "score": 0.41760027408599854
+        },
+        {
+          "id": 860,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 43,
+          "text": "sten Frage 5 Welche ist aktuell die häufigste Indikation für die PSMA-PET/CT? A Primärtumor-Diagnose B Primärtumor-Staging C Biochemisches Rezidiv D Bestrahlungsplanung E Indikationsstellung einer PSMA-Radioligandentherapie Frage 6 Welche Aussage zur Pharmakokinetik von PSMA-Liganden ist richtig? A Die aktuell für den klinischen Einsatz verfügbaren PSMA-Ligan- den zeigen praktisch dieselbe Pharmakokinetik B Der Akquisitionszeitpunkt spielt bei den PSMA-Tracern keine bedeutende Rolle C Die meisten Herde des Prostatakarzinoms zeigen in späten Aufnahmen einen höheren Uptake und Kontrast D Die meisten Herde des Prostatakarzinoms zeigen in späten Aufnahmen einen niedrigeren Kontrast E Der Tumorkontrast ist bei der PSMA-PET/CT primär von der applizierten Aktivität abhängig Frage 7 Vor allem Bei welchem die aufgelisteten PSMA-Tracer sollten foka- le Anreicherungen im Skelett mit Vorsicht interpretiert werden? A 68Ga-PSMA-11 B 18F-DCFPyL C 18F-JK-PSMA-7 D 18F-PSMA-1007 E 68Ga-PSMA-617 Frage 8 Auslöschungsartefakte in der PET (reduziertes PET-Signal) kommen beim Einsatz bestimmter PET/CT-Geräte vor allem um welches Organ vor? AS p e i c h e l d r ü s e n B Leber C Lungen D Milz E Harnblase ▶ Weitere Fragen auf der folgenden Seite... 18 Afshar-Oromieh A et al. DGN-Handlungsempfehlung (S1-Leitlinie) –… Nuklearmedizin 2023; 62: 5 –19 | © 2023. Thieme. All rights reserved. Continuing Medical Education Dieses Dokument wurde zum persönlichen Gebrauch heruntergeladen. Vervielfältigung nur mit Zustimmung des Verlages. Punkte sammeln auf CME .thieme.de Frage 9 Zur Detektion von Lebermetastasen wird bei welchem der aufge- führten Tracer aufgrund eines hohen Lebersignals eine kontrast- mittelverstärkte CT in Ergänzung zur PET-Akquisition empfohlen? A 68Ga-PSMA-11 B 18F-DCFPyL C 18F-JK-PSMA",
+          "score": 0.41734611988067627
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "category": "psma_therapy",
+      "question": "Wie wahrscheinlich ist es, dass die PSMA-Therapie eine gute Wirkung erzielt?",
+      "baseline_response": "Die Erfolgswahrscheinlichkeit der PSMA-Therapie hängt von verschiedenen Faktoren ab, wie z.B. dem Stadium des Prostatakrebses, den vorherigen Behandlungen und den individuellen Eigenschaften des Tumors. Ihr behandelnder Arzt kann Ihnen die spezifische Erfolgswahrscheinlichkeit in Ihrem Fall am besten einschätzen.\n",
+      "pipeline_response": {
+        "active_frame": "greeting",
+        "filled_slots": {},
+        "agent_response": "Die Erfolgswahrscheinlichkeit der PSMA-Therapie hängt von verschiedenen Faktoren ab, einschließlich des Stadiums und der Art des Prostatakrebses, sowie von individuellen Patienteneigenschaften. Generell wird die Therapie als vielversprechend angesehen, insbesondere bei Patienten, deren Krebs sich ausgebreitet hat und auf andere Behandlungen nicht mehr gut anspricht. Um eine konkretere Aussage zu Ihrer persönlichen Situation treffen zu können, benötige ich weitere Informationen.",
+        "next_frame": "ask_before_telling"
+      },
+      "graph_fact": {
+        "entities": [],
+        "verified": false,
+        "answer": "I could not verify that relationship directly from the current knowledge graph. I can only provide high-level, document-grounded information.",
+        "evidence": []
+      },
+      "rag_results": [
+        {
+          "id": 834,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 17,
+          "text": "spekten Befunde anzugeben. Die Anreicherungen sollten als schwach, mittelgradig oder intensiv im Vergleich zum Hintergrundsignal (z. B. Muskulatur, Leber) eingeschätzt und im Befundbericht beschrieben werden. PC-Herde erscheinen als fokale Mehrspeicherung. Dabei ist die Speicherintensität abhängig vom PSMA-Expressi- onsgrad und daher selbst innerhalb von klinisch gleich- wertigen Gruppen (PSA-Höhe, GSC, Größe der Tumorher- de usw.) zum Teil stark variabel. Ein SUV-Schwellen- wert existiert nicht. Nach aktuellem Kenntnisstand besitzt 68Ga-PSMA-11 eine sehr gute Spezifität und einen hohen positiven Vorhersagewert von 90 –100 %, so dass jeder CT-morphologisch nachweisbare Herd mit einer Speiche- rung, die über das umgebende Hintergrundsignal hinaus- geht, bei Patienten mit gesichertem PC, besonders in der Rezidivsituation, mit hoher Wahrscheinlichkeit als PC- Herd eingestuft werden sollte [4, 9]. Bei Verwendung von 18F-PSMA-1007 sollten ossäre, fokale Mehrspeiche- rungen ohne CT-Korrelat mit Vorsicht und unter sorgfäl- tiger Berücksichtigung klinischer Informationen inter- pretiert werden, um keine falsch-positiven ossären Metastasen in die Bildgebung hineinzuinterpretieren. Wie die Spezifität anderer, neuerer PSMA-Liganden ist, ist aktuell noch unklar. C. Physiologische Verteilung von PSMA-Liganden Die Biodistribution der meisten PSMA-Liganden zeigt nach aktuellem Kenntnisstand (spezifische und unspezifi- sche) Speicherungen in den Tränen- und den Speichel- drüsen, in Leber, Milz, Nieren, Teilen des Darmtraktes (v. a. proximaler Dünndarm, partiell auch im Colon) sowie in Ganglien des vegetativen Nervensystems ( ▶ Abb. 1, 2) [30, 43, 44]. Der ungebundene Anteil der meisten PSMA- Liganden wird über die Nieren und die ableitenden Harn- wege ausgeschieden. Aus diesem Grund mü",
+          "score": 0.5451070070266724
+        },
+        {
+          "id": 6,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 6,
+          "text": "dizinVerlagGmbH,einTeilvonSpringerNature2019 A.Afshar-Oromieh·I.Alberts·C.Sachpekidis·A.Rominger Prostataspeziﬁsche Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms Zusammenfassung Hintergrund.DiePositronenemissionsto- mographie/Computertomographie(PET/CT) mitLigandendesProstataspeziﬁschenMem- branantigens(PSMA)unddiePSMA-Therapie habensichseitihrerklinischenEinführungin 2011weltweitrasantausgebreitet. Fragestellung.AktuelleErkenntnissesowohl überdie PSMA-PET/CTalsauchüberdie PSMA-Therapiewerdenzusammengefasst. MaterialundMethode. Erkenntnisseaus derLiteraturundErfahrungenderAutoren wurdenzusammengetragen. Ergebnisse.EszeigtsicheinesehrhoheSensi- tivitätundSpeziﬁtätderPSMA-PET/CTsowohl beimRezidivprostatakarzinom(-PC)alsauch beimPrimärstagingdesPCmitmittleremund hohemRisikoproﬁl.DieErgebnissederPSMA- TherapiealsDrittlinientherapiebeiPatienten mitmetastasiertem,kastrationsresistentem PCsindvielversprechend. Schlussfolgerungen.DiePSMA-PET/CThat sichmittlerweilealsGoldstandard inder DiagnostikdesRezidiv-PCetabliertundist dabei,dieselbeRolleauchbeimPrimärstaging desPCmitmittleremundhohemRisikoproﬁl zuübernehmen.DiePSMA-Therapiewird ineinerstetswachsendenZahlanZentren alsDrittlinientherapiebeimetastasiertem, kastrationsresistentemPC routinemäßig durchgeführt. Schlüsselwörter PET/CT·Radiotherapie·Radioliganden· Rezidiv·Tumormarker Prostate-speciﬁc membrane antigen (PSMA)-based diagnostics and treatment of prostate cancer Abstract Background.Sincetheirclinicalintroduction in2011,PSMA-PET/CT(PSMA:prostate- speciﬁcmembraneantigen)aswellasPSMA therapyofprostatecancer(PC)havespread rapidlyworldwide. Objectives. To summarizethe current knowledgeaboutbothPSMA-PET/CTand PSMAtherapyofPC. Methods.Theknowledgederivedfromthe literatureaswellastheauthors’experie",
+          "score": 0.5332019925117493
+        },
+        {
+          "id": 3,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 3,
+          "text": "nenTumorherdinder 68Ga-PSMA-11- PET/CT zu entdecken, bei ca. 40–50% und steigt kontinuierlich bis zu einem PSAvon3ng/mlauf>90%an.Sieerreicht jedochwieinder .Abb.2ersichtlichnie 100%, da schätzungsweise 5–10% aller PC entweder nicht ausreichend oder überhaupt kein PSMA exprimieren. Aus präklinischen Arbeiten ist be- kannt, dass PC mit höherem GSC auch intensiver PSMA exprimieren [16, 17]. Zwar konnte in der 68Ga-PSMA-11- PET/CT eine Tendenz der Tumorde- tektion zugunsten höherer GSC, jedoch kein signiﬁkanter Unterschied zwischen höherenundniedrigerenGSCfestgestellt werden.Dennochkannmanzusammen- fassen, dass höhere GSC die Detektion von Tumorherden in der68Ga-PSMA- 11-PET/CT begünstigen. Dies ist bei al- len anderen molekularen Bildgebungen nicht zu erwarten. »HöhereGSCbegünstigendie DetektionvonTumorherdenin der68Ga-PSMA-11-PET/CT Die Speziﬁtät der68Ga-PSMA-11-PET/ CTistalssehrhoch(>95%)einzustufen, was in mehreren Studien bestätigt wur- de [15, 18–20]. Daher geht die Tendenz dahin, jede umschriebene Mehrspeiche- rungineinemmorphologischsichtbaren Korrelat bei Patienten mit einem bio- chemischen PC-Rezidiv praktisch bis zumBeweisdesGegenteilsalseinenPC- Herd zu werten. Dennoch muss man an dieser Stelle betonen, dass PSMA entgegen seines Namens nicht spezi- ﬁsch für Prostata ist. Bereits seit den 1980er-Jahren ist bekannt, dass PSMA auch in der Neovaskulatur einer Viel- zahl solider Tumoren exprimiert wird. Entsprechend sind in den letzten Jahren multipleFallbeschreibungenvonPSMA- positiven Entitäten nicht-prostatischen Ursprungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich",
+          "score": 0.5137428045272827
+        },
+        {
+          "id": 860,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 43,
+          "text": "sten Frage 5 Welche ist aktuell die häufigste Indikation für die PSMA-PET/CT? A Primärtumor-Diagnose B Primärtumor-Staging C Biochemisches Rezidiv D Bestrahlungsplanung E Indikationsstellung einer PSMA-Radioligandentherapie Frage 6 Welche Aussage zur Pharmakokinetik von PSMA-Liganden ist richtig? A Die aktuell für den klinischen Einsatz verfügbaren PSMA-Ligan- den zeigen praktisch dieselbe Pharmakokinetik B Der Akquisitionszeitpunkt spielt bei den PSMA-Tracern keine bedeutende Rolle C Die meisten Herde des Prostatakarzinoms zeigen in späten Aufnahmen einen höheren Uptake und Kontrast D Die meisten Herde des Prostatakarzinoms zeigen in späten Aufnahmen einen niedrigeren Kontrast E Der Tumorkontrast ist bei der PSMA-PET/CT primär von der applizierten Aktivität abhängig Frage 7 Vor allem Bei welchem die aufgelisteten PSMA-Tracer sollten foka- le Anreicherungen im Skelett mit Vorsicht interpretiert werden? A 68Ga-PSMA-11 B 18F-DCFPyL C 18F-JK-PSMA-7 D 18F-PSMA-1007 E 68Ga-PSMA-617 Frage 8 Auslöschungsartefakte in der PET (reduziertes PET-Signal) kommen beim Einsatz bestimmter PET/CT-Geräte vor allem um welches Organ vor? AS p e i c h e l d r ü s e n B Leber C Lungen D Milz E Harnblase ▶ Weitere Fragen auf der folgenden Seite... 18 Afshar-Oromieh A et al. DGN-Handlungsempfehlung (S1-Leitlinie) –… Nuklearmedizin 2023; 62: 5 –19 | © 2023. Thieme. All rights reserved. Continuing Medical Education Dieses Dokument wurde zum persönlichen Gebrauch heruntergeladen. Vervielfältigung nur mit Zustimmung des Verlages. Punkte sammeln auf CME .thieme.de Frage 9 Zur Detektion von Lebermetastasen wird bei welchem der aufge- führten Tracer aufgrund eines hohen Lebersignals eine kontrast- mittelverstärkte CT in Ergänzung zur PET-Akquisition empfohlen? A 68Ga-PSMA-11 B 18F-DCFPyL C 18F-JK-PSMA",
+          "score": 0.5079872012138367
+        },
+        {
+          "id": 4,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 4,
+          "text": "ungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich vor Augen führen, dass die Zahl der entdeckten PSMA-exprimierenden En- titäten nicht-prostatischen Ursprungs nur einen minimalen Bruchteil der PC- Herde darstellt, die täglich weltweit in der PSMA-PET/CT entdeckt werden. Aus präklinischen Publikationen ist zudem bekannt, dass eine kurzzeitige Androgenentzugstherapie (ADT) die P S M A - E x p r e s s i o ni nT u m o r m o d e l l e n steigern kann [23]. Dies konnte bisher jedochinderKliniknichtzweifelsfreire- produziertwerden.AufderanderenSeite wurde jedoch erstmals in 2018 gezeigt, dasseineLangzeit-ADTeinensigniﬁkant negativen Einﬂuss auf die Sichtbarkeit undDetektionvonkastrationssensitiven PC-Herden in der PSMA-PET/CT hat [24].UnterderLangzeit-ADTwarennur noch wenige Tumorherde auch weiter- hin sichtbar. Konsequenterweise ist die Empfehlung mittlerweile dahingehend, dass bei der Rezidivsuche die PSMA- PET/CTentwedernochvorBeginnoder aber spätestens 2 Wochen nach Beginn einer ADT durchgeführt werden sollte. Es bleibt weiterhin unbekannt, wie langeeinebereitslaufendeADTpausiert werdensollte,umdiemaximaleSichtbar- keitderPC-HerdeinderPSMA-PET/CT zu garantieren. 1430 DerUrologe12·2019 Primärtumorstaging bei Intermediate-undHigh-risk-PC Ein weiteres sinnvolles Einsatzgebiet der PSMA-PET/CT ist das Primärstaging bei Intermediate- und High-risk-PC. In mehreren Studien konnte gezeigt wer- den, dass die PSMA-PET/CT imstande ist, extraprostatische PC-Manifestatio- nen mit noch nie zuvor vorhandener Sensitivität und Speziﬁtät darzustellen [25–30]. Besonders wichtig ist dies für die ",
+          "score": 0.5062892436981201
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "category": "psma_therapy",
+      "question": "Wird mir durch die PSMA-Therapie übel werden?",
+      "baseline_response": "Es ist möglich, dass Ihnen durch die PSMA-Therapie übel wird. Übelkeit ist eine häufige Nebenwirkung.",
+      "pipeline_response": {
+        "active_frame": "greeting",
+        "filled_slots": {},
+        "agent_response": "Ich kann Ihnen keine definitive Antwort geben, ob Ihnen die PSMA-Therapie Übelkeit verursachen wird, da dies von Person zu Person unterschiedlich ist. Übelkeit und Erbrechen sind jedoch bekannte mögliche Nebenwirkungen vieler Krebsbehandlungen, einschließlich solcher, die radioaktive Substanzen verwenden. Möchten Sie mehr über häufige Nebenwirkungen der PSMA-Therapie erfahren oder darüber, wie man sie lindern kann?",
+        "next_frame": "therapy_explanation"
+      },
+      "graph_fact": {
+        "entities": [
+          "in the context of medical questions",
+          "Übelwerden<unused95>PSMA-Therapie",
+          "Übelwerden"
+        ],
+        "verified": false,
+        "answer": "I could not verify that relationship directly from the current knowledge graph. I can only provide high-level, document-grounded information.",
+        "evidence": []
+      },
+      "rag_results": [
+        {
+          "id": 4,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 4,
+          "text": "ungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich vor Augen führen, dass die Zahl der entdeckten PSMA-exprimierenden En- titäten nicht-prostatischen Ursprungs nur einen minimalen Bruchteil der PC- Herde darstellt, die täglich weltweit in der PSMA-PET/CT entdeckt werden. Aus präklinischen Publikationen ist zudem bekannt, dass eine kurzzeitige Androgenentzugstherapie (ADT) die P S M A - E x p r e s s i o ni nT u m o r m o d e l l e n steigern kann [23]. Dies konnte bisher jedochinderKliniknichtzweifelsfreire- produziertwerden.AufderanderenSeite wurde jedoch erstmals in 2018 gezeigt, dasseineLangzeit-ADTeinensigniﬁkant negativen Einﬂuss auf die Sichtbarkeit undDetektionvonkastrationssensitiven PC-Herden in der PSMA-PET/CT hat [24].UnterderLangzeit-ADTwarennur noch wenige Tumorherde auch weiter- hin sichtbar. Konsequenterweise ist die Empfehlung mittlerweile dahingehend, dass bei der Rezidivsuche die PSMA- PET/CTentwedernochvorBeginnoder aber spätestens 2 Wochen nach Beginn einer ADT durchgeführt werden sollte. Es bleibt weiterhin unbekannt, wie langeeinebereitslaufendeADTpausiert werdensollte,umdiemaximaleSichtbar- keitderPC-HerdeinderPSMA-PET/CT zu garantieren. 1430 DerUrologe12·2019 Primärtumorstaging bei Intermediate-undHigh-risk-PC Ein weiteres sinnvolles Einsatzgebiet der PSMA-PET/CT ist das Primärstaging bei Intermediate- und High-risk-PC. In mehreren Studien konnte gezeigt wer- den, dass die PSMA-PET/CT imstande ist, extraprostatische PC-Manifestatio- nen mit noch nie zuvor vorhandener Sensitivität und Speziﬁtät darzustellen [25–30]. Besonders wichtig ist dies für die ",
+          "score": 0.5096052289009094
+        },
+        {
+          "id": 6,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 6,
+          "text": "dizinVerlagGmbH,einTeilvonSpringerNature2019 A.Afshar-Oromieh·I.Alberts·C.Sachpekidis·A.Rominger Prostataspeziﬁsche Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms Zusammenfassung Hintergrund.DiePositronenemissionsto- mographie/Computertomographie(PET/CT) mitLigandendesProstataspeziﬁschenMem- branantigens(PSMA)unddiePSMA-Therapie habensichseitihrerklinischenEinführungin 2011weltweitrasantausgebreitet. Fragestellung.AktuelleErkenntnissesowohl überdie PSMA-PET/CTalsauchüberdie PSMA-Therapiewerdenzusammengefasst. MaterialundMethode. Erkenntnisseaus derLiteraturundErfahrungenderAutoren wurdenzusammengetragen. Ergebnisse.EszeigtsicheinesehrhoheSensi- tivitätundSpeziﬁtätderPSMA-PET/CTsowohl beimRezidivprostatakarzinom(-PC)alsauch beimPrimärstagingdesPCmitmittleremund hohemRisikoproﬁl.DieErgebnissederPSMA- TherapiealsDrittlinientherapiebeiPatienten mitmetastasiertem,kastrationsresistentem PCsindvielversprechend. Schlussfolgerungen.DiePSMA-PET/CThat sichmittlerweilealsGoldstandard inder DiagnostikdesRezidiv-PCetabliertundist dabei,dieselbeRolleauchbeimPrimärstaging desPCmitmittleremundhohemRisikoproﬁl zuübernehmen.DiePSMA-Therapiewird ineinerstetswachsendenZahlanZentren alsDrittlinientherapiebeimetastasiertem, kastrationsresistentemPC routinemäßig durchgeführt. Schlüsselwörter PET/CT·Radiotherapie·Radioliganden· Rezidiv·Tumormarker Prostate-speciﬁc membrane antigen (PSMA)-based diagnostics and treatment of prostate cancer Abstract Background.Sincetheirclinicalintroduction in2011,PSMA-PET/CT(PSMA:prostate- speciﬁcmembraneantigen)aswellasPSMA therapyofprostatecancer(PC)havespread rapidlyworldwide. Objectives. To summarizethe current knowledgeaboutbothPSMA-PET/CTand PSMAtherapyofPC. Methods.Theknowledgederivedfromthe literatureaswellastheauthors’experie",
+          "score": 0.500557541847229
+        },
+        {
+          "id": 3,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 3,
+          "text": "nenTumorherdinder 68Ga-PSMA-11- PET/CT zu entdecken, bei ca. 40–50% und steigt kontinuierlich bis zu einem PSAvon3ng/mlauf>90%an.Sieerreicht jedochwieinder .Abb.2ersichtlichnie 100%, da schätzungsweise 5–10% aller PC entweder nicht ausreichend oder überhaupt kein PSMA exprimieren. Aus präklinischen Arbeiten ist be- kannt, dass PC mit höherem GSC auch intensiver PSMA exprimieren [16, 17]. Zwar konnte in der 68Ga-PSMA-11- PET/CT eine Tendenz der Tumorde- tektion zugunsten höherer GSC, jedoch kein signiﬁkanter Unterschied zwischen höherenundniedrigerenGSCfestgestellt werden.Dennochkannmanzusammen- fassen, dass höhere GSC die Detektion von Tumorherden in der68Ga-PSMA- 11-PET/CT begünstigen. Dies ist bei al- len anderen molekularen Bildgebungen nicht zu erwarten. »HöhereGSCbegünstigendie DetektionvonTumorherdenin der68Ga-PSMA-11-PET/CT Die Speziﬁtät der68Ga-PSMA-11-PET/ CTistalssehrhoch(>95%)einzustufen, was in mehreren Studien bestätigt wur- de [15, 18–20]. Daher geht die Tendenz dahin, jede umschriebene Mehrspeiche- rungineinemmorphologischsichtbaren Korrelat bei Patienten mit einem bio- chemischen PC-Rezidiv praktisch bis zumBeweisdesGegenteilsalseinenPC- Herd zu werten. Dennoch muss man an dieser Stelle betonen, dass PSMA entgegen seines Namens nicht spezi- ﬁsch für Prostata ist. Bereits seit den 1980er-Jahren ist bekannt, dass PSMA auch in der Neovaskulatur einer Viel- zahl solider Tumoren exprimiert wird. Entsprechend sind in den letzten Jahren multipleFallbeschreibungenvonPSMA- positiven Entitäten nicht-prostatischen Ursprungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich",
+          "score": 0.49573972821235657
+        },
+        {
+          "id": 834,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 17,
+          "text": "spekten Befunde anzugeben. Die Anreicherungen sollten als schwach, mittelgradig oder intensiv im Vergleich zum Hintergrundsignal (z. B. Muskulatur, Leber) eingeschätzt und im Befundbericht beschrieben werden. PC-Herde erscheinen als fokale Mehrspeicherung. Dabei ist die Speicherintensität abhängig vom PSMA-Expressi- onsgrad und daher selbst innerhalb von klinisch gleich- wertigen Gruppen (PSA-Höhe, GSC, Größe der Tumorher- de usw.) zum Teil stark variabel. Ein SUV-Schwellen- wert existiert nicht. Nach aktuellem Kenntnisstand besitzt 68Ga-PSMA-11 eine sehr gute Spezifität und einen hohen positiven Vorhersagewert von 90 –100 %, so dass jeder CT-morphologisch nachweisbare Herd mit einer Speiche- rung, die über das umgebende Hintergrundsignal hinaus- geht, bei Patienten mit gesichertem PC, besonders in der Rezidivsituation, mit hoher Wahrscheinlichkeit als PC- Herd eingestuft werden sollte [4, 9]. Bei Verwendung von 18F-PSMA-1007 sollten ossäre, fokale Mehrspeiche- rungen ohne CT-Korrelat mit Vorsicht und unter sorgfäl- tiger Berücksichtigung klinischer Informationen inter- pretiert werden, um keine falsch-positiven ossären Metastasen in die Bildgebung hineinzuinterpretieren. Wie die Spezifität anderer, neuerer PSMA-Liganden ist, ist aktuell noch unklar. C. Physiologische Verteilung von PSMA-Liganden Die Biodistribution der meisten PSMA-Liganden zeigt nach aktuellem Kenntnisstand (spezifische und unspezifi- sche) Speicherungen in den Tränen- und den Speichel- drüsen, in Leber, Milz, Nieren, Teilen des Darmtraktes (v. a. proximaler Dünndarm, partiell auch im Colon) sowie in Ganglien des vegetativen Nervensystems ( ▶ Abb. 1, 2) [30, 43, 44]. Der ungebundene Anteil der meisten PSMA- Liganden wird über die Nieren und die ableitenden Harn- wege ausgeschieden. Aus diesem Grund mü",
+          "score": 0.4797857701778412
+        },
+        {
+          "id": 8,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 8,
+          "text": "lehnt werden. DieErfahrungen mitPSMA-Therapi- en zeigen vielversprechende Ergebnisse, auch wenn grundsätzlich eine Heilung nicht möglich ist: bei >60% der Pati- enten sinkt der PSA-Wert um mindes- tens50%.EskonntenHerddosenvonbis zu 160Gy für eine verabreichte Aktivi- DerUrologe12·2019 1431 Leitthema Abb. 2 8 Wahrscheinlichkeiteinerpathologischen 68Ga-PSMA-11-PET/CTinAbhängigkeitvom PSA-Wert(prostataspeziﬁschenAntigen);AnalyseeinesKollektivsmit971Patienten.(Aus[ 13]) tät von 7,4GBq177Lu-PSMA-617 nach- gewiesen werden [31]. Aktuell werden i.Allg. 4–6 Zyklen zu je 6–7,4GBq ver- abreichter Aktivität in Abständen von 6–8Wochenempfohlen.RundeinDrittel der Patienten weisen ein sehr gutes An- sprechenaufdiePSMA-Therapieauf,bei einem Drittel bleibt der Status zunächst stabil und bei einem Drittel ist kein An- sprechenaufdieTherapiefeststellbar[ 32, 33]. DiezuerwartendenNebenwirkungen nehmenvonZykluszuZykluszuundbe- treﬀenprimärdieTränen-undSpeichel- drüsen,diephysiologischstarkPSMAex- primieren. Die Nebenwirkungen auf das blutbildende Knochenmark zeigen sich moderat. Der Nadir von Blutzellen wie Thrombozyten, Erythrozyten oder Leu- kozyten ist ca. 6 Wochen nach jedem Zyklus zu erwarten, erholt sich danach jedoch bis zu einem gewissenGrad wie- der. »Voraussetzung einer Endoradiotherapie ist eine ausreichend hohe PSMA- ExpressionderTumorherde Der aktuellenDatenlage zufolge können PSA-progressionsfreie Überlebensinter- valle von durchschnittlich 4–5 Monaten nach Abschluss der PSMA-Tharepie er- wartet werden, wobei darauf hinzuwei- senist,dassessichbisherumEnd-stage- Patienten handelt und die Erfolge daher umso höher zu bewerten sind [34]. Eine besondere Herausforderung der Therapie metastierender PC sind Patienten mit diﬀusen Knochenmar- kinﬁltrationen. Bei diesen Patienten kann d",
+          "score": 0.46872079372406006
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "category": "psma_therapy",
+      "question": "Werden mir durch die PSMA-Therapie die Haare ausfallen?",
+      "baseline_response": "Nein, eine PSMA-Therapie führt normalerweise nicht zu Haarausfall.\n",
+      "pipeline_response": {
+        "active_frame": "greeting",
+        "filled_slots": {},
+        "agent_response": "Ich kann Ihnen keine definitive Antwort geben, ob Ihnen durch die PSMA-Therapie die Haare ausfallen werden. Haarausfall ist eine mögliche Nebenwirkung vieler Krebsbehandlungen, aber es hängt von verschiedenen Faktoren ab, einschließlich der spezifischen Art der PSMA-Therapie (z.B. Radioimmuntherapie mit Lutetium-177) und Ihrer individuellen Reaktion darauf.\n\nUm Ihnen eine genauere Auskunft zu geben, müsste ich mehr über die geplante Therapie erfahren. Generell wird Haarausfall bei dieser Art von Therapie weniger häufig beobachtet als beispielsweise bei Chemotherapie, kann aber dennoch vorkommen. Möchten Sie mehr darüber wissen, wie häufig diese Nebenwirkung auftritt oder welche Faktoren dazu beitragen können?",
+        "next_frame": "therapy_explanation"
+      },
+      "graph_fact": {
+        "entities": [
+          "which usually implies nouns/noun phrases representing key concepts",
+          "people",
+          "places",
+          "organizations",
+          "dates",
+          "Haare<unused95>PSMA-Therapie",
+          "Haare"
+        ],
+        "verified": false,
+        "answer": "I could not verify that relationship directly from the current knowledge graph. I can only provide high-level, document-grounded information.",
+        "evidence": []
+      },
+      "rag_results": [
+        {
+          "id": 4,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 4,
+          "text": "ungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich vor Augen führen, dass die Zahl der entdeckten PSMA-exprimierenden En- titäten nicht-prostatischen Ursprungs nur einen minimalen Bruchteil der PC- Herde darstellt, die täglich weltweit in der PSMA-PET/CT entdeckt werden. Aus präklinischen Publikationen ist zudem bekannt, dass eine kurzzeitige Androgenentzugstherapie (ADT) die P S M A - E x p r e s s i o ni nT u m o r m o d e l l e n steigern kann [23]. Dies konnte bisher jedochinderKliniknichtzweifelsfreire- produziertwerden.AufderanderenSeite wurde jedoch erstmals in 2018 gezeigt, dasseineLangzeit-ADTeinensigniﬁkant negativen Einﬂuss auf die Sichtbarkeit undDetektionvonkastrationssensitiven PC-Herden in der PSMA-PET/CT hat [24].UnterderLangzeit-ADTwarennur noch wenige Tumorherde auch weiter- hin sichtbar. Konsequenterweise ist die Empfehlung mittlerweile dahingehend, dass bei der Rezidivsuche die PSMA- PET/CTentwedernochvorBeginnoder aber spätestens 2 Wochen nach Beginn einer ADT durchgeführt werden sollte. Es bleibt weiterhin unbekannt, wie langeeinebereitslaufendeADTpausiert werdensollte,umdiemaximaleSichtbar- keitderPC-HerdeinderPSMA-PET/CT zu garantieren. 1430 DerUrologe12·2019 Primärtumorstaging bei Intermediate-undHigh-risk-PC Ein weiteres sinnvolles Einsatzgebiet der PSMA-PET/CT ist das Primärstaging bei Intermediate- und High-risk-PC. In mehreren Studien konnte gezeigt wer- den, dass die PSMA-PET/CT imstande ist, extraprostatische PC-Manifestatio- nen mit noch nie zuvor vorhandener Sensitivität und Speziﬁtät darzustellen [25–30]. Besonders wichtig ist dies für die ",
+          "score": 0.4793548583984375
+        },
+        {
+          "id": 6,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 6,
+          "text": "dizinVerlagGmbH,einTeilvonSpringerNature2019 A.Afshar-Oromieh·I.Alberts·C.Sachpekidis·A.Rominger Prostataspeziﬁsche Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms Zusammenfassung Hintergrund.DiePositronenemissionsto- mographie/Computertomographie(PET/CT) mitLigandendesProstataspeziﬁschenMem- branantigens(PSMA)unddiePSMA-Therapie habensichseitihrerklinischenEinführungin 2011weltweitrasantausgebreitet. Fragestellung.AktuelleErkenntnissesowohl überdie PSMA-PET/CTalsauchüberdie PSMA-Therapiewerdenzusammengefasst. MaterialundMethode. Erkenntnisseaus derLiteraturundErfahrungenderAutoren wurdenzusammengetragen. Ergebnisse.EszeigtsicheinesehrhoheSensi- tivitätundSpeziﬁtätderPSMA-PET/CTsowohl beimRezidivprostatakarzinom(-PC)alsauch beimPrimärstagingdesPCmitmittleremund hohemRisikoproﬁl.DieErgebnissederPSMA- TherapiealsDrittlinientherapiebeiPatienten mitmetastasiertem,kastrationsresistentem PCsindvielversprechend. Schlussfolgerungen.DiePSMA-PET/CThat sichmittlerweilealsGoldstandard inder DiagnostikdesRezidiv-PCetabliertundist dabei,dieselbeRolleauchbeimPrimärstaging desPCmitmittleremundhohemRisikoproﬁl zuübernehmen.DiePSMA-Therapiewird ineinerstetswachsendenZahlanZentren alsDrittlinientherapiebeimetastasiertem, kastrationsresistentemPC routinemäßig durchgeführt. Schlüsselwörter PET/CT·Radiotherapie·Radioliganden· Rezidiv·Tumormarker Prostate-speciﬁc membrane antigen (PSMA)-based diagnostics and treatment of prostate cancer Abstract Background.Sincetheirclinicalintroduction in2011,PSMA-PET/CT(PSMA:prostate- speciﬁcmembraneantigen)aswellasPSMA therapyofprostatecancer(PC)havespread rapidlyworldwide. Objectives. To summarizethe current knowledgeaboutbothPSMA-PET/CTand PSMAtherapyofPC. Methods.Theknowledgederivedfromthe literatureaswellastheauthors’experie",
+          "score": 0.4660061299800873
+        },
+        {
+          "id": 834,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 17,
+          "text": "spekten Befunde anzugeben. Die Anreicherungen sollten als schwach, mittelgradig oder intensiv im Vergleich zum Hintergrundsignal (z. B. Muskulatur, Leber) eingeschätzt und im Befundbericht beschrieben werden. PC-Herde erscheinen als fokale Mehrspeicherung. Dabei ist die Speicherintensität abhängig vom PSMA-Expressi- onsgrad und daher selbst innerhalb von klinisch gleich- wertigen Gruppen (PSA-Höhe, GSC, Größe der Tumorher- de usw.) zum Teil stark variabel. Ein SUV-Schwellen- wert existiert nicht. Nach aktuellem Kenntnisstand besitzt 68Ga-PSMA-11 eine sehr gute Spezifität und einen hohen positiven Vorhersagewert von 90 –100 %, so dass jeder CT-morphologisch nachweisbare Herd mit einer Speiche- rung, die über das umgebende Hintergrundsignal hinaus- geht, bei Patienten mit gesichertem PC, besonders in der Rezidivsituation, mit hoher Wahrscheinlichkeit als PC- Herd eingestuft werden sollte [4, 9]. Bei Verwendung von 18F-PSMA-1007 sollten ossäre, fokale Mehrspeiche- rungen ohne CT-Korrelat mit Vorsicht und unter sorgfäl- tiger Berücksichtigung klinischer Informationen inter- pretiert werden, um keine falsch-positiven ossären Metastasen in die Bildgebung hineinzuinterpretieren. Wie die Spezifität anderer, neuerer PSMA-Liganden ist, ist aktuell noch unklar. C. Physiologische Verteilung von PSMA-Liganden Die Biodistribution der meisten PSMA-Liganden zeigt nach aktuellem Kenntnisstand (spezifische und unspezifi- sche) Speicherungen in den Tränen- und den Speichel- drüsen, in Leber, Milz, Nieren, Teilen des Darmtraktes (v. a. proximaler Dünndarm, partiell auch im Colon) sowie in Ganglien des vegetativen Nervensystems ( ▶ Abb. 1, 2) [30, 43, 44]. Der ungebundene Anteil der meisten PSMA- Liganden wird über die Nieren und die ableitenden Harn- wege ausgeschieden. Aus diesem Grund mü",
+          "score": 0.4646775424480438
+        },
+        {
+          "id": 3,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 3,
+          "text": "nenTumorherdinder 68Ga-PSMA-11- PET/CT zu entdecken, bei ca. 40–50% und steigt kontinuierlich bis zu einem PSAvon3ng/mlauf>90%an.Sieerreicht jedochwieinder .Abb.2ersichtlichnie 100%, da schätzungsweise 5–10% aller PC entweder nicht ausreichend oder überhaupt kein PSMA exprimieren. Aus präklinischen Arbeiten ist be- kannt, dass PC mit höherem GSC auch intensiver PSMA exprimieren [16, 17]. Zwar konnte in der 68Ga-PSMA-11- PET/CT eine Tendenz der Tumorde- tektion zugunsten höherer GSC, jedoch kein signiﬁkanter Unterschied zwischen höherenundniedrigerenGSCfestgestellt werden.Dennochkannmanzusammen- fassen, dass höhere GSC die Detektion von Tumorherden in der68Ga-PSMA- 11-PET/CT begünstigen. Dies ist bei al- len anderen molekularen Bildgebungen nicht zu erwarten. »HöhereGSCbegünstigendie DetektionvonTumorherdenin der68Ga-PSMA-11-PET/CT Die Speziﬁtät der68Ga-PSMA-11-PET/ CTistalssehrhoch(>95%)einzustufen, was in mehreren Studien bestätigt wur- de [15, 18–20]. Daher geht die Tendenz dahin, jede umschriebene Mehrspeiche- rungineinemmorphologischsichtbaren Korrelat bei Patienten mit einem bio- chemischen PC-Rezidiv praktisch bis zumBeweisdesGegenteilsalseinenPC- Herd zu werten. Dennoch muss man an dieser Stelle betonen, dass PSMA entgegen seines Namens nicht spezi- ﬁsch für Prostata ist. Bereits seit den 1980er-Jahren ist bekannt, dass PSMA auch in der Neovaskulatur einer Viel- zahl solider Tumoren exprimiert wird. Entsprechend sind in den letzten Jahren multipleFallbeschreibungenvonPSMA- positiven Entitäten nicht-prostatischen Ursprungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich",
+          "score": 0.4633232355117798
+        },
+        {
+          "id": 8,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 8,
+          "text": "lehnt werden. DieErfahrungen mitPSMA-Therapi- en zeigen vielversprechende Ergebnisse, auch wenn grundsätzlich eine Heilung nicht möglich ist: bei >60% der Pati- enten sinkt der PSA-Wert um mindes- tens50%.EskonntenHerddosenvonbis zu 160Gy für eine verabreichte Aktivi- DerUrologe12·2019 1431 Leitthema Abb. 2 8 Wahrscheinlichkeiteinerpathologischen 68Ga-PSMA-11-PET/CTinAbhängigkeitvom PSA-Wert(prostataspeziﬁschenAntigen);AnalyseeinesKollektivsmit971Patienten.(Aus[ 13]) tät von 7,4GBq177Lu-PSMA-617 nach- gewiesen werden [31]. Aktuell werden i.Allg. 4–6 Zyklen zu je 6–7,4GBq ver- abreichter Aktivität in Abständen von 6–8Wochenempfohlen.RundeinDrittel der Patienten weisen ein sehr gutes An- sprechenaufdiePSMA-Therapieauf,bei einem Drittel bleibt der Status zunächst stabil und bei einem Drittel ist kein An- sprechenaufdieTherapiefeststellbar[ 32, 33]. DiezuerwartendenNebenwirkungen nehmenvonZykluszuZykluszuundbe- treﬀenprimärdieTränen-undSpeichel- drüsen,diephysiologischstarkPSMAex- primieren. Die Nebenwirkungen auf das blutbildende Knochenmark zeigen sich moderat. Der Nadir von Blutzellen wie Thrombozyten, Erythrozyten oder Leu- kozyten ist ca. 6 Wochen nach jedem Zyklus zu erwarten, erholt sich danach jedoch bis zu einem gewissenGrad wie- der. »Voraussetzung einer Endoradiotherapie ist eine ausreichend hohe PSMA- ExpressionderTumorherde Der aktuellenDatenlage zufolge können PSA-progressionsfreie Überlebensinter- valle von durchschnittlich 4–5 Monaten nach Abschluss der PSMA-Tharepie er- wartet werden, wobei darauf hinzuwei- senist,dassessichbisherumEnd-stage- Patienten handelt und die Erfolge daher umso höher zu bewerten sind [34]. Eine besondere Herausforderung der Therapie metastierender PC sind Patienten mit diﬀusen Knochenmar- kinﬁltrationen. Bei diesen Patienten kann d",
+          "score": 0.43484941124916077
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "category": "psma_therapy",
+      "question": "Kann ich durch die PSMA-Therapie sterben?",
+      "baseline_response": "Eine PSMA-Therapie birgt, wie jede Krebstherapie, Risiken und mögliche Nebenwirkungen. Tod ist eine sehr seltene, aber nicht völlig ausgeschlossene Folge schwerwiegender Komplikationen. Bitte besprechen Sie Ihre individuellen Risiken und Bedenken ausführlich mit Ihrem behandelnden Arzt.\n",
+      "pipeline_response": {
+        "active_frame": "greeting",
+        "filled_slots": {},
+        "agent_response": "Als KI-Assistent kann ich Ihnen keine medizinische Beratung geben. Es ist wichtig, dass Sie sich mit Ihren Ärzten über die Risiken und Vorteile der PSMA-Therapie besprechen, einschließlich potenzieller schwerwiegender Nebenwirkungen oder Komplikationen. Sie können Ihnen die spezifischen Informationen geben, die auf Ihre individuelle Situation zugeschnitten sind.",
+        "next_frame": "greeting"
+      },
+      "graph_fact": {
+        "entities": [
+          "increased risk of infection",
+          "etc.)",
+          "they are not generally considered a direct cause of death in the way that",
+          "for example",
+          "which can lead to death if left untreated",
+          "it doesn't directly cause death",
+          "is used in treatment",
+          "has side effects/risks",
+          "da sie darauf abzielt",
+          "den Krebs zu bekämpfen.\" (It is not directly a cause of death",
+          "die potenziell lebensbedrohlich sein können.\" (However",
+          "like with any treatment"
+        ],
+        "verified": false,
+        "answer": "I could not verify that relationship directly from the current knowledge graph. I can only provide high-level, document-grounded information.",
+        "evidence": []
+      },
+      "rag_results": [
+        {
+          "id": 4,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 4,
+          "text": "ungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich vor Augen führen, dass die Zahl der entdeckten PSMA-exprimierenden En- titäten nicht-prostatischen Ursprungs nur einen minimalen Bruchteil der PC- Herde darstellt, die täglich weltweit in der PSMA-PET/CT entdeckt werden. Aus präklinischen Publikationen ist zudem bekannt, dass eine kurzzeitige Androgenentzugstherapie (ADT) die P S M A - E x p r e s s i o ni nT u m o r m o d e l l e n steigern kann [23]. Dies konnte bisher jedochinderKliniknichtzweifelsfreire- produziertwerden.AufderanderenSeite wurde jedoch erstmals in 2018 gezeigt, dasseineLangzeit-ADTeinensigniﬁkant negativen Einﬂuss auf die Sichtbarkeit undDetektionvonkastrationssensitiven PC-Herden in der PSMA-PET/CT hat [24].UnterderLangzeit-ADTwarennur noch wenige Tumorherde auch weiter- hin sichtbar. Konsequenterweise ist die Empfehlung mittlerweile dahingehend, dass bei der Rezidivsuche die PSMA- PET/CTentwedernochvorBeginnoder aber spätestens 2 Wochen nach Beginn einer ADT durchgeführt werden sollte. Es bleibt weiterhin unbekannt, wie langeeinebereitslaufendeADTpausiert werdensollte,umdiemaximaleSichtbar- keitderPC-HerdeinderPSMA-PET/CT zu garantieren. 1430 DerUrologe12·2019 Primärtumorstaging bei Intermediate-undHigh-risk-PC Ein weiteres sinnvolles Einsatzgebiet der PSMA-PET/CT ist das Primärstaging bei Intermediate- und High-risk-PC. In mehreren Studien konnte gezeigt wer- den, dass die PSMA-PET/CT imstande ist, extraprostatische PC-Manifestatio- nen mit noch nie zuvor vorhandener Sensitivität und Speziﬁtät darzustellen [25–30]. Besonders wichtig ist dies für die ",
+          "score": 0.5424238443374634
+        },
+        {
+          "id": 3,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 3,
+          "text": "nenTumorherdinder 68Ga-PSMA-11- PET/CT zu entdecken, bei ca. 40–50% und steigt kontinuierlich bis zu einem PSAvon3ng/mlauf>90%an.Sieerreicht jedochwieinder .Abb.2ersichtlichnie 100%, da schätzungsweise 5–10% aller PC entweder nicht ausreichend oder überhaupt kein PSMA exprimieren. Aus präklinischen Arbeiten ist be- kannt, dass PC mit höherem GSC auch intensiver PSMA exprimieren [16, 17]. Zwar konnte in der 68Ga-PSMA-11- PET/CT eine Tendenz der Tumorde- tektion zugunsten höherer GSC, jedoch kein signiﬁkanter Unterschied zwischen höherenundniedrigerenGSCfestgestellt werden.Dennochkannmanzusammen- fassen, dass höhere GSC die Detektion von Tumorherden in der68Ga-PSMA- 11-PET/CT begünstigen. Dies ist bei al- len anderen molekularen Bildgebungen nicht zu erwarten. »HöhereGSCbegünstigendie DetektionvonTumorherdenin der68Ga-PSMA-11-PET/CT Die Speziﬁtät der68Ga-PSMA-11-PET/ CTistalssehrhoch(>95%)einzustufen, was in mehreren Studien bestätigt wur- de [15, 18–20]. Daher geht die Tendenz dahin, jede umschriebene Mehrspeiche- rungineinemmorphologischsichtbaren Korrelat bei Patienten mit einem bio- chemischen PC-Rezidiv praktisch bis zumBeweisdesGegenteilsalseinenPC- Herd zu werten. Dennoch muss man an dieser Stelle betonen, dass PSMA entgegen seines Namens nicht spezi- ﬁsch für Prostata ist. Bereits seit den 1980er-Jahren ist bekannt, dass PSMA auch in der Neovaskulatur einer Viel- zahl solider Tumoren exprimiert wird. Entsprechend sind in den letzten Jahren multipleFallbeschreibungenvonPSMA- positiven Entitäten nicht-prostatischen Ursprungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich",
+          "score": 0.47873687744140625
+        },
+        {
+          "id": 834,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 17,
+          "text": "spekten Befunde anzugeben. Die Anreicherungen sollten als schwach, mittelgradig oder intensiv im Vergleich zum Hintergrundsignal (z. B. Muskulatur, Leber) eingeschätzt und im Befundbericht beschrieben werden. PC-Herde erscheinen als fokale Mehrspeicherung. Dabei ist die Speicherintensität abhängig vom PSMA-Expressi- onsgrad und daher selbst innerhalb von klinisch gleich- wertigen Gruppen (PSA-Höhe, GSC, Größe der Tumorher- de usw.) zum Teil stark variabel. Ein SUV-Schwellen- wert existiert nicht. Nach aktuellem Kenntnisstand besitzt 68Ga-PSMA-11 eine sehr gute Spezifität und einen hohen positiven Vorhersagewert von 90 –100 %, so dass jeder CT-morphologisch nachweisbare Herd mit einer Speiche- rung, die über das umgebende Hintergrundsignal hinaus- geht, bei Patienten mit gesichertem PC, besonders in der Rezidivsituation, mit hoher Wahrscheinlichkeit als PC- Herd eingestuft werden sollte [4, 9]. Bei Verwendung von 18F-PSMA-1007 sollten ossäre, fokale Mehrspeiche- rungen ohne CT-Korrelat mit Vorsicht und unter sorgfäl- tiger Berücksichtigung klinischer Informationen inter- pretiert werden, um keine falsch-positiven ossären Metastasen in die Bildgebung hineinzuinterpretieren. Wie die Spezifität anderer, neuerer PSMA-Liganden ist, ist aktuell noch unklar. C. Physiologische Verteilung von PSMA-Liganden Die Biodistribution der meisten PSMA-Liganden zeigt nach aktuellem Kenntnisstand (spezifische und unspezifi- sche) Speicherungen in den Tränen- und den Speichel- drüsen, in Leber, Milz, Nieren, Teilen des Darmtraktes (v. a. proximaler Dünndarm, partiell auch im Colon) sowie in Ganglien des vegetativen Nervensystems ( ▶ Abb. 1, 2) [30, 43, 44]. Der ungebundene Anteil der meisten PSMA- Liganden wird über die Nieren und die ableitenden Harn- wege ausgeschieden. Aus diesem Grund mü",
+          "score": 0.4675235152244568
+        },
+        {
+          "id": 860,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 43,
+          "text": "sten Frage 5 Welche ist aktuell die häufigste Indikation für die PSMA-PET/CT? A Primärtumor-Diagnose B Primärtumor-Staging C Biochemisches Rezidiv D Bestrahlungsplanung E Indikationsstellung einer PSMA-Radioligandentherapie Frage 6 Welche Aussage zur Pharmakokinetik von PSMA-Liganden ist richtig? A Die aktuell für den klinischen Einsatz verfügbaren PSMA-Ligan- den zeigen praktisch dieselbe Pharmakokinetik B Der Akquisitionszeitpunkt spielt bei den PSMA-Tracern keine bedeutende Rolle C Die meisten Herde des Prostatakarzinoms zeigen in späten Aufnahmen einen höheren Uptake und Kontrast D Die meisten Herde des Prostatakarzinoms zeigen in späten Aufnahmen einen niedrigeren Kontrast E Der Tumorkontrast ist bei der PSMA-PET/CT primär von der applizierten Aktivität abhängig Frage 7 Vor allem Bei welchem die aufgelisteten PSMA-Tracer sollten foka- le Anreicherungen im Skelett mit Vorsicht interpretiert werden? A 68Ga-PSMA-11 B 18F-DCFPyL C 18F-JK-PSMA-7 D 18F-PSMA-1007 E 68Ga-PSMA-617 Frage 8 Auslöschungsartefakte in der PET (reduziertes PET-Signal) kommen beim Einsatz bestimmter PET/CT-Geräte vor allem um welches Organ vor? AS p e i c h e l d r ü s e n B Leber C Lungen D Milz E Harnblase ▶ Weitere Fragen auf der folgenden Seite... 18 Afshar-Oromieh A et al. DGN-Handlungsempfehlung (S1-Leitlinie) –… Nuklearmedizin 2023; 62: 5 –19 | © 2023. Thieme. All rights reserved. Continuing Medical Education Dieses Dokument wurde zum persönlichen Gebrauch heruntergeladen. Vervielfältigung nur mit Zustimmung des Verlages. Punkte sammeln auf CME .thieme.de Frage 9 Zur Detektion von Lebermetastasen wird bei welchem der aufge- führten Tracer aufgrund eines hohen Lebersignals eine kontrast- mittelverstärkte CT in Ergänzung zur PET-Akquisition empfohlen? A 68Ga-PSMA-11 B 18F-DCFPyL C 18F-JK-PSMA",
+          "score": 0.4639684557914734
+        },
+        {
+          "id": 6,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 6,
+          "text": "dizinVerlagGmbH,einTeilvonSpringerNature2019 A.Afshar-Oromieh·I.Alberts·C.Sachpekidis·A.Rominger Prostataspeziﬁsche Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms Zusammenfassung Hintergrund.DiePositronenemissionsto- mographie/Computertomographie(PET/CT) mitLigandendesProstataspeziﬁschenMem- branantigens(PSMA)unddiePSMA-Therapie habensichseitihrerklinischenEinführungin 2011weltweitrasantausgebreitet. Fragestellung.AktuelleErkenntnissesowohl überdie PSMA-PET/CTalsauchüberdie PSMA-Therapiewerdenzusammengefasst. MaterialundMethode. Erkenntnisseaus derLiteraturundErfahrungenderAutoren wurdenzusammengetragen. Ergebnisse.EszeigtsicheinesehrhoheSensi- tivitätundSpeziﬁtätderPSMA-PET/CTsowohl beimRezidivprostatakarzinom(-PC)alsauch beimPrimärstagingdesPCmitmittleremund hohemRisikoproﬁl.DieErgebnissederPSMA- TherapiealsDrittlinientherapiebeiPatienten mitmetastasiertem,kastrationsresistentem PCsindvielversprechend. Schlussfolgerungen.DiePSMA-PET/CThat sichmittlerweilealsGoldstandard inder DiagnostikdesRezidiv-PCetabliertundist dabei,dieselbeRolleauchbeimPrimärstaging desPCmitmittleremundhohemRisikoproﬁl zuübernehmen.DiePSMA-Therapiewird ineinerstetswachsendenZahlanZentren alsDrittlinientherapiebeimetastasiertem, kastrationsresistentemPC routinemäßig durchgeführt. Schlüsselwörter PET/CT·Radiotherapie·Radioliganden· Rezidiv·Tumormarker Prostate-speciﬁc membrane antigen (PSMA)-based diagnostics and treatment of prostate cancer Abstract Background.Sincetheirclinicalintroduction in2011,PSMA-PET/CT(PSMA:prostate- speciﬁcmembraneantigen)aswellasPSMA therapyofprostatecancer(PC)havespread rapidlyworldwide. Objectives. To summarizethe current knowledgeaboutbothPSMA-PET/CTand PSMAtherapyofPC. Methods.Theknowledgederivedfromthe literatureaswellastheauthors’experie",
+          "score": 0.46112364530563354
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "category": "psma_therapy",
+      "question": "Wie lange muss ich für eine PSMA-Therapie im Krankenhaus bleiben?",
+      "baseline_response": "Die Aufenthaltsdauer für eine PSMA-Therapie im Krankenhaus beträgt in der Regel 1 bis 3 Tage.\n",
+      "pipeline_response": {
+        "active_frame": "greeting",
+        "filled_slots": {},
+        "agent_response": "Ich kann Ihnen leider keine genaue Antwort geben, da dies von verschiedenen Faktoren abhängt, wie z.B. dem individuellen Behandlungsplan und Ihrem allgemeinen Gesundheitszustand. Die Aufenthaltsdauer kann variieren. Ich empfehle Ihnen, sich direkt bei Ihrem behandelnden Arzt oder der Klinik zu erkundigen, um eine präzise Auskunft zu erhalten.",
+        "next_frame": "follow_up"
+      },
+      "graph_fact": {
+        "entities": [
+          "Krankenhaus"
+        ],
+        "verified": false,
+        "answer": "I could not verify that relationship directly from the current knowledge graph. I can only provide high-level, document-grounded information.",
+        "evidence": []
+      },
+      "rag_results": [
+        {
+          "id": 834,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 17,
+          "text": "spekten Befunde anzugeben. Die Anreicherungen sollten als schwach, mittelgradig oder intensiv im Vergleich zum Hintergrundsignal (z. B. Muskulatur, Leber) eingeschätzt und im Befundbericht beschrieben werden. PC-Herde erscheinen als fokale Mehrspeicherung. Dabei ist die Speicherintensität abhängig vom PSMA-Expressi- onsgrad und daher selbst innerhalb von klinisch gleich- wertigen Gruppen (PSA-Höhe, GSC, Größe der Tumorher- de usw.) zum Teil stark variabel. Ein SUV-Schwellen- wert existiert nicht. Nach aktuellem Kenntnisstand besitzt 68Ga-PSMA-11 eine sehr gute Spezifität und einen hohen positiven Vorhersagewert von 90 –100 %, so dass jeder CT-morphologisch nachweisbare Herd mit einer Speiche- rung, die über das umgebende Hintergrundsignal hinaus- geht, bei Patienten mit gesichertem PC, besonders in der Rezidivsituation, mit hoher Wahrscheinlichkeit als PC- Herd eingestuft werden sollte [4, 9]. Bei Verwendung von 18F-PSMA-1007 sollten ossäre, fokale Mehrspeiche- rungen ohne CT-Korrelat mit Vorsicht und unter sorgfäl- tiger Berücksichtigung klinischer Informationen inter- pretiert werden, um keine falsch-positiven ossären Metastasen in die Bildgebung hineinzuinterpretieren. Wie die Spezifität anderer, neuerer PSMA-Liganden ist, ist aktuell noch unklar. C. Physiologische Verteilung von PSMA-Liganden Die Biodistribution der meisten PSMA-Liganden zeigt nach aktuellem Kenntnisstand (spezifische und unspezifi- sche) Speicherungen in den Tränen- und den Speichel- drüsen, in Leber, Milz, Nieren, Teilen des Darmtraktes (v. a. proximaler Dünndarm, partiell auch im Colon) sowie in Ganglien des vegetativen Nervensystems ( ▶ Abb. 1, 2) [30, 43, 44]. Der ungebundene Anteil der meisten PSMA- Liganden wird über die Nieren und die ableitenden Harn- wege ausgeschieden. Aus diesem Grund mü",
+          "score": 0.5022364854812622
+        },
+        {
+          "id": 3,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 3,
+          "text": "nenTumorherdinder 68Ga-PSMA-11- PET/CT zu entdecken, bei ca. 40–50% und steigt kontinuierlich bis zu einem PSAvon3ng/mlauf>90%an.Sieerreicht jedochwieinder .Abb.2ersichtlichnie 100%, da schätzungsweise 5–10% aller PC entweder nicht ausreichend oder überhaupt kein PSMA exprimieren. Aus präklinischen Arbeiten ist be- kannt, dass PC mit höherem GSC auch intensiver PSMA exprimieren [16, 17]. Zwar konnte in der 68Ga-PSMA-11- PET/CT eine Tendenz der Tumorde- tektion zugunsten höherer GSC, jedoch kein signiﬁkanter Unterschied zwischen höherenundniedrigerenGSCfestgestellt werden.Dennochkannmanzusammen- fassen, dass höhere GSC die Detektion von Tumorherden in der68Ga-PSMA- 11-PET/CT begünstigen. Dies ist bei al- len anderen molekularen Bildgebungen nicht zu erwarten. »HöhereGSCbegünstigendie DetektionvonTumorherdenin der68Ga-PSMA-11-PET/CT Die Speziﬁtät der68Ga-PSMA-11-PET/ CTistalssehrhoch(>95%)einzustufen, was in mehreren Studien bestätigt wur- de [15, 18–20]. Daher geht die Tendenz dahin, jede umschriebene Mehrspeiche- rungineinemmorphologischsichtbaren Korrelat bei Patienten mit einem bio- chemischen PC-Rezidiv praktisch bis zumBeweisdesGegenteilsalseinenPC- Herd zu werten. Dennoch muss man an dieser Stelle betonen, dass PSMA entgegen seines Namens nicht spezi- ﬁsch für Prostata ist. Bereits seit den 1980er-Jahren ist bekannt, dass PSMA auch in der Neovaskulatur einer Viel- zahl solider Tumoren exprimiert wird. Entsprechend sind in den letzten Jahren multipleFallbeschreibungenvonPSMA- positiven Entitäten nicht-prostatischen Ursprungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich",
+          "score": 0.4623052477836609
+        },
+        {
+          "id": 860,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 43,
+          "text": "sten Frage 5 Welche ist aktuell die häufigste Indikation für die PSMA-PET/CT? A Primärtumor-Diagnose B Primärtumor-Staging C Biochemisches Rezidiv D Bestrahlungsplanung E Indikationsstellung einer PSMA-Radioligandentherapie Frage 6 Welche Aussage zur Pharmakokinetik von PSMA-Liganden ist richtig? A Die aktuell für den klinischen Einsatz verfügbaren PSMA-Ligan- den zeigen praktisch dieselbe Pharmakokinetik B Der Akquisitionszeitpunkt spielt bei den PSMA-Tracern keine bedeutende Rolle C Die meisten Herde des Prostatakarzinoms zeigen in späten Aufnahmen einen höheren Uptake und Kontrast D Die meisten Herde des Prostatakarzinoms zeigen in späten Aufnahmen einen niedrigeren Kontrast E Der Tumorkontrast ist bei der PSMA-PET/CT primär von der applizierten Aktivität abhängig Frage 7 Vor allem Bei welchem die aufgelisteten PSMA-Tracer sollten foka- le Anreicherungen im Skelett mit Vorsicht interpretiert werden? A 68Ga-PSMA-11 B 18F-DCFPyL C 18F-JK-PSMA-7 D 18F-PSMA-1007 E 68Ga-PSMA-617 Frage 8 Auslöschungsartefakte in der PET (reduziertes PET-Signal) kommen beim Einsatz bestimmter PET/CT-Geräte vor allem um welches Organ vor? AS p e i c h e l d r ü s e n B Leber C Lungen D Milz E Harnblase ▶ Weitere Fragen auf der folgenden Seite... 18 Afshar-Oromieh A et al. DGN-Handlungsempfehlung (S1-Leitlinie) –… Nuklearmedizin 2023; 62: 5 –19 | © 2023. Thieme. All rights reserved. Continuing Medical Education Dieses Dokument wurde zum persönlichen Gebrauch heruntergeladen. Vervielfältigung nur mit Zustimmung des Verlages. Punkte sammeln auf CME .thieme.de Frage 9 Zur Detektion von Lebermetastasen wird bei welchem der aufge- führten Tracer aufgrund eines hohen Lebersignals eine kontrast- mittelverstärkte CT in Ergänzung zur PET-Akquisition empfohlen? A 68Ga-PSMA-11 B 18F-DCFPyL C 18F-JK-PSMA",
+          "score": 0.46165740489959717
+        },
+        {
+          "id": 4,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 4,
+          "text": "ungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich vor Augen führen, dass die Zahl der entdeckten PSMA-exprimierenden En- titäten nicht-prostatischen Ursprungs nur einen minimalen Bruchteil der PC- Herde darstellt, die täglich weltweit in der PSMA-PET/CT entdeckt werden. Aus präklinischen Publikationen ist zudem bekannt, dass eine kurzzeitige Androgenentzugstherapie (ADT) die P S M A - E x p r e s s i o ni nT u m o r m o d e l l e n steigern kann [23]. Dies konnte bisher jedochinderKliniknichtzweifelsfreire- produziertwerden.AufderanderenSeite wurde jedoch erstmals in 2018 gezeigt, dasseineLangzeit-ADTeinensigniﬁkant negativen Einﬂuss auf die Sichtbarkeit undDetektionvonkastrationssensitiven PC-Herden in der PSMA-PET/CT hat [24].UnterderLangzeit-ADTwarennur noch wenige Tumorherde auch weiter- hin sichtbar. Konsequenterweise ist die Empfehlung mittlerweile dahingehend, dass bei der Rezidivsuche die PSMA- PET/CTentwedernochvorBeginnoder aber spätestens 2 Wochen nach Beginn einer ADT durchgeführt werden sollte. Es bleibt weiterhin unbekannt, wie langeeinebereitslaufendeADTpausiert werdensollte,umdiemaximaleSichtbar- keitderPC-HerdeinderPSMA-PET/CT zu garantieren. 1430 DerUrologe12·2019 Primärtumorstaging bei Intermediate-undHigh-risk-PC Ein weiteres sinnvolles Einsatzgebiet der PSMA-PET/CT ist das Primärstaging bei Intermediate- und High-risk-PC. In mehreren Studien konnte gezeigt wer- den, dass die PSMA-PET/CT imstande ist, extraprostatische PC-Manifestatio- nen mit noch nie zuvor vorhandener Sensitivität und Speziﬁtät darzustellen [25–30]. Besonders wichtig ist dies für die ",
+          "score": 0.4314248561859131
+        },
+        {
+          "id": 839,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 22,
+          "text": " des PC gehalten werden können [43, 44]. In diesem Zusammenhang wird empfohlen, neben der typischen Lokalisation entlang der Nervenstränge auch auf die CT-morphologisch sichtbaren, länglichen Ausläufer solcher Ganglien zu achten, um sie von Lymph- knoten unterscheiden zu können. Da die PSMA-Liganden-PET/C T eine relativ junge Unter- suchungsmethode ist, kann davon ausgegangen werden, dass in Zukunft weitere Publikationen zu PSMA-exprimie- renden Entitäten erscheinen werden. IX. Strahlenexposition durch die PSMA-Liganden PET/CT A. Strahlenexposition der Patienten Die dosimetrischen Daten zur Strahlenexposition bei An- wendung von PSMA-Liganden haben für 68Ga-PSMA-11 eine mittlere effektive Dosis von ca. 2 × 10 –2 mSv/MBq er- geben [37, 38, 40, 41]. Für 18F-PSMA-1007 ergaben sich ähnliche Werte [55]. Die Applikation von 150 MBq bei ei- nem Patienten mit 75 kg Körpergewicht führt zu einer ef- fektiven Dosis von ca. 3 mSv für die PSMA-PET. Die am stärksten exponierten Organe sind Niere (ca. 2,2 × 10 –1 mSv/MBq) und Harnblasenwand (ca. 6,1 × 10 –2 mSv/ MBq). Die Strahlenexposition der CT kann durch die bei jeder CT-Untersuchung bereitgestellten Werte des com- puted tomography dose index (CTDIvol) und des Dosis- längenproduktes (DLP) anhand spezieller Konversionsfak- toren als effektive Dosis in mSv berechnet werden, um die Gesamtexposition der PET/CT zu ermitteln [56]. In der Regel beläuft sich die Strahlenexposition einer Low- Dose Ganzkörper-CT auf 2 –3 mSv und die einer diagnos- tischen Ganzkörper-CT auf 10 –20 mSv [57]. Die vom Bundesamt für Strahlenschutz vorgegeben Dosisrefe- renzwerte bei CT-Untersuc hungen sollten nicht über- schritten werden [44]. B. Strahlenexposition des Personals Die Grundsätze des Strahlenschutzes und die aktuelle Strahlenschutzgesetzgebung sind",
+          "score": 0.42821240425109863
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "category": "psma_therapy",
+      "question": "Darf ich während meines Aufenthaltes im Rahmen einer PSMA-Therapie Besuch erhalten?",
+      "baseline_response": "Ja, Besuche sind während der PSMA-Therapie in der Regel erlaubt. Es gelten jedoch die allgemeinen Hygienevorschriften und möglicherweise spezifische Regeln des jeweiligen Therapiezentrums. Bitte informieren Sie sich bei Ihrem Behandlungsteam über detaillierte Bestimmungen.\n",
+      "pipeline_response": {
+        "active_frame": "greeting",
+        "filled_slots": {},
+        "agent_response": "Ich kann Ihnen leider keine definitive Antwort darauf geben, ob Sie während Ihrer PSMA-Therapie Besuch erhalten dürfen. Die Regeln für Besuche können je nach Klinik und den aktuellen Infektionsschutzbestimmungen variieren.\n\nUm dies herauszufinden, empfehle ich Ihnen:\n\n1.  **Kontaktieren Sie die Klinik/das Behandlungszentrum:** Dort erhalten Sie die aktuellsten Informationen zu Besuchergeldern während Ihrer spezifischen Therapie.\n2.  **Fragen Sie Ihren behandelnden Arzt:** Er kann Ihnen Auskunft über die geltenden Richtlinien geben und möglicherweise individuelle Vereinbarungen treffen.\n\nIch hoffe, diese Hinweise helfen Ihnen weiter.",
+        "next_frame": "unknown"
+      },
+      "graph_fact": {
+        "entities": [
+          "likely a hospital or clinic",
+          "PSMA-Therapie",
+          "Besuch<unused95>Aufenthalt",
+          "PSMA-Therapie",
+          "Besuch"
+        ],
+        "verified": false,
+        "answer": "I could not verify that relationship directly from the current knowledge graph. I can only provide high-level, document-grounded information.",
+        "evidence": []
+      },
+      "rag_results": [
+        {
+          "id": 834,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 17,
+          "text": "spekten Befunde anzugeben. Die Anreicherungen sollten als schwach, mittelgradig oder intensiv im Vergleich zum Hintergrundsignal (z. B. Muskulatur, Leber) eingeschätzt und im Befundbericht beschrieben werden. PC-Herde erscheinen als fokale Mehrspeicherung. Dabei ist die Speicherintensität abhängig vom PSMA-Expressi- onsgrad und daher selbst innerhalb von klinisch gleich- wertigen Gruppen (PSA-Höhe, GSC, Größe der Tumorher- de usw.) zum Teil stark variabel. Ein SUV-Schwellen- wert existiert nicht. Nach aktuellem Kenntnisstand besitzt 68Ga-PSMA-11 eine sehr gute Spezifität und einen hohen positiven Vorhersagewert von 90 –100 %, so dass jeder CT-morphologisch nachweisbare Herd mit einer Speiche- rung, die über das umgebende Hintergrundsignal hinaus- geht, bei Patienten mit gesichertem PC, besonders in der Rezidivsituation, mit hoher Wahrscheinlichkeit als PC- Herd eingestuft werden sollte [4, 9]. Bei Verwendung von 18F-PSMA-1007 sollten ossäre, fokale Mehrspeiche- rungen ohne CT-Korrelat mit Vorsicht und unter sorgfäl- tiger Berücksichtigung klinischer Informationen inter- pretiert werden, um keine falsch-positiven ossären Metastasen in die Bildgebung hineinzuinterpretieren. Wie die Spezifität anderer, neuerer PSMA-Liganden ist, ist aktuell noch unklar. C. Physiologische Verteilung von PSMA-Liganden Die Biodistribution der meisten PSMA-Liganden zeigt nach aktuellem Kenntnisstand (spezifische und unspezifi- sche) Speicherungen in den Tränen- und den Speichel- drüsen, in Leber, Milz, Nieren, Teilen des Darmtraktes (v. a. proximaler Dünndarm, partiell auch im Colon) sowie in Ganglien des vegetativen Nervensystems ( ▶ Abb. 1, 2) [30, 43, 44]. Der ungebundene Anteil der meisten PSMA- Liganden wird über die Nieren und die ableitenden Harn- wege ausgeschieden. Aus diesem Grund mü",
+          "score": 0.4981984496116638
+        },
+        {
+          "id": 6,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 6,
+          "text": "dizinVerlagGmbH,einTeilvonSpringerNature2019 A.Afshar-Oromieh·I.Alberts·C.Sachpekidis·A.Rominger Prostataspeziﬁsche Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms Zusammenfassung Hintergrund.DiePositronenemissionsto- mographie/Computertomographie(PET/CT) mitLigandendesProstataspeziﬁschenMem- branantigens(PSMA)unddiePSMA-Therapie habensichseitihrerklinischenEinführungin 2011weltweitrasantausgebreitet. Fragestellung.AktuelleErkenntnissesowohl überdie PSMA-PET/CTalsauchüberdie PSMA-Therapiewerdenzusammengefasst. MaterialundMethode. Erkenntnisseaus derLiteraturundErfahrungenderAutoren wurdenzusammengetragen. Ergebnisse.EszeigtsicheinesehrhoheSensi- tivitätundSpeziﬁtätderPSMA-PET/CTsowohl beimRezidivprostatakarzinom(-PC)alsauch beimPrimärstagingdesPCmitmittleremund hohemRisikoproﬁl.DieErgebnissederPSMA- TherapiealsDrittlinientherapiebeiPatienten mitmetastasiertem,kastrationsresistentem PCsindvielversprechend. Schlussfolgerungen.DiePSMA-PET/CThat sichmittlerweilealsGoldstandard inder DiagnostikdesRezidiv-PCetabliertundist dabei,dieselbeRolleauchbeimPrimärstaging desPCmitmittleremundhohemRisikoproﬁl zuübernehmen.DiePSMA-Therapiewird ineinerstetswachsendenZahlanZentren alsDrittlinientherapiebeimetastasiertem, kastrationsresistentemPC routinemäßig durchgeführt. Schlüsselwörter PET/CT·Radiotherapie·Radioliganden· Rezidiv·Tumormarker Prostate-speciﬁc membrane antigen (PSMA)-based diagnostics and treatment of prostate cancer Abstract Background.Sincetheirclinicalintroduction in2011,PSMA-PET/CT(PSMA:prostate- speciﬁcmembraneantigen)aswellasPSMA therapyofprostatecancer(PC)havespread rapidlyworldwide. Objectives. To summarizethe current knowledgeaboutbothPSMA-PET/CTand PSMAtherapyofPC. Methods.Theknowledgederivedfromthe literatureaswellastheauthors’experie",
+          "score": 0.4716877043247223
+        },
+        {
+          "id": 4,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 4,
+          "text": "ungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich vor Augen führen, dass die Zahl der entdeckten PSMA-exprimierenden En- titäten nicht-prostatischen Ursprungs nur einen minimalen Bruchteil der PC- Herde darstellt, die täglich weltweit in der PSMA-PET/CT entdeckt werden. Aus präklinischen Publikationen ist zudem bekannt, dass eine kurzzeitige Androgenentzugstherapie (ADT) die P S M A - E x p r e s s i o ni nT u m o r m o d e l l e n steigern kann [23]. Dies konnte bisher jedochinderKliniknichtzweifelsfreire- produziertwerden.AufderanderenSeite wurde jedoch erstmals in 2018 gezeigt, dasseineLangzeit-ADTeinensigniﬁkant negativen Einﬂuss auf die Sichtbarkeit undDetektionvonkastrationssensitiven PC-Herden in der PSMA-PET/CT hat [24].UnterderLangzeit-ADTwarennur noch wenige Tumorherde auch weiter- hin sichtbar. Konsequenterweise ist die Empfehlung mittlerweile dahingehend, dass bei der Rezidivsuche die PSMA- PET/CTentwedernochvorBeginnoder aber spätestens 2 Wochen nach Beginn einer ADT durchgeführt werden sollte. Es bleibt weiterhin unbekannt, wie langeeinebereitslaufendeADTpausiert werdensollte,umdiemaximaleSichtbar- keitderPC-HerdeinderPSMA-PET/CT zu garantieren. 1430 DerUrologe12·2019 Primärtumorstaging bei Intermediate-undHigh-risk-PC Ein weiteres sinnvolles Einsatzgebiet der PSMA-PET/CT ist das Primärstaging bei Intermediate- und High-risk-PC. In mehreren Studien konnte gezeigt wer- den, dass die PSMA-PET/CT imstande ist, extraprostatische PC-Manifestatio- nen mit noch nie zuvor vorhandener Sensitivität und Speziﬁtät darzustellen [25–30]. Besonders wichtig ist dies für die ",
+          "score": 0.46818071603775024
+        },
+        {
+          "id": 3,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 3,
+          "text": "nenTumorherdinder 68Ga-PSMA-11- PET/CT zu entdecken, bei ca. 40–50% und steigt kontinuierlich bis zu einem PSAvon3ng/mlauf>90%an.Sieerreicht jedochwieinder .Abb.2ersichtlichnie 100%, da schätzungsweise 5–10% aller PC entweder nicht ausreichend oder überhaupt kein PSMA exprimieren. Aus präklinischen Arbeiten ist be- kannt, dass PC mit höherem GSC auch intensiver PSMA exprimieren [16, 17]. Zwar konnte in der 68Ga-PSMA-11- PET/CT eine Tendenz der Tumorde- tektion zugunsten höherer GSC, jedoch kein signiﬁkanter Unterschied zwischen höherenundniedrigerenGSCfestgestellt werden.Dennochkannmanzusammen- fassen, dass höhere GSC die Detektion von Tumorherden in der68Ga-PSMA- 11-PET/CT begünstigen. Dies ist bei al- len anderen molekularen Bildgebungen nicht zu erwarten. »HöhereGSCbegünstigendie DetektionvonTumorherdenin der68Ga-PSMA-11-PET/CT Die Speziﬁtät der68Ga-PSMA-11-PET/ CTistalssehrhoch(>95%)einzustufen, was in mehreren Studien bestätigt wur- de [15, 18–20]. Daher geht die Tendenz dahin, jede umschriebene Mehrspeiche- rungineinemmorphologischsichtbaren Korrelat bei Patienten mit einem bio- chemischen PC-Rezidiv praktisch bis zumBeweisdesGegenteilsalseinenPC- Herd zu werten. Dennoch muss man an dieser Stelle betonen, dass PSMA entgegen seines Namens nicht spezi- ﬁsch für Prostata ist. Bereits seit den 1980er-Jahren ist bekannt, dass PSMA auch in der Neovaskulatur einer Viel- zahl solider Tumoren exprimiert wird. Entsprechend sind in den letzten Jahren multipleFallbeschreibungenvonPSMA- positiven Entitäten nicht-prostatischen Ursprungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich",
+          "score": 0.4589692950248718
+        },
+        {
+          "id": 8,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 8,
+          "text": "lehnt werden. DieErfahrungen mitPSMA-Therapi- en zeigen vielversprechende Ergebnisse, auch wenn grundsätzlich eine Heilung nicht möglich ist: bei >60% der Pati- enten sinkt der PSA-Wert um mindes- tens50%.EskonntenHerddosenvonbis zu 160Gy für eine verabreichte Aktivi- DerUrologe12·2019 1431 Leitthema Abb. 2 8 Wahrscheinlichkeiteinerpathologischen 68Ga-PSMA-11-PET/CTinAbhängigkeitvom PSA-Wert(prostataspeziﬁschenAntigen);AnalyseeinesKollektivsmit971Patienten.(Aus[ 13]) tät von 7,4GBq177Lu-PSMA-617 nach- gewiesen werden [31]. Aktuell werden i.Allg. 4–6 Zyklen zu je 6–7,4GBq ver- abreichter Aktivität in Abständen von 6–8Wochenempfohlen.RundeinDrittel der Patienten weisen ein sehr gutes An- sprechenaufdiePSMA-Therapieauf,bei einem Drittel bleibt der Status zunächst stabil und bei einem Drittel ist kein An- sprechenaufdieTherapiefeststellbar[ 32, 33]. DiezuerwartendenNebenwirkungen nehmenvonZykluszuZykluszuundbe- treﬀenprimärdieTränen-undSpeichel- drüsen,diephysiologischstarkPSMAex- primieren. Die Nebenwirkungen auf das blutbildende Knochenmark zeigen sich moderat. Der Nadir von Blutzellen wie Thrombozyten, Erythrozyten oder Leu- kozyten ist ca. 6 Wochen nach jedem Zyklus zu erwarten, erholt sich danach jedoch bis zu einem gewissenGrad wie- der. »Voraussetzung einer Endoradiotherapie ist eine ausreichend hohe PSMA- ExpressionderTumorherde Der aktuellenDatenlage zufolge können PSA-progressionsfreie Überlebensinter- valle von durchschnittlich 4–5 Monaten nach Abschluss der PSMA-Tharepie er- wartet werden, wobei darauf hinzuwei- senist,dassessichbisherumEnd-stage- Patienten handelt und die Erfolge daher umso höher zu bewerten sind [34]. Eine besondere Herausforderung der Therapie metastierender PC sind Patienten mit diﬀusen Knochenmar- kinﬁltrationen. Bei diesen Patienten kann d",
+          "score": 0.45657801628112793
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "category": "psma_therapy",
+      "question": "Mein PSA-Wert steigt trotz der PSMA-Therapie weiter an. Ist das ein Problem?",
+      "baseline_response": "Ja, ein steigender PSA-Wert während einer PSMA-Therapie ist besorgniserregend und deutet darauf hin, dass die Therapie möglicherweise nicht ausreichend wirkt. Dies sollte mit Ihrem behandelnden Arzt besprochen werden.\n",
+      "pipeline_response": {
+        "active_frame": "greeting",
+        "filled_slots": {},
+        "agent_response": "Ich verstehe Ihre Frage. Ein Anstieg des PSA-Werts während einer PSMA-Therapie kann verschiedene Gründe haben und ist oft ein komplexes Thema.\n\nUm Ihnen eine fundiertere Antwort geben zu können, benötige ich möglicherweise weitere Informationen. Zum Beispiel:\n\n*   **Wie hoch war Ihr PSA-Wert vor der Therapie?**\n*   **Wie hoch ist Ihr aktueller PSA-Wert?**\n*   **Wie schnell steigt der Wert an?** (z.B. pro Woche/Monat)\n*   **Welche Art von PSMA-Therapie erhalten Sie genau?** (z.B. Lutetium-177 PSMA, Actinium-225 PSMA)\n*   **Haben Sie andere Behandlungen parallel zur PSMA-Therapie?**\n*   **Wie fühlen Sie sich allgemein?** Haben Sie Symptome?\n\nEin PSA-Anstieg während der Therapie bedeutet nicht zwangsläufig, dass die Therapie versagt hat. Es kann auch bedeuten, dass die Therapie kurzzeitig eine starke Reaktion hervorruft (Tumorabbau), oder dass sich Tumorzellen entwickeln, die weniger gut auf die Behandlung ansprechen. Manchmal steigt der PSA-Wert auch aufgrund von Entzündungen oder anderen Faktoren.\n\nBitte beachten Sie, dass ich Ihnen als KI keine medizinische Beratung geben kann. Die Interpretation Ihres PSA-Werts und die Bedeutung für Ihre Therapie sollte immer mit Ihrem behandelnden Arzt besprochen werden.",
+        "next_frame": "query"
+      },
+      "graph_fact": {
+        "entities": [
+          "also a core entity.\n    *   \"Problem\" is a general concept",
+          "less specific than the others. While relevant to the user's question",
+          "PSMA-Therapie\n\n5.  **Final check:** Does this meet the user's request? Yes",
+          "PSMA-Therapie"
+        ],
+        "verified": false,
+        "answer": "I could not verify that relationship directly from the current knowledge graph. I can only provide high-level, document-grounded information.",
+        "evidence": []
+      },
+      "rag_results": [
+        {
+          "id": 3,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 3,
+          "text": "nenTumorherdinder 68Ga-PSMA-11- PET/CT zu entdecken, bei ca. 40–50% und steigt kontinuierlich bis zu einem PSAvon3ng/mlauf>90%an.Sieerreicht jedochwieinder .Abb.2ersichtlichnie 100%, da schätzungsweise 5–10% aller PC entweder nicht ausreichend oder überhaupt kein PSMA exprimieren. Aus präklinischen Arbeiten ist be- kannt, dass PC mit höherem GSC auch intensiver PSMA exprimieren [16, 17]. Zwar konnte in der 68Ga-PSMA-11- PET/CT eine Tendenz der Tumorde- tektion zugunsten höherer GSC, jedoch kein signiﬁkanter Unterschied zwischen höherenundniedrigerenGSCfestgestellt werden.Dennochkannmanzusammen- fassen, dass höhere GSC die Detektion von Tumorherden in der68Ga-PSMA- 11-PET/CT begünstigen. Dies ist bei al- len anderen molekularen Bildgebungen nicht zu erwarten. »HöhereGSCbegünstigendie DetektionvonTumorherdenin der68Ga-PSMA-11-PET/CT Die Speziﬁtät der68Ga-PSMA-11-PET/ CTistalssehrhoch(>95%)einzustufen, was in mehreren Studien bestätigt wur- de [15, 18–20]. Daher geht die Tendenz dahin, jede umschriebene Mehrspeiche- rungineinemmorphologischsichtbaren Korrelat bei Patienten mit einem bio- chemischen PC-Rezidiv praktisch bis zumBeweisdesGegenteilsalseinenPC- Herd zu werten. Dennoch muss man an dieser Stelle betonen, dass PSMA entgegen seines Namens nicht spezi- ﬁsch für Prostata ist. Bereits seit den 1980er-Jahren ist bekannt, dass PSMA auch in der Neovaskulatur einer Viel- zahl solider Tumoren exprimiert wird. Entsprechend sind in den letzten Jahren multipleFallbeschreibungenvonPSMA- positiven Entitäten nicht-prostatischen Ursprungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich",
+          "score": 0.5000066757202148
+        },
+        {
+          "id": 834,
+          "source": "context/PSMA/PSMA-Liganden-PETCT in der Diagnostik des Prostatakarzinoms.pdf",
+          "chunk_index": 17,
+          "text": "spekten Befunde anzugeben. Die Anreicherungen sollten als schwach, mittelgradig oder intensiv im Vergleich zum Hintergrundsignal (z. B. Muskulatur, Leber) eingeschätzt und im Befundbericht beschrieben werden. PC-Herde erscheinen als fokale Mehrspeicherung. Dabei ist die Speicherintensität abhängig vom PSMA-Expressi- onsgrad und daher selbst innerhalb von klinisch gleich- wertigen Gruppen (PSA-Höhe, GSC, Größe der Tumorher- de usw.) zum Teil stark variabel. Ein SUV-Schwellen- wert existiert nicht. Nach aktuellem Kenntnisstand besitzt 68Ga-PSMA-11 eine sehr gute Spezifität und einen hohen positiven Vorhersagewert von 90 –100 %, so dass jeder CT-morphologisch nachweisbare Herd mit einer Speiche- rung, die über das umgebende Hintergrundsignal hinaus- geht, bei Patienten mit gesichertem PC, besonders in der Rezidivsituation, mit hoher Wahrscheinlichkeit als PC- Herd eingestuft werden sollte [4, 9]. Bei Verwendung von 18F-PSMA-1007 sollten ossäre, fokale Mehrspeiche- rungen ohne CT-Korrelat mit Vorsicht und unter sorgfäl- tiger Berücksichtigung klinischer Informationen inter- pretiert werden, um keine falsch-positiven ossären Metastasen in die Bildgebung hineinzuinterpretieren. Wie die Spezifität anderer, neuerer PSMA-Liganden ist, ist aktuell noch unklar. C. Physiologische Verteilung von PSMA-Liganden Die Biodistribution der meisten PSMA-Liganden zeigt nach aktuellem Kenntnisstand (spezifische und unspezifi- sche) Speicherungen in den Tränen- und den Speichel- drüsen, in Leber, Milz, Nieren, Teilen des Darmtraktes (v. a. proximaler Dünndarm, partiell auch im Colon) sowie in Ganglien des vegetativen Nervensystems ( ▶ Abb. 1, 2) [30, 43, 44]. Der ungebundene Anteil der meisten PSMA- Liganden wird über die Nieren und die ableitenden Harn- wege ausgeschieden. Aus diesem Grund mü",
+          "score": 0.49307629466056824
+        },
+        {
+          "id": 4,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 4,
+          "text": "ungs veröﬀentlicht worden. Es existieren bereits auch Übersichtsarbei- ten, die zusammenfassen, bei welchen benignen und malignen Entitäten man bisher eine PSMA-Expression in der PSMA-Liganden-PET/CT festgestellt hat [21, 22]. Dennoch sollte man sich vor Augen führen, dass die Zahl der entdeckten PSMA-exprimierenden En- titäten nicht-prostatischen Ursprungs nur einen minimalen Bruchteil der PC- Herde darstellt, die täglich weltweit in der PSMA-PET/CT entdeckt werden. Aus präklinischen Publikationen ist zudem bekannt, dass eine kurzzeitige Androgenentzugstherapie (ADT) die P S M A - E x p r e s s i o ni nT u m o r m o d e l l e n steigern kann [23]. Dies konnte bisher jedochinderKliniknichtzweifelsfreire- produziertwerden.AufderanderenSeite wurde jedoch erstmals in 2018 gezeigt, dasseineLangzeit-ADTeinensigniﬁkant negativen Einﬂuss auf die Sichtbarkeit undDetektionvonkastrationssensitiven PC-Herden in der PSMA-PET/CT hat [24].UnterderLangzeit-ADTwarennur noch wenige Tumorherde auch weiter- hin sichtbar. Konsequenterweise ist die Empfehlung mittlerweile dahingehend, dass bei der Rezidivsuche die PSMA- PET/CTentwedernochvorBeginnoder aber spätestens 2 Wochen nach Beginn einer ADT durchgeführt werden sollte. Es bleibt weiterhin unbekannt, wie langeeinebereitslaufendeADTpausiert werdensollte,umdiemaximaleSichtbar- keitderPC-HerdeinderPSMA-PET/CT zu garantieren. 1430 DerUrologe12·2019 Primärtumorstaging bei Intermediate-undHigh-risk-PC Ein weiteres sinnvolles Einsatzgebiet der PSMA-PET/CT ist das Primärstaging bei Intermediate- und High-risk-PC. In mehreren Studien konnte gezeigt wer- den, dass die PSMA-PET/CT imstande ist, extraprostatische PC-Manifestatio- nen mit noch nie zuvor vorhandener Sensitivität und Speziﬁtät darzustellen [25–30]. Besonders wichtig ist dies für die ",
+          "score": 0.4845982789993286
+        },
+        {
+          "id": 6,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 6,
+          "text": "dizinVerlagGmbH,einTeilvonSpringerNature2019 A.Afshar-Oromieh·I.Alberts·C.Sachpekidis·A.Rominger Prostataspeziﬁsche Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms Zusammenfassung Hintergrund.DiePositronenemissionsto- mographie/Computertomographie(PET/CT) mitLigandendesProstataspeziﬁschenMem- branantigens(PSMA)unddiePSMA-Therapie habensichseitihrerklinischenEinführungin 2011weltweitrasantausgebreitet. Fragestellung.AktuelleErkenntnissesowohl überdie PSMA-PET/CTalsauchüberdie PSMA-Therapiewerdenzusammengefasst. MaterialundMethode. Erkenntnisseaus derLiteraturundErfahrungenderAutoren wurdenzusammengetragen. Ergebnisse.EszeigtsicheinesehrhoheSensi- tivitätundSpeziﬁtätderPSMA-PET/CTsowohl beimRezidivprostatakarzinom(-PC)alsauch beimPrimärstagingdesPCmitmittleremund hohemRisikoproﬁl.DieErgebnissederPSMA- TherapiealsDrittlinientherapiebeiPatienten mitmetastasiertem,kastrationsresistentem PCsindvielversprechend. Schlussfolgerungen.DiePSMA-PET/CThat sichmittlerweilealsGoldstandard inder DiagnostikdesRezidiv-PCetabliertundist dabei,dieselbeRolleauchbeimPrimärstaging desPCmitmittleremundhohemRisikoproﬁl zuübernehmen.DiePSMA-Therapiewird ineinerstetswachsendenZahlanZentren alsDrittlinientherapiebeimetastasiertem, kastrationsresistentemPC routinemäßig durchgeführt. Schlüsselwörter PET/CT·Radiotherapie·Radioliganden· Rezidiv·Tumormarker Prostate-speciﬁc membrane antigen (PSMA)-based diagnostics and treatment of prostate cancer Abstract Background.Sincetheirclinicalintroduction in2011,PSMA-PET/CT(PSMA:prostate- speciﬁcmembraneantigen)aswellasPSMA therapyofprostatecancer(PC)havespread rapidlyworldwide. Objectives. To summarizethe current knowledgeaboutbothPSMA-PET/CTand PSMAtherapyofPC. Methods.Theknowledgederivedfromthe literatureaswellastheauthors’experie",
+          "score": 0.4562568664550781
+        },
+        {
+          "id": 8,
+          "source": "context/PSMA/Prostataspezifische Membranantigen(PSMA)-basierte Diagnostik und Therapie des Prostatakarzinoms.pdf",
+          "chunk_index": 8,
+          "text": "lehnt werden. DieErfahrungen mitPSMA-Therapi- en zeigen vielversprechende Ergebnisse, auch wenn grundsätzlich eine Heilung nicht möglich ist: bei >60% der Pati- enten sinkt der PSA-Wert um mindes- tens50%.EskonntenHerddosenvonbis zu 160Gy für eine verabreichte Aktivi- DerUrologe12·2019 1431 Leitthema Abb. 2 8 Wahrscheinlichkeiteinerpathologischen 68Ga-PSMA-11-PET/CTinAbhängigkeitvom PSA-Wert(prostataspeziﬁschenAntigen);AnalyseeinesKollektivsmit971Patienten.(Aus[ 13]) tät von 7,4GBq177Lu-PSMA-617 nach- gewiesen werden [31]. Aktuell werden i.Allg. 4–6 Zyklen zu je 6–7,4GBq ver- abreichter Aktivität in Abständen von 6–8Wochenempfohlen.RundeinDrittel der Patienten weisen ein sehr gutes An- sprechenaufdiePSMA-Therapieauf,bei einem Drittel bleibt der Status zunächst stabil und bei einem Drittel ist kein An- sprechenaufdieTherapiefeststellbar[ 32, 33]. DiezuerwartendenNebenwirkungen nehmenvonZykluszuZykluszuundbe- treﬀenprimärdieTränen-undSpeichel- drüsen,diephysiologischstarkPSMAex- primieren. Die Nebenwirkungen auf das blutbildende Knochenmark zeigen sich moderat. Der Nadir von Blutzellen wie Thrombozyten, Erythrozyten oder Leu- kozyten ist ca. 6 Wochen nach jedem Zyklus zu erwarten, erholt sich danach jedoch bis zu einem gewissenGrad wie- der. »Voraussetzung einer Endoradiotherapie ist eine ausreichend hohe PSMA- ExpressionderTumorherde Der aktuellenDatenlage zufolge können PSA-progressionsfreie Überlebensinter- valle von durchschnittlich 4–5 Monaten nach Abschluss der PSMA-Tharepie er- wartet werden, wobei darauf hinzuwei- senist,dassessichbisherumEnd-stage- Patienten handelt und die Erfolge daher umso höher zu bewerten sind [34]. Eine besondere Herausforderung der Therapie metastierender PC sind Patienten mit diﬀusen Knochenmar- kinﬁltrationen. Bei diesen Patienten kann d",
+          "score": 0.4471123218536377
+        }
+      ]
+    }
+  ]
+}

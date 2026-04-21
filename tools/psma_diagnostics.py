@@ -13,7 +13,7 @@ sys.path.insert(0, str(repo_root))
 
 import graph_rag
 
-from run_empathy_pipeline import load_sample_questions
+from tests.run_empathy_pipeline import load_sample_questions
 
 OUT = Path("results/psma_diagnostics.json")
 VECTOR_STORE = Path("data/vector_store_psma")

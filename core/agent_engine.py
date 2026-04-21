@@ -19,7 +19,7 @@ from typing import Any, Callable, Optional
 import requests
 from pydantic import BaseModel, Field, ValidationError
 
-import graph_rag
+import core.vector_rag as vector_rag
 import ontology_rag
 from ontology_tool import verify_clinical_relationship, UMLSVerificationResult
 from rules import DISTRESS_KEYWORDS, apply_rules, sentiment_analyzer, detect_language
@@ -408,7 +408,7 @@ class AgentEngine:
         self.frame_memory: dict[str, dict[str, str]] = {}
         self.conversation_history: list[dict[str, str]] = [{"role": "system", "content": self.system_prompt}]
         self.document_roots = document_roots or [DEFAULT_DOCUMENT_ROOT]
-        self.knowledge_graph = graph_rag.get_knowledge_graph(self.document_roots)
+        self.knowledge_graph = vector_rag.get_knowledge_graph(self.document_roots)
 
     def _execute_tool(self, tool_call: ToolCall, user_message: str = "") -> ToolResult:
         """Execute a tool call and return the result."""
@@ -436,7 +436,7 @@ class AgentEngine:
                         success=False,
                         error="Missing 'query' argument"
                     )
-                result = graph_rag.get_knowledge_graph_fact(query, graph=self.knowledge_graph)
+                result = vector_rag.get_knowledge_graph_fact(query, graph=self.knowledge_graph)
                 return ToolResult(
                     tool_name=tool_call.function_name,
                     success=True,
@@ -456,7 +456,7 @@ class AgentEngine:
                         success=False,
                         error="Missing 'statement' argument"
                     )
-                verification = graph_rag.verify_llm_response(statement, entities=[], graph=self.knowledge_graph)
+                verification = vector_rag.verify_llm_response(statement, entities=[], graph=self.knowledge_graph)
                 return ToolResult(
                     tool_name=tool_call.function_name,
                     success=True,
@@ -584,7 +584,7 @@ class AgentEngine:
             "forbidden_topic": forbidden_hit,
         }
 
-    def _select_next_frame(self, analysis: dict[str, Any], patient_context: StaticPatientContextResult, graph_fact: graph_rag.KnowledgeGraphFactResult) -> str:
+    def _select_next_frame(self, analysis: dict[str, Any], patient_context: StaticPatientContextResult, graph_fact: vector_rag.KnowledgeGraphFactResult) -> str:
         if self.current_frame == "greeting":
             return "emotion_check"
         if self.current_frame == "emotion_check":
@@ -607,7 +607,7 @@ class AgentEngine:
         self,
         user_message: str,
         patient_context: StaticPatientContextResult,
-        graph_fact: graph_rag.KnowledgeGraphFactResult,
+        graph_fact: vector_rag.KnowledgeGraphFactResult,
         empathy: EmpathyComplianceResult,
         analysis: dict[str, Any],
     ) -> str:
@@ -693,7 +693,7 @@ class AgentEngine:
         user_message: str,
         analysis: dict[str, Any],
         patient_context: StaticPatientContextResult,
-        graph_fact: graph_rag.KnowledgeGraphFactResult,
+        graph_fact: vector_rag.KnowledgeGraphFactResult,
     ) -> FrameResponse:
         # Note: Empathy is now handled via system_message injection in _build_prompt(),
         # not through hardcoded prefixes. This keeps fallback responses clear and lets
@@ -780,7 +780,7 @@ class AgentEngine:
                 return output
 
         patient_context = get_static_patient_context(user_message, data_path=self.patient_data_path)
-        graph_fact = graph_rag.get_knowledge_graph_fact(user_message, graph=self.knowledge_graph)
+        graph_fact = vector_rag.get_knowledge_graph_fact(user_message, graph=self.knowledge_graph)
         # Empathy compliance check is now based on NURSE instructions in the prompt
         empathy = check_empathy_compliance(direct_response, user_message=user_message)
 
@@ -821,7 +821,7 @@ class AgentEngine:
                 candidate.agent_response = f"{direct_response} {candidate.agent_response}".strip()
 
             compliance = check_empathy_compliance(candidate.agent_response, user_message=user_message)
-            graph_verification = graph_rag.verify_llm_response(candidate.agent_response, graph_fact.entities, graph=self.knowledge_graph)
+            graph_verification = vector_rag.verify_llm_response(candidate.agent_response, graph_fact.entities, graph=self.knowledge_graph)
 
             if analysis["forbidden_topic"]:
                 candidate = self._fallback_response(user_message, analysis, patient_context, graph_fact)
@@ -842,7 +842,7 @@ class AgentEngine:
             draft_response = self._fallback_response(user_message, analysis, patient_context, graph_fact)
         # Attach RAG contexts (if available) to the draft response for transparency
         try:
-            rag_results = graph_rag.retrieve_similar_documents(user_message, top_k=3, outdir=None)
+            rag_results = vector_rag.retrieve_similar_documents(user_message, top_k=3, outdir=None)
         except Exception:
             rag_results = []
 
@@ -911,7 +911,7 @@ class AgentEngine:
                 )
 
         patient_context = get_static_patient_context(user_message, data_path=self.patient_data_path)
-        graph_fact = graph_rag.get_knowledge_graph_fact(user_message, graph=self.knowledge_graph)
+        graph_fact = vector_rag.get_knowledge_graph_fact(user_message, graph=self.knowledge_graph)
         empathy_seed = mandatory_prefix or direct_response or ""
         empathy = check_empathy_compliance(empathy_seed, user_message=user_message)
 
@@ -964,7 +964,7 @@ class AgentEngine:
                 )
 
             compliance = check_empathy_compliance(candidate.agent_response, user_message=user_message)
-            graph_verification = graph_rag.verify_llm_response(candidate.agent_response, graph_fact.entities, graph=self.knowledge_graph)
+            graph_verification = vector_rag.verify_llm_response(candidate.agent_response, graph_fact.entities, graph=self.knowledge_graph)
 
             if analysis["forbidden_topic"]:
                 candidate = self._fallback_response(user_message, analysis, patient_context, graph_fact)

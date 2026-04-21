@@ -16,9 +16,9 @@ repo_root = Path(__file__).parent.parent
 sys.path.insert(0, str(repo_root))
 sys.path.insert(0, str(repo_root / "core"))
 
-from test_empathy_with_llm import OLLAMA_MODEL, OLLAMA_URL
+from tests.test_empathy_with_llm import OLLAMA_MODEL, OLLAMA_URL
 import baseline_medgemma
-import graph_rag
+import vector_rag
 from core.agent_engine import AgentEngine
 from rules import detect_language
 
@@ -77,7 +77,7 @@ def main():
 
         # Graph facts and rag retrievals
         try:
-            fact = graph_rag.get_knowledge_graph_fact(q)
+            fact = vector_rag.get_knowledge_graph_fact(q)
             row["graph_fact"] = {
                 "entities": fact.entities,
                 "verified": bool(fact.verified),
@@ -88,7 +88,7 @@ def main():
             row["graph_fact_error"] = str(e)
 
         try:
-            rag = graph_rag.retrieve_similar_documents(q, top_k=5, outdir=VECTOR_STORE)
+            rag = vector_rag.retrieve_similar_documents(q, top_k=5, outdir=VECTOR_STORE)
             row["rag_results"] = rag
         except Exception as e:
             row["rag_error"] = str(e)

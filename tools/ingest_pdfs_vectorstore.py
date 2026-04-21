@@ -31,11 +31,11 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-import core.graph_rag as graph_rag
+import core.vector_rag as vector_rag
 
 
 def discover_documents(roots: Iterable[Path]) -> list[Path]:
-    return graph_rag._discover_document_paths(list(roots))
+    return vector_rag._discover_document_paths(list(roots))
 
 
 def embed_chunks(chunks: list[str], model: SentenceTransformer) -> np.ndarray:
@@ -57,12 +57,12 @@ def build_vector_store(roots: list[Path], model_name: str, outdir: Path) -> None
 
     for doc_path in docs:
         try:
-            text = graph_rag.load_document_text(doc_path)
+            text = vector_rag.load_document_text(doc_path)
         except Exception as exc:
             print(f"Skipping {doc_path}: {exc}")
             continue
 
-        chunks = graph_rag.chunk_text(text)
+        chunks = vector_rag.chunk_text(text)
         if not chunks:
             continue
 
@@ -98,7 +98,7 @@ def build_vector_store(roots: list[Path], model_name: str, outdir: Path) -> None
 def parse_roots(arg: str) -> list[Path]:
     if not arg:
         # default to graph_rag.DOCUMENT_ROOTS
-        return list(graph_rag.DOCUMENT_ROOTS)
+        return list(vector_rag.DOCUMENT_ROOTS)
     return [Path(p.strip()) for p in arg.split(",") if p.strip()]
 
 
