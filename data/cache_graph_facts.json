@@ -37421,5 +37421,3320 @@
   "0da10daa17112893e92503612d60f6ca": {
     "entities": [],
     "relations": []
+  },
+  "5665a5b5a12d9827ac962856e6e53a55": {
+    "entities": [
+      {
+        "name": "68Ga",
+        "type": "Radioisotope",
+        "description": "Gallium-68, a radioisotope used in nuclear medicine."
+      },
+      {
+        "name": "68Ga-PSMA-11",
+        "type": "Radiotracer",
+        "description": "A radiopharmaceutical consisting of Gallium-68 labeled with PSMA-11, used for imaging prostate cancer."
+      },
+      {
+        "name": "cyclotron-based production",
+        "type": "Production Method",
+        "description": "Method of producing radioisotopes like 68Ga using a cyclotron."
+      },
+      {
+        "name": "18F",
+        "type": "Radioisotope",
+        "description": "Fluorine-18, another radioisotope used in nuclear medicine, particularly PET imaging."
+      },
+      {
+        "name": "radiofluorinated PSMA ligands",
+        "type": "Radiopharmaceutical",
+        "description": "PSMA ligands labeled with Fluorine-18."
+      }
+    ],
+    "relations": [
+      {
+        "source": "68Ga",
+        "target": "68Ga-PSMA-11",
+        "relation": "is used in"
+      },
+      {
+        "source": "68Ga-PSMA-11",
+        "target": "cyclotron-based production of 68Ga",
+        "relation": "distribution is limited by availability and half-life, despite"
+      },
+      {
+        "source": "radiofluorinated PSMA ligands",
+        "target": "18F",
+        "relation": "are labeled with"
+      }
+    ]
+  },
+  "aa444de2f867f29e6a8292c281b408e1": {
+    "entities": [
+      {
+        "name": "PET",
+        "type": "Imaging Modality",
+        "description": "Positron Emission Tomography scan."
+      },
+      {
+        "name": "CT",
+        "type": "Imaging Modality",
+        "description": "Computed Tomography scan."
+      },
+      {
+        "name": "18F-PSMA-1007",
+        "type": "Radiotracer",
+        "description": "A radiotracer used in PET imaging, specifically mentioned for PC recurrence detection."
+      },
+      {
+        "name": "SUV",
+        "type": "Metric",
+        "description": "Standardized Uptake Value, a semi-quantitative measure used in PET analysis."
+      },
+      {
+        "name": "two-tissue compartment model",
+        "type": "Analysis Method",
+        "description": "A quantitative pharmacokinetic model used for data analysis."
+      },
+      {
+        "name": "fractal analysis",
+        "type": "Analysis Method",
+        "description": "A method used for data analysis."
+      },
+      {
+        "name": "dynamic PET acquisition",
+        "type": "Procedure",
+        "description": "The process of acquiring dynamic PET images over time."
+      },
+      {
+        "name": "whole-body static images",
+        "type": "Procedure",
+        "description": "Static PET images covering the entire body."
+      }
+    ],
+    "relations": [
+      {
+        "source": "PET/CT scans",
+        "target": "SUV",
+        "relation": "uses"
+      },
+      {
+        "source": "Data analysis",
+        "target": "SUV evaluation",
+        "relation": "includes"
+      },
+      {
+        "source": "Data analysis",
+        "target": "compartment and non-compartment analysis",
+        "relation": "includes"
+      },
+      {
+        "source": "dynamic PET acquisition",
+        "target": "attenuation CT",
+        "relation": "uses for correction"
+      },
+      {
+        "source": "whole-body static images",
+        "target": "emission scans",
+        "relation": "type of"
+      }
+    ]
+  },
+  "03c51fa0db2980156a1ccd41d38305d2": {
+    "entities": [
+      {
+        "name": "18F-DCFPyL",
+        "type": "Radiopharmaceutical",
+        "description": "an 18F-labeled PSMA ligand, (2-(3-{1-carboxy-5-[(6-[ 18F]fluoro-pyridine-3-carbonyl)-amino]-pent yl}-ureido)-pentanedioic ac- id)"
+      },
+      {
+        "name": "18F-PSMA-1007",
+        "type": "Radiopharmaceutical",
+        "description": "an 18F-labeled PSMA ligand, (((3S,10S,14S)-1-(4-(((S)-4- carboxy-2-((S)-4-carboxy-2-(6-[ 18 F]fluoro- nicotinamido)butanamido)bu tanamido)methyl)phenyl)- 3-(naphthalen-2-ylmethyl)-1,4,12-trioxo-2,5,11,13- tetraazahexadecane-10,14,16-tricarboxylic acid))"
+      },
+      {
+        "name": "68Ga",
+        "type": "Radioisotope",
+        "description": "used for PSMA imaging"
+      },
+      {
+        "name": "PSMA",
+        "type": "Target Molecule",
+        "description": "Prostate-Specific Membrane Antigen"
+      },
+      {
+        "name": "PET/CT",
+        "type": "Imaging Modality",
+        "description": "Positron Emission Tomography / Computed Tomography"
+      },
+      {
+        "name": "PC",
+        "type": "Disease",
+        "description": "Prostate Cancer"
+      },
+      {
+        "name": "PSA",
+        "type": "Biomarker",
+        "description": "Prostate-Specific Antigen"
+      }
+    ],
+    "relations": [
+      {
+        "source": "18F-DCFPyL",
+        "target": "PSMA",
+        "relation": "is_a"
+      },
+      {
+        "source": "18F-PSMA-1007",
+        "target": "PSMA",
+        "relation": "is_a"
+      },
+      {
+        "source": "18F-PSMA-1007 PET/CT",
+        "target": "68Ga-labeled PSMA imaging",
+        "relation": "is_alternative_to"
+      },
+      {
+        "source": "18F-PSMA-1007 PET/CT",
+        "target": "PC",
+        "relation": "used_for_imaging_of"
+      },
+      {
+        "source": "68Ga-labeled PSMA imaging",
+        "target": "PC",
+        "relation": "used_for_imaging_of"
+      },
+      {
+        "source": "17 patients",
+        "target": "PC",
+        "relation": "have"
+      },
+      {
+        "source": "8 patients",
+        "target": "PC",
+        "relation": "have"
+      }
+    ]
+  },
+  "5c0d6fe5b537dbacae8c91b6755be9f3": {
+    "entities": [
+      {
+        "name": "PC recurrence",
+        "type": "Disease",
+        "description": "Prostate cancer recurrence"
+      },
+      {
+        "name": "SUV values",
+        "type": "Measurement",
+        "description": "Standardized Uptake Values, used in PET imaging"
+      },
+      {
+        "name": "VOIs",
+        "type": "Region of Interest",
+        "description": "Volumes of interest drawn on images for analysis"
+      },
+      {
+        "name": "parotid glands",
+        "type": "Organ",
+        "description": "Salivary gland near the ear"
+      },
+      {
+        "name": "liver",
+        "type": "Organ",
+        "description": "Organ in the upper right abdomen"
+      },
+      {
+        "name": "spleen",
+        "type": "Organ",
+        "description": "Organ in the upper left abdomen"
+      },
+      {
+        "name": "kidneys",
+        "type": "Organ",
+        "description": "Pair of organs that filter blood"
+      },
+      {
+        "name": "urinary bladder",
+        "type": "Organ",
+        "description": "Organ that stores urine"
+      },
+      {
+        "name": "colon",
+        "type": "Organ",
+        "description": "Part of the large intestine"
+      },
+      {
+        "name": "blood pool",
+        "type": "Tissue",
+        "description": "Common iliac artery used for reference"
+      },
+      {
+        "name": "normal osseous tissue",
+        "type": "Tissue",
+        "description": "Iliac bone used for reference"
+      },
+      {
+        "name": "gluteal muscles",
+        "type": "Tissue",
+        "description": "Muscles in the buttocks used for reference"
+      },
+      {
+        "name": "Radical prostatectomy",
+        "type": "Procedure",
+        "description": "Surgical removal of the prostate gland"
+      },
+      {
+        "name": "radiotherapy",
+        "type": "Treatment",
+        "description": "Treatment using radiation"
+      },
+      {
+        "name": "lymphadenectomy",
+        "type": "Procedure",
+        "description": "Surgical removal of lymph nodes"
+      },
+      {
+        "name": "Relapse",
+        "type": "Event",
+        "description": "Return of disease after treatment"
+      }
+    ],
+    "relations": [
+      {
+        "source": "PC recurrence",
+        "target": "SUV values",
+        "relation": "indicated by"
+      },
+      {
+        "source": "VOIs",
+        "target": "sites suspected of PC involvement",
+        "relation": "placed over"
+      },
+      {
+        "source": "VOIs",
+        "target": "parotid glands",
+        "relation": "placed over"
+      },
+      {
+        "source": "VOIs",
+        "target": "liver",
+        "relation": "placed over"
+      },
+      {
+        "source": "VOIs",
+        "target": "spleen",
+        "relation": "placed over"
+      },
+      {
+        "source": "VOIs",
+        "target": "kidneys",
+        "relation": "placed over"
+      },
+      {
+        "source": "VOIs",
+        "target": "urinary bladder",
+        "relation": "placed over"
+      },
+      {
+        "source": "VOIs",
+        "target": "colon",
+        "relation": "placed over"
+      },
+      {
+        "source": "SUV calculations",
+        "target": "blood pool",
+        "relation": "performed for"
+      },
+      {
+        "source": "SUV calculations",
+        "target": "normal osseous tissue",
+        "relation": "performed for"
+      },
+      {
+        "source": "SUV calculations",
+        "target": "gluteal muscles",
+        "relation": "performed for"
+      },
+      {
+        "source": "Patient 1",
+        "target": "Radical prostatectomy",
+        "relation": "Previous treatment"
+      },
+      {
+        "source": "Patient 1",
+        "target": "radiotherapy",
+        "relation": "Previous treatment"
+      },
+      {
+        "source": "Patient 4",
+        "target": "Radical prostatectomy",
+        "relation": "Previous treatment"
+      },
+      {
+        "source": "Patient 4",
+        "target": "lymphadenectomy",
+        "relation": "Previous treatment"
+      },
+      {
+        "source": "Patient 4",
+        "target": "radiotherapy",
+        "relation": "Previous treatment"
+      }
+    ]
+  },
+  "7af80f352b87cc880fcfa593fa31fe3e": {
+    "entities": [
+      {
+        "name": "patients",
+        "type": "subject",
+        "description": "Patients investigated in the study."
+      },
+      {
+        "name": "18F-PSMA-1007",
+        "type": "radiotracer",
+        "description": "Radiopharmaceutical used for PET/CT imaging."
+      },
+      {
+        "name": "Biograph mCT, 128 S",
+        "type": "device",
+        "description": "Dedicated PET/CT system used for data acquisition."
+      },
+      {
+        "name": "multiparametric PET/CT",
+        "type": "procedure",
+        "description": "Imaging technique consisting of dynamic (dPET/CT) and static (whole body PET/CT) parts."
+      },
+      {
+        "name": "237 MBq",
+        "type": "quantity",
+        "description": "Median activity administered intravenously (range = 131 \u2013 266 MBq)."
+      },
+      {
+        "name": "pelvic area and the lower abdomen",
+        "type": "location",
+        "description": "Region imaged during dynamic PET/CT."
+      },
+      {
+        "name": "60 min",
+        "type": "duration",
+        "description": "Duration of dynamic PET/CT imaging after radiotracer injection."
+      }
+    ],
+    "relations": [
+      {
+        "source": "patients",
+        "target": "18F-PSMA-1007",
+        "relation": "administered with"
+      },
+      {
+        "source": "multiparametric PET/CT",
+        "target": "Biograph mCT, 128 S",
+        "relation": "performed on"
+      },
+      {
+        "source": "multiparametric PET/CT",
+        "target": "dPET/CT studies",
+        "relation": "consists of"
+      },
+      {
+        "source": "multiparametric PET/CT",
+        "target": "whole body PET/CT studies",
+        "relation": "consists of"
+      },
+      {
+        "source": "dPET/CT studies",
+        "target": "pelvic area and the lower abdomen",
+        "relation": "performed over"
+      }
+    ]
+  },
+  "32d97fdbea09a33ae05fb79328dafd86": {
+    "entities": [
+      {
+        "name": "PC lesions",
+        "type": "Anatomical Site",
+        "description": "Prostate cancer lesions"
+      },
+      {
+        "name": "SUV average",
+        "type": "Radiometric Parameter",
+        "description": "Standardized uptake value average"
+      },
+      {
+        "name": "SUVmax",
+        "type": "Radiometric Parameter",
+        "description": "Maximum standardized uptake value"
+      },
+      {
+        "name": "18F-PSMA-1007",
+        "type": "Radiopharmaceutical",
+        "description": "Fluorine-18 labeled prostate-specific membrane antigen PET tracer"
+      },
+      {
+        "name": "PET/CT",
+        "type": "Imaging Modality",
+        "description": "Positron Emission Tomography/Computed Tomography"
+      },
+      {
+        "name": "dynamic PET acquisition",
+        "type": "Procedure",
+        "description": "Acquisition of PET data over time"
+      },
+      {
+        "name": "urinary bladder",
+        "type": "Anatomical Site",
+        "description": "Organ involved in urine storage and excretion"
+      },
+      {
+        "name": "colon",
+        "type": "Anatomical Site",
+        "description": "Part of the large intestine"
+      },
+      {
+        "name": "PSA values",
+        "type": "Biomarker",
+        "description": "Prostate-specific antigen levels"
+      },
+      {
+        "name": "influx",
+        "type": "Parameter",
+        "description": "Rate of entry of tracer into the lesion"
+      },
+      {
+        "name": "fractal dimension (FD)",
+        "type": "Parameter",
+        "description": "Measure of complexity or irregularity"
+      },
+      {
+        "name": "Prostate cancer (PC)",
+        "type": "Disease",
+        "description": "Cancer originating in the prostate gland"
+      },
+      {
+        "name": "68Ga-PSMA-11",
+        "type": "Radiopharmaceutical",
+        "description": "Gallium-68 labeled PSMA PET tracer"
+      }
+    ],
+    "relations": [
+      {
+        "source": "PC lesions",
+        "target": "SUV average",
+        "relation": "has_property"
+      },
+      {
+        "source": "PC lesions",
+        "target": "SUVmax",
+        "relation": "has_property"
+      },
+      {
+        "source": "SUV average",
+        "target": "25.1",
+        "relation": "value"
+      },
+      {
+        "source": "median",
+        "target": "15.4",
+        "relation": "value"
+      },
+      {
+        "source": "range",
+        "target": "3.5\u2013 119.2",
+        "relation": "value"
+      },
+      {
+        "source": "SUVmax",
+        "target": "41.5",
+        "relation": "value"
+      },
+      {
+        "source": "median",
+        "target": "25.7",
+        "relation": "value"
+      },
+      {
+        "source": "range",
+        "target": "3.8\u2013213.2",
+        "relation": "value"
+      },
+      {
+        "source": "PC lesions",
+        "target": "influx",
+        "relation": "correlated_with"
+      },
+      {
+        "source": "18F-PSMA-1007 uptake (SUV)",
+        "target": "influx",
+        "relation": "correlated_with"
+      },
+      {
+        "source": "fractal dimension (FD)",
+        "target": "influx",
+        "relation": "correlated_with"
+      },
+      {
+        "source": "PET/CT imaging with the 68Ga-labeled tracer Glu-urea-Lys(Ahx)-HBED-CC (68Ga- PSMA-11)",
+        "target": "Prostate cancer (PC)",
+        "relation": "used_for"
+      },
+      {
+        "source": "higher PSA values",
+        "target": "detection rate",
+        "relation": "associated_with"
+      }
+    ]
+  },
+  "3a16b2ff00cf63ee4d41f6869a24e749": {
+    "entities": [
+      {
+        "name": "Radical prostatectomy",
+        "type": "Procedure",
+        "description": "Surgical removal of the prostate gland."
+      },
+      {
+        "name": "Radiotherapy",
+        "type": "Procedure",
+        "description": "Treatment using radiation."
+      },
+      {
+        "name": "Androgen deprivation therapy",
+        "type": "Therapy",
+        "description": "Treatment that lowers androgen levels."
+      },
+      {
+        "name": "Chemotherapy (docetaxel)",
+        "type": "Therapy",
+        "description": "Cancer treatment using drugs, specifically docetaxel."
+      },
+      {
+        "name": "Hyperthermia",
+        "type": "Procedure",
+        "description": "Treatment involving heating body tissue."
+      },
+      {
+        "name": "Lymphadenectomy",
+        "type": "Procedure",
+        "description": "Surgical removal of lymph nodes."
+      },
+      {
+        "name": "Relapse",
+        "type": "Outcome",
+        "description": "Return of the disease after treatment."
+      },
+      {
+        "name": "Progression",
+        "type": "Outcome",
+        "description": "Worsening of the disease during treatment."
+      }
+    ],
+    "relations": [
+      {
+        "source": "Radical prostatectomy and radiotherapy Relapse 251",
+        "target": "Relapse",
+        "relation": "Treatment outcome"
+      },
+      {
+        "source": "Radical prostatectomy and radiotherapy Relapse 242",
+        "target": "Relapse",
+        "relation": "Treatment outcome"
+      },
+      {
+        "source": "Radical prostatectomy and radiotherapy Relapse 223",
+        "target": "Relapse",
+        "relation": "Treatment outcome"
+      },
+      {
+        "source": "Radical prostatectomy and radiotherapy Relapse 257",
+        "target": "Relapse",
+        "relation": "Treatment outcome"
+      },
+      {
+        "source": "Androgen deprivation therapy Progression 229",
+        "target": "Progression",
+        "relation": "Treatment outcome"
+      },
+      {
+        "source": "Chemotherapy (docetaxel), radiotherapy Progression 223",
+        "target": "Progression",
+        "relation": "Treatment outcome"
+      },
+      {
+        "source": "Radical prostatectomy, androgen deprivation therapy Progression 241",
+        "target": "Progression",
+        "relation": "Treatment outcome"
+      },
+      {
+        "source": "Radical prostatectomy Relapse 170",
+        "target": "Relapse",
+        "relation": "Treatment outcome"
+      },
+      {
+        "source": "Hyperthermia, androgen deprivation therapy Relapse 131",
+        "target": "Relapse",
+        "relation": "Treatment outcome"
+      },
+      {
+        "source": "Radical prostatectomy and radiotherapy, Androgen deprivation therapy Relapse 184",
+        "target": "Relapse",
+        "relation": "Treatment outcome"
+      },
+      {
+        "source": "Radical prostatectomy, lymphadenectomy and radiotherapy, Androgen deprivation therapy Progression 228",
+        "target": "Progression",
+        "relation": "Treatment outcome"
+      },
+      {
+        "source": "Radical prostatectomy and radiotherapy, Androgen deprivation therapy, Chemotherapy Progression 237",
+        "target": "Progression",
+        "relation": "Treatment outcome"
+      },
+      {
+        "source": "Radical prostatectomy Relapse 237",
+        "target": "Relapse",
+        "relation": "Treatment outcome"
+      },
+      {
+        "source": "Radical prostatectomy Relapse 266",
+        "target": "Relapse",
+        "relation": "Treatment outcome"
+      },
+      {
+        "source": "Androgen deprivation therapy, Chemotherapy Progression 245",
+        "target": "Progression",
+        "relation": "Treatment outcome"
+      },
+      {
+        "source": "Radical prostatectomy and radiotherapy Relapse 265",
+        "target": "Relapse",
+        "relation": "Treatment outcome"
+      },
+      {
+        "source": "Radical prostatectomy, lymphadenectomy Relapse 224",
+        "target": "Relapse",
+        "relation": "Treatment outcome"
+      },
+      {
+        "source": "Radical prostatectomy Relapse 232",
+        "target": "Relapse",
+        "relation": "Treatment outcome"
+      },
+      {
+        "source": "Radical prostatectomy Relapse 247",
+        "target": "Relapse",
+        "relation": "Treatment outcome"
+      },
+      {
+        "source": "Radical prostatectomy, androgen deprivation therapy Progression 220",
+        "target": "Progression",
+        "relation": "Treatment outcome"
+      }
+    ]
+  },
+  "e13a739de41bad23424de0321eba8fa8": {
+    "entities": [
+      {
+        "name": "18F-PSMA-1007",
+        "type": "Radioligand",
+        "description": "A radioligand used in PET/CT imaging for prostate cancer."
+      },
+      {
+        "name": "prostate cancer (PC)",
+        "type": "Disease",
+        "description": "Cancer of the prostate gland."
+      },
+      {
+        "name": "biochemical relapse or progression",
+        "type": "Clinical Condition",
+        "description": "A stage in prostate cancer where PSA levels rise after initial treatment, indicating disease recurrence or advancement."
+      },
+      {
+        "name": "multiparametric (dynamic and whole-body) PET/CT",
+        "type": "Imaging Technique",
+        "description": "A type of Positron Emission Tomography/Computed Tomography scanning that uses multiple parameters, including dynamic and whole-body imaging."
+      },
+      {
+        "name": "twenty-five (25) patients",
+        "type": "Patient Group",
+        "description": "The number of patients enrolled in the study."
+      },
+      {
+        "name": "median age = 66.0 years",
+        "type": "Demographic Data",
+        "description": "The median age of the patient group was 66 years."
+      },
+      {
+        "name": "median PSA value was 1.2 ng/mL",
+        "type": "Biomarker Value",
+        "description": "The median Prostate-Specific Antigen level in the patient group was 1.2 ng/mL."
+      },
+      {
+        "name": "median Gleason score was 7",
+        "type": "Pathology Score",
+        "description": "The median Gleason score (a measure of tumor aggressiveness) in the patient group was 7."
+      },
+      {
+        "name": "dynamic PET/CT (dPET/CT) scanning (60 min)",
+        "type": "Imaging Procedure",
+        "description": "A dynamic form of PET/CT scanning performed over 60 minutes."
+      },
+      {
+        "name": "whole-body PET/CT",
+        "type": "Imaging Procedure",
+        "description": "PET/CT scanning covering the entire body."
+      },
+      {
+        "name": "SUV calculation",
+        "type": "Image Analysis Method",
+        "description": "Standardized Uptake Value calculation, a method used to quantify tracer uptake in PET imaging."
+      },
+      {
+        "name": "two-tissue compartment model",
+        "type": "Pharmacokinetic Model",
+        "description": "A mathematical model used to analyze the distribution and elimination of substances within the body."
+      },
+      {
+        "name": "fractal analysis",
+        "type": "Image Analysis Method",
+        "description": "A method using fractal geometry to analyze image patterns, potentially related to tumor heterogeneity or vascularity."
+      },
+      {
+        "name": "15/25 patients were PET -positive",
+        "type": "Study Finding",
+        "description": "In the study group of 25 patients, 15 showed positive results on PET imaging."
+      },
+      {
+        "name": "Plasma PSA values in the 18F-PSMA-1007 positive group were higher (median = 3.6 ng/mL)",
+        "type": "Study Finding",
+        "description": "Patients with positive 18F-PSMA-1007 PET scans had higher median plasma PSA levels (3.6 ng/mL)."
+      },
+      {
+        "name": "Plasma PSA values in the 18F-PSMA-1007 negative group were lower (median value = 0.7 ng/mL)",
+        "type": "Study Finding",
+        "description": "Patients with negative 18F-PSMA-1007 PET scans had lower median plasma PSA levels (0.7 ng/mL)."
+      },
+      {
+        "name": "mean SUV average = 25.1",
+        "type": "Study Finding",
+        "description": "The mean Standardized Uptake Value average in PC lesions was 25.1."
+      },
+      {
+        "name": "median = 15.4",
+        "type": "Study Finding",
+        "description": "The median SUV average in PC lesions was 15.4."
+      },
+      {
+        "name": "range = 3.5\u2013 119.2",
+        "type": "Study Finding",
+        "description": "The range of SUV average values in PC lesions was from 3.5 to 119.2."
+      },
+      {
+        "name": "mean SUVmax = 41.5",
+        "type": "Study Finding",
+        "description": "The mean maximum Standardized Uptake Value (SUVmax) in PC lesions was 41.5."
+      },
+      {
+        "name": "median = 25.7",
+        "type": "Study Finding",
+        "description": "The median SUVmax in PC lesions was 25.7."
+      },
+      {
+        "name": "range = 3.8\u2013213.2",
+        "type": "Study Finding",
+        "description": "The range of SUVmax values in PC lesions was from 3.8 to 213.2."
+      }
+    ],
+    "relations": [
+      {
+        "source": "18F-PSMA-1007",
+        "target": "prostate cancer (PC)",
+        "relation": "used for imaging in"
+      },
+      {
+        "source": "18F-PSMA-1007",
+        "target": "biochemical relapse or progression",
+        "relation": "used for imaging in patients with"
+      },
+      {
+        "source": "multiparametric (dynamic and whole-body) PET/CT",
+        "target": "18F-PSMA-1007",
+        "relation": "method used with"
+      },
+      {
+        "source": "twenty-five (25) patients",
+        "target": "prostate cancer (PC)",
+        "relation": "enrolled in study with"
+      },
+      {
+        "source": "twenty-five (25) patients",
+        "target": "biochemical relapse or progression",
+        "relation": "had condition of"
+      },
+      {
+        "source": "median age = 66.0 years",
+        "target": "twenty-five (25) patients",
+        "relation": "demographic data for"
+      },
+      {
+        "source": "median PSA value was 1.2 ng/mL",
+        "target": "twenty-five (25) patients",
+        "relation": "biomarker value for"
+      },
+      {
+        "source": "median Gleason score was 7",
+        "target": "twenty-five (25) patients",
+        "relation": "pathology score for"
+      },
+      {
+        "source": "dynamic PET/CT (dPET/CT) scanning (60 min)",
+        "target": "twenty-five (25) patients",
+        "relation": "procedure performed on"
+      },
+      {
+        "source": "whole-body PET/CT",
+        "target": "twenty-five (25) patients",
+        "relation": "procedure performed on"
+      },
+      {
+        "source": "18F-PSMA-1007",
+        "target": "dynamic PET/CT (dPET/CT) scanning (60 min)",
+        "relation": "used in"
+      },
+      {
+        "source": "18F-PSMA-1007",
+        "target": "whole-body PET/CT",
+        "relation": "used in"
+      },
+      {
+        "source": "SUV calculation",
+        "target": "multiparametric (dynamic and whole-body) PET/CT",
+        "relation": "part of analysis for"
+      },
+      {
+        "source": "two-tissue compartment model",
+        "target": "multiparametric (dynamic and whole-body) PET/CT",
+        "relation": "part of quantitative analysis for"
+      },
+      {
+        "source": "fractal analysis",
+        "target": "multiparametric (dynamic and whole-body) PET/CT",
+        "relation": "part of analysis for"
+      },
+      {
+        "source": "15/25 patients",
+        "target": "PET -positive",
+        "relation": "were"
+      },
+      {
+        "source": "Plasma PSA values in the 18F-PSMA-1007 positive group",
+        "target": "higher (median = 3.6 ng/mL)",
+        "relation": "was"
+      },
+      {
+        "source": "Plasma PSA values in the 18F-PSMA-1007 negative group",
+        "target": "lower (median value = 0.7 ng/mL)",
+        "relation": "was"
+      },
+      {
+        "source": "mean SUV average = 25.1",
+        "target": "PC lesions",
+        "relation": "measured in"
+      },
+      {
+        "source": "median = 15.4",
+        "target": "SUV average",
+        "relation": "was"
+      },
+      {
+        "source": "range = 3.5\u2013 119.2",
+        "target": "SUV average",
+        "relation": "was"
+      },
+      {
+        "source": "mean SUVmax = 41.5",
+        "target": "PC lesions",
+        "relation": "measured in"
+      },
+      {
+        "source": "median = 25.7",
+        "target": "SUVmax",
+        "relation": "was"
+      },
+      {
+        "source": "range = 3.8\u2013213.2",
+        "target": "SUVmax",
+        "relation": "was"
+      }
+    ]
+  },
+  "458d42da25ece6cefba6b1b2d4bd833b": {
+    "entities": [
+      {
+        "name": "two-tissue compartment model",
+        "type": "Model",
+        "description": "A model used to quantitatively evaluate tracer kinetics."
+      },
+      {
+        "name": "VOIs",
+        "type": "Method",
+        "description": "Regions of interest used to create time-activity curves (TACs)."
+      },
+      {
+        "name": "arterial blood sampling",
+        "type": "Method",
+        "description": "Method for accurate measurement of the input function."
+      },
+      {
+        "name": "common iliac artery",
+        "type": "Anatomical Structure",
+        "description": "Artery used for mean VOI data for the input function."
+      },
+      {
+        "name": "partial volume correction",
+        "type": "Method",
+        "description": "Correction performed for small vessels (diameter less than 8 mm)."
+      },
+      {
+        "name": "K1",
+        "type": "Parameter",
+        "description": "Rate constant reflecting forward transport between plasma and interstitial/intracellular compartment."
+      },
+      {
+        "name": "k2",
+        "type": "Parameter",
+        "description": "Rate constant reflecting reverse transport between plasma and interstitial/intracellular compartment."
+      },
+      {
+        "name": "k3",
+        "type": "Parameter",
+        "description": "Rate constant associated with tracer binding to PSMA and internalization."
+      },
+      {
+        "name": "k4",
+        "type": "Parameter",
+        "description": "Rate constant representing dissociation of the tracer from PSMA and externalization."
+      },
+      {
+        "name": "plasma compartment ( c- plasma)",
+        "type": "Compartment",
+        "description": "One of the compartments in the two-tissue model."
+      },
+      {
+        "name": "free (unbound) component in interstitial and/ or intracellular space ( c1)",
+        "type": "Compartment",
+        "description": "One of the compartments in the two-tissue model."
+      },
+      {
+        "name": "PSMA-specific compo-nents of the radiotracer ( s2)",
+        "type": "Component",
+        "description": "Part of the radiotracer specific to PSMA in the two-tissue model."
+      }
+    ],
+    "relations": [
+      {
+        "source": "two-tissue compartment model",
+        "target": "K1",
+        "relation": "includes parameter"
+      },
+      {
+        "source": "two-tissue compartment model",
+        "target": "k2",
+        "relation": "includes parameter"
+      },
+      {
+        "source": "two-tissue compartment model",
+        "target": "k3",
+        "relation": "includes parameter"
+      },
+      {
+        "source": "two-tissue compartment model",
+        "target": "k4",
+        "relation": "includes parameter"
+      },
+      {
+        "source": "two-tissue compartment model",
+        "target": "plasma compartment ( c- plasma)",
+        "relation": "describes compartment"
+      },
+      {
+        "source": "two-tissue compartment model",
+        "target": "free (unbound) component in interstitial and/ or intracellular space ( c1)",
+        "relation": "describes compartment"
+      },
+      {
+        "source": "two-tissue compartment model",
+        "target": "PSMA-specific compo-nents of the radiotracer ( s2)",
+        "relation": "describes component"
+      }
+    ]
+  },
+  "717fc496d59d51bf1ca436d1d0566d67": {
+    "entities": [
+      {
+        "name": "K1",
+        "type": "rate constant",
+        "description": "Rate constant in the two-tissue compartment model."
+      },
+      {
+        "name": "k2",
+        "type": "rate constant",
+        "description": "Rate constant in the two-tissue compartment model."
+      },
+      {
+        "name": "k3",
+        "type": "rate constant",
+        "description": "Rate constant in the two-tissue compartment model."
+      },
+      {
+        "name": "k4",
+        "type": "rate constant",
+        "description": "Rate constant, not considered by Sokoloff et al.'s original model. Its absence affects K1 and k3 assessment."
+      },
+      {
+        "name": "VB",
+        "type": "volume",
+        "description": "Blood volume, associated with the volume of blood exchanging with tissue, not considered by Sokoloff et al.'s original model."
+      },
+      {
+        "name": "Ki",
+        "type": "influx",
+        "description": "Global influx calculated using the formula: Ki = (K1 \u00d7 k3) / (k2 + k3)."
+      },
+      {
+        "name": "fractal dimension (FD)",
+        "type": "parameter",
+        "description": "Parameter of heterogeneity and complexity, varying from 0 to 2."
+      },
+      {
+        "name": "SPSS v.20.0",
+        "type": "software",
+        "description": "Software used for statistical evaluation."
+      },
+      {
+        "name": "Wilcoxon rank-sum test",
+        "type": "statistical test",
+        "description": "Statistical test used for evaluation."
+      },
+      {
+        "name": "Spearman\u2019s rank correlation analysis",
+        "type": "statistical test",
+        "description": "Statistical test used for evaluation."
+      }
+    ],
+    "relations": [
+      {
+        "source": "K1",
+        "target": "VB",
+        "relation": "dependent on"
+      },
+      {
+        "source": "k3",
+        "target": "k4",
+        "relation": "dependent on"
+      },
+      {
+        "source": "Ki",
+        "target": "K1",
+        "relation": "calculated using"
+      },
+      {
+        "source": "Ki",
+        "target": "k3",
+        "relation": "calculated using"
+      },
+      {
+        "source": "Ki",
+        "target": "k2",
+        "relation": "calculated using"
+      },
+      {
+        "source": "FD",
+        "target": "time-activity data",
+        "relation": "calculated for"
+      }
+    ]
+  },
+  "cb725076b3a9a8d8489e2822ecb5a9d2": {
+    "entities": [],
+    "relations": []
+  },
+  "45560aaaa4444adba934c06f8d58d206": {
+    "entities": [
+      {
+        "name": "PSMA",
+        "type": "protein",
+        "description": "Prostate-specific membrane antigen"
+      },
+      {
+        "name": "radiotracer",
+        "type": "substance",
+        "description": "A radioactive tracer used for imaging."
+      },
+      {
+        "name": "K1",
+        "type": "parameter",
+        "description": "Forward transport rate of the radiotracer between plasma and the reversible compartment."
+      },
+      {
+        "name": "k2",
+        "type": "parameter",
+        "description": "Reverse transport rate of the radiotracer between plasma and the reversible compartment."
+      },
+      {
+        "name": "k3",
+        "type": "parameter",
+        "description": "Rate associated with tracer binding to PSMA and internalization."
+      },
+      {
+        "name": "k4",
+        "type": "parameter",
+        "description": "Dissociation rate of the tracer from PSMA."
+      },
+      {
+        "name": "local PC recurrence",
+        "type": "condition",
+        "description": "Local recurrence of prostate cancer."
+      },
+      {
+        "name": "lymph node metastases",
+        "type": "condition",
+        "description": "Metastasis to lymph nodes."
+      },
+      {
+        "name": "bone metastases",
+        "type": "condition",
+        "description": "Metastasis to bone."
+      },
+      {
+        "name": "liver metastasis",
+        "type": "condition",
+        "description": "Metastasis to the liver."
+      },
+      {
+        "name": "SUV average",
+        "type": "metric",
+        "description": "Standardized uptake value, averaged over a region of interest."
+      },
+      {
+        "name": "SUVmax",
+        "type": "metric",
+        "description": "Maximum standardized uptake value within a region of interest."
+      }
+    ],
+    "relations": [
+      {
+        "source": "k3",
+        "target": "PSMA",
+        "relation": "binds_to"
+      },
+      {
+        "source": "k4",
+        "target": "PSMA",
+        "relation": "dissociates_from"
+      },
+      {
+        "source": "local PC recurrence",
+        "target": "SUV average",
+        "relation": "has_value"
+      },
+      {
+        "source": "lymph node metastases",
+        "target": "SUV average",
+        "relation": "has_value"
+      },
+      {
+        "source": "bone metastases",
+        "target": "SUV average",
+        "relation": "has_value"
+      }
+    ]
+  },
+  "374644503decab84572525ab6eaa4868": {
+    "entities": [],
+    "relations": []
+  },
+  "1b49c0bf137dc8f5726d713df189c293": {
+    "entities": [
+      {
+        "name": "PC lesions",
+        "type": "lesion",
+        "description": "Prostate cancer lesions"
+      },
+      {
+        "name": "parotid glands",
+        "type": "tissue",
+        "description": "Normal tissue showing high PSMA ligand distribution"
+      },
+      {
+        "name": "liver",
+        "type": "tissue",
+        "description": "Normal tissue showing high PSMA ligand distribution"
+      },
+      {
+        "name": "spleen",
+        "type": "tissue",
+        "description": "Normal tissue showing high PSMA ligand distribution"
+      },
+      {
+        "name": "kidneys",
+        "type": "tissue",
+        "description": "Normal tissue showing high PSMA ligand distribution"
+      },
+      {
+        "name": "urinary bladder",
+        "type": "tissue",
+        "description": "Normal tissue showing high PSMA ligand distribution"
+      },
+      {
+        "name": "colon",
+        "type": "tissue",
+        "description": "Normal tissue showing high PSMA ligand distribution"
+      },
+      {
+        "name": "gluteal muscles",
+        "type": "tissue",
+        "description": "Normal tissue, SUVaverage = 0.8 (SUVmax = 1.4)"
+      },
+      {
+        "name": "lymph node metastases",
+        "type": "metastasis",
+        "description": "Metastases in lymph nodes"
+      },
+      {
+        "name": "osseous metastases",
+        "type": "metastasis",
+        "description": "Metastases in bone"
+      }
+    ],
+    "relations": [
+      {
+        "source": "PC lesions",
+        "target": "urinary bladder",
+        "relation": "higher SUV than"
+      },
+      {
+        "source": "PC lesions",
+        "target": "gluteus muscles",
+        "relation": "higher SUV than"
+      },
+      {
+        "source": "lymph node metastases",
+        "target": "osseous metastases",
+        "relation": "FD significantly higher than"
+      },
+      {
+        "source": "PC lesions",
+        "target": "parotid glands",
+        "relation": "higher SUV than"
+      },
+      {
+        "source": "PC lesions",
+        "target": "liver",
+        "relation": "higher SUV than"
+      },
+      {
+        "source": "PC lesions",
+        "target": "spleen",
+        "relation": "higher SUV than"
+      },
+      {
+        "source": "PC lesions",
+        "target": "kidneys",
+        "relation": "higher SUV than"
+      },
+      {
+        "source": "PC lesions",
+        "target": "colon",
+        "relation": "higher SUV than"
+      }
+    ]
+  },
+  "67c869828cc9f420d1116a253d29d67b": {
+    "entities": [
+      {
+        "name": "PC lesions",
+        "type": "body_part",
+        "description": "Prostate cancer lesions"
+      },
+      {
+        "name": "K3",
+        "type": "kinetic parameter",
+        "description": "A kinetic parameter related to 18F-PSMA-1007 uptake"
+      },
+      {
+        "name": "K4",
+        "type": "kinetic parameter",
+        "description": "A kinetic parameter related to 18F-PSMA-1007 uptake"
+      },
+      {
+        "name": "urinary bladder",
+        "type": "organ",
+        "description": "Organ where K3, influx, and FD were compared with PC lesions"
+      },
+      {
+        "name": "colon",
+        "type": "organ",
+        "description": "Organ where K1 and influx were compared with PC lesions"
+      },
+      {
+        "name": "reference bone",
+        "type": "tissue",
+        "description": "Tissue where k3, influx, and FD were compared with PC lesions"
+      },
+      {
+        "name": "gluteal muscles",
+        "type": "tissue",
+        "description": "Tissue where K1 and FD were compared with PC lesions"
+      },
+      {
+        "name": "FD",
+        "type": "kinetic parameter",
+        "description": "Fluorodeoxyglucose, a kinetic parameter related to 18F-PSMA-1007 uptake"
+      },
+      {
+        "name": "K1",
+        "type": "kinetic parameter",
+        "description": "A kinetic parameter related to 18F-PSMA-1007 uptake"
+      },
+      {
+        "name": "influx",
+        "type": "kinetic parameter",
+        "description": "A kinetic parameter related to 18F-PSMA-1007 uptake"
+      },
+      {
+        "name": "18F-PSMA-1007",
+        "type": "radiotracer",
+        "description": "Radiopharmaceutical used in PET/CT imaging"
+      },
+      {
+        "name": "68Ga-PSMA-11",
+        "type": "radiotracer",
+        "description": "Radiopharmaceutical used in PET/CT imaging"
+      }
+    ],
+    "relations": [
+      {
+        "source": "PC lesions",
+        "target": "K3",
+        "relation": "shows higher values for"
+      },
+      {
+        "source": "PC lesions",
+        "target": "K4",
+        "relation": "shows higher values for"
+      },
+      {
+        "source": "PC lesions",
+        "target": "FD",
+        "relation": "shows higher values for"
+      },
+      {
+        "source": "PC lesions",
+        "target": "urinary bladder",
+        "relation": "compared with regarding FD"
+      },
+      {
+        "source": "PC lesions",
+        "target": "colon",
+        "relation": "compared with regarding K1 and influx"
+      },
+      {
+        "source": "PC lesions",
+        "target": "reference bone",
+        "relation": "compared with regarding k3, influx, FD"
+      },
+      {
+        "source": "PC lesions",
+        "target": "gluteal muscles",
+        "relation": "compared with regarding K1 and FD"
+      },
+      {
+        "source": "K3",
+        "target": "PC lesions",
+        "relation": "35-fold higher than k4 in PC lesions (p < 0.0001)"
+      }
+    ]
+  },
+  "a618e8405e81e408ed8aaacd7330ec40": {
+    "entities": [
+      {
+        "name": "18F-PSMA-1007",
+        "type": "Tracer",
+        "description": "A tracer used in PET/CT imaging."
+      },
+      {
+        "name": "PC lesion",
+        "type": "Lesion Type",
+        "description": "Prostate cancer lesions derived curves show increasing concentration of 18F-PSMA-1007 over time."
+      },
+      {
+        "name": "urinary bladder",
+        "type": "Organ",
+        "description": "TACs (Time Activity Curves) showed no marked increasing accumulation of the tracer."
+      },
+      {
+        "name": "colon",
+        "type": "Organ",
+        "description": "TACs showed no marked increasing accumulation of the tracer."
+      },
+      {
+        "name": "normal bone",
+        "type": "Tissue",
+        "description": "Tracer accumulation was negligible."
+      },
+      {
+        "name": "gluteal muscles",
+        "type": "Tissue",
+        "description": "Tracer accumulation was negligible."
+      },
+      {
+        "name": "local relapses",
+        "type": "Metastasis Site",
+        "description": "Derived TACs are shown in Figure 4."
+      },
+      {
+        "name": "lymph node metastases",
+        "type": "Metastasis Site",
+        "description": "Derived TACs are shown in Figure 4."
+      },
+      {
+        "name": "osseous metastases",
+        "type": "Metastasis Site",
+        "description": "Derived TACs are shown in Figure 4."
+      },
+      {
+        "name": "FD",
+        "type": "Quantitative Parameter",
+        "description": "A quantitative parameter related to tracer uptake. Strong correlations found with SUVaverage, influx, and SUVmax."
+      },
+      {
+        "name": "SUVaverage",
+        "type": "Quantitative Parameter",
+        "description": "Standardized Uptake Value average. Strongly correlated with FD and influx."
+      },
+      {
+        "name": "influx",
+        "type": "Quantitative Parameter",
+        "description": "A quantitative parameter related to tracer uptake. Strongly correlated with FD, SUVaverage, and SUVmax."
+      },
+      {
+        "name": "SUV max",
+        "type": "Quantitative Parameter",
+        "description": "Standardized Uptake Value maximum. Strongly correlated with FD and influx."
+      },
+      {
+        "name": "68Ga-PSMA-11 PET/CT",
+        "type": "Imaging Modality",
+        "description": "A modality used in prostate cancer recurrence diagnostics."
+      },
+      {
+        "name": "PSA levels",
+        "type": "Biomarker",
+        "description": "Prostate-Specific Antigen levels. 68Ga-PSMA-11 PET/CT shows high detection rates even at low PSA levels."
+      }
+    ],
+    "relations": [
+      {
+        "source": "PC lesion",
+        "target": "18F-PSMA-1007",
+        "relation": "shows increasing concentration over time"
+      },
+      {
+        "source": "urinary bladder",
+        "target": "18F-PSMA-1007",
+        "relation": "shows no marked increasing accumulation"
+      },
+      {
+        "source": "colon",
+        "target": "18F-PSMA-1007",
+        "relation": "shows no marked increasing accumulation"
+      },
+      {
+        "source": "normal bone",
+        "target": "18F-PSMA-1007",
+        "relation": "accumulation negligible"
+      },
+      {
+        "source": "gluteal muscles",
+        "target": "18F-PSMA-1007",
+        "relation": "accumulation negligible"
+      },
+      {
+        "source": "FD",
+        "target": "SUVaverage",
+        "relation": "strong correlation (r = 0.93)"
+      },
+      {
+        "source": "FD",
+        "target": "influx",
+        "relation": "strong correlation (r = 0.85)"
+      },
+      {
+        "source": "FD",
+        "target": "SUV max",
+        "relation": "strong correlation (r = 0.83)"
+      },
+      {
+        "source": "influx",
+        "target": "SUVaverage",
+        "relation": "strong correlation (r = 0.82)"
+      },
+      {
+        "source": "influx",
+        "target": "SUVmax",
+        "relation": "strong correlation (r = 0.75)"
+      }
+    ]
+  },
+  "bc7339e7b84fbeb69c8a20fac945008f": {
+    "entities": [
+      {
+        "name": "68Ga-PSMA-11 PET/CT",
+        "type": "Imaging Modality",
+        "description": "A type of imaging used for prostate cancer assessment."
+      },
+      {
+        "name": "PC",
+        "type": "Disease",
+        "description": "Prostate Cancer"
+      },
+      {
+        "name": "biochemical relapse setting",
+        "type": "Clinical Setting",
+        "description": "A stage in prostate cancer treatment where the disease recurs based on biochemical markers."
+      },
+      {
+        "name": "initial staging",
+        "type": "Procedure",
+        "description": "Determining the extent of cancer at diagnosis."
+      },
+      {
+        "name": "intermediate and high-risk disease",
+        "type": "Disease Stage",
+        "description": "Stages of prostate cancer with varying degrees of risk."
+      },
+      {
+        "name": "restaging of metastatic disease",
+        "type": "Procedure",
+        "description": "Re-evaluating the stage of cancer that has spread."
+      },
+      {
+        "name": "18F-PSMA-1007 ligand",
+        "type": "Radiopharmaceutical",
+        "description": "A newly introduced radioligand for imaging prostate cancer."
+      },
+      {
+        "name": "radical prostatectomy",
+        "type": "Surgical Procedure",
+        "description": "Surgical removal of the entire prostate gland."
+      },
+      {
+        "name": "PSA",
+        "type": "Biomarker",
+        "description": "Prostate-Specific Antigen, a marker used for prostate cancer diagnosis and monitoring."
+      },
+      {
+        "name": "biochemical recurrence",
+        "type": "Disease Status",
+        "description": "Return of prostate cancer indicated by rising PSA levels after initial treatment."
+      },
+      {
+        "name": "metastatic disease",
+        "type": "Disease Stage",
+        "description": "Cancer that has spread to other parts of the body."
+      }
+    ],
+    "relations": [
+      {
+        "source": "68Ga-PSMA-11 PET/CT",
+        "target": "PC",
+        "relation": "used for assessment of"
+      },
+      {
+        "source": "68Ga-PSMA-11 PET/CT",
+        "target": "biochemical relapse setting",
+        "relation": "main indication in"
+      },
+      {
+        "source": "68Ga-PSMA-11 PET/CT",
+        "target": "initial staging",
+        "relation": "gaining importance also in"
+      },
+      {
+        "source": "68Ga-PSMA-11 PET/CT",
+        "target": "intermediate and high-risk disease",
+        "relation": "used in initial staging of"
+      },
+      {
+        "source": "68Ga-PSMA-11 PET/CT",
+        "target": "restaging of metastatic disease",
+        "relation": "gaining importance also in"
+      },
+      {
+        "source": "18F-PSMA-1007 ligand",
+        "target": "PC patients after radical prostatectomy",
+        "relation": "high detection rates in"
+      }
+    ]
+  },
+  "b1ebbfec13115a04fe0b6008d719e69f": {
+    "entities": [
+      {
+        "name": "PSMA-radioligand imaging",
+        "type": "Imaging Modality",
+        "description": "A type of medical imaging used for prostate cancer."
+      },
+      {
+        "name": "PSA values",
+        "type": "Biomarker",
+        "description": "Prostate-specific antigen levels in the blood, often used to monitor prostate cancer."
+      },
+      {
+        "name": "18F-PSMA-1007",
+        "type": "Radiotracer",
+        "description": "A specific radioligand used in PSMA imaging."
+      },
+      {
+        "name": "68Ga-PSMA-11",
+        "type": "Radiotracer",
+        "description": "Another widely used radioligand for PSMA imaging."
+      },
+      {
+        "name": "PC lesions",
+        "type": "Disease Manifestation",
+        "description": "Prostate cancer lesions."
+      },
+      {
+        "name": "urinary bladder",
+        "type": "Anatomical Structure",
+        "description": "Part of the urinary system."
+      },
+      {
+        "name": "parotid glands",
+        "type": "Anatomical Structure",
+        "description": "Salivary glands located near the ears."
+      },
+      {
+        "name": "liver",
+        "type": "Organ",
+        "description": "A major organ involved in metabolism and detoxification."
+      },
+      {
+        "name": "spleen",
+        "type": "Organ",
+        "description": "An organ involved in filtering blood and immune response."
+      },
+      {
+        "name": "kidneys",
+        "type": "Organ",
+        "description": "Organs responsible for filtering waste from the blood."
+      },
+      {
+        "name": "gallbladder",
+        "type": "Organ",
+        "description": "A small organ that stores bile produced by the liver."
+      },
+      {
+        "name": "intestines",
+        "type": "Organ System",
+        "description": "The part of the digestive system responsible for absorbing nutrients."
+      },
+      {
+        "name": "SUV",
+        "type": "Metric",
+        "description": "Standardized Uptake Value, a measure used in PET imaging to quantify radiotracer uptake."
+      },
+      {
+        "name": "local recurrences",
+        "type": "Disease Manifestation",
+        "description": "Prostate cancer recurrence at the primary site or nearby tissues."
+      },
+      {
+        "name": "lymph node met",
+        "type": "Disease Manifestation",
+        "description": "Metastasis of prostate cancer to lymph nodes."
+      }
+    ],
+    "relations": [
+      {
+        "source": "PSMA-radioligand imaging",
+        "target": "PSA values",
+        "relation": "has limitations in patients with very low"
+      },
+      {
+        "source": "18F-PSMA-1007",
+        "target": "68Ga-PSMA-11",
+        "relation": "shows similar biodistribution pattern to"
+      },
+      {
+        "source": "18F-PSMA-1007",
+        "target": "urinary bladder",
+        "relation": "has much lower excretion into than 68Ga-PSMA-11"
+      },
+      {
+        "source": "18F-PSMA-1007 uptake (SUV)",
+        "target": "PC lesions",
+        "relation": "is statistically significantly higher in than in urinary bladder"
+      },
+      {
+        "source": "18F-PSMA-1007",
+        "target": "gallbladder and intestinal accumulation",
+        "relation": "results in higher than 68Ga-PSMA-11 due to its slightly higher lipophilic characteristics"
+      },
+      {
+        "source": "SUV average SUVmax",
+        "target": "PC lesions (total)",
+        "relation": "is 25.1 (15.4) / 41.5 (25.7)"
+      },
+      {
+        "source": "SUV average SUVmax",
+        "target": "PC local recurrences",
+        "relation": "is 22.2 (9.4) / 42.0 (14.6)"
+      },
+      {
+        "source": "SUV average SUVmax",
+        "target": "Lymph node met",
+        "relation": "is Not mentioned in the text."
+      }
+    ]
+  },
+  "33dc6c25cf1604098fc80b6b92a740bb": {
+    "entities": [
+      {
+        "name": "PC lesions",
+        "type": "Tumor Site",
+        "description": "Prostate cancer lesions."
+      },
+      {
+        "name": "physiologic parotid glands",
+        "type": "Organ",
+        "description": "Normal parotid glands."
+      },
+      {
+        "name": "liver",
+        "type": "Organ",
+        "description": "Liver tissue."
+      },
+      {
+        "name": "spleen",
+        "type": "Organ",
+        "description": "Spleen tissue."
+      },
+      {
+        "name": "kidneys",
+        "type": "Organ",
+        "description": "Kidney tissue."
+      },
+      {
+        "name": "urinary bladder",
+        "type": "Organ",
+        "description": "Urinary bladder tissue."
+      },
+      {
+        "name": "colon",
+        "type": "Organ",
+        "description": "Colon tissue."
+      },
+      {
+        "name": "gluteal muscles",
+        "type": "Tissue",
+        "description": "Gluteal muscle tissue."
+      },
+      {
+        "name": "PC local recurrences",
+        "type": "Tumor Site",
+        "description": "Local recurrence of prostate cancer."
+      },
+      {
+        "name": "Lymph node metastases",
+        "type": "Metastasis",
+        "description": "Metastases in lymph nodes from PC lesions."
+      },
+      {
+        "name": "Bone metastases",
+        "type": "Metastasis",
+        "description": "Metastases in bone from PC lesions."
+      },
+      {
+        "name": "Kidney",
+        "type": "Organ",
+        "description": "Kidney tissue (metastatic)."
+      },
+      {
+        "name": "Urinary bladder",
+        "type": "Organ",
+        "description": "Urinary bladder tissue (metastatic)."
+      },
+      {
+        "name": "Gluteus",
+        "type": "Tissue",
+        "description": "Gluteal muscle tissue (involved)."
+      },
+      {
+        "name": "Colon",
+        "type": "Organ",
+        "description": "Colon tissue (involved)."
+      },
+      {
+        "name": "Spleen",
+        "type": "Organ",
+        "description": "Spleen tissue (involved)."
+      },
+      {
+        "name": "Liver",
+        "type": "Organ",
+        "description": "Liver tissue (involved)."
+      },
+      {
+        "name": "Parotid gland",
+        "type": "Organ",
+        "description": "Parotid gland tissue (involved)."
+      },
+      {
+        "name": "Blood pool",
+        "type": "Tissue",
+        "description": "Blood."
+      }
+    ],
+    "relations": [
+      {
+        "source": "PC lesions",
+        "target": "SUV average SUVmax PC lesions (total)",
+        "relation": "has_SUV"
+      },
+      {
+        "source": "PC local recurrences",
+        "target": "SUV average SUVmax PC local recurrences",
+        "relation": "has_SUV"
+      },
+      {
+        "source": "Lymph node metastases",
+        "target": "SUV average SUVmax Lymph node metastases",
+        "relation": "has_SUV"
+      },
+      {
+        "source": "Bone metastases",
+        "target": "SUV average SUVmax Bone metastases",
+        "relation": "has_SUV"
+      },
+      {
+        "source": "Kidney",
+        "target": "SUV average Kidney",
+        "relation": "has_SUV"
+      },
+      {
+        "source": "Urinary bladder",
+        "target": "SUV average Urinary bladder",
+        "relation": "has_SUV"
+      },
+      {
+        "source": "Gluteus",
+        "target": "SUV average Gluteus",
+        "relation": "has_SUV"
+      },
+      {
+        "source": "Colon",
+        "target": "SUV average Colon",
+        "relation": "has_SUV"
+      },
+      {
+        "source": "Spleen",
+        "target": "SUV average Spleen",
+        "relation": "has_SUV"
+      },
+      {
+        "source": "Liver",
+        "target": "SUV average Liver",
+        "relation": "has_SUV"
+      },
+      {
+        "source": "Parotid gland",
+        "target": "SUV average Parotid gland",
+        "relation": "has_SUV"
+      },
+      {
+        "source": "Blood pool",
+        "target": "SUV average Blood pool",
+        "relation": "has_SUV"
+      }
+    ]
+  },
+  "bf09402aa25580f689bfa9a6255c465e": {
+    "entities": [
+      {
+        "name": "18F-PSMA-1007 PET/CT",
+        "type": "Imaging Modality",
+        "description": "A specific type of Positron Emission Tomography/Computed Tomography scan using the radiotracer 18F-PSMA-1007."
+      },
+      {
+        "name": "early PET imaging",
+        "type": "Procedure",
+        "description": "Performing PET imaging at an early stage (likely after diagnosis or treatment initiation)."
+      },
+      {
+        "name": "two-tissue compartment modeling",
+        "type": "Modeling Technique",
+        "description": "A mathematical model used to analyze the dynamic distribution of a tracer in the body, typically involving plasma and tissue compartments."
+      },
+      {
+        "name": "PSMA ligands",
+        "type": "Biomolecule",
+        "description": "Ligands that bind to Prostate-Specific Membrane Antigen (PSMA)."
+      },
+      {
+        "name": "PC cell",
+        "type": "Cell Type",
+        "description": "Prostate Cancer cell."
+      },
+      {
+        "name": "plasma compartment",
+        "type": "Biological Compartment",
+        "description": "The fluid component of blood."
+      },
+      {
+        "name": "interstitial/intracellular compartment",
+        "type": "Biological Compartment",
+        "description": "Compartment representing the space between cells (interstitial) and inside cells (intracellular)."
+      },
+      {
+        "name": "PSMA-specific compartment",
+        "type": "Biological Compartment",
+        "description": "Compartment representing the binding and internalization of PSMA ligands within the target cell."
+      },
+      {
+        "name": "68Ga-PSMA-11",
+        "type": "Radiotracer",
+        "description": "Another PSMA-targeting radiotracer used in PET imaging."
+      },
+      {
+        "name": "K1",
+        "type": "Parameter",
+        "description": "Parameter representing the transport rate constant of 18F-PSMA-1007 between plasma and the interstitial/intracellular compartment."
+      },
+      {
+        "name": "k3",
+        "type": "Parameter",
+        "description": "Parameter representing tracer binding to the zinc active site of PSMA, internalization via clathrin-mediated endocytosis, and tracer influx."
+      },
+      {
+        "name": "k4",
+        "type": "Parameter",
+        "description": "Parameter representing tracer dissociation from the 'receptor' and externalization (efflux)."
+      },
+      {
+        "name": "PC lesions",
+        "type": "Lesion Type",
+        "description": "Lesions related to Prostate Cancer."
+      }
+    ],
+    "relations": [
+      {
+        "source": "two-tissue compartment modeling",
+        "target": "18F-PSMA-1007 PET/CT data",
+        "relation": "applied_to"
+      },
+      {
+        "source": "biological distribution of PSMA ligands",
+        "target": "PC cell",
+        "relation": "involves_internalization_in"
+      },
+      {
+        "source": "two-tissue compartment model",
+        "target": "plasma compartment",
+        "relation": "includes"
+      },
+      {
+        "source": "two-tissue compartment model",
+        "target": "interstitial/intracellular compartment",
+        "relation": "includes"
+      },
+      {
+        "source": "two-tissue compartment model",
+        "target": "PSMA-specific compartment",
+        "relation": "includes"
+      },
+      {
+        "source": "K1",
+        "target": "transport of 18F-PSMA-1007 between plasma and the interstitial/intracellular compartment",
+        "relation": "represents"
+      },
+      {
+        "source": "k3",
+        "target": "tracer binding to the zinc active site of PSMA, internalization via clathrin-mediated endocytosis, and tracer influx",
+        "relation": "represents"
+      },
+      {
+        "source": "k4",
+        "target": "tracer dissociation from the 'receptor' and externalization",
+        "relation": "represents"
+      },
+      {
+        "source": "PC lesions",
+        "target": "K1",
+        "relation": "shows_higher_values_for"
+      },
+      {
+        "source": "PC lesions",
+        "target": "k3",
+        "relation": "shows_higher_values_for"
+      },
+      {
+        "source": "PC lesions",
+        "target": "K1",
+        "relation": "reflects"
+      }
+    ]
+  },
+  "c13bcec970a6c2876083bbc062867104": {
+    "entities": [
+      {
+        "name": "PC cell",
+        "type": "cell type",
+        "description": "A cell type where the radioligand is trapped."
+      },
+      {
+        "name": "PSMA ligand",
+        "type": "ligand",
+        "description": "A ligand that targets PSMA."
+      },
+      {
+        "name": "18F-PSMA-1007 PET",
+        "type": "imaging technique",
+        "description": "Positron Emission Tomography using the radioligand 18F-PSMA-1007."
+      },
+      {
+        "name": "68Ga-PSMA-11 dPET/CT",
+        "type": "imaging technique",
+        "description": "Positron Emission Tomography using the radioligand 68Ga-PSMA-11, combined with CT."
+      },
+      {
+        "name": "PC recurrence lesions",
+        "type": "lesion type",
+        "description": "Lesions representing a recurrence of prostate cancer (PC)."
+      },
+      {
+        "name": "PSMA-617",
+        "type": "ligand",
+        "description": "A PSMA ligand used for targeted therapy."
+      },
+      {
+        "name": "normal tissues",
+        "type": "tissue type",
+        "description": "Reference tissues, typically non-diseased tissue."
+      },
+      {
+        "name": "tumor tissue",
+        "type": "tissue type",
+        "description": "Tissue comprising the tumor lesion."
+      },
+      {
+        "name": "fractal indices",
+        "type": "metric",
+        "description": "Indices representing tissue heterogeneity derived from fractal analysis."
+      }
+    ],
+    "relations": [
+      {
+        "source": "PSMA ligand",
+        "target": "PC cell",
+        "relation": "binds to"
+      },
+      {
+        "source": "PSMA ligand",
+        "target": "PC recurrence lesions",
+        "relation": "accumulates in"
+      },
+      {
+        "source": "18F-PSMA-1007 PET",
+        "target": "tumor tissue",
+        "relation": "identifies patients with high tracer binding/internalization in"
+      },
+      {
+        "source": "PC recurrence lesions",
+        "target": "normal tissues",
+        "relation": "tracer accumulation is higher than in"
+      },
+      {
+        "source": "PSMA-617",
+        "target": "PSMA ligand",
+        "relation": "is a version of"
+      }
+    ]
+  },
+  "b30033e60f83cd1e5aa79b6336a6a980": {
+    "entities": [
+      {
+        "name": "FD",
+        "type": "Parameter",
+        "description": "Fractal dimension, calculated for the time-activity data in each individual voxel."
+      },
+      {
+        "name": "PSMA expression and uptake",
+        "type": "Biological Process",
+        "description": "Expression and uptake of Prostate-Specific Membrane Antigen (PSMA)."
+      },
+      {
+        "name": "PSMA radioligand distribution",
+        "type": "Distribution Pattern",
+        "description": "The way the PSMA radioligand spreads."
+      },
+      {
+        "name": "heterogeneity",
+        "type": "Characteristic",
+        "description": "Variability or non-uniformity."
+      },
+      {
+        "name": "PET data",
+        "type": "Data Type",
+        "description": "Positron Emission Tomography data."
+      }
+    ],
+    "relations": [
+      {
+        "source": "FD",
+        "target": "PSMA expression and uptake",
+        "relation": "measures complexity of"
+      },
+      {
+        "source": "FD",
+        "target": "PSMA radioligand distribution",
+        "relation": "indicates chaotic/deterministic nature of"
+      },
+      {
+        "source": "FD",
+        "target": "heterogeneity",
+        "relation": "estimates"
+      },
+      {
+        "source": "FD",
+        "target": "PET data",
+        "relation": "used to estimate heterogeneity of"
+      },
+      {
+        "source": "Increased FD",
+        "target": "PSMA radioligand distribution",
+        "relation": "indicative of more chaotic/heterogeneous"
+      }
+    ]
+  },
+  "15738f855c083acc80aebfa6008dbdeb": {
+    "entities": [
+      {
+        "name": "PSMA",
+        "type": "Protein",
+        "description": "Prostate-Specific Membrane Antigen protein"
+      },
+      {
+        "name": "18F-PSMA-1007",
+        "type": "Radioligand",
+        "description": "A specific PSMA radioligand used in imaging studies."
+      },
+      {
+        "name": "PC lesions",
+        "type": "Lesion Type",
+        "description": "Prostate cancer lesions"
+      },
+      {
+        "name": "urinary bladder",
+        "type": "Organ",
+        "description": "An organ studied for PSMA distribution."
+      },
+      {
+        "name": "colon",
+        "type": "Organ",
+        "description": "An organ studied for PSMA distribution."
+      },
+      {
+        "name": "gluteus muscles",
+        "type": "Tissue",
+        "description": "Muscle tissue studied for PSMA distribution."
+      },
+      {
+        "name": "SUV",
+        "type": "Metric",
+        "description": "Standardized Uptake Value, a measure of tracer uptake."
+      },
+      {
+        "name": "Ki",
+        "type": "Metric",
+        "description": "Influx constant, related to tracer uptake and distribution."
+      },
+      {
+        "name": "K1",
+        "type": "Metric",
+        "description": "Binding rate of the tracer on the surface protein PSMA."
+      },
+      {
+        "name": "68Ga-PSMA-11 dPET/CT",
+        "type": "Imaging Technique",
+        "description": "A type of PET/CT scan using 68Ga-PSMA-11."
+      },
+      {
+        "name": "fractal analysis",
+        "type": "Analysis Method",
+        "description": "Mathematical method used to quantify heterogeneity in images."
+      },
+      {
+        "name": "FD",
+        "type": "Metric",
+        "description": "Fractal Dimension, a measure of image complexity/heterogeneity."
+      },
+      {
+        "name": "PSMA radioligand therapy",
+        "type": "Therapy",
+        "description": "Treatment using PSMA-targeting agents."
+      }
+    ],
+    "relations": [
+      {
+        "source": "18F-PSMA-1007",
+        "target": "PSMA",
+        "relation": "binds to"
+      },
+      {
+        "source": "PC lesions",
+        "target": "PSMA",
+        "relation": "expresses upregulated"
+      },
+      {
+        "source": "heterogeneity",
+        "target": "18F-PSMA-1007",
+        "relation": "measured by"
+      },
+      {
+        "source": "SUV",
+        "target": "18F-PSMA-1007",
+        "relation": "correlates with"
+      },
+      {
+        "source": "Ki",
+        "target": "18F-PSMA-1007",
+        "relation": "correlates with"
+      },
+      {
+        "source": "K1",
+        "target": "18F-PSMA-1007",
+        "relation": "correlates with"
+      },
+      {
+        "source": "fractal analysis",
+        "target": "FD",
+        "relation": "determines"
+      },
+      {
+        "source": "FD",
+        "target": "heterogeneity",
+        "relation": "quantifies"
+      },
+      {
+        "source": "fractal analysis",
+        "target": "PET images",
+        "relation": "applied on"
+      }
+    ]
+  },
+  "20ab0c36fae40f870a4d5cdae0b1634d": {
+    "entities": [
+      {
+        "name": "18F-PSMA-1007",
+        "type": "Radiopharmaceutical",
+        "description": "A radiopharmaceutical used in PET imaging."
+      },
+      {
+        "name": "PSA progression",
+        "type": "Biomarker",
+        "description": "Progression of Prostate Specific Antigen, indicating disease activity."
+      },
+      {
+        "name": "androgen deprivation therapy",
+        "type": "Treatment",
+        "description": "Therapy that lowers androgen levels to treat prostate cancer."
+      },
+      {
+        "name": "PC lesions",
+        "type": "Lesion",
+        "description": "Prostate Cancer lesions."
+      },
+      {
+        "name": "18F-PSMA-1007 avid focal lesions",
+        "type": "Lesion",
+        "description": "Small, specific areas identified by 18F-PSMA-1007 PET imaging in cases of local relapse."
+      },
+      {
+        "name": "SUV",
+        "type": "Metric",
+        "description": "Standardized Uptake Value, a measure used in PET scans."
+      },
+      {
+        "name": "68Ga-PSMA-11 PET",
+        "type": "Imaging Modality",
+        "description": "Positron Emission Tomography using 68Ga-PSMA-11 radiotracer."
+      },
+      {
+        "name": "PSMA receptor expression",
+        "type": "Molecular Feature",
+        "description": "Expression level of the Prostate-Specific Membrane Antigen receptor."
+      },
+      {
+        "name": "PET/CT scanners",
+        "type": "Technology",
+        "description": "Imaging devices combining Positron Emission Tomography and Computed Tomography."
+      },
+      {
+        "name": "PC patients",
+        "type": "Patient Group",
+        "description": "Patients with Prostate Cancer."
+      },
+      {
+        "name": "biochemical relapse or progression",
+        "type": "Clinical Status",
+        "description": "Condition where prostate cancer returns or progresses, indicated by biochemical markers like PSA."
+      }
+    ],
+    "relations": [
+      {
+        "source": "18F-PSMA-1007",
+        "target": "PC lesions",
+        "relation": "detects"
+      },
+      {
+        "source": "androgen deprivation therapy",
+        "target": "quantitative analysis results",
+        "relation": "can influence"
+      },
+      {
+        "source": "SUV values",
+        "target": "PSMA receptor expression",
+        "relation": "reflects"
+      },
+      {
+        "source": "PSMA receptor expression",
+        "target": "malignancy",
+        "relation": "highly correlated with"
+      },
+      {
+        "source": "68Ga-PSMA-11 PET",
+        "target": "higher SUV values",
+        "relation": "suggests reflect PC-associated lesions"
+      },
+      {
+        "source": "PET/CT scanners",
+        "target": "dynamic studies",
+        "relation": "facilitates use of"
+      }
+    ]
+  },
+  "45205c9e86f84ffc84f767924fdfbaac": {
+    "entities": [
+      {
+        "name": "Time-activity curves (TACs)",
+        "type": "Imaging Finding",
+        "description": "Curves representing tracer concentration over time derived from dynamic PET/CT studies."
+      },
+      {
+        "name": "Physiologic tissues",
+        "type": "Tissue",
+        "description": "Normal tissues evaluated, including urinary bladder, colon, normal bone (iliac bone), blood pool (common iliac artery), and gluteus musculature."
+      },
+      {
+        "name": "PC-associated lesions",
+        "type": "Lesion",
+        "description": "Prostate cancer related lesions evaluated, including local relapses, lymph node metastases, and osseous metastases."
+      },
+      {
+        "name": "Urinary bladder",
+        "type": "Organ",
+        "description": "An organ showing a small increase in tracer concentration during dynamic PET/CT."
+      },
+      {
+        "name": "Colon",
+        "type": "Organ",
+        "description": "An organ showing potentially hampering tracer accumulation."
+      },
+      {
+        "name": "PC lesions",
+        "type": "Lesion",
+        "description": "Prostate cancer lesions showing increasing 18F-PSMA-1007 accumulation during dynamic PET acquisition."
+      },
+      {
+        "name": "18F-PSMA-1007",
+        "type": "Radiopharmaceutical",
+        "description": "A specific radioligand used in the PET/CT study."
+      }
+    ],
+    "relations": [
+      {
+        "source": "Time-activity curves (TACs)",
+        "target": "Physiologic tissues",
+        "relation": "represents mean values and standard deviation of"
+      },
+      {
+        "source": "Time-activity curves (TACs)",
+        "target": "PC-associated lesions",
+        "relation": "represents mean values and standard deviation of"
+      },
+      {
+        "source": "Physiologic tissues TACs",
+        "target": "Urinary bladder",
+        "relation": "includes"
+      },
+      {
+        "source": "Physiologic tissues TACs",
+        "target": "Colon",
+        "relation": "includes"
+      },
+      {
+        "source": "PC lesions TACs",
+        "target": "PC lesions",
+        "relation": "show increasing accumulation in"
+      },
+      {
+        "source": "PC lesions TACs",
+        "target": "Urinary bladder",
+        "relation": "accumulation higher than"
+      },
+      {
+        "source": "PC lesions TACs",
+        "target": "Colon",
+        "relation": "accumulation higher than"
+      }
+    ]
+  },
+  "8b5f4e9f1ed3d269c35adb2a81b3fe91": {
+    "entities": [
+      {
+        "name": "urinary bladder",
+        "type": "organ",
+        "description": "Organ that can potentially hamper the diagnostic efficacy of the PSMA radioligands in the lower abdomen and pelvis."
+      },
+      {
+        "name": "colon",
+        "type": "organ",
+        "description": "Organ that can potentially hamper the diagnostic efficacy of the PSMA radioligands in the lower abdomen and pelvis."
+      },
+      {
+        "name": "PSMA radioligands",
+        "type": "substance",
+        "description": "Substances whose diagnostic efficacy can be hampered by organs like the urinary bladder and colon."
+      },
+      {
+        "name": "18F-PSMA-1007",
+        "type": "radiopharmaceutical",
+        "description": "A radiofluorinated PSMA ligand used in PET imaging."
+      },
+      {
+        "name": "Federal Ministry of Education and Research (BMBF)",
+        "type": "organization",
+        "description": "Funding source for the clinical development of 18F-PSMA-1007 via project ProstaPET."
+      },
+      {
+        "name": "ProstaPET",
+        "type": "project",
+        "description": "Project funded by BMBF related to the clinical development of 18F-PSMA-1007."
+      },
+      {
+        "name": "Helsinki declaration",
+        "type": "declaration",
+        "description": "Ethical standards document for research involving human participants."
+      }
+    ],
+    "relations": [
+      {
+        "source": "urinary bladder",
+        "target": "PSMA radioligands",
+        "relation": "potential hamper efficacy of"
+      },
+      {
+        "source": "colon",
+        "target": "PSMA radioligands",
+        "relation": "potential hamper efficacy of"
+      },
+      {
+        "source": "18F-PSMA-1007",
+        "target": "Federal Ministry of Education and Research (BMBF)",
+        "relation": "partly funded by"
+      },
+      {
+        "source": "18F-PSMA-1007",
+        "target": "ProstaPET",
+        "relation": "clinical development related to project"
+      }
+    ]
+  },
+  "50856ee38145d1e572ea673946dae08f": {
+    "entities": [
+      {
+        "name": "PET/CT imaging",
+        "type": "Imaging Modality",
+        "description": "A type of imaging that combines Positron Emission Tomography (PET) and Computed Tomography (CT)."
+      },
+      {
+        "name": "(68)Ga-labelled PSMA ligand HBED-CC",
+        "type": "Radiopharmaceutical",
+        "description": "A specific radiopharmaceutical used in PET imaging, targeting Prostate-Specific Membrane Antigen (PSMA)."
+      },
+      {
+        "name": "recurrent prostate cancer",
+        "type": "Disease",
+        "description": "Prostate cancer that has returned after initial treatment."
+      },
+      {
+        "name": "biochemical recurrence",
+        "type": "Clinical Condition",
+        "description": "A rise in PSA levels after primary treatment for prostate cancer, indicating potential disease recurrence."
+      },
+      {
+        "name": "lymph node staging",
+        "type": "Medical Procedure",
+        "description": "Determining the extent of lymph node involvement in cancer."
+      },
+      {
+        "name": "intermediate to high risk prostate cancer",
+        "type": "Disease Risk Category",
+        "description": "A classification of prostate cancer based on its characteristics and likelihood of spread."
+      },
+      {
+        "name": "primary prostate cancer",
+        "type": "Disease Stage",
+        "description": "Prostate cancer detected at its initial stage."
+      },
+      {
+        "name": "PSA",
+        "type": "Biomarker",
+        "description": "Prostate-Specific Antigen, a marker used to detect and monitor prostate cancer."
+      },
+      {
+        "name": "Gleason score",
+        "type": "Diagnostic Score",
+        "description": "A grading system for prostate cancer based on microscopic appearance."
+      },
+      {
+        "name": "local recurrence",
+        "type": "Disease Recurrence Pattern",
+        "description": "Cancer returning in the same location as the original tumor."
+      },
+      {
+        "name": "radical prostatectomy",
+        "type": "Surgical Procedure",
+        "description": "Surgical removal of the entire prostate gland."
+      }
+    ],
+    "relations": [
+      {
+        "source": "(68)Ga-labelled PSMA ligand HBED-CC",
+        "target": "recurrent prostate cancer",
+        "relation": "used for diagnosis of"
+      },
+      {
+        "source": "PET/CT imaging",
+        "target": "recurrent prostate cancer",
+        "relation": "used for diagnosis of"
+      },
+      {
+        "source": "(68)Ga-labelled PSMA ligand HBED-CC",
+        "target": "biochemical recurrence",
+        "relation": "used for evaluation in patients with"
+      },
+      {
+        "source": "PET/CT imaging",
+        "target": "lymph node staging",
+        "relation": "used for"
+      },
+      {
+        "source": "(68)Ga-labelled PSMA ligand HBED-CC",
+        "target": "primary prostate cancer",
+        "relation": "used in imaging of"
+      },
+      {
+        "source": "PSA",
+        "target": "primary prostate cancer",
+        "relation": "predicts intensity of tracer accumulation in (primary tumour) with 68Ga-PSMA-11 PET/CT"
+      },
+      {
+        "source": "Gleason score",
+        "target": "primary prostate cancer",
+        "relation": "predicts intensity of tracer accumulation in (primary tumour) with 68Ga-PSMA-11 PET/CT"
+      }
+    ]
+  },
+  "276442925f8242d386bcf358085289db": {
+    "entities": [
+      {
+        "name": "Local recurrence of prostate cancer after radical prostatectomy",
+        "type": "Disease",
+        "description": "Local recurrence of prostate cancer following radical prostatectomy."
+      },
+      {
+        "name": "68Ga-PSMA-11-PET",
+        "type": "Imaging Modality",
+        "description": "Positron Emission Tomography using the radiotracer 68Ga-PSMA-11."
+      },
+      {
+        "name": "PET/CT",
+        "type": "Imaging Modality",
+        "description": "Positron Emission Tomography combined with Computed Tomography."
+      },
+      {
+        "name": "PET/MRI",
+        "type": "Imaging Modality",
+        "description": "Positron Emission Tomography combined with Magnetic Resonance Imaging."
+      },
+      {
+        "name": "mpMRI",
+        "type": "Imaging Modality",
+        "description": "Multiparametric Magnetic Resonance Imaging."
+      },
+      {
+        "name": "F-18 labelled PSMA-1007",
+        "type": "Radiotracer",
+        "description": "A radiotracer labeled with Fluorine-18 used for imaging prostate cancer."
+      },
+      {
+        "name": "18F-PSMA-1007",
+        "type": "Radiotracer",
+        "description": "A radiotracer labeled with Fluorine-18 used for imaging prostate cancer."
+      },
+      {
+        "name": "18F-DCFPyL PET/CT",
+        "type": "Imaging Modality",
+        "description": "Positron Emission Tomography combined with Computed Tomography using the radiotracer 18F-DCFPyL."
+      },
+      {
+        "name": "biochemical recurrence of prostate cancer",
+        "type": "Disease Status",
+        "description": "Recurrence of prostate cancer indicated by rising PSA levels after treatment."
+      }
+    ],
+    "relations": [
+      {
+        "source": "Local recurrence of prostate cancer after radical prostatectomy",
+        "target": "68Ga-PSMA-11-PET",
+        "relation": "risk to be missed in"
+      },
+      {
+        "source": "68Ga-PSMA-11-PET",
+        "target": "PET/CT",
+        "relation": "is a type of"
+      },
+      {
+        "source": "68Ga-PSMA-11-PET",
+        "target": "PET/MRI",
+        "relation": "is a type of"
+      },
+      {
+        "source": "F-18 labelled PSMA- 1007",
+        "target": "Eur J Nucl Med Mol Imaging. 2017;44:678\u201388.",
+        "relation": "reference"
+      },
+      {
+        "source": "18F-PSMA-1007",
+        "target": "PET/CT",
+        "relation": "used in"
+      },
+      {
+        "source": "18F-PSMA-1007",
+        "target": "Eur J Nucl Med Mol Imaging. 2017;44:678\u201388.",
+        "relation": "reference"
+      },
+      {
+        "source": "18F-DCFPyL PET/CT",
+        "target": "J Nucl Med. 2018;59:1076\u201380.",
+        "relation": "reference"
+      },
+      {
+        "source": "biochemical recurrence of prostate cancer",
+        "target": "18F-PSMA-1007 PET/CT",
+        "relation": "initial results with"
+      },
+      {
+        "source": "18F-PSMA- 1007 PET/CT",
+        "target": "J Nucl Med. 2018;59(4):632\u20135.",
+        "relation": "reference"
+      },
+      {
+        "source": "biochemical recurrent prostate cancer",
+        "target": "18F-PSMA-1007 PET/CT",
+        "relation": "diagnostic performance in patients with"
+      },
+      {
+        "source": "18F-PSMA- 1007 PET/CT",
+        "target": "Eur J Nucl Med Mol Imaging. 2018;45(12):2055\u201361.",
+        "relation": "reference"
+      },
+      {
+        "source": "18F-PSMA- 1007 PET/CT",
+        "target": "Eur J Nucl Med Mol Imaging. 2018;45(12):2055\u201361.",
+        "relation": "reference"
+      },
+      {
+        "source": "18F-PSMA- 1007 PET/CT",
+        "target": "Pharmaceutics (Basel). 2017;10(4):77.",
+        "relation": "reference"
+      },
+      {
+        "source": "biochemical recurrence after radical prostatectomy",
+        "target": "18F-PSMA-1007 PET/CT",
+        "relation": "detection efficacy in patients with"
+      },
+      {
+        "source": "18F-PSMA-1007 PET/CT",
+        "target": "J Nucl Med. 2019;60(3):362\u20138.",
+        "relation": "reference"
+      }
+    ]
+  },
+  "ae2e404add688f877933dcd9625e80c2": {
+    "entities": [
+      {
+        "name": "[18F]PSMA-1007",
+        "type": "tracer",
+        "description": "radiofluorinated tracer for the detection of prostate cancer"
+      },
+      {
+        "name": "(68)Ga-PSMA-11",
+        "type": "tracer",
+        "description": null
+      },
+      {
+        "name": "prostate cancer",
+        "type": "disease",
+        "description": null
+      }
+    ],
+    "relations": [
+      {
+        "source": "[18F]PSMA-1007",
+        "target": "prostate cancer",
+        "relation": "used for detection of"
+      },
+      {
+        "source": "(68)Ga-PSMA-11",
+        "target": "prostate cancer",
+        "relation": "imaging in biochemical relapse of"
+      }
+    ]
+  },
+  "6b5c47f3e0d21587bfae256dfaa108ab": {
+    "entities": [
+      {
+        "name": "LG",
+        "type": "Author",
+        "description": "One of the authors of the publication 'On the fractal nature of positron emission tomography (PET) studies'."
+      },
+      {
+        "name": "Burger C",
+        "type": "Author",
+        "description": "One of the authors of the publication 'On the fractal nature of positron emission tomography (PET) studies'."
+      },
+      {
+        "name": "Mikolajczyk K",
+        "type": "Author",
+        "description": "One of the authors of the publication 'On the fractal nature of positron emission tomography (PET) studies'."
+      },
+      {
+        "name": "Lehnert T",
+        "type": "Author",
+        "description": "One of the authors of the publication 'On the fractal nature of positron emission tomography (PET) studies'."
+      },
+      {
+        "name": "Cornford P",
+        "type": "Author",
+        "description": "One of the authors of the guidelines on prostate cancer treatment."
+      },
+      {
+        "name": "Bellmunt J",
+        "type": "Author",
+        "description": "One of the authors of the guidelines on prostate cancer treatment."
+      },
+      {
+        "name": "Bolla M",
+        "type": "Author",
+        "description": "One of the authors of the guidelines on prostate cancer treatment."
+      },
+      {
+        "name": "Hoeks CMA",
+        "type": "Author",
+        "description": "One of the authors of the article 'Prostate cancer: multiparametric MR imaging for detection, localization, and staging'."
+      },
+      {
+        "name": "Barentsz JO",
+        "type": "Author",
+        "description": "One of the authors of the article 'Prostate cancer: multiparametric MR imaging for detection, localization, and staging'."
+      },
+      {
+        "name": "Hambrock T",
+        "type": "Author",
+        "description": "One of the authors of the article 'Prostate cancer: multiparametric MR imaging for detection, localization, and staging'."
+      },
+      {
+        "name": "Beer AJ",
+        "type": "Author",
+        "description": "One of the authors of the article 'Radionuclide and hybrid imaging of recurrent prostate cancer'."
+      },
+      {
+        "name": "Eiber M",
+        "type": "Author",
+        "description": "One of the authors of the article 'Radionuclide and hybrid imaging of recurrent prostate cancer' and also mentioned in other studies on PSMA-PET."
+      },
+      {
+        "name": "Souvatzoglou M",
+        "type": "Author",
+        "description": "One of the authors of the article 'Radionuclide and hybrid imaging of recurrent prostate cancer'."
+      },
+      {
+        "name": "Schwaiger M",
+        "type": "Author",
+        "description": "One of the authors of the article 'Radionuclide and hybrid imaging of recurrent prostate cancer'."
+      },
+      {
+        "name": "Krause BJ",
+        "type": "Author",
+        "description": "One of the authors of the article 'Radionuclide and hybrid imaging of recurrent prostate cancer'."
+      },
+      {
+        "name": "Maurer T",
+        "type": "Author",
+        "description": "One of the authors of the study on diagnostic efficacy of (68)Gallium-PSMA PET."
+      },
+      {
+        "name": "Gschwend JE",
+        "type": "Author",
+        "description": "One of the authors of the study on diagnostic efficacy of (68)Gallium-PSMA PET."
+      },
+      {
+        "name": "Rauscher I",
+        "type": "Author",
+        "description": "One of the authors of the study on diagnostic efficacy of (68)Gallium-PSMA PET."
+      },
+      {
+        "name": "Sheikhbahaei S",
+        "type": "Author",
+        "description": "One of the authors of the article discussing pearls and pitfalls in PSMA-PET interpretation."
+      },
+      {
+        "name": "Afshar-Oromieh A",
+        "type": "Author",
+        "description": "One of the authors of the article discussing pearls and pitfalls in PSMA-PET interpretation."
+      },
+      {
+        "name": "Uprimny C",
+        "type": "Author",
+        "description": "One of the authors involved in studies on early dynamic imaging with 68Ga-PSMA-11 PET/CT and local recurrence detection."
+      },
+      {
+        "name": "Kroiss AS",
+        "type": "Author",
+        "description": "One of the authors involved in studies on early dynamic imaging with 68Ga-PSMA-11 PET/CT and local recurrence detection."
+      },
+      {
+        "name": "Decristoforo C",
+        "type": "Author",
+        "description": "One of the authors involved in the study on early dynamic imaging with 68Ga-PSMA-11 PET/CT."
+      },
+      {
+        "name": "Fritz J",
+        "type": "Author",
+        "description": "One of the authors involved in the study on early PET imaging with [68]Ga-PSMA-11 for local recurrence detection."
+      },
+      {
+        "name": "Sachpekidis C",
+        "type": "Author",
+        "description": "One of the authors involved in the study assessing impact of early PSMA-PET on local recurrence diagnosis."
+      },
+      {
+        "name": "Pan L",
+        "type": "Author",
+        "description": "One of the authors involved in the study assessing impact of early PSMA-PET on local recurrence diagnosis."
+      },
+      {
+        "name": "Hadaschik BA",
+        "type": "Author",
+        "description": "One of the authors involved in the study assessing impact of early PSMA-PET on local recurrence diagnosis."
+      },
+      {
+        "name": "World J Nucl Med",
+        "type": "Journal",
+        "description": "Journal where the study 'On the fractal nature of positron emission tomography (PET) studies' was published."
+      },
+      {
+        "name": "Eur Urol",
+        "type": "Journal",
+        "description": "Journal where EAU-ESTRO-SIOG Guidelines on Prostate Cancer Part II was published."
+      },
+      {
+        "name": "Radiology",
+        "type": "Journal",
+        "description": "Journal where the article 'Prostate cancer: multiparametric MR imaging for detection, localization, and staging' was published."
+      },
+      {
+        "name": "Lancet Oncol",
+        "type": "Journal",
+        "description": "Journal where the article 'Radionuclide and hybrid imaging of recurrent prostate cancer' was published."
+      },
+      {
+        "name": "J Urol",
+        "type": "Journal",
+        "description": "Journal where the study on diagnostic efficacy of (68)Gallium-PSMA PET was published."
+      },
+      {
+        "name": "Eur J Nucl Med Mol Imaging",
+        "type": "Journal",
+        "description": "Journal where multiple articles on PSMA-PET were published, including pearls and pitfalls, early dynamic imaging studies, and local recurrence detection studies."
+      },
+      {
+        "name": "EAU-ESTRO-SIOG Guidelines on Prostate Cancer",
+        "type": "Guideline",
+        "description": "Guidelines covering treatment of relapsing, metastatic, and castration-resistant prostate cancer."
+      },
+      {
+        "name": "Prostate cancer: multiparametric MR imaging for detection, localization, and staging",
+        "type": "Article",
+        "description": "Article discussing the use of MRI in prostate cancer."
+      },
+      {
+        "name": "Radionuclide and hybrid imaging of recurrent prostate cancer",
+        "type": "Article",
+        "description": "Article reviewing radionuclide and hybrid imaging techniques for recurrent prostate cancer."
+      },
+      {
+        "name": "(68)Gallium-PSMA positron emission tomography",
+        "type": "Imaging Technique",
+        "description": "Imaging technique used for staging lymph nodes in prostate cancer patients."
+      },
+      {
+        "name": "prostate-specific membrane antigen (PSMA)-targeted PET imaging",
+        "type": "Imaging Technique",
+        "description": "PET imaging targeting PSMA, relevant for prostate cancer."
+      },
+      {
+        "name": "68Ga-PSMA-11 PET/CT",
+        "type": "Imaging Modality",
+        "description": "Specific PET/CT tracer and modality used in several studies mentioned."
+      },
+      {
+        "name": "urinary bladder activity",
+        "type": "Anatomical Feature",
+        "description": "Activity within the urinary bladder, relevant in PSMA-PET imaging."
+      },
+      {
+        "name": "prostate cancer lesions",
+        "type": "Pathology",
+        "description": "Tumorous growths related to prostate cancer, target of PSMA-PET."
+      },
+      {
+        "name": "local recurrence",
+        "type": "Disease Progression",
+        "description": "Return of prostate cancer in the local area after initial treatment."
+      },
+      {
+        "name": "biochemical recurrence",
+        "type": "Disease Progression",
+        "description": "Recurrence of prostate cancer indicated by rising PSA levels."
+      }
+    ],
+    "relations": [
+      {
+        "source": "LG",
+        "target": "On the fractal nature of positron emission tomography (PET) studies",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Burger C",
+        "target": "On the fractal nature of positron emission tomography (PET) studies",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Mikolajczyk K",
+        "target": "On the fractal nature of positron emission tomography (PET) studies",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Lehnert T",
+        "target": "On the fractal nature of positron emission tomography (PET) studies",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Cornford P",
+        "target": "EAU-ESTRO-SIOG Guidelines on Prostate Cancer",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Bellmunt J",
+        "target": "EAU-ESTRO-SIOG Guidelines on Prostate Cancer",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Bolla M",
+        "target": "EAU-ESTRO-SIOG Guidelines on Prostate Cancer",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Hoeks CMA",
+        "target": "Prostate cancer: multiparametric MR imaging for detection, localization, and staging",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Barentsz JO",
+        "target": "Prostate cancer: multiparametric MR imaging for detection, localization, and staging",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Hambrock T",
+        "target": "Prostate cancer: multiparametric MR imaging for detection, localization, and staging",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Beer AJ",
+        "target": "Radionuclide and hybrid imaging of recurrent prostate cancer",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Eiber M",
+        "target": "Radionuclide and hybrid imaging of recurrent prostate cancer",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Souvatzoglou M",
+        "target": "Radionuclide and hybrid imaging of recurrent prostate cancer",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Schwaiger M",
+        "target": "Radionuclide and hybrid imaging of recurrent prostate cancer",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Krause BJ",
+        "target": "Radionuclide and hybrid imaging of recurrent prostate cancer",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Maurer T",
+        "target": "(68)Gallium-PSMA positron emission tomography",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Gschwend JE",
+        "target": "(68)Gallium-PSMA positron emission tomography",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Rauscher I",
+        "target": "(68)Gallium-PSMA positron emission tomography",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Sheikhbahaei S",
+        "target": "prostate-specific membrane antigen (PSMA)-targeted PET imaging",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Afshar-Oromieh A",
+        "target": "prostate-specific membrane antigen (PSMA)-targeted PET imaging",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Uprimny C",
+        "target": "68Ga-PSMA-11 PET/CT",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Kroiss AS",
+        "target": "68Ga-PSMA-11 PET/CT",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Decristoforo C",
+        "target": "68Ga-PSMA-11 PET/CT",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Fritz J",
+        "target": "68Ga-PSMA-11 PET/CT",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Sachpekidis C",
+        "target": "68Ga-PSMA-11 PET/CT",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Pan L",
+        "target": "68Ga-PSMA-11 PET/CT",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "Hadaschik BA",
+        "target": "68Ga-PSMA-11 PET/CT",
+        "relation": "AuthorOf"
+      },
+      {
+        "source": "EAU-ESTRO-SIOG Guidelines on Prostate Cancer",
+        "target": "Prostate cancer",
+        "relation": "Treats"
+      },
+      {
+        "source": "Prostate cancer: multiparametric MR imaging for detection, localization, and staging",
+        "target": "Prostate cancer",
+        "relation": "RelatedTo"
+      },
+      {
+        "source": "(68)Gallium-PSMA positron emission tomography",
+        "target": "Prostate cancer",
+        "relation": "RelatedTo"
+      },
+      {
+        "source": "prostate-specific membrane antigen (PSMA)-targeted PET imaging",
+        "target": "Prostate cancer",
+        "relation": "RelatedTo"
+      }
+    ]
+  },
+  "4d8a311ca16a73ec13893263b48068a7": {
+    "entities": [
+      {
+        "name": "68Ga-PSMA-11 PET/CT",
+        "type": "Imaging Technique",
+        "description": "A specific type of Positron Emission Tomography (PET) scan using Gallium-68 labeled PSMA-11, used for imaging prostate cancer."
+      },
+      {
+        "name": "prostate cancer local recurrence",
+        "type": "Disease Condition",
+        "description": "The return of prostate cancer in the same area after initial treatment."
+      },
+      {
+        "name": "Am J Nucl Med Mol Imaging",
+        "type": "Journal",
+        "description": "American Journal of Nuclear Medicine and Molecular Imaging, a publication venue for research articles."
+      },
+      {
+        "name": "177Lu-PSMA-617 radioligand therapy",
+        "type": "Therapy",
+        "description": "A type of targeted radionuclide therapy using Lutetium-177 labeled PSMA-617 for advanced prostate cancer."
+      },
+      {
+        "name": "advanced prostate cancer patients",
+        "type": "Patient Group",
+        "description": "Patients diagnosed with prostate cancer that has spread beyond the primary site."
+      },
+      {
+        "name": "J Nucl Med",
+        "type": "Journal",
+        "description": "Journal of Nuclear Medicine, a publication venue for research articles."
+      },
+      {
+        "name": "metastatic castration-resistant prostate cancer (LuPSMA trial)",
+        "type": "Disease Condition",
+        "description": "A specific stage and type of prostate cancer resistant to hormone therapy, studied in the LuPSMA trial."
+      },
+      {
+        "name": "Lancet Oncol",
+        "type": "Journal",
+        "description": "The Lancet Oncology, a high-impact medical journal publishing research on cancer."
+      },
+      {
+        "name": "225Ac-PSMA-617",
+        "type": "Radiopharmaceutical",
+        "description": "A radiopharmaceutical using Actinium-225 labeled PSMA-617 for targeted alpha therapy."
+      },
+      {
+        "name": "metastatic castration-resistant prostate cancer",
+        "type": "Disease Condition",
+        "description": "A type of advanced prostate cancer that is resistant to androgen deprivation therapy and has spread to other parts of the body."
+      },
+      {
+        "name": "chemotherapy-naive patients with advanced prostate cancer",
+        "type": "Patient Group",
+        "description": "Patients with advanced prostate cancer who have not yet received chemotherapy."
+      },
+      {
+        "name": "Eur J Nucl Med Mol Imaging",
+        "type": "Journal",
+        "description": "European Journal of Nuclear Medicine and Molecular Imaging, a publication venue for research articles."
+      }
+    ],
+    "relations": [
+      {
+        "source": "68Ga-PSMA-11 PET/CT",
+        "target": "prostate cancer local recurrence",
+        "relation": "used for imaging"
+      },
+      {
+        "source": "Sachpekidis C, Pan L, Hadaschik BA, et al.",
+        "target": "68Ga-PSMA-11 PET/CT",
+        "relation": "published study on"
+      },
+      {
+        "source": "Am J Nucl Med Mol Imaging",
+        "target": "Sachpekidis C, Pan L, Hadaschik BA, et al.",
+        "relation": "published in"
+      },
+      {
+        "source": "177Lu-PSMA-617 radioligand therapy",
+        "target": "advanced prostate cancer patients",
+        "relation": "used for treating"
+      },
+      {
+        "source": "Rahbar K, Ahmadzadehfar H, Kratochwil C, Haberkorn U, Sch\u00e4fers M, et al.",
+        "target": "177Lu-PSMA-617 radioligand therapy",
+        "relation": "investigated"
+      },
+      {
+        "source": "J Nucl Med",
+        "target": "Rahbar K, Ahmadzadehfar H, Kratochwil C, Haberkorn U, Sch\u00e4fers M, et al.",
+        "relation": "published in"
+      },
+      {
+        "source": "metastatic castration-resistant prostate cancer (LuPSMA trial)",
+        "target": "Hofman MS, Violet J, Hicks RJ, et al.",
+        "relation": "studied in"
+      },
+      {
+        "source": "[177Lu]-PSMA-617 radio-nuclide treatment",
+        "target": "metastatic castration-resistant prostate cancer (LuPSMA trial)",
+        "relation": "used for treating"
+      },
+      {
+        "source": "Lancet Oncol",
+        "target": "Hofman MS, Violet J, Hicks RJ, et al.",
+        "relation": "published in"
+      },
+      {
+        "source": "225Ac-PSMA-617",
+        "target": "metastatic castration-resistant prostate cancer",
+        "relation": "used for treating"
+      },
+      {
+        "source": "Kratochwil C, Bruchertseifer F, Giesel FL, Weis M, Verburg FA, et al.",
+        "target": "225Ac-PSMA-617",
+        "relation": "investigated"
+      },
+      {
+        "source": "J Nucl Med",
+        "target": "Kratochwil C, Bruchertseifer F, Giesel FL, Weis M, Verburg FA, et al.",
+        "relation": "published in"
+      },
+      {
+        "source": "225Ac-PSMA-617",
+        "target": "chemotherapy-naive patients with advanced prostate cancer",
+        "relation": "used for treating"
+      },
+      {
+        "source": "Sathekge M, Bruchertseifer F, Knoesen O, et al.",
+        "target": "225Ac-PSMA-617",
+        "relation": "investigated"
+      },
+      {
+        "source": "Eur J Nucl Med Mol Imaging",
+        "target": "Sathekge M, Bruchertseifer F, Knoesen O, et al.",
+        "relation": "published in"
+      }
+    ]
+  },
+  "0f398b5ebb7a276ebf0eb0574397077e": {
+    "entities": [],
+    "relations": []
+  },
+  "cdd7541ebb40e5f1d105e37d8686d575": {
+    "entities": [],
+    "relations": []
   }
 }
