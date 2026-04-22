@@ -68,8 +68,8 @@ EMOTIONAL_STATE_CONTEXT = {
 }
 
 
-# NURSE Strategy Sentence Starters to guide the LLM's empathy integration
-STRATEGY_SENTENCE_STARTERS = {
+# NURSE Strategy Sentence Starters to guide the LLM's empathy integration (English)
+STRATEGY_SENTENCE_STARTERS_EN = {
     "naming": [
         "It sounds like you're feeling {emotion}...",
         "I can hear the {emotion} in your voice...",
@@ -96,6 +96,38 @@ STRATEGY_SENTENCE_STARTERS = {
         "What would be most helpful for you to understand right now?",
     ],
 }
+
+# NURSE Strategy Sentence Starters to guide the LLM's empathy integration (German)
+STRATEGY_SENTENCE_STARTERS_DE = {
+    "naming": [
+        "Es hört sich so an, als ob Sie {emotion} fühlen...",
+        "Ich kann die {emotion} in Ihren Worten heraushören...",
+        "Viele Patienten fühlen sich {emotion}, wenn sie damit konfrontiert werden...",
+    ],
+    "understanding": [
+        "Ich kann gut verstehen, warum das für Sie {emotion} ist...",
+        "Es ergibt absolut Sinn, dass Sie sich so {emotion} fühlen, nach all dem, was Sie durchgemacht haben...",
+        "Ich sehe, wie überwältigend das für Sie sein muss...",
+    ],
+    "respecting": [
+        "Ich bin beeindruckt davon, wie Sie mit dieser Situation umgehen...",
+        "Sie haben sich offensichtlich sehr viele Gedanken über Ihre Behandlung gemacht...",
+        "Es erfordert viel Kraft, diese Fragen so offen zu stellen...",
+    ],
+    "supporting": [
+        "Ich möchte Sie Schritt für Schritt dabei unterstützen...",
+        "Ihr medizinisches Team und ich sind hier, um Ihnen Rückhalt zu geben...",
+        "Wir werden sicherstellen, dass Sie alles haben, was Sie brauchen...",
+    ],
+    "exploring": [
+        "Können Sie mir mehr darüber erzählen, was Ihnen am meisten Sorgen bereitet?",
+        "Was haben Sie bisher darüber gehört?",
+        "Was wäre im Moment am hilfreichsten für Sie zu verstehen?",
+    ],
+}
+
+# Legacy alias for backward compatibility (defaults to English)
+STRATEGY_SENTENCE_STARTERS = STRATEGY_SENTENCE_STARTERS_EN
 
 
 # --- Lightweight replacements for the previous `rules` module ---

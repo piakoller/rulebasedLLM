@@ -25,7 +25,7 @@ except Exception:
 
 BASE_DIR = Path(__file__).resolve().parent
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/chat")
-EXTRACTION_MODEL = os.getenv("GRAPH_RAG_EXTRACTION_MODEL", "hf.co/unsloth/medgemma-1.5-4b-it-GGUF:BF16")
+EXTRACTION_MODEL = os.getenv("GRAPH_RAG_EXTRACTION_MODEL", "hf.co/unsloth/medgemma-27b-it-GGUF:Q4_K_M")
 ANSWER_MODEL = os.getenv("GRAPH_RAG_ANSWER_MODEL", EXTRACTION_MODEL)
 DOCUMENT_ROOTS = [
     Path(path.strip())

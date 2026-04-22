@@ -6,6 +6,7 @@ Shows the new context-aware approach giving LLM full freedom.
 
 import sys
 import json
+from typing import Optional, Callable
 from pathlib import Path
 
 # Ensure imports resolve when running the script from the repo root or tests/ directory
@@ -41,76 +42,13 @@ def load_sample_questions(path: str = "data/sample_questions.json", limit: int |
 
     return all_questions[:limit]
 
-def run_pipeline_on_question(question: str, category: str, llm_classifier=None):
-    """Run the refactored empathy pipeline on a single question"""
-    print("\n" + "=" * 75)
-    print(f"CATEGORY: {category}")
-    print("=" * 75)
-    print(f"\n📝 PATIENT QUESTION:")
-    print(f"   {question[:100]}{'...' if len(question) > 100 else ''}")
-    
-    # Step 1: Language Detection
+def run_pipeline_on_question(question: str, category: str, llm_classifier: Optional[Callable] = None):
     language = detect_language(question)
-    print(f"\n1️⃣  LANGUAGE DETECTION:")
-    print(f"   Language: {language}")
-    
-    # Step 2: Emotion Classification
     emotional_state = classify_emotional_state(question, llm_classifier=llm_classifier)
-    print(f"\n2️⃣  EMOTION CLASSIFICATION:")
-    print(f"   Emotional State: {emotional_state}")
-    
-    # Step 3: Get Emotional Context
-    context = get_nurse_instruction(emotional_state)
-    print(f"\n3️⃣  EMOTIONAL CONTEXT (for LLM):")
-    print(f"   {context[:150]}...")
-    
-    # Step 4: Show what state details
-    state_details = EMOTIONAL_STATE_CONTEXT[emotional_state]
-    print(f"\n4️⃣  PATIENT NEEDS:")
-    print(f"   {state_details['state_description']}")
-    
-    # Step 5: Explain LLM freedom
-    print(f"\n5️⃣  LLM RESPONSE APPROACH:")
-    print(f"   The LLM will:")
-    if emotional_state == "anxiety":
-        print(f"   • Provide reassurance grounded in facts")
-        print(f"   • Acknowledge the concern is legitimate")
-        print(f"   • Explain what will be monitored")
-        print(f"   • Choose how to naturally integrate these elements")
-    elif emotional_state == "frustration":
-        print(f"   • Acknowledge the frustration directly")
-        print(f"   • Explain why the reaction is valid")
-        print(f"   • Provide clear next steps/action")
-        print(f"   • Choose how to be action-oriented")
-    elif emotional_state == "fear":
-        print(f"   • Address the specific fear directly")
-        print(f"   • Use calm, steady language")
-        print(f"   • Emphasize safety measures and monitoring")
-        print(f"   • Normalize fear as natural response")
-    elif emotional_state == "overwhelm":
-        print(f"   • Acknowledge the overwhelm")
-        print(f"   • Respect the patient's pace")
-        print(f"   • Simplify information")
-        print(f"   • Focus on one concept at a time")
-    else:  # neutral
-        print(f"   • Answer clearly and professionally")
-        print(f"   • Provide context as needed")
-        print(f"   • Invite follow-up questions")
-        print(f"   • Maintain clinical accuracy")
-    
-    print(f"\n✨ KEY: LLM chooses HOW to respond, not WHAT to say")
-    print(f"   (No forced prefixes, no step-by-step checklist)")
+    print(f"  > Language: {language} | State: {emotional_state}")
+    return language, emotional_state
 
-def main():
-    print("\n" + "=" * 75)
-    print("REFACTORED EMPATHY PIPELINE - CONTEXT-AWARE APPROACH")
-    print("=" * 75)
-    print("\nThis pipeline demonstrates:")
-    print("  ✓ Emotional state classification (5 states)")
-    print("  ✓ Context guidance (not prescriptive rules)")
-    print("  ✓ LLM full freedom to generate natural empathy")
-    print("  ✓ No hardcoded prefixes or step-by-step checklists")
-    
+def main():  
     import argparse
 
     parser = argparse.ArgumentParser(description="Run the refactored empathy pipeline on sample questions")
@@ -141,9 +79,7 @@ def main():
         if agent is not None:
             agent.reset()
         
-        print(f"\n{'#' * 75}")
-        print(f"QUESTION {i}/{len(sample_questions)}")
-        print(f"{'#' * 75}")
+        print(f"\n[Question {i}/{len(sample_questions)}] [{category}] {question[:70]}...")
 
         run_pipeline_on_question(question, category, llm_classifier=llm_classifier)
 

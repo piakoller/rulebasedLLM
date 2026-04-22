@@ -30,13 +30,14 @@ from empathy_framing import (
     DISTRESS_KEYWORDS,
     apply_rules,
     sentiment_analyzer,
-    STRATEGY_SENTENCE_STARTERS,
+    STRATEGY_SENTENCE_STARTERS_EN,
+    STRATEGY_SENTENCE_STARTERS_DE,
 )
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 FRAME_PROMPT_PATH = PROJECT_ROOT / "data" / "frame_prompt.txt"
 STATIC_PATIENT_DATA_PATH = PROJECT_ROOT / "data" / "context" / "static_patient_records.json"
-DEFAULT_OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "hf.co/unsloth/medgemma-1.5-4b-it-GGUF:BF16")
+DEFAULT_OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "hf.co/unsloth/medgemma-27b-it-GGUF:Q4_K_M")
 DEFAULT_OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/chat")
 DEFAULT_DOCUMENT_ROOT = PROJECT_ROOT / "data" / "context"
 MAX_REASONING_STEPS = 3
@@ -594,9 +595,12 @@ class AgentEngine:
             "model": self.model,
             "messages": messages,
             "stream": False,
-            "format": "json",
+            "options": {
+                "num_predict": -1,    # Allow the model to finish its full thought naturally
+                "temperature": 0.2,   # Slight creativity but mostly grounded
+            }
         }
-        response = requests.post(self.ollama_url, json=payload, timeout=180)
+        response = requests.post(self.ollama_url, json=payload, timeout=300)
         response.raise_for_status()
         data = response.json()
         return data.get("message", {}).get("content", "")
@@ -667,15 +671,23 @@ class AgentEngine:
         )
 
     def _build_prompt(self, user_message: str, observation_summary: str, emotional_state: str = "neutral", revised: bool = False, language: str | None = None) -> list[dict[str, str]]:
-        # Get emotional context to inform LLM via NURSE framework
+        starters = STRATEGY_SENTENCE_STARTERS_DE if language == "de" else STRATEGY_SENTENCE_STARTERS_EN
         emotional_context = get_nurse_instruction(emotional_state)
-        lang_directive = f"Respond in the user's language: {language}." if language else "Respond in the user's language (German, English, etc.)."
+        lang_directive = f"Respond strictly in the user's language: {language}." if language else "Respond in the user's language (German, English, etc.)."
+        
+        # Labels for the thinking block to keep the process in the target language
+        labels = {
+            "thinking": "Denkprozess" if language == "de" else "Thinking",
+            "extraction": "1. Extraktion" if language == "de" else "1. Extraction",
+            "mirroring": "2. Spiegelung" if language == "de" else "2. Mirroring",
+            "synthesis": "3. Synthese-Plan" if language == "de" else "3. Synthesis Plan",
+            "response": "Antwort" if language == "de" else "Response"
+        }
 
         # Define Dual-Pillar RAG Architecture context for the LLM
         dual_pillar_context = (
             "You are part of a Dual-Pillar Retrieval-Augmented Generation framework:\n"
-            "Pillar 1 (Ontology-Grounded RAG): Use the query_umls_ontology tool to verify clinical relationships. "
-            "Translate German terms to English before calling this tool.\n"
+            "Pillar 1 (UMLS Ontology): Use query_umls_ontology to verify specific medical relationships like (Therapy X -> treats -> Condition Y).\n"
             "Pillar 2 (Vector RAG): Use search_knowledge_graph to retrieve context from medical guidelines.\n"
             "Always prioritize verified information from Pillar 1 for clinical facts."
         )
@@ -692,19 +704,20 @@ class AgentEngine:
                 "- Before providing medical facts, immediately acknowledge the patient's specific concern with an empathetic statement.\n"
                 "- Integrate UMLS facts if verified. If not verified, rely on available context and your general medical knowledge to answer factually.\n"
                 f"{lang_directive}\n"
-                "- MANDATORY: Always start your response with a 'thinking' block that follows these steps:\n"
-                "  1. Extraction: List exactly which clinical facts were retrieved and are needed for the answer.\n"
-                "  2. Mirroring: Identify the patient's emotional state and select a mirroring strategy (Naming, Understanding, Respecting, Supporting, or Exploring).\n"
-                "  3. Synthesis Plan: Outline how you will weave the clinical facts into the empathic response.\n"
-                "- MANDATORY: You must call query_umls_ontology for any medication, therapy name, or side effect mentioned if not already verified.\n"
-                "- Output your final answer as a JSON object with 'thinking' and 'response' keys.\n"
-                "Example: {\"thinking\": \"1. Facts: PSMA-617 is for mCRPC. 2. Mirroring: Patient is anxious. I will use 'Understanding' ('It makes sense that you would feel anxious...'). 3. Plan: State purpose of therapy then reassure.\", \"response\": \"Your empathic answer here...\"}\n\n"
-                "Empathy Strategy Starters (use these naturally, do not copy verbatim):\n"
-                f"{json.dumps(STRATEGY_SENTENCE_STARTERS, indent=2)}\n\n"
+                f"- MANDATORY: Always start your response with a '{labels['thinking']}' block that follows these steps:\n"
+                f"  {labels['extraction']}: List exactly which clinical facts were retrieved and are needed for the answer.\n"
+                f"  {labels['mirroring']}: Identify the patient's emotional state and select a mirroring strategy.\n"
+                f"  {labels['synthesis']}: Outline how you will weave the clinical facts into the empathic response.\n"
+                "- REACT RULE: If you call a tool (ACTION:), DO NOT include the final JSON 'response' in the same turn. Wait for the tool observation.\n"
+                f"- Output your final answer as a JSON object with 'thinking' and 'response' keys. THE ENTIRE JSON MUST BE IN {language.upper() if language else 'THE USER LANGUAGE'}.\n"
+                f"Example: {{\"thinking\": \"{labels['extraction']}: ... {labels['mirroring']}: ... {labels['synthesis']}: ...\", \"response\": \"...\"}}\n\n"
+                f"Empathy Strategy Starters (use these naturally, do not copy verbatim):\n"
+                f"{json.dumps(starters, indent=2, ensure_ascii=False)}\n\n"
                 "Available Tools:\n"
                 "You may call tools by outputting lines like: ACTION: function_name(arg1=\"value1\")\n"
-                "- ACTION: search_knowledge_graph(query=\"query\") - Pillar 2: Search guideline-based knowledge graph\n"
-                "- ACTION: query_umls_ontology(term=\"term\") - Pillar 1: Verify medical relationships in UMLS (Standard English terms only)\n"
+                "- ACTION: search_knowledge_graph(query=\"query\") - Search guideline-based knowledge graph\n"
+                "- ACTION: query_umls_ontology(term=\"term\") - Verify medical relationships in UMLS (Standard English terms only)\n"
+                f"- IMPORTANT: YOUR FINAL ANSWER MUST BE IN {language.upper() if language else 'THE USER LANGUAGE'}.\n"
             )
             user_message_block = f"User message: {user_message}\n\nObservations:\n{observation_summary}\n\nPlease provide a concise, empathic answer using the Dual-Pillar framework."
             return [
@@ -745,12 +758,12 @@ class AgentEngine:
             "- Never mention dosing, prognosis, or numerical dosimetry.\n"
             "- Before providing medical facts, immediately acknowledge the patient's specific concern with an empathetic statement.\n"
             "- Integrate UMLS facts if verified. If not verified, rely on available context and your general medical knowledge to answer factually.\n"
-            "- Always start your response with a 'thinking' block that performs Extraction, Mirroring, and Synthesis Planning.\n"
-            "- LANGUAGE: Always respond to the user in the language they used (German, English, etc.).\n"
+            f"- Always start your response with a '{labels['thinking']}' block that performs {labels['extraction']}, {labels['mirroring']}, and {labels['synthesis']}.\n"
+            f"- LANGUAGE: Always respond to the user strictly in the language they used: {language}.\n"
             "- Output valid JSON only and follow this schema exactly:\n"
             '{"active_frame":"...","filled_slots":{...},"agent_response":"...","next_frame":"..."}\n\n'
-            "Empathy Strategy Starters (incorporate these into your plan):\n"
-            f"{json.dumps(STRATEGY_SENTENCE_STARTERS, indent=2)}\n\n"
+            f"Empathy Strategy Starters (incorporate these into your plan):\n"
+            f"{json.dumps(starters, indent=2, ensure_ascii=False)}\n\n"
             "Available Tools (optional):\n"
             "You may call tools by outputting lines like: ACTION: function_name(arg1=\"value1\", arg2=\"value2\")\n"
             "Available tools:\n"
@@ -835,36 +848,64 @@ class AgentEngine:
         )
 
     def _parse_frame_response(self, raw_content: str) -> FrameResponse:
+        """Extract and parse the JSON response from potentially noisy LLM output."""
         try:
-            payload = json.loads(raw_content)
-            
+            # 1. Try direct parse first
+            try:
+                payload = json.loads(raw_content)
+            except json.JSONDecodeError:
+                # 2. Try to find the outermost JSON object
+                import re
+                # This finds the first { and last } and tries to parse everything in between
+                start = raw_content.find('{')
+                end = raw_content.rfind('}')
+                if start != -1 and end != -1:
+                    try:
+                        payload = json.loads(raw_content[start:end+1])
+                    except json.JSONDecodeError:
+                        # If that fails, maybe there's a JSON block somewhere else
+                        raise json.JSONDecodeError("No valid JSON block found in content", raw_content, 0)
+                else:
+                    raise json.JSONDecodeError("No JSON structure found", raw_content, 0)
+
             # Case 1: Full FrameResponse schema
             if "agent_response" in payload:
                 return FrameResponse.model_validate(payload)
             
             # Case 2: Simplified "response" schema (common when use_frames=False)
             if "response" in payload:
+                # Extract potential thinking block
+                thinking = payload.get("thinking", "")
+                if isinstance(thinking, list):
+                    thinking = "\n".join(thinking)
+
                 return FrameResponse(
                     active_frame=self.current_frame,
-                    filled_slots={"thinking": payload.get("thinking", "")},
+                    filled_slots={"thinking": thinking},
                     agent_response=payload["response"],
                     next_frame=self.current_frame
                 )
             
-            # Fallback if it's a valid JSON but unknown schema
+            # Case 3: Partial or mangled payload - convert whatever is there to thinking/response
+            thinking = payload.get("thinking", str(payload))
+            if isinstance(thinking, list):
+                thinking = "\n".join(thinking)
+                
             return FrameResponse(
                 active_frame=self.current_frame,
-                filled_slots={},
-                agent_response=str(payload),
+                filled_slots={"thinking": thinking},
+                agent_response=payload.get("response", "I have processed your request, but the specific response field was missing."),
                 next_frame=self.current_frame
             )
-        except Exception:
-            # Fallback for plain text responses
+
+        except Exception as e:
+            # Fallback if parsing completely fails but we have some text
+            print(f"Warning: Failed to parse Agent response as JSON: {e}")
             return FrameResponse(
                 active_frame=self.current_frame,
-                filled_slots={},
-                agent_response=raw_content.strip() or "I want to keep this safe and simple.",
-                next_frame=self.current_frame,
+                filled_slots={"parsing_error": str(e), "raw_content": raw_content[:200]},
+                agent_response=raw_content.strip(),
+                next_frame=self.current_frame
             )
 
     def handle_message(self, user_message: str) -> FrameResponse:
@@ -904,6 +945,7 @@ class AgentEngine:
         for attempt in range(self.max_reasoning_steps):
             # Determine user language and include it in the system prompt
             user_lang = detect_language(user_message)
+            print(f"  [Agent] Stage: Thinking (Attempt {attempt + 1}/{self.max_reasoning_steps}) - Language: {user_lang}")
             messages = self._build_prompt(user_message, observation_summary, emotional_state=emotional_state, revised=attempt > 0, language=user_lang)
             raw_content = self._call_ollama(messages)
             
@@ -912,6 +954,7 @@ class AgentEngine:
             tool_results: list[ToolResult] = []
             if tool_calls:
                 for tool_call in tool_calls:
+                    print(f"  [Agent] Stage: Calling Tool ({tool_call.function_name})")
                     all_tools_called.append(tool_call.function_name)
                     tool_result = self._execute_tool(tool_call, user_message=user_message)
                     tool_results.append(tool_result)
@@ -932,6 +975,7 @@ class AgentEngine:
             if direct_response and candidate.agent_response:
                 candidate.agent_response = f"{direct_response} {candidate.agent_response}".strip()
 
+            print("  [Agent] Stage: Verifying Empathy & Clinical Accuracy")
             compliance = check_empathy_compliance(candidate.agent_response, user_message=user_message, detected_emotion=emotional_state)
             graph_verification = vector_rag.verify_llm_response(candidate.agent_response, graph_fact.entities, graph=self.knowledge_graph)
 
