@@ -89,7 +89,7 @@ class EmpathyComplianceResult(BaseModel):
 
 class FrameResponse(BaseModel):
     active_frame: Optional[str] = None
-    filled_slots: dict[str, str] = Field(default_factory=dict)
+    filled_slots: dict[str, Any] = Field(default_factory=dict)
     agent_response: str
     next_frame: Optional[str] = None
     tools_called: list[str] = Field(default_factory=list)
