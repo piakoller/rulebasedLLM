@@ -7,9 +7,12 @@ clinical graph is used so the module still works out of the box.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import re
+import threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Optional
 
@@ -23,7 +26,8 @@ try:
 except Exception:
     SentenceTransformer = None
 
-BASE_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+BASE_DIR = PROJECT_ROOT / "core" # Keep BASE_DIR for local core refs
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/chat")
 EXTRACTION_MODEL = os.getenv("GRAPH_RAG_EXTRACTION_MODEL", "hf.co/unsloth/medgemma-27b-it-GGUF:Q4_K_M")
 ANSWER_MODEL = os.getenv("GRAPH_RAG_ANSWER_MODEL", EXTRACTION_MODEL)
@@ -33,12 +37,17 @@ DOCUMENT_ROOTS = [
     if path.strip()
 ]
 if not DOCUMENT_ROOTS:
-    DOCUMENT_ROOTS = [BASE_DIR / "context", BASE_DIR / "docs", BASE_DIR / "data"]
-VECTOR_STORE_DIR = Path(os.getenv("GRAPH_RAG_VECTOR_STORE", BASE_DIR / "data" / "vector_store"))
+    DOCUMENT_ROOTS = [PROJECT_ROOT / "data" / "context", PROJECT_ROOT / "docs", PROJECT_ROOT / "data"]
+VECTOR_STORE_DIR = Path(os.getenv("GRAPH_RAG_VECTOR_STORE", PROJECT_ROOT / "data" / "vector_store"))
 SUPPORTED_SUFFIXES = {".pdf", ".txt", ".md", ".markdown"}
 CHUNK_SIZE = 1800
 CHUNK_OVERLAP = 250
+GRAPH_PATH = PROJECT_ROOT / "data" / "knowledge_graph.gml"
+CACHE_PATH = PROJECT_ROOT / "data" / "cache_graph_facts.json"
+MAX_WORKERS = int(os.getenv("GRAPH_RAG_MAX_WORKERS", "8"))
 
+_graph_lock = threading.Lock()
+_cache_lock = threading.Lock()
 _knowledge_graph: nx.Graph | None = None
 
 
@@ -247,6 +256,31 @@ def extract_graph_facts(document_chunk: str, model: str = EXTRACTION_MODEL, olla
         return {"entities": [], "relations": []}
 
 
+def _get_chunk_hash(text: str) -> str:
+    """Generate a unique fingerprint for a chunk of text."""
+    return hashlib.md5(text.encode("utf-8")).hexdigest()
+
+
+def _load_cache() -> dict:
+    if not CACHE_PATH.exists():
+        return {}
+    try:
+        with CACHE_PATH.open("r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def _save_cache(cache: dict) -> None:
+    CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with _cache_lock:
+        try:
+            with CACHE_PATH.open("w", encoding="utf-8") as f:
+                json.dump(cache, f, indent=2)
+        except Exception as exc:
+            print(f"Error saving cache: {exc}")
+
+
 def _upsert_entity(graph: nx.Graph, entity: dict, source_label: str) -> None:
     name = str(entity.get("name", "")).strip()
     if not name:
@@ -290,6 +324,40 @@ def _add_relation(graph: nx.Graph, relation: dict, source_label: str) -> None:
     edge_data["sources"] = edge_sources
 
 
+def _process_chunk(
+    chunk: str, 
+    source_label: str, 
+    graph: nx.Graph, 
+    cache: dict, 
+    model: str, 
+    ollama_url: str
+) -> None:
+    chunk_hash = _get_chunk_hash(chunk)
+    
+    # Check cache
+    with _cache_lock:
+        cached_facts = cache.get(chunk_hash)
+    
+    if cached_facts:
+        facts = cached_facts
+    else:
+        facts = extract_graph_facts(chunk, model=model, ollama_url=ollama_url)
+        with _cache_lock:
+            cache[chunk_hash] = facts
+            # Periodically save cache could be added here, but we'll save after each document for simplicity
+
+    if not facts:
+        return
+
+    with _graph_lock:
+        for entity in facts.get("entities", []):
+            if isinstance(entity, dict):
+                _upsert_entity(graph, entity, source_label)
+        for relation in facts.get("relations", []):
+            if isinstance(relation, dict):
+                _add_relation(graph, relation, source_label)
+
+
 def create_graph_from_documents(document_roots: list[Path] | None = None, model: str = EXTRACTION_MODEL) -> nx.Graph:
     """Build a graph from provided documents."""
     graph = nx.Graph()
@@ -300,27 +368,31 @@ def create_graph_from_documents(document_roots: list[Path] | None = None, model:
         return create_clinical_graph()
 
     print(f"🔍 Found {len(document_paths)} documents. Building clinical knowledge graph...")
-    for i, document_path in enumerate(document_paths, 1):
-        print(f"📄 [{i}/{len(document_paths)}] Processing: {document_path.name}...")
-        try:
-            text = load_document_text(document_path)
-        except Exception as exc:
-            print(f"Skipping {document_path}: {exc}")
-            continue
+    cache = _load_cache()
+    
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        for i, document_path in enumerate(document_paths, 1):
+            print(f"📄 [{i}/{len(document_paths)}] Queuing: {document_path.name}...")
+            try:
+                text = load_document_text(document_path)
+            except Exception as exc:
+                print(f"Skipping {document_path}: {exc}")
+                continue
 
-        chunks = chunk_text(text)
-        print(f"   - Document has {len(chunks)} chunks.")
-        for index, chunk in enumerate(chunks, start=1):
-            if index % 5 == 1:
-                print(f"   - Extracting facts from chunk {index}/{len(chunks)}...")
-            source_label = f"{document_path.name}#chunk-{index}"
-            facts = extract_graph_facts(chunk, model=model)
-            for entity in facts.get("entities", []):
-                if isinstance(entity, dict):
-                    _upsert_entity(graph, entity, source_label)
-            for relation in facts.get("relations", []):
-                if isinstance(relation, dict):
-                    _add_relation(graph, relation, source_label)
+            chunks = chunk_text(text)
+            futures = []
+            for index, chunk in enumerate(chunks, start=1):
+                source_label = f"{document_path.name}#chunk-{index}"
+                futures.append(
+                    executor.submit(_process_chunk, chunk, source_label, graph, cache, model, OLLAMA_URL)
+                )
+            
+            # Wait for document to finish to avoid too many pending tasks and save cache progress
+            for _ in as_completed(futures):
+                pass
+            
+            print(f"   ✅ Finished processing {document_path.name} ({len(chunks)} chunks).")
+            _save_cache(cache)
 
     if graph.number_of_nodes() == 0:
         return create_clinical_graph()
@@ -329,9 +401,32 @@ def create_graph_from_documents(document_roots: list[Path] | None = None, model:
 
 def get_knowledge_graph(document_roots: list[Path] | None = None) -> nx.Graph:
     global _knowledge_graph
-    if _knowledge_graph is None:
-        _knowledge_graph = create_graph_from_documents(document_roots=document_roots)
+    if _knowledge_graph is not None:
+        return _knowledge_graph
+
+    # Try loading from disk first
+    if GRAPH_PATH.exists():
+        print(f"📂 Loading existing clinical knowledge graph from {GRAPH_PATH}...")
+        try:
+            _knowledge_graph = nx.read_gml(str(GRAPH_PATH))
+            return _knowledge_graph
+        except Exception as exc:
+            print(f"⚠️ Could not load graph from disk, will rebuild: {exc}")
+
+    # Build fresh if not on disk or failed to load
+    _knowledge_graph = create_graph_from_documents(document_roots=document_roots)
+    save_knowledge_graph(_knowledge_graph)
     return _knowledge_graph
+
+
+def save_knowledge_graph(graph: nx.Graph) -> None:
+    """Persist the graph to disk for reuse."""
+    GRAPH_PATH.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        nx.write_gml(graph, str(GRAPH_PATH))
+        print(f"💾 Knowledge graph saved to {GRAPH_PATH}")
+    except Exception as exc:
+        print(f"Error saving knowledge graph: {exc}")
 
 
 def _find_verified_relation(graph: nx.Graph, entities: list[str]) -> tuple[str, str, str, list[str]]:
@@ -585,3 +680,31 @@ def verify_llm_response(response: str, entities: list[str], graph: nx.Graph | No
         "safe_fallback": safe_fallback,
         "verified_relations": verified_relations,
     }
+
+
+if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Clinical Knowledge Graph Builder")
+    parser.add_argument("--build", action="store_true", help="Trigger a fresh build of the graph from PDFs")
+    parser.add_argument("--force", action="store_true", help="Force rebuild even if graph exists on disk")
+    args = parser.parse_args()
+
+    if args.build or args.force:
+        if GRAPH_PATH.exists() and not args.force:
+            print(f"Graph already exists at {GRAPH_PATH}. Use --force to rebuild.")
+        else:
+            print(f"🚀 Starting fresh GraphRAG build using model: {EXTRACTION_MODEL}")
+            # Ensure the data directory exists
+            GRAPH_PATH.parent.mkdir(parents=True, exist_ok=True)
+            # Build and save
+            graph = create_graph_from_documents()
+            save_knowledge_graph(graph)
+            print("✅ GraphRAG build complete.")
+    else:
+        # Default behavior: just check status
+        if GRAPH_PATH.exists():
+            graph = nx.read_gml(str(GRAPH_PATH))
+            print(f"Clinical Knowledge Graph Status: ONLINE ({graph.number_of_nodes()} nodes, {graph.number_of_edges()} edges)")
+        else:
+            print("Clinical Knowledge Graph Status: OFFLINE (Run with --build to generate)")
