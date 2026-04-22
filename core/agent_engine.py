@@ -30,6 +30,7 @@ from empathy_framing import (
     DISTRESS_KEYWORDS,
     apply_rules,
     sentiment_analyzer,
+    STRATEGY_SENTENCE_STARTERS,
 )
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -38,7 +39,7 @@ STATIC_PATIENT_DATA_PATH = PROJECT_ROOT / "data" / "context" / "static_patient_r
 DEFAULT_OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "hf.co/unsloth/medgemma-1.5-4b-it-GGUF:BF16")
 DEFAULT_OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/chat")
 DEFAULT_DOCUMENT_ROOT = PROJECT_ROOT / "data" / "context"
-MAX_REASONING_STEPS = 2
+MAX_REASONING_STEPS = 3
 
 FORBIDDEN_TOPICS = {
     "dose",
@@ -354,36 +355,41 @@ def _sentence_count(text: str) -> int:
     return len(sentences)
 
 
-def check_empathy_compliance(draft_response: str, user_message: str = "") -> EmpathyComplianceResult:
+def check_empathy_compliance(draft_response: str, user_message: str = "", detected_emotion: str = "neutral") -> EmpathyComplianceResult:
     """Evaluate whether the draft response sounds supportive and patient-centered."""
     lowered = draft_response.lower()
     issues: list[str] = []
     score = 1.0
 
-    if any(keyword in lowered for keyword in ["dose", "dosing", "prognosis", "survival", "guarantee"]):
-        issues.append("Contains prohibited clinical detail.")
+    # Rule 1: No prohibited clinical details
+    forbidden = ["dose", "dosing", "prognosis", "survival", "guarantee"]
+    if any(keyword in lowered for keyword in forbidden):
+        issues.append("Contains prohibited clinical detail (dosing/prognosis/guarantees).")
         score -= 0.6
 
-    if any(keyword in user_message.lower() for keyword in DISTRESS_KEYWORDS):
+    # Rule 2: Emotional validation
+    if detected_emotion != "neutral":
         if not any(marker in lowered for marker in SUPPORTIVE_MARKERS):
-            issues.append("Missing explicit supportive or validating language for distress.")
-            score -= 0.3
+            issues.append(f"Missing explicit supportive language for the detected state: {detected_emotion}.")
+            score -= 0.4
+        
+        # Specific checks for Mirroring
+        if detected_emotion in ["fear", "anxiety"] and not any(kw in lowered for kw in ["safe", "monitor", "understand", "help"]):
+            issues.append("Fails to adequately reassure or explain safety for anxiety/fear.")
+            score -= 0.2
 
-    if _sentence_count(draft_response) > 2 and any(term in lowered for term in ["therapy", "treatment", "radiation"]):
-        issues.append("Contains more than two sentences of medical facts in a clinical explanation.")
-        score -= 0.2
-
-    if not any(marker in lowered for marker in SUPPORTIVE_MARKERS):
-        issues.append("Could be warmer and more patient-centered.")
-        score -= 0.1
+    # Rule 3: Fact density
+    if _sentence_count(draft_response) > 3 and not any(marker in lowered for marker in SUPPORTIVE_MARKERS):
+        issues.append("Response is too technical/dense without enough empathic framing.")
+        score -= 0.3
 
     score = max(0.0, min(1.0, score))
     recommended_prefix = ""
     if any(keyword in user_message.lower() for keyword in DISTRESS_KEYWORDS):
-        recommended_prefix = "I’m sorry you’re going through this. I want to respond carefully and supportively. "
+        recommended_prefix = "I understand this is a lot to take in. "
 
     return EmpathyComplianceResult(
-        compliant=score >= 0.6 and not any("prohibited" in issue.lower() for issue in issues),
+        compliant=score >= 0.7 and not any("prohibited" in issue.lower() for issue in issues),
         score=score,
         issues=issues,
         recommended_prefix=recommended_prefix,
@@ -686,10 +692,15 @@ class AgentEngine:
                 "- Before providing medical facts, immediately acknowledge the patient's specific concern with an empathetic statement.\n"
                 "- Integrate UMLS facts if verified. If not verified, rely on available context and your general medical knowledge to answer factually.\n"
                 f"{lang_directive}\n"
-                "- MANDATORY: Always start your response with a 'thinking' block explaining which medical terms you will verify in UMLS.\n"
-                "- MANDATORY: You must call query_umls_ontology for any medication, therapy name, or side effect mentioned.\n"
+                "- MANDATORY: Always start your response with a 'thinking' block that follows these steps:\n"
+                "  1. Extraction: List exactly which clinical facts were retrieved and are needed for the answer.\n"
+                "  2. Mirroring: Identify the patient's emotional state and select a mirroring strategy (Naming, Understanding, Respecting, Supporting, or Exploring).\n"
+                "  3. Synthesis Plan: Outline how you will weave the clinical facts into the empathic response.\n"
+                "- MANDATORY: You must call query_umls_ontology for any medication, therapy name, or side effect mentioned if not already verified.\n"
                 "- Output your final answer as a JSON object with 'thinking' and 'response' keys.\n"
-                "Example: {\"thinking\": \"Reflecting on PSMA therapy risks...\", \"response\": \"Your empathic answer here...\"}\n\n"
+                "Example: {\"thinking\": \"1. Facts: PSMA-617 is for mCRPC. 2. Mirroring: Patient is anxious. I will use 'Understanding' ('It makes sense that you would feel anxious...'). 3. Plan: State purpose of therapy then reassure.\", \"response\": \"Your empathic answer here...\"}\n\n"
+                "Empathy Strategy Starters (use these naturally, do not copy verbatim):\n"
+                f"{json.dumps(STRATEGY_SENTENCE_STARTERS, indent=2)}\n\n"
                 "Available Tools:\n"
                 "You may call tools by outputting lines like: ACTION: function_name(arg1=\"value1\")\n"
                 "- ACTION: search_knowledge_graph(query=\"query\") - Pillar 2: Search guideline-based knowledge graph\n"
@@ -734,9 +745,12 @@ class AgentEngine:
             "- Never mention dosing, prognosis, or numerical dosimetry.\n"
             "- Before providing medical facts, immediately acknowledge the patient's specific concern with an empathetic statement.\n"
             "- Integrate UMLS facts if verified. If not verified, rely on available context and your general medical knowledge to answer factually.\n"
-            "- LANGUAGE: Always respond to the user in the language they used (German, English, etc.), even though your tool calls and observations are in English.\n"
+            "- Always start your response with a 'thinking' block that performs Extraction, Mirroring, and Synthesis Planning.\n"
+            "- LANGUAGE: Always respond to the user in the language they used (German, English, etc.).\n"
             "- Output valid JSON only and follow this schema exactly:\n"
             '{"active_frame":"...","filled_slots":{...},"agent_response":"...","next_frame":"..."}\n\n'
+            "Empathy Strategy Starters (incorporate these into your plan):\n"
+            f"{json.dumps(STRATEGY_SENTENCE_STARTERS, indent=2)}\n\n"
             "Available Tools (optional):\n"
             "You may call tools by outputting lines like: ACTION: function_name(arg1=\"value1\", arg2=\"value2\")\n"
             "Available tools:\n"
@@ -918,7 +932,7 @@ class AgentEngine:
             if direct_response and candidate.agent_response:
                 candidate.agent_response = f"{direct_response} {candidate.agent_response}".strip()
 
-            compliance = check_empathy_compliance(candidate.agent_response, user_message=user_message)
+            compliance = check_empathy_compliance(candidate.agent_response, user_message=user_message, detected_emotion=emotional_state)
             graph_verification = vector_rag.verify_llm_response(candidate.agent_response, graph_fact.entities, graph=self.knowledge_graph)
 
             if analysis["forbidden_topic"]:
@@ -1062,7 +1076,7 @@ class AgentEngine:
                     next_frame=candidate.next_frame
                 )
 
-            compliance = check_empathy_compliance(candidate.agent_response, user_message=user_message)
+            compliance = check_empathy_compliance(candidate.agent_response, user_message=user_message, detected_emotion=analysis.get("emotional_state", "neutral"))
             graph_verification = vector_rag.verify_llm_response(candidate.agent_response, graph_fact.entities, graph=self.knowledge_graph)
 
             if analysis["forbidden_topic"]:

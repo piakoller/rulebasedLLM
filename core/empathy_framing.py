@@ -41,14 +41,20 @@ EMOTIONAL_STATE_CONTEXT = {
             "Generate your own empathic approach based on what you think will best address their fear."
         ),
     },
-    "overwhelm": {
-        "state_description": "Patient has too much information or too many decisions",
+    "emotional_overwhelm": {
+        "state_description": "Patient feels they can't cope with the situation (emotional overwhelm)",
         "context_for_llm": (
-            "The patient is feeling overwhelmed. They may have received too much information, "
-            "have too many decisions to make, or feel lost. "
-            "Respond with simplicity and respect for their pace. Focus on the most important thing first. "
-            "Use shorter responses and let them guide what they want to understand next. "
-            "How you structure and pace your response matters more than specific phrases."
+            "The patient is emotionally overwhelmed. They are struggling to cope with the reality of their situation. "
+            "Respond with deep empathy and respect. Focus on being present and supportive. "
+            "Do not rush into technical details. Acknowledge the weight of what they are experiencing."
+        ),
+    },
+    "technical_overwhelm": {
+        "state_description": "Patient is confused by technical information or logistics",
+        "context_for_llm": (
+            "The patient is overwhelmed by technical information, medical jargon, or complex logistics. "
+            "Simplify your language immediately. Break down concepts into clear, manageable steps. "
+            "Focus on the most important 'next thing' to know. Avoid all non-essential medical detail."
         ),
     },
     "neutral": {
@@ -59,6 +65,36 @@ EMOTIONAL_STATE_CONTEXT = {
             "No need for extra reassurance or emotional language—clarity and accuracy are what they need."
         ),
     },
+}
+
+
+# NURSE Strategy Sentence Starters to guide the LLM's empathy integration
+STRATEGY_SENTENCE_STARTERS = {
+    "naming": [
+        "It sounds like you're feeling {emotion}...",
+        "I can hear the {emotion} in your voice...",
+        "Many patients feel {emotion} when faced with this...",
+    ],
+    "understanding": [
+        "I can understand why that would be {emotion} for you...",
+        "It makes sense that you would feel {emotion} given what you've been through...",
+        "I can see how that would feel overwhelming...",
+    ],
+    "respecting": [
+        "I'm impressed by how you're handling this...",
+        "You've clearly put a lot of thought into your care...",
+        "It takes a lot of strength to ask these questions...",
+    ],
+    "supporting": [
+        "I want to help you through this step by step...",
+        "Your medical team and I are here to support you...",
+        "We will make sure you have everything you need...",
+    ],
+    "exploring": [
+        "Can you tell me more about what's worrying you most?",
+        "What have you heard so far about this?",
+        "What would be most helpful for you to understand right now?",
+    ],
 }
 
 
@@ -159,31 +195,30 @@ def classify_emotional_state(
             # Increased sensitivity to implied anxiety: include guidance for questions
             # that ask about probabilities, risks, or personal outcomes.
             classification_prompt = f"""
-You are a clinical conversation emotion classifier. Read the patient's message and pick exactly one label from this closed set: anxiety, frustration, fear, overwhelm, neutral.
+You are a clinical conversation emotion classifier. Read the patient's message and pick exactly one label from this closed set: anxiety, frustration, fear, emotional_overwhelm, technical_overwhelm, neutral.
 
 Rules (must follow exactly):
-- Output exactly one of: anxiety, frustration, fear, overwhelm, neutral (lowercase), and nothing else.
+- Output exactly one of: anxiety, frustration, fear, emotional_overwhelm, technical_overwhelm, neutral (lowercase), and nothing else.
 
 Interpretation guidance:
-- anxiety: the patient expresses or implies worry about outcomes, risks, uncertainty, or personal impact (examples: "Will this cure me?", "How likely is it to work?", "Is this risky?", "I'm concerned about side effects", "My PSA is rising, I'm worried").
-- fear: explicit, intense fear or statements about danger to life/safety (examples: "I'm terrified", "Will I die?", "I'm afraid I will die").
-- frustration: irritation, complaints, feeling ignored, or impatience (examples: "I've waited for weeks", "Nobody answers me").
-- overwhelm: explicit statements of being overwhelmed by information, decisions, or logistics (examples: "I can't cope with all this", "too much to handle").
+- anxiety: the patient expresses or implies worry about outcomes, risks, uncertainty, or personal impact.
+- fear: explicit, intense fear or statements about danger to life/safety.
+- frustration: irritation, complaints, feeling ignored, or impatience.
+- emotional_overwhelm: patient expresses being unable to cope, feeling lost, or emotionally saturated ("I can't take this anymore", "I'm falling apart").
+- technical_overwhelm: patient expresses confusion about medical terms, data, or complex steps ("This is too much information", "I don't understand these results", "Explain it simply").
 - neutral: informational, logistical, or clinical questions without emotional content or implied worry.
 
-Important heuristics (apply when the message is ambiguous):
-- Questions about prognosis, probability, treatment efficacy, risks, or "will I" style outcome questions should lean toward *anxiety* unless the message includes clear words that indicate extreme fear (then label *fear*).
-- Personal-impact questions (how it will affect me, my life, my family, my function) often indicate anxiety.
+Important heuristics:
+- If they complain about complexity or "too much info", use *technical_overwhelm*.
+- If they express deep emotional struggle, use *emotional_overwhelm*.
 
 Examples (input -> output):
 "I'm nervous about the treatment" -> anxiety
 "Will I die from this?" -> fear
 "I've been waiting for weeks and nobody answers" -> frustration
-"I feel overwhelmed with all these forms and appointments" -> overwhelm
+"I can't cope with all this bad news" -> emotional_overwhelm
+"This is all too complicated, I don't understand the PSA graph" -> technical_overwhelm
 "When is my next scan scheduled?" -> neutral
-"Is this treatment likely to work for me?" -> anxiety
-"Is it risky for me to go home after the therapy?" -> anxiety
-"My PSA keeps rising, I'm worried" -> anxiety
 
 Message: {user_message}
 
@@ -210,13 +245,21 @@ Classification (one word only):
         return "fear"
     
     # Overwhelm keywords (English + German)
-    overwhelm_keywords = [
-        "overwhelm", "too much", "can't think", "confused", "dizzy", "too many",
-        "zuviel", "zu viel", "überfordert", "verwirrt", "durcheinander", "kopf raucht",
-        "so much information", "don't know where to start", "information overload"
+    technical_overwhelm_keywords = [
+        "too much information", "so much information", "don't know where to start",
+        "information overload", "complicated", "confused", "don't understand",
+        "too technical", "explain it simply", "zu viele informationen", "verwirrt",
+        "zu kompliziert", "einfach erklären"
     ]
-    if any(word in lowered for word in overwhelm_keywords):
-        return "overwhelm"
+    if any(word in lowered for word in technical_overwhelm_keywords):
+        return "technical_overwhelm"
+
+    emotional_overwhelm_keywords = [
+        "can't cope", "too much to handle", "falling apart", "can't take it",
+        "overwhelm", "zuviel", "zu viel", "überfordert", "kopf raucht"
+    ]
+    if any(word in lowered for word in emotional_overwhelm_keywords):
+        return "emotional_overwhelm"
     
     # Frustration keywords (English + German)
     frustration_keywords = [
