@@ -1,0 +1,158 @@
+{
+  "results": [
+    {
+      "index": 1,
+      "category": "psma_therapy",
+      "question": "Kann ich durch eine PSMA-Therapie von meinem Krebs geheilt werden?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "The user is asking if PSMA therapy can cure their cancer. This is a direct question about treatment outcomes, specifically cure rates. I need to verify the term 'PSMA therapy' in UMLS first. Then, I will check the knowledge graph for information on PSMA therapy and cancer cure rates. If the relationship isn't directly verifiable from the graph, I will rely on general medical knowledge while acknowledging the user's concern."
+        },
+        "agent_response": "Ich verstehe, dass Sie sich nach der Möglichkeit einer Heilung durch eine PSMA-Therapie fragen. Es ist verständlich, dass Sie sich Sorgen machen. Die Wirksamkeit von PSMA-Therapien hängt stark vom spezifischen Krebs und seiner Ausbreitung ab. In vielen Fällen kann die Therapie helfen, den Tumor zu kontrollieren oder zu reduzieren, aber eine vollständige Heilung ist nicht immer garantiert. Es ist wichtig, dies mit Ihrem behandelnden Arzt zu besprechen, um Ihre individuelle Situation zu verstehen.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 2,
+      "category": "psma_therapy",
+      "question": "Stellt die radioaktive Strahlung durch die PSMA-Therapie ein Risiko für mich dar?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "The user is asking about the risk of radioactive radiation from PSMA therapy for them. I need to verify the term 'radioaktive Strahlung' in UMLS and check if PSMA therapy involves radioactive radiation. If it does, I should explain the potential risks associated with it based on general medical knowledge, acknowledging the patient's concern first."
+        },
+        "agent_response": "Die PSMA-Therapie verwendet radioaktives Yttrium-90 (⁹⁰Y). Diese Strahlung kann zu Nebenwirkungen führen, darunter eine erhöhte Blutarmut und ein erhöhtes Risiko für bestimmte Krebsarten, wie z.B. Prostatakrebs. Es ist wichtig, dass Sie sich über diese Risiken mit Ihrem behandelnden Arzt sprechen, um Ihre spezifische Situation zu verstehen.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 3,
+      "category": "psma_therapy",
+      "question": "Welche Nebenwirkungen gibt es im Rahmen der PSMA-Therapie?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "The user is asking about side effects of PSMA therapy. I need to verify the term 'PSMA' in UMLS first. Then, I will search the knowledge graph for information on PSMA therapy side effects. Finally, I will formulate an empathetic response incorporating any verified facts from UMLS and the knowledge graph."
+        },
+        "agent_response": "Im Rahmen der PSMA-Therapie können verschiedene Nebenwirkungen auftreten. Es ist wichtig, diese mit Ihrem Arzt zu besprechen, um sicherzustellen, dass Sie die Behandlung sicher und effektiv durchlaufen können. Die häufigsten Nebenwirkungen sind oft Übelkeit und Erbrechen, besonders in den ersten Tagen nach der Therapie. Andere mögliche Nebenwirkungen können sein, je nach Art der PSMA-Therapie (z.B. PSMA-1007 oder PSMA-177). Bitte sprechen Sie offen mit Ihrem medizinischen Team über alle Ihre Bedenken und Fragen.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 4,
+      "category": "psma_therapy",
+      "question": "Welche Strahlenschutzmassnahmen muss ich nach der PSMA-Therapie nach Entlassung aus dem Krankenhaus einhalten?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "The user is asking about radiation safety measures after PSMA therapy discharge. I need to verify the terms 'PSMA' and 'Strahlenschutzmassnahmen'.\n1. Verify 'PSMA': Search UMLS for 'PSMA'.\n2. Verify 'Strahlenschutzmassnahmen': Search UMLS for 'Strahlenschutzmassnahmen'.\n3. Retrieve context from knowledge graph about radiation safety after PSMA therapy.\n4. Synthesize the information, prioritizing verified facts from UMLS."
+        },
+        "agent_response": "Nach Ihrer Entlassung aus dem Krankenhaus sind bestimmte Strahlenschutzmassnahmen wichtig. Es ist besonders wichtig, die empfohlene Dosis von Radioaktivität zu vermeiden. Dies beinhaltet das Tragen eines geeigneten Schutzkleides und das Vermeiden von Kontakt mit der Haut oder den Augen. Zudem sollten Sie sich an die Anweisungen des medizinischen Personals halten, insbesondere bezüglich der Handhabung von Materialien und der Bereiche, in denen Sie sich aufhalten müssen. Die genauen Massnahmen können je nach individueller Situation variieren, daher ist es ratsam, die detaillierten Anleitungen zu konsultieren, die Ihnen während der Behandlung gegeben wurden.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 5,
+      "category": "psma_therapy",
+      "question": "Wie wahrscheinlich ist es, dass die PSMA-Therapie eine gute Wirkung erzielt?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "The user is asking about the effectiveness of PSMA therapy. I need to verify the term 'PSMA' in UMLS first. Then, I will use the knowledge graph if possible, or rely on general medical knowledge if not. The response should be empathetic and concise, acknowledging their question before providing information."
+        },
+        "agent_response": "Die Wirksamkeit von PSMA-Therapie hängt von verschiedenen Faktoren ab, darunter der spezifische Tumor und die individuellen Patienteneigenschaften. Es ist wichtig, dass Sie sich mit Ihrem behandelnden Arzt detailliert über die Erwartungen und möglichen Ergebnisse besprechen.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 6,
+      "category": "psma_therapy",
+      "question": "Wird mir durch die PSMA-Therapie übel werden?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "The user is asking about nausea as a side effect of PSMA therapy. I need to verify if nausea is a known side effect in UMLS. First, I will translate 'PSMA-Therapie' to English for the UMLS query: 'PSMA therapy'. Then, I will call query_umls_ontology with the term 'PSMA therapy'. If the result confirms nausea as a potential side effect, I will incorporate that into my response. If not, I will rely on general medical knowledge about PSMA therapy side effects and provide an empathetic answer acknowledging the user's concern."
+        },
+        "agent_response": "Nausea can be a possible side effect associated with PSMA therapy. It is important to discuss any symptoms you experience with your healthcare provider to determine the cause and appropriate management.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 7,
+      "category": "psma_therapy",
+      "question": "Werden mir durch die PSMA-Therapie die Haare ausfallen?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "The user is asking about hair loss due to PSMA therapy. I need to verify if this is a known side effect using query_umls_ontology. If it is, I will incorporate that information into my response. If not, I will rely on general medical knowledge and provide an empathetic answer acknowledging their concern."
+        },
+        "agent_response": "Haarausfall ist ein bekannter Nebenwirkung von PSMA-Therapien, die oft als 'PSMA-Hairloss' bezeichnet wird. Es handelt sich um eine häufige Nebenwirkung, die bei vielen Patienten auftritt. Die genauen Ursachen sind noch nicht vollständig geklärt, aber es wird angenommen, dass es mit der Immunantwort des Körpers zusammenhängt, die auf den Tumor abzielt.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 8,
+      "category": "psma_therapy",
+      "question": "Kann ich durch die PSMA-Therapie sterben?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "The user is asking about the possibility of dying from PSMA therapy. This is a sensitive question related to potential side effects or complications. I need to address this directly but empathetically, acknowledging their concern before providing information. First, I will verify the term 'PSMA-Therapie' in UMLS to understand its clinical context and associated risks. Then, I will search the knowledge graph for relevant information about PSMA therapy outcomes and potential adverse effects."
+        },
+        "agent_response": "Ich verstehe, dass Sie sich Sorgen um die möglichen Risiken der PSMA-Therapie machen. Es ist wichtig, diese Frage offen anzusprechen. Die PSMA-Therapie, auch bekannt als Radium-223-Lutetium-177-PSMA, wird zur Behandlung bestimmter Arten von Prostatakrebs eingesetzt. Wie bei jeder medizinischen Behandlung gibt es potenzielle Nebenwirkungen und Risiken. Es ist wichtig, diese mit Ihrem behandelnden Arzt zu besprechen, um ein vollständiges Bild der Situation zu erhalten.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 9,
+      "category": "psma_therapy",
+      "question": "Wie lange muss ich für eine PSMA-Therapie im Krankenhaus bleiben?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "The user is asking about the duration of hospital stay for PSMA therapy. The patient's context indicates anxiety about the treatment day itself, not necessarily the length of stay. I need to address this specific concern while providing factual information about typical hospital stays for PRRT (Proton Radiotherapy with External Beam Therapy). I will first acknowledge the user's concern about the duration and then provide general information based on available knowledge graphs and my medical knowledge, ensuring I verify any medication or therapy names using UMLS. I will prioritize the verified information from Pillar 1."
+        },
+        "agent_response": "Die Dauer des Krankenhausaufenthalts für eine PSMA-Therapie kann variieren, je nach individueller Situation und den spezifischen Protokollen, die von Ihrem behandelnden Team festgelegt werden. In der Regel dauert ein stationärer Aufenthalt für Protonentherapie (PRRT) mehrere Tage, oft zwischen 5 bis 10 Tagen, abhängig von der Komplexität des Behandlungsplans und dem Fortschritt der Behandlung. Es ist wichtig, dass Sie sich auf die spezifischen Informationen beziehen, die Ihnen Ihr ärztliches Team gegeben hat.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 10,
+      "category": "psma_therapy",
+      "question": "Darf ich während meines Aufenthaltes im Rahmen einer PSMA-Therapie Besuch erhalten?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "The user is asking about visiting during PSMA therapy. I need to verify the term 'PSMA' in UMLS. The user's emotional state is neutral, but they are expressing anxiety about treatment day and radiation safety. I should acknowledge their concern before providing information."
+        },
+        "agent_response": "Besuch ist während der PSMA-Therapie in der Regel möglich, aber es hängt von den spezifischen Details Ihres Behandlungsplans und den Richtlinien des Krankenhauses ab. Es ist ratsam, dies direkt mit Ihrem behandelnden Arzt oder dem Pflegepersonal zu besprechen, um sicherzustellen, dass Ihr Besuch nicht die Behandlung beeinträchtigt.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 11,
+      "category": "psma_therapy",
+      "question": "Mein PSA-Wert steigt trotz der PSMA-Therapie weiter an. Ist das ein Problem?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "The user is asking about their PSA level increasing despite PSMA therapy. This indicates potential treatment failure or resistance. I need to acknowledge their concern empathetically before providing information. First, I will verify the term 'PSMA' in UMLS to ensure its clinical relevance and context. Then, I will search the knowledge graph for relevant guidelines or information about rising PSA levels during PSMA therapy."
+        },
+        "agent_response": "Ich verstehe, dass Sie sich Sorgen machen, weil Ihr PSA-Wert trotz der PSMA-Therapie weiter ansteigt. Das ist eine besorgniserregende Situation, und es ist verständlich, dass Sie Fragen dazu haben. Lassen Sie uns das gemeinsam genauer betrachten.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    }
+  ]
+}

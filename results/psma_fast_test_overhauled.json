@@ -1,0 +1,134 @@
+{
+  "results": [
+    {
+      "index": 1,
+      "category": "psma_therapy",
+      "question": "Kann ich durch eine PSMA-Therapie von meinem Krebs geheilt werden?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "1. Facts: PSMA-Therapie ist eine Behandlung für bestimmte Arten von Prostatakrebs, insbesondere mCRPC. Sie hilft oft, das Wachstum des Krebses zu verlangsamen oder zu stoppen. Es ist nicht garantiert, dass sie die Heilung bedeutet. Das Ergebnis hängt von vielen individuellen Faktoren ab (Krebszustand, Reaktion auf die Therapie, allgemeines Gesundheitszustand). 2. Mirroring: User is asking about cure possibility. Emotional state is neutral. I will use an 'understanding' strategy ('I can understand why you would be looking for information on this topic...'). 3. Synthesis Plan: Acknowledge the question. Explain what PSMA therapy does (slows/stops growth) and its target population (specific prostate cancer types). State clearly that it doesn't guarantee a cure for everyone, mentioning individual factors influence the outcome. Offer to discuss specifics if needed."
+        },
+        "agent_response": "Ich verstehe, dass Sie sich nach der Möglichkeit einer Heilung fragen. PSMA-Therapie ist eine Behandlung für bestimmte Arten von Prostatakrebs, insbesondere wenn er wiederkehrt oder schwer zu behandeln ist. Sie hilft oft, das Wachstum des Krebses zu verlangsamen oder zu stoppen. Es ist jedoch wichtig zu wissen, dass PSMA-Therapie nicht für jeden Patienten die Heilung bedeutet. Das Ergebnis hängt von vielen individuellen Faktoren ab, wie dem genauen Krebszustand, der Reaktion auf die Behandlung und dem allgemeinen Gesundheitszustand. Wäre es hilfreich, wenn wir uns die spezifischen Details zu Ihrem Fall besprechen würden?",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 2,
+      "category": "psma_therapy",
+      "question": "Stellt die radioaktive Strahlung durch die PSMA-Therapie ein Risiko für mich dar?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "1. Extraction: The user is asking about the risk of radioactive radiation from PSMA therapy for them personally.\n2. Mirroring: User's emotional state is neutral, no specific emotion detected. Respond factually and neutrally, acknowledging their question directly without excessive empathy or technical jargon.\n3. Synthesis Plan: Explain that PSMA therapy uses radioactive isotopes (like Lutetium-177) to target prostate cancer cells. Clarify that the radiation is primarily directed at the tumor tissue and generally does not spread systemically throughout the body, thus posing a low risk to healthy tissues. Mention potential side effects but keep it general.\n4. Constraint Checklist: Start with 'thinking': Yes. Extract facts: Yes (PSMA uses radioactive isotopes, radiation targeted at tumors, low systemic risk). Mirroring: Neutral/factual response planned. Synthesis Plan: Yes. React Rule: No tool call needed yet. Output JSON: Yes. Concise answer: Yes. Empathic framing: Acknowledge question neutrally. No dosing/prognosis/numerical dosimetry: Yes. Validate emotion before technical explanation: Not applicable (neutral). Acknowledge specific concern first: Yes (by answering directly). Integrate UMLS facts if verified: N/A. Prioritize verified info: N/A. Language: German."
+        },
+        "agent_response": "Die PSMA-Therapie verwendet radioaktive Isotopen, um den Krebs gezielt anzugehen. Die Strahlung wird hauptsächlich auf die Tumorzellen gerichtet und verteilt sich nicht im ganzen Körper. Das Risiko für gesunde Gewebe ist daher in der Regel gering.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 3,
+      "category": "psma_therapy",
+      "question": "Welche Nebenwirkungen gibt es im Rahmen der PSMA-Therapie?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "1. Extraction: The user is asking about potential side effects of PSMA therapy. I need to provide general information about common side effects associated with treatments like PSMA-617, while avoiding specific dosing or prognosis.\n2. Mirroring: The user's emotional state is neutral, but they are asking a question related to potential negative experiences (side effects). Acknowledge this concern directly and empathetically.\n3. Synthesis Plan: Start by acknowledging the importance of understanding potential side effects. Provide general information about common side effects associated with PSMA therapy (e.g., fatigue, nausea, injection site reactions), emphasizing that individual experiences can vary. Encourage discussion with the medical team for personalized information and support."
+        },
+        "agent_response": "Es ist verständlich, dass Sie sich Gedanken über mögliche Nebenwirkungen machen, wenn Sie eine neue Therapie beginnen. PSMA-Therapien wie PSMA-617 können verschiedene Nebenwirkungen haben, die von Person zu Person unterschiedlich sein können. Häufige Reaktionen sind zum Beispiel Müdigkeit, Übelkeit oder Reaktionen an der Injektionsstelle. Es ist wichtig, dass Sie genau mit Ihrem behandelnden Arzt darüber sprechen, welche Nebenwirkungen für Sie am wahrscheinlichsten sind und wie diese gemanagt werden können. Ihr Team wird Ihnen sicher alle nötigen Informationen geben.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 4,
+      "category": "psma_therapy",
+      "question": "Welche Strahlenschutzmassnahmen muss ich nach der PSMA-Therapie nach Entlassung aus dem Krankenhaus einhalten?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "1. Extraction: The user is asking about radiation protection measures after PSMA therapy discharge. Key clinical facts needed are general post-discharge radiation safety guidelines and standard practices.\n2. Mirroring: The user expresses anxiety about the treatment day and radiation safety concerns. I will use an 'understanding' strategy to acknowledge this specific worry.\n3. Synthesis Plan: Start by acknowledging the patient's concern regarding radiation safety after discharge. Then, provide general information about standard post-discharge precautions without giving specifics or guarantees, emphasizing that these are routine measures for minimizing exposure."
+        },
+        "agent_response": "Ich verstehe, dass Sie sich Sorgen machen, wie die Strahlenschutzmassnahmen nach Ihrer PSMA-Therapie aussehen und ob Sie etwas beachten müssen. Nach der Entlassung wird Ihnen Ihr ärztliches Team normalerweise detailliert erklären, welche allgemeinen Massnahmen es gibt, um Ihre Strahlenbelastung zu minimieren. Dazu gehören oft Anweisungen, wie Sie sich in bestimmten Bereichen Ihres Hauses oder Ihrer Umgebung aufhalten sollten, um die Exposition zu reduzieren. Diese sind Standardvorkehrungen, die darauf abzielen, Ihr Sicherheit zu gewährleisten.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 5,
+      "category": "psma_therapy",
+      "question": "Wie wahrscheinlich ist es, dass die PSMA-Therapie eine gute Wirkung erzielt?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "1. Extraction: The user is asking about the likelihood of success/effectiveness of PSMA therapy. Clinical fact needed: Efficacy of PSMA therapy in prostate cancer.\n2. Mirroring: User's emotional state is neutral. Use 'Understanding' strategy starter: 'I can understand why you're asking about the effectiveness of PSMA therapy.'\n3. Synthesis Plan: Acknowledge the question. Provide general information about PSMA therapy's role in prostate cancer treatment, highlighting its importance and positive outcomes for many patients, without giving specific probabilities or dosing advice.\n4. Empathy Compliance Score Check: The score is 1.00, indicating full compliance with empathy requirements."
+        },
+        "agent_response": "I can understand why you're asking about the effectiveness of PSMA therapy. PSMA therapy plays an important role in treating prostate cancer, particularly metastatic castration-sensitive disease. For many patients, it has proven to be a very effective treatment option, leading to significant improvements in their condition and quality of life. It's considered a valuable part of modern treatment strategies.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 6,
+      "category": "psma_therapy",
+      "question": "Wird mir durch die PSMA-Therapie übel werden?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "1. Extraction: The user is asking about the possibility of experiencing nausea as a side effect of PSMA therapy.\n2. Mirroring: The user's emotional state is neutral, and no specific emotion is detected. I will use an 'understanding' mirroring strategy.\n3. Synthesis Plan: Acknowledge the potential for nausea as a side effect of PSMA therapy. Validate the patient's concern by showing understanding. Briefly mention that it's a known side effect and often manageable, but avoid giving specific dosing or prognosis.\n4. Empathy Strategy: Use 'understanding': \"I can understand why you might be concerned about feeling nauseous after PSMA therapy.\"\n5. Clinical Facts: Nausea is a potential side effect of PSMA therapy."
+        },
+        "agent_response": "Ich kann verstehen, warum Sie sich Sorgen machen könnten, übel zu werden, nachdem Sie die PSMA-Therapie erhalten haben. Übelkeit ist ein bekannter Nebenwirkung der Behandlung und wird oft von Ihrem Behandlungsteam gut gemanagt.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 7,
+      "category": "psma_therapy",
+      "question": "Werden mir durch die PSMA-Therapie die Haare ausfallen?",
+      "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=180)"
+    },
+    {
+      "index": 8,
+      "category": "psma_therapy",
+      "question": "Kann ich durch die PSMA-Therapie sterben?",
+      "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=180)"
+    },
+    {
+      "index": 9,
+      "category": "psma_therapy",
+      "question": "Wie lange muss ich für eine PSMA-Therapie im Krankenhaus bleiben?",
+      "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=180)"
+    },
+    {
+      "index": 10,
+      "category": "psma_therapy",
+      "question": "Darf ich während meines Aufenthaltes im Rahmen einer PSMA-Therapie Besuch erhalten?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "1. Extraction: The patient is asking about visitor access during their PSMA therapy stay.\n2. Mirroring: The user's emotional state is neutral, so I will use a neutral mirroring strategy like 'understanding'.\n3. Synthesis Plan: Acknowledge the importance of visitors for support and provide general information about visiting policies, recommending direct confirmation with the facility staff."
+        },
+        "agent_response": "Ich kann verstehen, dass Sie Unterstützung während Ihrer Behandlung schätzen. In der Regel gelten die normalen Besuchszeiten in unserem Krankenhaus. Es wäre jedoch am besten, direkt mit dem Pflegepersonal oder der Stationsleitung zu sprechen, um sicherzustellen, dass es keine speziellen Einschränkungen für Ihre Behandlung gibt.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 11,
+      "category": "psma_therapy",
+      "question": "Mein PSA-Wert steigt trotz der PSMA-Therapie weiter an. Ist das ein Problem?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "1. Extraction: The core clinical fact is that a rising PSA during PSMA therapy indicates potential treatment resistance or progression.\n2. Mirroring: The user is asking about a problem, expressing concern and seeking clarification. A 'respecting' strategy fits well here, acknowledging their courage in asking.\n3. Synthesis Plan: Directly address the user's question. State that a rising PSA during PSMA therapy is indeed a significant issue, often indicating resistance or progression. Reassure them that their medical team will investigate this thoroughly to determine the best course of action.\n4. Empathy Strategy: Use 'respecting'.\n5. Response Formulation: Acknowledge the question, state the significance of rising PSA during PSMA therapy (resistance/progression), and reassure about the team's investigation."
+        },
+        "agent_response": "Ein steigender PSA-Wert während der PSMA-Therapie ist tatsächlich ein wichtiges Anzeichen und kann auf eine Resistenz oder Progression des Tumors hindeuten. Es ist verständlich, dass Sie sich fragen, was das bedeutet. Ihr ärztliches Team wird diese Situation genau untersuchen, um die nächsten Schritte zu planen.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    }
+  ]
+}

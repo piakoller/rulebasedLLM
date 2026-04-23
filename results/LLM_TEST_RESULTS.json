@@ -1,0 +1,339 @@
+[
+  {
+    "category": "Patient Question",
+    "question": "Kann ich durch die PSMA-Therapie sterben?",
+    "language": "de",
+    "emotional_state": "neutral",
+    "expected_emotion": "unknown",
+    "umls_grounding": {
+      "grounded": false,
+      "context": "",
+      "terms_verified": [],
+      "all_search_results": [
+        {
+          "term": "therapie",
+          "found": false,
+          "cui": null,
+          "is_translated": false,
+          "relationships_count": 0,
+          "error": "Term 'therapie' not found in UMLS database"
+        },
+        {
+          "term": "therapy",
+          "found": false,
+          "cui": null,
+          "is_translated": true,
+          "relationships_count": 0,
+          "error": "Term 'therapy' not found in UMLS database"
+        },
+        {
+          "term": "PSMA",
+          "found": false,
+          "cui": null,
+          "is_translated": false,
+          "relationships_count": 0,
+          "error": "Term 'PSMA' not found in UMLS database"
+        },
+        {
+          "term": "prostate specific membrane antigen",
+          "found": false,
+          "cui": null,
+          "is_translated": false,
+          "relationships_count": 0,
+          "error": "Term 'prostate specific membrane antigen' not found in UMLS database"
+        },
+        {
+          "term": "Kann",
+          "found": false,
+          "cui": null,
+          "is_translated": false,
+          "relationships_count": 0,
+          "error": "Term 'Kann' not found in UMLS database"
+        }
+      ],
+      "num_verified": 0,
+      "search_terms": [
+        "therapie",
+        "therapy",
+        "PSMA",
+        "prostate specific membrane antigen",
+        "Kann"
+      ],
+      "num_searches": 5,
+      "hybrid_approach": "German + English translations"
+    },
+    "llm_full_response": "Als klinische Assistenz m\u00f6chte ich Ihnen eine klare und ehrliche Antwort geben.\n\nDie PSMA-Therapie (Prostata-Spezifisches Membranantigen) ist eine relativ neue Behandlungsmethode, haupts\u00e4chlich f\u00fcr Prostatakrebs, der sich ausgebreitet hat oder nicht mehr auf andere Behandlungen anspricht. Wie jede medizinische Behandlung birgt auch die PSMA-Therapie Risiken und potenzielle Nebenwirkungen.\n\n**M\u00f6gliche Risiken und Nebenwirkungen:**\n*   **Knochenmarksuppression:** Dies kann zu niedrigen Blutzellzahlen (z. B. An\u00e4mie, Neutropenie, Thrombozytopenie) f\u00fchren, was das Infektionsrisiko erh\u00f6ht oder Blutungen verursachen kann.\n*   **Nierensch\u00e4den:** Die Therapie kann die Nierenfunktion beeintr\u00e4chtigen.\n*   **M\u00fcdigkeit:** Ein h\u00e4ufiges Symptom bei Krebspatienten und deren Behandlung.\n*   **\u00dcbelkeit, Erbrechen, Durchfall:** H\u00e4ufige Nebenwirkungen von Radiopharmaka.\n*   **Andere Risiken:** Abh\u00e4ngig von der spezifischen Art der PSMA-Therapie (z.B. Radiotherapie vs. Chemotherapie) k\u00f6nnen weitere Risiken wie z.B. Sch\u00e4den an bestimmten Organen auftreten.\n\n**Risiko des Todes:**\nObwohl die PSMA-Therapie in vielen F\u00e4llen erfolgreich eingesetzt wird und die Lebensqualit\u00e4t verbessern kann, ist sie keine Garantie f\u00fcr Heilung. Wie bei jeder Krebsbehandlung gibt es ein Restrisiko, dass die Therapie nicht den gew\u00fcnschten Erfolg bringt oder schwere Nebenwirkungen auftreten, die potenziell lebensbedrohlich sein k\u00f6nnen.\n\n**Wichtig:**\n*   Die spezifischen Risiken h\u00e4ngen von Ihrer individuellen Situation ab (Art und Stadium des Krebse, allgemeiner Gesundheitszustand, verwendete Therapieform).\n*   Ihr behandelnder Arzt ist die beste Person, um Ihre spezifischen Risiken und den zu erwartenden Nutzen der PSMA-Therapie im Detail zu besprechen. Er kann Ihnen auch erkl\u00e4ren, welche Vorsichtsma\u00dfnahmen getroffen werden, um Nebenwirkungen zu minimieren.\n\nIch hoffe, diese Informationen sind hilfreich. Bitte sprechen Sie mit Ihrem Arzt \u00fcber alle Ihre Fragen und Bedenken bez\u00fcglich der Therapie.\n",
+    "llm_thinking": "",
+    "llm_patient_response": "Als klinische Assistenz m\u00f6chte ich Ihnen eine klare und ehrliche Antwort geben.\n\nDie PSMA-Therapie (Prostata-Spezifisches Membranantigen) ist eine relativ neue Behandlungsmethode, haupts\u00e4chlich f\u00fcr Prostatakrebs, der sich ausgebreitet hat oder nicht mehr auf andere Behandlungen anspricht. Wie jede medizinische Behandlung birgt auch die PSMA-Therapie Risiken und potenzielle Nebenwirkungen.\n\n**M\u00f6gliche Risiken und Nebenwirkungen:**\n*   **Knochenmarksuppression:** Dies kann zu niedrigen Blutzellzahlen (z. B. An\u00e4mie, Neutropenie, Thrombozytopenie) f\u00fchren, was das Infektionsrisiko erh\u00f6ht oder Blutungen verursachen kann.\n*   **Nierensch\u00e4den:** Die Therapie kann die Nierenfunktion beeintr\u00e4chtigen.\n*   **M\u00fcdigkeit:** Ein h\u00e4ufiges Symptom bei Krebspatienten und deren Behandlung.\n*   **\u00dcbelkeit, Erbrechen, Durchfall:** H\u00e4ufige Nebenwirkungen von Radiopharmaka.\n*   **Andere Risiken:** Abh\u00e4ngig von der spezifischen Art der PSMA-Therapie (z.B. Radiotherapie vs. Chemotherapie) k\u00f6nnen weitere Risiken wie z.B. Sch\u00e4den an bestimmten Organen auftreten.\n\n**Risiko des Todes:**\nObwohl die PSMA-Therapie in vielen F\u00e4llen erfolgreich eingesetzt wird und die Lebensqualit\u00e4t verbessern kann, ist sie keine Garantie f\u00fcr Heilung. Wie bei jeder Krebsbehandlung gibt es ein Restrisiko, dass die Therapie nicht den gew\u00fcnschten Erfolg bringt oder schwere Nebenwirkungen auftreten, die potenziell lebensbedrohlich sein k\u00f6nnen.\n\n**Wichtig:**\n*   Die spezifischen Risiken h\u00e4ngen von Ihrer individuellen Situation ab (Art und Stadium des Krebse, allgemeiner Gesundheitszustand, verwendete Therapieform).\n*   Ihr behandelnder Arzt ist die beste Person, um Ihre spezifischen Risiken und den zu erwartenden Nutzen der PSMA-Therapie im Detail zu besprechen. Er kann Ihnen auch erkl\u00e4ren, welche Vorsichtsma\u00dfnahmen getroffen werden, um Nebenwirkungen zu minimieren.\n\nIch hoffe, diese Informationen sind hilfreich. Bitte sprechen Sie mit Ihrem Arzt \u00fcber alle Ihre Fragen und Bedenken bez\u00fcglich der Therapie.\n",
+    "quality_checks": {
+      "Has clinical accuracy": true,
+      "Clinical keywords score": "31.2%",
+      "Is clinically detailed": true,
+      "Has empathy (when needed)": true,
+      "Empathy keywords score": "100.0%",
+      "UMLS API Called": false,
+      "Verified concepts found": 0,
+      "NURSE framework detected": true,
+      "NURSE elements found": 1
+    },
+    "quality_details": {
+      "clinical": {
+        "has_clinical_terms": true,
+        "keywords_found": [
+          "heilung",
+          "chemotherapie",
+          "symptom",
+          "therapie",
+          "behandlung"
+        ],
+        "score": 0.3125,
+        "details": "Found 5 clinical keywords in de"
+      },
+      "empathy": {
+        "is_empathic": true,
+        "keywords_found": [],
+        "score": 1.0,
+        "details": "Neutral state requires factual response (empathy not required)"
+      },
+      "umls": {
+        "api_referenced": false,
+        "api_called": false,
+        "num_verified_concepts": 0,
+        "verified_terms": [],
+        "details": "UMLS API: No verified concepts"
+      },
+      "nurse": {
+        "nurse_framework_used": true,
+        "keywords_found": [
+          "k\u00f6nnen"
+        ],
+        "num_elements": 1,
+        "score": 0.037037037037037035,
+        "details": "Found 1 NURSE framework indicators"
+      }
+    },
+    "success": true
+  },
+  {
+    "category": "Patient Question",
+    "question": "Welche Nebenwirkungen gibt es im Rahmen der PSMA-Therapie?",
+    "language": "de",
+    "emotional_state": "neutral",
+    "expected_emotion": "unknown",
+    "umls_grounding": {
+      "grounded": false,
+      "context": "",
+      "terms_verified": [],
+      "all_search_results": [
+        {
+          "term": "therapie",
+          "found": false,
+          "cui": null,
+          "is_translated": false,
+          "relationships_count": 0,
+          "error": "Term 'therapie' not found in UMLS database"
+        },
+        {
+          "term": "therapy",
+          "found": false,
+          "cui": null,
+          "is_translated": true,
+          "relationships_count": 0,
+          "error": "Term 'therapy' not found in UMLS database"
+        },
+        {
+          "term": "nebenwirkung",
+          "found": false,
+          "cui": null,
+          "is_translated": false,
+          "relationships_count": 0,
+          "error": "Term 'nebenwirkung' not found in UMLS database"
+        },
+        {
+          "term": "side effect",
+          "found": false,
+          "cui": null,
+          "is_translated": true,
+          "relationships_count": 0,
+          "error": "Term 'side effect' not found in UMLS database"
+        },
+        {
+          "term": "PSMA",
+          "found": false,
+          "cui": null,
+          "is_translated": false,
+          "relationships_count": 0,
+          "error": "Term 'PSMA' not found in UMLS database"
+        }
+      ],
+      "num_verified": 0,
+      "search_terms": [
+        "therapie",
+        "therapy",
+        "nebenwirkung",
+        "side effect",
+        "PSMA"
+      ],
+      "num_searches": 5,
+      "hybrid_approach": "German + English translations"
+    },
+    "llm_full_response": "Die h\u00e4ufigsten Nebenwirkungen der PSMA-Therapie (Prostataspezifische Membranantigen-gerichtete Radiotherapie) sind:\n\n1.  **M\u00fcdigkeit:** Dies ist eine sehr h\u00e4ufige Nebenwirkung, \u00e4hnlich wie bei anderen Krebsbehandlungen.\n2.  **\u00dcbelkeit und Erbrechen:** Diese k\u00f6nnen auftreten, treten aber oft nur mild auf und lassen sich gut mit Medikamenten kontrollieren.\n3.  **Blutbildver\u00e4nderungen:** Es kann zu einer vor\u00fcbergehenden Abnahme der Anzahl wei\u00dfer Blutk\u00f6rperchen (Neutropenie), roter Blutk\u00f6rperchen (An\u00e4mie) oder Blutpl\u00e4ttchen (Thrombozytopenie) kommen, was das Infektionsrisiko erh\u00f6hen oder M\u00fcdigkeit verursachen kann.\n4.  **Nierenfunktionsst\u00f6rung:** Da die Therapie \u00fcber die Nieren ausgeschieden wird, kann es zu einer vor\u00fcbergehenden Beeintr\u00e4chtigung der Nierenfunktion kommen. Dies wird in der Regel \u00fcberwacht und ist meist reversibel.\n5.  **Schmerzen:** Knochenschmerzen k\u00f6nnen sich verschlimmern oder neu auftreten, insbesondere wenn die Therapie bei Knochenmetastasen eingesetzt wird.\n6.  **Hautprobleme:** In den behandelten Bereichen kann es zu R\u00f6tungen, Trockenheit oder Juckreiz kommen.\n7.  **Ver\u00e4nderungen im Urin:** H\u00e4ufigeres Wasserlassen oder leichte Blasenentz\u00fcndung k\u00f6nnen auftreten.\n\nEs ist wichtig zu beachten:\n\n*   Die genauen Nebenwirkungen und ihre Schwere k\u00f6nnen von Patient zu Patient variieren und h\u00e4ngen oft von der verabreichten Dosis, dem allgemeinen Gesundheitszustand des Patienten und dem Vorhandensein anderer Erkrankungen ab.\n*   Ihr Behandlungsteam wird Sie \u00fcber die spezifischen Risiken aufkl\u00e4ren und Ihre Nierenfunktion und Ihr Blutbild w\u00e4hrend der Therapie engmaschig \u00fcberwachen.\n*   Es ist wichtig, alle Nebenwirkungen Ihrem Arzt oder Pflegepersonal zu melden, damit diese entsprechend behandelt werden k\u00f6nnen.",
+    "llm_thinking": "",
+    "llm_patient_response": "Die h\u00e4ufigsten Nebenwirkungen der PSMA-Therapie (Prostataspezifische Membranantigen-gerichtete Radiotherapie) sind:\n\n1.  **M\u00fcdigkeit:** Dies ist eine sehr h\u00e4ufige Nebenwirkung, \u00e4hnlich wie bei anderen Krebsbehandlungen.\n2.  **\u00dcbelkeit und Erbrechen:** Diese k\u00f6nnen auftreten, treten aber oft nur mild auf und lassen sich gut mit Medikamenten kontrollieren.\n3.  **Blutbildver\u00e4nderungen:** Es kann zu einer vor\u00fcbergehenden Abnahme der Anzahl wei\u00dfer Blutk\u00f6rperchen (Neutropenie), roter Blutk\u00f6rperchen (An\u00e4mie) oder Blutpl\u00e4ttchen (Thrombozytopenie) kommen, was das Infektionsrisiko erh\u00f6hen oder M\u00fcdigkeit verursachen kann.\n4.  **Nierenfunktionsst\u00f6rung:** Da die Therapie \u00fcber die Nieren ausgeschieden wird, kann es zu einer vor\u00fcbergehenden Beeintr\u00e4chtigung der Nierenfunktion kommen. Dies wird in der Regel \u00fcberwacht und ist meist reversibel.\n5.  **Schmerzen:** Knochenschmerzen k\u00f6nnen sich verschlimmern oder neu auftreten, insbesondere wenn die Therapie bei Knochenmetastasen eingesetzt wird.\n6.  **Hautprobleme:** In den behandelten Bereichen kann es zu R\u00f6tungen, Trockenheit oder Juckreiz kommen.\n7.  **Ver\u00e4nderungen im Urin:** H\u00e4ufigeres Wasserlassen oder leichte Blasenentz\u00fcndung k\u00f6nnen auftreten.\n\nEs ist wichtig zu beachten:\n\n*   Die genauen Nebenwirkungen und ihre Schwere k\u00f6nnen von Patient zu Patient variieren und h\u00e4ngen oft von der verabreichten Dosis, dem allgemeinen Gesundheitszustand des Patienten und dem Vorhandensein anderer Erkrankungen ab.\n*   Ihr Behandlungsteam wird Sie \u00fcber die spezifischen Risiken aufkl\u00e4ren und Ihre Nierenfunktion und Ihr Blutbild w\u00e4hrend der Therapie engmaschig \u00fcberwachen.\n*   Es ist wichtig, alle Nebenwirkungen Ihrem Arzt oder Pflegepersonal zu melden, damit diese entsprechend behandelt werden k\u00f6nnen.",
+    "quality_checks": {
+      "Has clinical accuracy": true,
+      "Clinical keywords score": "12.5%",
+      "Is clinically detailed": false,
+      "Has empathy (when needed)": true,
+      "Empathy keywords score": "100.0%",
+      "UMLS API Called": false,
+      "Verified concepts found": 0,
+      "NURSE framework detected": true,
+      "NURSE elements found": 1
+    },
+    "quality_details": {
+      "clinical": {
+        "has_clinical_terms": true,
+        "keywords_found": [
+          "nebenwirkung",
+          "therapie"
+        ],
+        "score": 0.125,
+        "details": "Found 2 clinical keywords in de"
+      },
+      "empathy": {
+        "is_empathic": true,
+        "keywords_found": [],
+        "score": 1.0,
+        "details": "Neutral state requires factual response (empathy not required)"
+      },
+      "umls": {
+        "api_referenced": false,
+        "api_called": false,
+        "num_verified_concepts": 0,
+        "verified_terms": [],
+        "details": "UMLS API: No verified concepts"
+      },
+      "nurse": {
+        "nurse_framework_used": true,
+        "keywords_found": [
+          "k\u00f6nnen"
+        ],
+        "num_elements": 1,
+        "score": 0.037037037037037035,
+        "details": "Found 1 NURSE framework indicators"
+      }
+    },
+    "success": true
+  },
+  {
+    "category": "Patient Question",
+    "question": "Mein PSA-Wert steigt trotz der PSMA-Therapie weiter an. Ist das ein Problem?",
+    "language": "de",
+    "emotional_state": "neutral",
+    "expected_emotion": "unknown",
+    "umls_grounding": {
+      "grounded": false,
+      "context": "",
+      "terms_verified": [],
+      "all_search_results": [
+        {
+          "term": "therapie",
+          "found": false,
+          "cui": null,
+          "is_translated": false,
+          "relationships_count": 0,
+          "error": "Term 'therapie' not found in UMLS database"
+        },
+        {
+          "term": "therapy",
+          "found": false,
+          "cui": null,
+          "is_translated": true,
+          "relationships_count": 0,
+          "error": "Term 'therapy' not found in UMLS database"
+        },
+        {
+          "term": "PSMA",
+          "found": false,
+          "cui": null,
+          "is_translated": false,
+          "relationships_count": 0,
+          "error": "Term 'PSMA' not found in UMLS database"
+        },
+        {
+          "term": "prostate specific membrane antigen",
+          "found": false,
+          "cui": null,
+          "is_translated": false,
+          "relationships_count": 0,
+          "error": "Term 'prostate specific membrane antigen' not found in UMLS database"
+        },
+        {
+          "term": "PSA",
+          "found": false,
+          "cui": null,
+          "is_translated": false,
+          "relationships_count": 0,
+          "error": "Term 'PSA' not found in UMLS database"
+        }
+      ],
+      "num_verified": 0,
+      "search_terms": [
+        "therapie",
+        "therapy",
+        "PSMA",
+        "prostate specific membrane antigen",
+        "PSA"
+      ],
+      "num_searches": 5,
+      "hybrid_approach": "German + English translations"
+    },
+    "llm_full_response": "Ja, das ist potenziell problematisch und sollte mit Ihrem behandelnden Arzt besprochen werden.\n\nHier einige Punkte dazu:\n\n*   **Was bedeutet steigender PSA-Wert w\u00e4hrend PSMA-Therapie?** Ein steigender PSA-Wert (Prostata-spezifisches Antigen) w\u00e4hrend einer Therapie, insbesondere einer zielgerichteten wie der PSMA-Therapie, deutet darauf hin, dass die Therapie m\u00f6glicherweise nicht ausreichend wirksam ist, um das Wachstum oder die Aktivit\u00e4t der Krebszellen zu kontrollieren.\n*   **M\u00f6gliche Gr\u00fcnde:** Es gibt verschiedene Gr\u00fcnde, warum der PSA-Wert trotz Behandlung steigen kann:\n    *   Die Therapie wirkt nicht ausreichend auf alle Tumorzellen (Resistenz).\n    *   Es gibt Tumorzellen au\u00dferhalb des Behandlungsbereichs (z.B. Metastasen in anderen Organen).\n    *   Der Tumor entwickelt Resistenz gegen die Therapie.\n    *   Es kann auch eine Entz\u00fcndung oder andere Faktoren vorliegen, die den PSA-Wert erh\u00f6hen, aber ein kontinuierlicher Anstieg w\u00e4hrend der Behandlung ist besorgniserregend im Hinblick auf das Tumorsymptom.\n*   **Was sollte jetzt passieren?** Ihr Arzt wird diesen Anstieg wahrscheinlich eingehend untersuchen. M\u00f6gliche Schritte k\u00f6nnten sein:\n    *   Erneute Bildgebung (z.B. PSMA-PET/CT, CT, MRT), um festzustellen, ob sich der Tumor ausbreitet oder w\u00e4chst.\n    *   Besprechung alternativer Behandlungsoptionen.\n    *   Anpassung der aktuellen Therapie, falls m\u00f6glich.\n\n**Zusammenfassend:** Ein steigender PSA-Wert w\u00e4hrend einer PSMA-Therapie ist ein Warnsignal, das eine erneute Bewertung der Situation und m\u00f6glicherweise eine \u00c4nderung des Behandlungsplans erfordert. Sprechen Sie unbedingt mit Ihrem Arzt dar\u00fcber.\n",
+    "llm_thinking": "",
+    "llm_patient_response": "Ja, das ist potenziell problematisch und sollte mit Ihrem behandelnden Arzt besprochen werden.\n\nHier einige Punkte dazu:\n\n*   **Was bedeutet steigender PSA-Wert w\u00e4hrend PSMA-Therapie?** Ein steigender PSA-Wert (Prostata-spezifisches Antigen) w\u00e4hrend einer Therapie, insbesondere einer zielgerichteten wie der PSMA-Therapie, deutet darauf hin, dass die Therapie m\u00f6glicherweise nicht ausreichend wirksam ist, um das Wachstum oder die Aktivit\u00e4t der Krebszellen zu kontrollieren.\n*   **M\u00f6gliche Gr\u00fcnde:** Es gibt verschiedene Gr\u00fcnde, warum der PSA-Wert trotz Behandlung steigen kann:\n    *   Die Therapie wirkt nicht ausreichend auf alle Tumorzellen (Resistenz).\n    *   Es gibt Tumorzellen au\u00dferhalb des Behandlungsbereichs (z.B. Metastasen in anderen Organen).\n    *   Der Tumor entwickelt Resistenz gegen die Therapie.\n    *   Es kann auch eine Entz\u00fcndung oder andere Faktoren vorliegen, die den PSA-Wert erh\u00f6hen, aber ein kontinuierlicher Anstieg w\u00e4hrend der Behandlung ist besorgniserregend im Hinblick auf das Tumorsymptom.\n*   **Was sollte jetzt passieren?** Ihr Arzt wird diesen Anstieg wahrscheinlich eingehend untersuchen. M\u00f6gliche Schritte k\u00f6nnten sein:\n    *   Erneute Bildgebung (z.B. PSMA-PET/CT, CT, MRT), um festzustellen, ob sich der Tumor ausbreitet oder w\u00e4chst.\n    *   Besprechung alternativer Behandlungsoptionen.\n    *   Anpassung der aktuellen Therapie, falls m\u00f6glich.\n\n**Zusammenfassend:** Ein steigender PSA-Wert w\u00e4hrend einer PSMA-Therapie ist ein Warnsignal, das eine erneute Bewertung der Situation und m\u00f6glicherweise eine \u00c4nderung des Behandlungsplans erfordert. Sprechen Sie unbedingt mit Ihrem Arzt dar\u00fcber.\n",
+    "quality_checks": {
+      "Has clinical accuracy": true,
+      "Clinical keywords score": "12.5%",
+      "Is clinically detailed": false,
+      "Has empathy (when needed)": true,
+      "Empathy keywords score": "100.0%",
+      "UMLS API Called": false,
+      "Verified concepts found": 0,
+      "NURSE framework detected": false,
+      "NURSE elements found": 0
+    },
+    "quality_details": {
+      "clinical": {
+        "has_clinical_terms": true,
+        "keywords_found": [
+          "therapie",
+          "behandlung"
+        ],
+        "score": 0.125,
+        "details": "Found 2 clinical keywords in de"
+      },
+      "empathy": {
+        "is_empathic": true,
+        "keywords_found": [],
+        "score": 1.0,
+        "details": "Neutral state requires factual response (empathy not required)"
+      },
+      "umls": {
+        "api_referenced": false,
+        "api_called": false,
+        "num_verified_concepts": 0,
+        "verified_terms": [],
+        "details": "UMLS API: No verified concepts"
+      },
+      "nurse": {
+        "nurse_framework_used": false,
+        "keywords_found": [],
+        "num_elements": 0,
+        "score": 0.0,
+        "details": "Found 0 NURSE framework indicators"
+      }
+    },
+    "success": true
+  }
+]

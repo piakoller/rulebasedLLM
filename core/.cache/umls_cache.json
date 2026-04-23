@@ -1,0 +1,65 @@
+{
+  "therapie": {
+    "found": false,
+    "cui": null,
+    "relationships_count": 0,
+    "summary": "",
+    "error": "Term 'therapie' not found in UMLS database"
+  },
+  "therapy": {
+    "found": false,
+    "cui": null,
+    "relationships_count": 0,
+    "summary": "",
+    "error": "Term 'therapy' not found in UMLS database"
+  },
+  "psma": {
+    "found": false,
+    "cui": null,
+    "relationships_count": 0,
+    "summary": "",
+    "error": "Term 'PSMA' not found in UMLS database"
+  },
+  "prostate specific membrane antigen": {
+    "found": false,
+    "cui": null,
+    "relationships_count": 0,
+    "summary": "",
+    "error": "Term 'prostate specific membrane antigen' not found in UMLS database"
+  },
+  "psa": {
+    "found": false,
+    "cui": null,
+    "relationships_count": 0,
+    "summary": "",
+    "error": "Term 'PSA' not found in UMLS database"
+  },
+  "stellt": {
+    "found": false,
+    "cui": null,
+    "relationships_count": 0,
+    "summary": "",
+    "error": "Term 'Stellt' not found in UMLS database"
+  },
+  "kann": {
+    "found": false,
+    "cui": null,
+    "relationships_count": 0,
+    "summary": "",
+    "error": "Term 'Kann' not found in UMLS database"
+  },
+  "nebenwirkung": {
+    "found": false,
+    "cui": null,
+    "relationships_count": 0,
+    "summary": "",
+    "error": "Term 'nebenwirkung' not found in UMLS database"
+  },
+  "side effect": {
+    "found": false,
+    "cui": null,
+    "relationships_count": 0,
+    "summary": "",
+    "error": "Term 'side effect' not found in UMLS database"
+  }
+}

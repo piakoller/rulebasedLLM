@@ -1,0 +1,81 @@
+{
+  "results": [
+    {
+      "index": 1,
+      "category": "psma_therapy",
+      "question": "Kann ich durch eine PSMA-Therapie von meinem Krebs geheilt werden?",
+      "language": "de",
+      "emotional_state": "anxiety"
+    },
+    {
+      "index": 2,
+      "category": "psma_therapy",
+      "question": "Stellt die radioaktive Strahlung durch die PSMA-Therapie ein Risiko für mich dar?",
+      "language": "de",
+      "emotional_state": "anxiety"
+    },
+    {
+      "index": 3,
+      "category": "psma_therapy",
+      "question": "Welche Nebenwirkungen gibt es im Rahmen der PSMA-Therapie?",
+      "language": "de",
+      "emotional_state": "anxiety"
+    },
+    {
+      "index": 4,
+      "category": "psma_therapy",
+      "question": "Welche Strahlenschutzmassnahmen muss ich nach der PSMA-Therapie nach Entlassung aus dem Krankenhaus einhalten?",
+      "language": "de",
+      "emotional_state": "anxiety"
+    },
+    {
+      "index": 5,
+      "category": "psma_therapy",
+      "question": "Wie wahrscheinlich ist es, dass die PSMA-Therapie eine gute Wirkung erzielt?",
+      "language": "de",
+      "emotional_state": "anxiety"
+    },
+    {
+      "index": 6,
+      "category": "psma_therapy",
+      "question": "Wird mir durch die PSMA-Therapie übel werden?",
+      "language": "de",
+      "emotional_state": "anxiety"
+    },
+    {
+      "index": 7,
+      "category": "psma_therapy",
+      "question": "Werden mir durch die PSMA-Therapie die Haare ausfallen?",
+      "language": "de",
+      "emotional_state": "anxiety"
+    },
+    {
+      "index": 8,
+      "category": "psma_therapy",
+      "question": "Kann ich durch die PSMA-Therapie sterben?",
+      "language": "de",
+      "emotional_state": "anxiety"
+    },
+    {
+      "index": 9,
+      "category": "psma_therapy",
+      "question": "Wie lange muss ich für eine PSMA-Therapie im Krankenhaus bleiben?",
+      "language": "de",
+      "emotional_state": "anxiety"
+    },
+    {
+      "index": 10,
+      "category": "psma_therapy",
+      "question": "Darf ich während meines Aufenthaltes im Rahmen einer PSMA-Therapie Besuch erhalten?",
+      "language": "de",
+      "emotional_state": "anxiety"
+    },
+    {
+      "index": 11,
+      "category": "psma_therapy",
+      "question": "Mein PSA-Wert steigt trotz der PSMA-Therapie weiter an. Ist das ein Problem?",
+      "language": "de",
+      "emotional_state": "anxiety"
+    }
+  ]
+}

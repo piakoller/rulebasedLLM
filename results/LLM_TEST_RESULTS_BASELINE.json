@@ -1,0 +1,57 @@
+[
+  {
+    "question": "Kann ich durch die PSMA-Therapie sterben?",
+    "llm_response": "Ja, wie jede medizinische Behandlung birgt auch die PSMA-Therapie Risiken und potenzielle Nebenwirkungen, einige davon schwerwiegend. Der Tod ist eine mögliche, aber seltene Komplikation. Bitte besprechen Sie Ihre spezifischen Bedenken und Risikofaktoren mit Ihrem behandelnden Arzt.\n",
+    "success": true
+  },
+  {
+    "question": "Werden mir durch die PSMA-Therapie die Haare ausfallen?",
+    "llm_response": "Nein, die PSMA-Therapie verursacht in der Regel keinen Haarausfall.\n",
+    "success": true
+  },
+  {
+    "question": "Darf ich während meines Aufenthaltes im Rahmen einer PSMA-Therapie Besuch erhalten?",
+    "llm_response": "Ja, Besuche sind während der PSMA-Therapie möglich.\n",
+    "success": true
+  },
+  {
+    "question": "Welche Strahlenschutzmassnahmen muss ich nach der PSMA-Therapie nach Entlassung aus dem Krankenhaus einhalten?",
+    "llm_response": "Nach einer PSMA-Therapie mit Lutetium-177 müssen Sie folgende Strahlenschutzmaßnahmen beachten:\n\n*   **Abstand:** Halten Sie Abstand zu anderen Personen, insbesondere zu schwangeren Frauen und kleinen Kindern. Ein Abstand von mindestens 1 Meter wird empfohlen.\n*   **Dauer:** Begrenzen Sie die Zeit, die Sie in unmittelbarer Nähe anderer Personen verbringen, besonders bei engen Kontakten (z.B. Schlafen).\n*   **Kontaktloses WC:** Verwenden Sie nach Möglichkeit ein kontaktloses WC oder spülen Sie mehrmals täglich, um die Ausscheidung radioaktiver Stoffe zu verdünnen.\n*   **Hände waschen:** Waschen Sie sich gründlich die Hände nach dem Toilettengang und vor dem Essen.\n*   **Bettwäsche:** Verwenden Sie separate Handtücher und Bettwäsche, die Sie separat waschen.\n*   **Umgang mit Körperflüssigkeiten:** Vermeiden Sie direkten Kontakt mit Ihren eigenen Körperflüssigkeiten (Speichel, Urin, Stuhl) und entsorgen Sie diese hygienisch (z.B. durch mehrmaliges Spülen der Toilette).\n*   **Dauer der Vorsicht:** Diese Maßnahmen sind in der Regel für etwa 1-2 Wochen nach Therapie erforderlich, da die meiste Radioaktivität innerhalb dieser Zeit ausgeschieden wird. Die genaue Dauer hängt von der verabreichten Dosis ab und sollte mit Ihrem Arzt besprochen werden.\n\nEs ist wichtig, sich an die spezifischen Anweisungen Ihres behandelnden Arztes zu halten, da diese je nach Therapieprotokoll variieren können.\n",
+    "success": true
+  },
+  {
+    "question": "Mein PSA-Wert steigt trotz der PSMA-Therapie weiter an. Ist das ein Problem?",
+    "llm_response": "Ja, ein weiterer Anstieg des PSA-Werts während einer PSMA-Therapie kann problematisch sein und deutet möglicherweise auf eine fehlende Reaktion oder sogar ein Fortschreiten der Krankheit hin. Dies sollte mit Ihrem behandelnden Arzt besprochen werden.\n",
+    "success": true
+  },
+  {
+    "question": "Wie wahrscheinlich ist es, dass die PSMA-Therapie eine gute Wirkung erzielt?",
+    "llm_response": "Die Erfolgswahrscheinlichkeit der PSMA-Therapie hängt von verschiedenen Faktoren ab, darunter das Stadium des Prostatakrebses, frühere Behandlungen und individuelle Patienteneigenschaften. Generell wird sie als wirksam angesehen, insbesondere bei metastasiertem kastrationsresistentem Prostatakrebs (mCRPC), aber die genaue Erfolgsrate kann variieren.\n",
+    "success": true
+  },
+  {
+    "question": "Stellt die radioaktive Strahlung durch die PSMA-Therapie ein Risiko für mich dar?",
+    "llm_response": "Ja, die radioaktive Strahlung durch die PSMA-Therapie birgt Risiken. Dazu gehören mögliche Nebenwirkungen wie Übelkeit, Müdigkeit, Veränderungen im Blutbild und Schäden an Organen in der Nähe des Tumors, insbesondere den Nieren, dem Knochenmark und den Geschlechtsorganen.\n",
+    "success": true
+  },
+  {
+    "question": "Kann ich durch eine PSMA-Therapie von meinem Krebs geheilt werden?",
+    "llm_response": "Ich bin ein KI-Assistent und kann keine medizinische Beratung geben. Ob eine PSMA-Therapie Ihren Krebs heilen kann, hängt von verschiedenen Faktoren ab, einschließlich der Art Ihres Krebses, des Stadiums, Ihrer allgemeinen Gesundheit und wie gut Sie auf die Behandlung ansprechen. Bitte besprechen Sie Ihre spezifische Situation und Heilungsaussichten mit Ihrem behandelnden Arzt.",
+    "success": true
+  },
+  {
+    "question": "Wird mir durch die PSMA-Therapie übel werden?",
+    "llm_response": "Übelkeit ist eine mögliche Nebenwirkung der PSMA-Therapie, tritt aber nicht bei allen Patienten auf und kann in der Intensität variieren.",
+    "success": true
+  },
+  {
+    "question": "Welche Nebenwirkungen gibt es im Rahmen der PSMA-Therapie?",
+    "llm_response": "Mögliche Nebenwirkungen der PSMA-Therapie umfassen:\n\n*   **Knochenmarksuppression:** Neutropenie (niedrige Anzahl weißer Blutkörperchen), Thrombozytopenie (niedrige Anzahl von Blutplättchen), Anämie (niedrige Anzahl roter Blutkörperchen).\n*   **Nierenschäden:** Erhöhte Kreatininwerte, Proteinurie.\n*   **Müdigkeit/Asthenie.**\n*   **Übelkeit und Erbrechen.**\n*   **Haarausfall (Alopezie):** Weniger häufig als bei Chemotherapie.\n*   **Infektionen.**\n*   **Hautprobleme:** Rötung, Trockenheit.\n*   **Seltene schwere Nebenwirkungen:** Lungenfibrose, Herzinsuffizienz.\n\nDie genauen Nebenwirkungen und ihre Schwere können variieren.",
+    "success": true
+  },
+  {
+    "question": "Wie lange muss ich für eine PSMA-Therapie im Krankenhaus bleiben?",
+    "llm_response": "Die Aufenthaltsdauer für eine PSMA-Therapie im Krankenhaus beträgt in der Regel 1 bis 3 Tage. Dies kann jedoch je nach Klinik und individuellem Verlauf variieren.\n",
+    "success": true
+  }
+]

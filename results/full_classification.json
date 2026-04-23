@@ -1,0 +1,634 @@
+{
+  "results": [
+    {
+      "index": 1,
+      "category": "oncology_and_cancer",
+      "question": "Was ist zielgerichtete Therapie und wie unterscheidet sie sich von traditioneller Chemotherapie?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 2,
+      "category": "oncology_and_cancer",
+      "question": "Was sind die häufigsten Nebenwirkungen einer zielgerichteten Therapie?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 3,
+      "category": "oncology_and_cancer",
+      "question": "Wie geht die Präzisionsmedizin an die Krebsbehandlung heran?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 4,
+      "category": "oncology_and_cancer",
+      "question": "Was sollten Patienten in der ersten Woche einer zielgerichteten Therapie erwarten?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 5,
+      "category": "oncology_and_cancer",
+      "question": "Gibt es Ernährungseinschränkungen, die ich während einer zielgerichteten Therapie beachten sollte?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 6,
+      "category": "oncology_and_cancer",
+      "question": "Wie oft benötige ich Bildgebungsstudien während meiner Krebsbehandlung?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 7,
+      "category": "oncology_and_cancer",
+      "question": "Was bedeutet es, wenn ein Tumor als HER2-positiv beschrieben wird?",
+      "language": "en",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 8,
+      "category": "oncology_and_cancer",
+      "question": "Kann zielgerichtete Therapie mit anderen Krebsbehandlungen kombiniert werden?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 9,
+      "category": "oncology_and_cancer",
+      "question": "Was ist Immuntherapie und wie unterscheidet sie sich von zielgerichteter Therapie?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 10,
+      "category": "oncology_and_cancer",
+      "question": "Welche Unterstützungsservices sind für Krebspatienten verfügbar?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 11,
+      "category": "nuclear_medicine_theranostics",
+      "question": "Was ist Theranostik in der Nuklearmedizin?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 12,
+      "category": "nuclear_medicine_theranostics",
+      "question": "Wie funktioniert zielgerichtete Radionuklidtherapie?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 13,
+      "category": "nuclear_medicine_theranostics",
+      "question": "Welche Vorbereitungen benötige ich vor diagnostischer Bildgebung?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 14,
+      "category": "nuclear_medicine_theranostics",
+      "question": "Gibt es Strahlenschutzmaßnahmen, die ich nach der Behandlung zu Hause ergreifen sollte?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 15,
+      "category": "nuclear_medicine_theranostics",
+      "question": "Wie lange dauert das diagnostische Bildgebungsverfahren normalerweise?",
+      "language": "en",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 16,
+      "category": "nuclear_medicine_theranostics",
+      "question": "Welchen Zweck hat die Bildgebung zu mehreren Zeitpunkten?",
+      "language": "en",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 17,
+      "category": "nuclear_medicine_theranostics",
+      "question": "Kann ich nach meiner Nuklearmedizin-Behandlung Zeit mit Familie und Freunden verbringen?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 18,
+      "category": "nuclear_medicine_theranostics",
+      "question": "Wie wird personalisierte Dosimetrie in der Nuklearmedizin-Behandlungsplanung eingesetzt?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 19,
+      "category": "nuclear_medicine_theranostics",
+      "question": "Welche Bildgebungstypen benötige ich vor Beginn der Behandlung?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 20,
+      "category": "nuclear_medicine_theranostics",
+      "question": "Wie wissen wir, dass die Behandlung wirkt?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 21,
+      "category": "symptoms_and_side_effects",
+      "question": "Ich habe während meiner Behandlung Müdigkeit erlebt. Ist das normal?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 22,
+      "category": "symptoms_and_side_effects",
+      "question": "Was kann ich tun, um Übelkeit und Appetitlosigkeit zu bewältigen?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 23,
+      "category": "symptoms_and_side_effects",
+      "question": "Warum könnte ich während der Behandlung Hautreaktionen erleben?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 24,
+      "category": "symptoms_and_side_effects",
+      "question": "Ist Haarausfall eine Nebenwirkung zielgerichteter Therapie?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 25,
+      "category": "symptoms_and_side_effects",
+      "question": "Was sollte ich tun, wenn ich während der Behandlung Fieber entwickle?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 26,
+      "category": "symptoms_and_side_effects",
+      "question": "Wie lange halten Nebenwirkungen normalerweise nach Ende der Behandlung an?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 27,
+      "category": "symptoms_and_side_effects",
+      "question": "Kann ich während meiner Krebsbehandlung trainieren?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 28,
+      "category": "symptoms_and_side_effects",
+      "question": "Welche Schmerzbehandlungsoptionen sind verfügbar?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 29,
+      "category": "symptoms_and_side_effects",
+      "question": "Warum könnten sich meine Blutwerte während der Behandlung ändern?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 30,
+      "category": "symptoms_and_side_effects",
+      "question": "Beeinflussen die Nebenwirkungen, die ich erlebe, meinen Behandlungsplan?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 31,
+      "category": "treatment_planning_and_monitoring",
+      "question": "Wie wird mein personalisierter Behandlungsplan entwickelt?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 32,
+      "category": "treatment_planning_and_monitoring",
+      "question": "Welche Tests benötige ich vor Beginn meiner Krebsbehandlung?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 33,
+      "category": "treatment_planning_and_monitoring",
+      "question": "Wie oft werde ich Nachuntersuchungen während der Behandlung haben?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 34,
+      "category": "treatment_planning_and_monitoring",
+      "question": "Was passiert während einer Behandlungsplanungssitzung?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 35,
+      "category": "treatment_planning_and_monitoring",
+      "question": "Wie entscheiden Ärzte die richtige Bestrahlungsdosis für mich?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 36,
+      "category": "treatment_planning_and_monitoring",
+      "question": "Welcher Zweck haben CT-Scans in der Behandlungsplanung?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 37,
+      "category": "treatment_planning_and_monitoring",
+      "question": "Wie lange wird mein Behandlungszyklus dauern?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 38,
+      "category": "treatment_planning_and_monitoring",
+      "question": "Was sollte ich tun, wenn ich eine Behandlung verschieben muss?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 39,
+      "category": "treatment_planning_and_monitoring",
+      "question": "Wie werden wir überwachen, ob die Behandlung wirksam ist?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 40,
+      "category": "treatment_planning_and_monitoring",
+      "question": "Was passiert, wenn eine Nebenwirkung während der Behandlung schwerwiegend wird?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 41,
+      "category": "psychosocial_and_emotional",
+      "question": "Ich bin nervös vor meiner bevorstehenden Behandlung. Welche Ressourcen können helfen?",
+      "language": "de",
+      "emotional_state": "anxiety"
+    },
+    {
+      "index": 42,
+      "category": "psychosocial_and_emotional",
+      "question": "Wie kann ich mit meiner Familie über meine Krebsdiagnose sprechen?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 43,
+      "category": "psychosocial_and_emotional",
+      "question": "Gibt es Selbsthilfegruppen für Patienten, die meine Art von Behandlung erhalten?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 44,
+      "category": "psychosocial_and_emotional",
+      "question": "Wird meine Behandlung meine Fähigkeit zu arbeiten beeinträchtigen?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 45,
+      "category": "psychosocial_and_emotional",
+      "question": "Wie kann ich während der Behandlung körperliches und emotionales Wohlbefinden bewahren?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 46,
+      "category": "psychosocial_and_emotional",
+      "question": "Welche finanziellen Ressourcen sind für Krebspatienten verfügbar?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 47,
+      "category": "psychosocial_and_emotional",
+      "question": "Ist es normal, sich von einer Krebsdiagnose überfordert zu fühlen?",
+      "language": "de",
+      "emotional_state": "overwhelm"
+    },
+    {
+      "index": 48,
+      "category": "psychosocial_and_emotional",
+      "question": "Wie kann ich während der Behandlung Hoffnung und positive Aussichten bewahren?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 49,
+      "category": "psychosocial_and_emotional",
+      "question": "Was sollte ich meinen Kindern über meine Diagnose sagen?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 50,
+      "category": "psychosocial_and_emotional",
+      "question": "Sind Beratungsdienste verfügbar?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 51,
+      "category": "recovery_and_long_term_outcomes",
+      "question": "Was sollte ich unmittelbar nach Ende der Behandlung erwarten?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 52,
+      "category": "recovery_and_long_term_outcomes",
+      "question": "Wie lange dauert die Genesung normalerweise?",
+      "language": "en",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 53,
+      "category": "recovery_and_long_term_outcomes",
+      "question": "Wann kann ich zu normalen Aktivitäten zurückkehren?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 54,
+      "category": "recovery_and_long_term_outcomes",
+      "question": "Welche Langzebitnebenwirkungen sollte ich mir bewusst sein?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 55,
+      "category": "recovery_and_long_term_outcomes",
+      "question": "Wie oft benötige ich nach der Behandlung Nachuntersuchungsbildgebung?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 56,
+      "category": "recovery_and_long_term_outcomes",
+      "question": "Was ist ein Überlebensplan?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 57,
+      "category": "recovery_and_long_term_outcomes",
+      "question": "Kann sich nach meiner Behandlung eine weitere Krebserkrankung entwickeln?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 58,
+      "category": "recovery_and_long_term_outcomes",
+      "question": "Wie wichtig ist eine Nachbehandlung nach der Behandlung?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 59,
+      "category": "recovery_and_long_term_outcomes",
+      "question": "Welche Lebensstiländerungen können das Wiederauftreten verringern?",
+      "language": "en",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 60,
+      "category": "recovery_and_long_term_outcomes",
+      "question": "Wann kann ich aufhören, mir Sorgen um eine Rückkehr meines Krebses zu machen?",
+      "language": "de",
+      "emotional_state": "anxiety"
+    },
+    {
+      "index": 61,
+      "category": "treatment_modalities",
+      "question": "Was ist der Unterschied zwischen interner und externer Strahlentherapie?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 62,
+      "category": "treatment_modalities",
+      "question": "Wie funktioniert intensitätsmodulierte Strahlentherapie (IMRT)?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 63,
+      "category": "treatment_modalities",
+      "question": "Was ist Brachytherapie und wann wird sie eingesetzt?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 64,
+      "category": "treatment_modalities",
+      "question": "Wie unterscheidet sich Protontherapie von Standard-Strahlentherapie?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 65,
+      "category": "treatment_modalities",
+      "question": "Was ist Kombinationstherapie und warum könnte sie empfohlen werden?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 66,
+      "category": "treatment_modalities",
+      "question": "Wie funktioniert Hormontherapie für bestimmte Krebsarten?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 67,
+      "category": "treatment_modalities",
+      "question": "Was sind monoklonale Antikörper und wie helfen sie bei der Behandlung?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 68,
+      "category": "treatment_modalities",
+      "question": "Was ist CAR-T-Zell-Therapie?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 69,
+      "category": "treatment_modalities",
+      "question": "Wie lange dauert eine typische Strahlentherapie-Sitzung?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 70,
+      "category": "treatment_modalities",
+      "question": "Was ist der Unterschied zwischen adjuvanter und neoadjuvanter Therapie?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 71,
+      "category": "practical_questions",
+      "question": "Was sollte ich zu meinen Behandlungsterminen mitbringen?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 72,
+      "category": "practical_questions",
+      "question": "Kann ich zu meinen Behandlungssitzungen hin- und zurückfahren?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 73,
+      "category": "practical_questions",
+      "question": "Welche Kleidung ist am besten, um während der Behandlung getragen zu werden?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 74,
+      "category": "practical_questions",
+      "question": "Kann ich Familienmitglieder zu meinen Terminen mitbringen?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 75,
+      "category": "practical_questions",
+      "question": "Was sollte ich tun, wenn ich einen geplanten Termin verpasse?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 76,
+      "category": "practical_questions",
+      "question": "Gibt es Behandlungsplanungsvergünstigungen?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 77,
+      "category": "practical_questions",
+      "question": "Was passiert, wenn ich zwischen den Terminen Nebenwirkungen erlebe?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 78,
+      "category": "practical_questions",
+      "question": "Sollte ich während der Behandlung ein Symptom-Tagebuch führen?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 79,
+      "category": "practical_questions",
+      "question": "Kann ich während der Behandlung andere Medikamente einnehmen?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 80,
+      "category": "practical_questions",
+      "question": "Welche Fragen sollte ich meinem medizinischen Team stellen?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 81,
+      "category": "misconceptions_and_clarifications",
+      "question": "Verursacht Krebsbehandlung immer schwerwiegende Nebenwirkungen?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 82,
+      "category": "misconceptions_and_clarifications",
+      "question": "Macht mich Strahlentherapie radioaktiv?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 83,
+      "category": "misconceptions_and_clarifications",
+      "question": "Ist Krebs immer ein Todesurteil?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 84,
+      "category": "misconceptions_and_clarifications",
+      "question": "Kann alternative Medizin meinen Krebs heilen?",
+      "language": "en",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 85,
+      "category": "misconceptions_and_clarifications",
+      "question": "Verursacht Stress Krebs?",
+      "language": "en",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 86,
+      "category": "misconceptions_and_clarifications",
+      "question": "Ist Krebs ansteckend?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 87,
+      "category": "misconceptions_and_clarifications",
+      "question": "Kommt mein Krebs sicher zurück?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 88,
+      "category": "misconceptions_and_clarifications",
+      "question": "Sind alle Krebsbehandlungen gleich wirksam?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 89,
+      "category": "misconceptions_and_clarifications",
+      "question": "Muss ich mich zwischen Lebensqualität und Behandlung entscheiden?",
+      "language": "de",
+      "emotional_state": "neutral"
+    },
+    {
+      "index": 90,
+      "category": "misconceptions_and_clarifications",
+      "question": "Ist es zu spät, mit der Behandlung zu beginnen, wenn ich warte?",
+      "language": "de",
+      "emotional_state": "neutral"
+    }
+  ]
+}

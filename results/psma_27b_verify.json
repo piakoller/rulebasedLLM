@@ -1,0 +1,158 @@
+{
+  "results": [
+    {
+      "index": 1,
+      "category": "psma_therapy",
+      "question": "Kann ich durch eine PSMA-Therapie von meinem Krebs geheilt werden?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "1. Extraktion: Der Patient fragt nach der Heilungschance durch PSMA-Therapie. Ich muss erklären, was PSMA-Therapie ist und welche Erfolge damit erzielt werden können, ohne falsche Hoffnungen zu wecken oder definitive Aussagen zur Heilung zu treffen. Die Suche im Knowledge Graph hat keine direkte Bestätigung für 'PSMA -> heilt -> Krebs' geliefert. 2. Spiegelung: Der Patient stellt eine klare Frage bezüglich der Heilungschance. Es scheint keine offensichtliche emotionale Belastung vorzuliegen, daher ist ein professioneller und klarer Ton angemessen. 3. Synthese-Plan: Ich beginne mit einer direkten Antwort auf die Frage, dass PSMA-Therapie zwar vielversprechend ist, aber nicht in allen Fällen zu Heilung führt. Dann erkläre ich kurz, was PSMA-Therapie ist (insbesondere für Prostatakrebs, da dies der häufigste Anwendungsfall ist) und wie sie funktioniert. Ich erwähne die Erfolge, betone aber, dass es sich um eine komplexe Behandlung handelt und das Ergebnis von vielen Faktoren abhängt. Ich vermeide definitive Aussagen zur Heilung und biete an, weitere Fragen zu beantworten."
+        },
+        "agent_response": "Es hört sich so an, als ob Sie wissen möchten, ob eine PSMA-Therapie Ihren Krebs heilen kann.\n\nEine PSMA-Therapie (Prostate-Specific Membrane Antigen) ist eine vielversprechende Behandlungsoption, insbesondere für bestimmte Arten von Prostatakrebs, die sich ausgebreitet haben oder auf andere Therapien nicht ansprechen. Sie zielt darauf ab, Krebszellen zu erkennen und zu zerstören.\n\nOb diese Therapie zu einer Heilung führt, hängt von verschiedenen Faktoren ab, wie dem Stadium des Krebses, der Art des Tumors, Ihrem allgemeinen Gesundheitszustand und dem Ansprechen auf die Behandlung. Während PSMA-Therapien in einigen Fällen zu sehr guten Ergebnissen und sogar zu einem Rückgang des Tumors führen können, ist eine Heilung nicht immer möglich.\n\nEs ist wichtig, dies mit Ihrem behandelnden Arzt oder Onkologen zu besprechen, um Ihre spezifische Situation und die Erfolgsaussichten für Sie persönlich zu beurteilen. Sie können Ihnen die bestmöglichen Informationen basierend auf Ihren individuellen Umständen geben.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 2,
+      "category": "psma_therapy",
+      "question": "Stellt die radioaktive Strahlung durch die PSMA-Therapie ein Risiko für mich dar?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "1. Extraktion: Der Patient fragt nach dem Risiko radioaktiver Strahlung durch die PSMA-Therapie. Ich muss erklären, was PSMA-Therapie ist und welche Risiken mit der verwendeten Radioaktivität verbunden sind. Die Suche im Knowledge Graph hat keine direkte Bestätigung für spezifische Risiken geliefert, daher werde ich allgemeines Wissen über Radiopharmaka und ihre Anwendung in der Therapie nutzen.\n2. Spiegelung: Der Patient stellt eine konkrete Frage zu einem potenziellen Risiko. Er scheint besorgt über die Auswirkungen der Strahlung zu sein. Ich werde dies anerkennen, indem ich sage, dass es verständlich ist, sich Sorgen um radioaktive Substanzen zu machen.\n3. Synthese-Plan: Zuerst bestätige ich das Anliegen des Patienten bezüglich der Strahlenrisiken. Dann erkläre ich kurz, was PSMA-Therapie ist (eine Form der Radiopharmakotherapie). Anschließend erläutere ich, dass zwar radioaktive Substanzen verwendet werden, diese aber gezielt auf Krebszellen abzielen und die Dosis so gering wie möglich gehalten wird, um Risiken zu minimieren. Ich werde betonen, dass die Vorteile in der Regel das Risiko überwiegen, ohne spezifische Dosen oder Prognosen anzugeben (was verboten ist)."
+        },
+        "agent_response": "Ich verstehe Ihre Sorge hinsichtlich der radioaktiven Strahlung im Zusammenhang mit der PSMA-Therapie.\n\nDie PSMA-Therapie ist eine Form der Radiopharmakotherapie, bei der ein radioaktives Medikament verwendet wird, das sich an bestimmte Zellen (in diesem Fall Krebszellen, die PSMA exprimieren) bindet. Es ist natürlich verständlich, dass Sie Bedenken hinsichtlich der Radioaktivität haben.\n\nTatsächlich werden bei dieser Therapie radioaktive Substanzen eingesetzt. Diese sind jedoch so konzipiert, dass sie gezielt zu den Tumorzellen wandern und dort ihre Wirkung entfalten. Die Dosis wird sorgfältig berechnet und ist in der Regel sehr gering, um die gewünschte therapeutische Wirkung zu erzielen und gleichzeitig das Risiko für umliegendes gesundes Gewebe zu minimieren.\n\nDie Entscheidung für diese Therapie erfolgt immer nach einer sorgfältigen Abwägung von Nutzen und Risiken. Ihr behandelndes Team wird Sie umfassend über die spezifischen Aspekte Ihrer Behandlung informieren.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 3,
+      "category": "psma_therapy",
+      "question": "Welche Nebenwirkungen gibt es im Rahmen der PSMA-Therapie?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "1. Extraktion: Der Patient fragt nach den Nebenwirkungen der PSMA-Therapie. Ich muss Informationen über die typischen Nebenwirkungen dieser Behandlung finden und verständlich erklären. Die Knowledge Graph Suche hat keine spezifischen, direkt verifizierten Fakten zu PSMA-Nebenwirkungen geliefert, daher werde ich allgemeines medizinisches Wissen und ggf. Informationen aus der Suche verwenden.\n2. Spiegelung: Der Patient stellt eine sachliche Frage ohne erkennbaren emotionalen Unterton. Ich werde dies mit einer professionellen und klaren Antwort berücksichtigen, ohne unnötige emotionale Sprache zu verwenden.\n3. Synthese-Plan: Ich beginne damit, die Frage des Patienten anzuerkennen. Dann erkläre ich, dass PSMA-Therapie, wie viele Krebstherapien, Nebenwirkungen haben kann. Ich werde typische Nebenwirkungen nennen (z.B. Müdigkeit, Übelkeit, Auswirkungen auf Blutbild, Nierenfunktion), betonen, dass diese individuell variieren und vom Behandlungsteam überwacht werden, und erwähnen, dass detailliertere Informationen im Vorfeld der Therapie besprochen werden sollten."
+        },
+        "agent_response": "Ich verstehe Ihre Frage nach den Nebenwirkungen der PSMA-Therapie.\n\nWie viele Krebsbehandlungen kann auch die PSMA-Therapie Nebenwirkungen haben. Diese können von Patient zu Patient unterschiedlich sein und hängen oft von der Dosis und dem individuellen Gesundheitszustand ab.\n\nTypische Nebenwirkungen können sein:\n*   Müdigkeit (Fatigue)\n*   Übelkeit oder Erbrechen\n*   Veränderungen im Blutbild (z.B. niedrige Anzahl weißer Blutzellen, rote Blutzellen oder Thrombozyten)\n*   Auswirkungen auf die Nierenfunktion\n*   Gelegentlich auch Haarausfall oder Hautveränderungen\n\nEs ist wichtig zu wissen, dass Ihr Behandlungsteam Sie während der Therapie engmaschig überwachen wird, um Nebenwirkungen frühzeitig zu erkennen und zu behandeln. Die genauen Risiken und erwarteten Nebenwirkungen sollten im Detail mit Ihrem Arzt besprochen werden, bevor die Therapie beginnt.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 4,
+      "category": "psma_therapy",
+      "question": "Welche Strahlenschutzmassnahmen muss ich nach der PSMA-Therapie nach Entlassung aus dem Krankenhaus einhalten?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "1. Extraktion: Der Patient fragt nach Strahlenschutzmaßnahmen nach einer PSMA-Therapie zu Hause. Die PSMA-Therapie beinhaltet die Gabe radioaktiver Substanzen (z.B. Lutetium-177). Nach der Behandlung scheidet ein Teil dieser Substanz über den Urin und Stuhl aus, was eine Strahlenbelastung für die Umgebung bedeuten kann. Daher sind Vorsichtsmaßnahmen erforderlich. 2. Spiegelung: Der Patient stellt eine sachliche Frage bezüglich Sicherheitsprotokollen nach einer spezifischen Therapie. Es ist wichtig, diese Bedenken ernst zu nehmen und klare, präzise Informationen zu geben, um Ängste abzubauen. Die Emotion 'neutral' wird erkannt, daher ist ein professioneller, informativer Ton angemessen. 3. Synthese-Plan: Zuerst die Frage des Patienten bestätigen und einfühlsam anerkennen, dass es wichtig ist, sich über diese Aspekte zu informieren. Dann die notwendigen Vorsichtsmaßnahmen nach der PSMA-Therapie erläutern (z.B. Toilettenhygiene, Abstand halten, besonders für Kinder und Schwangere). Betonen, dass dies Standardverfahren sind, um die Sicherheit aller zu gewährleisten. Keine spezifischen Dosierungen oder Prognosen nennen."
+        },
+        "agent_response": "Es ist gut, dass Sie sich über die notwendigen Vorsichtsmaßnahmen nach der PSMA-Therapie informieren möchten. Nach der Behandlung scheiden radioaktive Substanzen über Körperflüssigkeiten aus. Um Ihre Familie und andere Personen zu schützen, gibt es einige einfache Regeln, die Sie zu Hause beachten sollten:\n\n*   **Toilettennutzung:** Spülen Sie nach dem Urinieren oder Stuhlgang die Toilette mehrmals gründlich.\n*   **Händewaschen:** Waschen Sie sich nach jedem Toilettengang sorgfältig die Hände.\n*   **Abstand:** Halten Sie besonders in den ersten Tagen nach der Behandlung einen gewissen Abstand (ca. 1 Meter) zu anderen Personen, insbesondere zu Kindern und Schwangeren, ein. Dies dient dem Schutz vor unnötiger Strahlenbelastung.\n\nDiese Maßnahmen sind Standardvorgehensweise und dienen dazu, die Strahlenexposition für Ihr Umfeld so gering wie möglich zu halten. Ihr Behandlungsteam wird Sie vor der Entlassung detailliert darüber informieren und Ihnen entsprechende Anweisungen geben.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 5,
+      "category": "psma_therapy",
+      "question": "Wie wahrscheinlich ist es, dass die PSMA-Therapie eine gute Wirkung erzielt?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "1. Extraktion: Der Patient fragt nach der Wahrscheinlichkeit einer guten Wirkung der PSMA-Therapie. Es gibt keine spezifischen UMLS-Beziehungen, die diese Frage direkt beantworten (z.B. 'PSMA therapy -> treats -> condition' mit Erfolgswahrscheinlichkeit). Die Suche im Knowledge Graph hat keine direkten Informationen zur Wahrscheinlichkeit des Erfolgs geliefert, sondern eher allgemeine Informationen über die Therapie. \n2. Spiegelung: Der Patient stellt eine sachliche Frage bezüglich der Wirksamkeit einer Behandlung. Es ist keine emotionale Reaktion erforderlich, da der Patient neutral wirkt.\n3. Synthese-Plan: Ich werde zunächst die Frage des Patienten bestätigen und dann erklären, dass die Erfolgswahrscheinlichkeit von verschiedenen Faktoren abhängt (z.B. Stadium des Krebses, vorherige Behandlungen). Da ich keine spezifischen Zahlen nennen darf und die Wahrscheinlichkeit stark individualisiert ist, werde ich betonen, dass dies im persönlichen Gespräch mit dem behandelnden Arzt besprochen werden sollte, der alle relevanten Patientendaten kennt. Ich werde darauf hinweisen, dass PSMA-Therapie eine vielversprechende Option sein kann, aber keine Garantie für Erfolg bietet."
+        },
+        "agent_response": "Ich verstehe Ihre Frage nach der Wahrscheinlichkeit einer guten Wirkung der PSMA-Therapie.\n\nDie Erfolgschancen einer Therapie wie PSMA hängen von verschiedenen Faktoren ab, beispielsweise vom Stadium des Prostatakrebses, von vorherigen Behandlungen und den individuellen Eigenschaften des Tumors. Eine pauschale Aussage zur Wahrscheinlichkeit ist daher schwierig.\n\nEs ist wichtig, dass Sie diesbezüglich mit Ihrem behandelnden Arzt sprechen. Er oder sie kann Ihre spezifische Situation beurteilen und Ihnen auf Basis Ihrer persönlichen Daten eine fundierte Einschätzung geben. PSMA-Therapie ist eine vielversprechende Behandlungsoption für bestimmte Patienten, aber der Erfolg ist nicht garantiert.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 6,
+      "category": "psma_therapy",
+      "question": "Wird mir durch die PSMA-Therapie übel werden?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "1. Extraktion: Der Patient fragt nach Übelkeit als mögliche Nebenwirkung der PSMA-Therapie. Es wurden keine spezifischen UMLS-Beziehungen zu diesem Thema gefunden, die direkt beantworten könnten. Die Suche im Knowledge Graph hat keine direkten Antworten geliefert, sondern eher allgemeine Informationen. \n2. Spiegelung: Der Patient stellt eine direkte Frage bezüglich einer möglichen Nebenwirkung. Er scheint besorgt über mögliche unangenehme Empfindungen während der Behandlung zu sein. Ich werde seine Sorge anerkennen und dann versuchen, die Frage so gut wie möglich zu beantworten, basierend auf allgemeinen medizinischen Kenntnissen und verfügbaren Kontextinformationen (auch wenn diese nicht spezifisch aus dem Knowledge Graph stammen).\n3. Synthese-Plan: Zuerst erkenne ich die Sorge des Patienten an. Dann erkläre ich, dass Übelkeit eine mögliche Nebenwirkung vieler Therapien ist, einschließlich der PSMA-Therapie, aber dass es auch Strategien gibt, um sie zu minimieren oder zu behandeln. Ich werde betonen, dass die Erfahrung von Patient zu Patient variiert und dass das medizinische Team ihn unterstützen wird."
+        },
+        "agent_response": "Ich verstehe Ihre Sorge bezüglich Übelkeit im Zusammenhang mit der PSMA-Therapie.\n\nÜbelkeit ist leider eine mögliche Nebenwirkung vieler Krebsbehandlungen, einschließlich der PSMA-Therapie. Die Wahrscheinlichkeit und Intensität können jedoch von Person zu Person variieren. Es gibt verschiedene Strategien, um Übelkeit vorzubeugen oder zu lindern, falls sie auftritt. Ihr Behandlungsteam wird Sie diesbezüglich beraten und unterstützen. Sprechen Sie offen mit Ihrem Arzt darüber, wenn Sie während der Therapie Übelkeit verspüren.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 7,
+      "category": "psma_therapy",
+      "question": "Werden mir durch die PSMA-Therapie die Haare ausfallen?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "1. Extraktion: Die Frage betrifft den Haarausfall als mögliche Nebenwirkung der PSMA-Therapie. Es wurden keine spezifischen UMLS-Beziehungen zu diesem Thema gefunden, die direkt bestätigt werden können (z.B. 'PSMA therapy -> causes -> hair loss'). Der Knowledge Graph lieferte keine direkten Informationen zu dieser spezifischen Frage. Daher muss ich mich auf allgemeines medizinisches Wissen und verfügbare Kontextinformationen stützen.\n2. Spiegelung: Der Patient stellt eine konkrete, sachliche Frage bezüglich einer möglichen Nebenwirkung. Es ist keine emotionale Färbung erkennbar. Ich werde die Frage direkt beantworten und dabei Klarheit und Professionalität wahren.\n3. Synthese-Plan: Zuerst bestätige ich, dass der Patient sich Sorgen um Haarausfall macht. Dann erkläre ich, dass PSMA-Therapie im Allgemeinen nicht zu signifikantem Haarausfall führt, anders als beispielsweise Chemotherapie. Ich werde dies erklären und erwähnen, dass es individuelle Unterschiede geben kann, aber Haarausfall keine typische oder häufige Nebenwirkung ist."
+        },
+        "agent_response": "Ich verstehe Ihre Frage nach möglichem Haarausfall durch die PSMA-Therapie.\n\nIm Allgemeinen führt die PSMA-Therapie nicht zu dem starken Haarausfall, den man beispielsweise von Chemotherapien kennt. Dies liegt daran, dass PSMA-Therapien oft gezielter wirken und weniger systemische Auswirkungen haben. Es ist also unwahrscheinlich, dass Sie unter signifikantem Haarausfall leiden werden.\n\nEs gibt jedoch immer individuelle Unterschiede, und Nebenwirkungen können variieren. Sollten Sie dennoch Veränderungen feststellen, sprechen Sie dies bitte mit Ihrem Behandlungsteam ab.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 8,
+      "category": "psma_therapy",
+      "question": "Kann ich durch die PSMA-Therapie sterben?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "1. Extraktion: Die Frage des Patienten bezieht sich auf die Sterblichkeit im Zusammenhang mit der PSMA-Therapie. Es wurden keine spezifischen UMLS-Beziehungen gefunden, die diese direkte Frage beantworten (z.B. 'PSMA Therapy -> causes -> Death'). Der Knowledge Graph lieferte keine direkten Informationen zur Sterblichkeitsrate oder Todesursachen durch PSMA-Therapie. Ich muss also allgemeines medizinisches Wissen und den Kontext der Therapie verwenden.\n2. Spiegelung: Der Patient stellt eine direkte, sachliche Frage ohne erkennbaren emotionalen Unterton. Die Strategie sollte professionell und informativ sein, ohne unnötige emotionale Sprache.\n3. Synthese-Plan: Zuerst die Frage des Patienten anerkennen. Dann erklären, dass PSMA eine Therapie ist, die Risiken birgt, wie jede medizinische Behandlung. Erwähnen, dass schwere Nebenwirkungen möglich sind, aber selten. Betonen, dass das Ziel der Therapie die Verbesserung und nicht die Verschlechterung des Zustands ist. Die allgemeine Sterblichkeit durch die Therapie selbst ist gering, aber es gibt Risiken im Zusammenhang mit der Krankheit und den Behandlungen.\n"
+        },
+        "agent_response": "Ich verstehe Ihre Frage nach den potenziellen Risiken der PSMA-Therapie.\n\nWie jede medizinische Behandlung birgt auch die PSMA-Therapie gewisse Risiken. Es ist wichtig zu wissen, dass das Ziel dieser Therapie darin besteht, Ihren Zustand zu verbessern und die Krankheit zu bekämpfen.\n\nObwohl schwere Nebenwirkungen auftreten können, sind diese im Allgemeinen selten. Die Therapie selbst führt nicht direkt zum Tod, aber wie bei jeder Behandlung gibt es potenzielle Risiken und Komplikationen, die berücksichtigt werden müssen. Ihr medizinisches Team wird Sie umfassend über diese Risiken aufklären und Ihre Gesundheit während der Behandlung genau überwachen.\n\nEs ist wichtig, die potenziellen Vorteile der Therapie gegen die möglichen Risiken abzuwägen. Sprechen Sie offen mit Ihrem Arzt über Ihre Bedenken.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 9,
+      "category": "psma_therapy",
+      "question": "Wie lange muss ich für eine PSMA-Therapie im Krankenhaus bleiben?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "1. Extraktion: Der Patient fragt nach der Aufenthaltsdauer im Krankenhaus für eine PSMA-Therapie. Die Knowledge Graph Suche lieferte keine spezifischen Informationen zur Aufenthaltsdauer. Es gibt also keine UMLS-Verifizierung oder spezifische Kontextinformationen aus dem Knowledge Graph, die direkt beantwortet werden können. Ich muss daher allgemeines Wissen und den Patientenkontext berücksichtigen.\n2. Spiegelung: Der Patient stellt eine sachliche Frage ohne erkennbaren emotionalen Unterton. Die passende Strategie ist, die Frage klar und professionell zu beantworten, ohne unnötige emotionale Sprache.\n3. Synthese-Plan: Ich werde zunächst die Frage des Patienten bestätigen und dann erklären, dass die Aufenthaltsdauer variieren kann. Da keine spezifischen Daten vorliegen, werde ich allgemeine Informationen geben, dass es sich in der Regel um einen Tag oder möglicherweise zwei Tage handelt, abhängig von den individuellen Umständen und dem Protokoll des jeweiligen Zentrums. Ich werde betonen, dass dies eine Schätzung ist und die genaue Dauer mit dem behandelnden Arzt besprochen werden sollte."
+        },
+        "agent_response": "Ich verstehe Ihre Frage nach der Aufenthaltsdauer für eine PSMA-Therapie.\n\nDie benötigte Zeit im Krankenhaus kann variieren. In der Regel wird man jedoch für einen Tag, manchmal auch für zwei Tage, stationär behandelt. Die genaue Dauer hängt von verschiedenen Faktoren ab, wie zum Beispiel dem spezifischen Protokoll des Behandlungszentrums und Ihrem individuellen Zustand.\n\nEs ist am besten, diesbezüglich direkt mit Ihrem behandelnden Arzt oder dem Behandlungsteam zu sprechen, um eine genauere Einschätzung für Ihren persönlichen Fall zu erhalten.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 10,
+      "category": "psma_therapy",
+      "question": "Darf ich während meines Aufenthaltes im Rahmen einer PSMA-Therapie Besuch erhalten?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "1. Extraktion: Der Patient fragt nach Besuchsmöglichkeiten während einer PSMA-Therapie. Die Knowledge Graph Suche hat keine direkte Antwort geliefert. Es gibt keine spezifischen UMLS-Beziehungen, die diese Frage direkt beantworten (z.B. 'PSMA Therapy -> allows -> Visits'). Ich muss allgemeines Wissen über Krankenhausaufenthalte und Strahlentherapien nutzen.\n2. Spiegelung: Der Patient stellt eine klare, sachliche Frage. Es ist keine emotionale Belastung erkennbar. Die passende Strategie ist, die Frage direkt zu beantworten, Kontext zu geben und ehrlich zu sein, ohne unnötige emotionale Sprache.\n3. Synthese-Plan: Ich werde zuerst bestätigen, dass ich die Frage verstehe. Dann werde ich erklären, dass Besuch während einer PSMA-Therapie in der Regel erlaubt ist, aber es Richtlinien gibt, die eingehalten werden müssen (z.B. zeitliche Begrenzung, Abstand halten). Ich werde erwähnen, dass dies von der jeweiligen Klinik abhängt und empfehle, sich direkt bei der behandelnden Einrichtung zu erkundigen, um genaue Informationen zu erhalten."
+        },
+        "agent_response": "Ich verstehe Ihre Frage nach Besuchsmöglichkeiten während Ihrer PSMA-Therapie.\n\nGrundsätzlich ist es in den meisten Einrichtungen üblich, dass Patienten während ihres Aufenthalts Besuch empfangen dürfen, auch wenn sie eine Therapie wie PSMA durchlaufen. Allerdings gibt es oft bestimmte Richtlinien und Vorsichtsmaßnahmen, die zu beachten sind.\n\nDiese können beinhalten:\n\\n*   **Zeitliche Begrenzung:** Die Besuchszeiten können eingeschränkt sein.\n*   **Abstand:** Es kann erforderlich sein, einen bestimmten Abstand zum Patienten einzuhalten, insbesondere während der Therapie selbst oder kurz danach, um die Strahlenbelastung für Besucher zu minimieren. Dies hängt von der spezifischen Art der verwendeten Radioisotope ab.\n*   **Anzahl der Besucher:** Die Anzahl der gleichzeitigen Besucher könnte begrenzt sein.\n\nDa die genauen Regeln von Klinik zu Klinik variieren können, empfehle ich Ihnen dringend, sich direkt bei Ihrer behandelnden Einrichtung oder Ihrem Pflegepersonal nach den spezifischen Besuchsvorschriften für PSMA-Patienten zu erkundigen. Sie können Ihnen die aktuellsten und genauesten Informationen geben.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    },
+    {
+      "index": 11,
+      "category": "psma_therapy",
+      "question": "Mein PSA-Wert steigt trotz der PSMA-Therapie weiter an. Ist das ein Problem?",
+      "agent_response": {
+        "active_frame": null,
+        "filled_slots": {
+          "thinking": "1. Extraktion: Der Patient fragt nach der Bedeutung eines steigenden PSA-Wertes während einer PSMA-Therapie. Dies ist eine wichtige Frage bezüglich des Therapieerfolgs und möglicher Resistenz. Es gibt keine spezifischen UMLS-Beziehungen, die direkt beantworten, was ein steigender PSA-Wert während PSMA bedeutet (z.B. 'PSMA therapy -> treats -> prostate cancer' oder 'PSA level -> indicates -> treatment response'). Ich muss mich daher auf allgemeines medizinisches Wissen und den Kontext der Therapie stützen.\n2. Spiegelung: Der Patient scheint besorgt über die Wirksamkeit der Behandlung zu sein, da der PSA-Wert trotz Therapie steigt. Die emotionale Reaktion ist neutral, aber die Frage impliziert Besorgnis. Ich werde dies anerkennen, indem ich sage, dass es verständlich ist, sich Sorgen zu machen.\n3. Synthese-Plan: Zuerst erkenne ich die Sorge des Patienten an. Dann erkläre ich, dass ein steigender PSA-Wert während einer PSMA-Therapie komplex sein kann und nicht unbedingt bedeutet, dass die Therapie fehlschlägt. Ich werde erklären, dass es verschiedene Gründe dafür geben kann (z.B. Tumorresistenz, Entzündung, etc.) und dass dies weiter untersucht werden muss. Ich betone, dass das Behandlungsteam dies überwachen wird und weitere Schritte planen wird."
+        },
+        "agent_response": "Ich verstehe Ihre Sorge darüber, dass Ihr PSA-Wert trotz der PSMA-Therapie steigt. Das ist eine wichtige Frage.\n\nEin steigender PSA-Wert während einer Therapie kann verschiedene Gründe haben und bedeutet nicht zwangsläufig, dass die Behandlung komplett versagt. Es könnte beispielsweise bedeuten, dass der Tumor resistent gegen die Therapie wird, aber es können auch andere Faktoren wie Entzündungen im Bereich der Prostata eine Rolle spielen.\n\nEs ist wichtig zu wissen, dass dies ein komplexes Thema ist und Ihr behandelndes Team diese Entwicklung genau beobachten wird. Sie werden weitere Untersuchungen durchführen, um die Ursache des Anstiegs zu ermitteln und gegebenenfalls die Behandlungsstrategie anzupassen. Sprechen Sie am besten direkt mit Ihrem Arzt oder Therapeuten über Ihre spezifische Situation und die nächsten Schritte.",
+        "next_frame": null,
+        "tools_called": []
+      }
+    }
+  ]
+}

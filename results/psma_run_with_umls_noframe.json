@@ -1,0 +1,445 @@
+{
+  "source": "results/psma_run_results.json",
+  "rows": [
+    {
+      "index": 1,
+      "category": "psma_therapy",
+      "question": "Kann ich durch eine PSMA-Therapie von meinem Krebs geheilt werden?",
+      "agent_response": {
+        "agent_response": "Hello! I understand you're asking about PSMA therapy for cancer. It's important to remember that while PSMA therapy can be a very effective treatment option for some types of prostate cancer, it doesn't typically lead to a complete cure in all cases. The goal is often to control the cancer and improve quality of life. Would you like me to provide more information about how PSMA therapy works or what its potential side effects are?"
+      },
+      "umls_verification": {
+        "krebs": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "cancer": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "therapie": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "therapy": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "PSMA": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "prostate specific membrane antigen": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        }
+      }
+    },
+    {
+      "index": 2,
+      "category": "psma_therapy",
+      "question": "Stellt die radioaktive Strahlung durch die PSMA-Therapie ein Risiko für mich dar?",
+      "agent_response": {
+        "agent_response": "Die PSMA-Therapie beinhaltet die Verwendung von radioaktiver Strahlung, um das Krebsgeschwür zu zerstören. Diese Strahlung kann jedoch auch gesundes umliegendes Gewebe schädigen. Es ist wichtig, dass Sie mit Ihrem Arzt darüber sprechen, ob diese potenzielle Nebenwirkung für Sie relevant ist und wie sie gemanagt werden kann."
+      },
+      "umls_verification": {
+        "therapie": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "therapy": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "PSMA": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "prostate specific membrane antigen": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "Stellt": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "radioaktive": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        }
+      }
+    },
+    {
+      "index": 3,
+      "category": "psma_therapy",
+      "question": "Welche Nebenwirkungen gibt es im Rahmen der PSMA-Therapie?",
+      "agent_response": {
+        "agent_response": "PSMA-Therapie kann verschiedene Nebenwirkungen haben, je nach Medikament und individuellen Faktoren. Gängige Nebenwirkungen können sein:\n\n*   **Schlechte Appetitgefühl (Nausea) und Erbrechen:** Dies ist eine häufige Nebenwirkung.\n*   **Müdigkeit:** Viele Patienten fühlen sich müde.\n*   **Übelkeit und Erbrechen:** Wie oben erwähnt, sind diese häufig.\n*   **Muskelschmerzen:** Manche Patienten berichten von Muskelschmerzen.\n*   **Schwindel:** Schwankungen im Blutdruck können zu Schwindel führen.\n\nEs ist wichtig, dass Sie mit Ihrem Arzt über alle möglichen Nebenwirkungen sprechen und wie sie behandelt werden können."
+      },
+      "umls_verification": {
+        "therapie": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "therapy": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "nebenwirkung": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "side effect": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "PSMA": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "prostate specific membrane antigen": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        }
+      }
+    },
+    {
+      "index": 4,
+      "category": "psma_therapy",
+      "question": "Welche Strahlenschutzmassnahmen muss ich nach der PSMA-Therapie nach Entlassung aus dem Krankenhaus einhalten?",
+      "agent_response": {
+        "agent_response": "Nach der PSMA-Therapie sind bestimmte Strahlenschutzmassnahmen zu beachten, um die Strahlenbelastung zu minimieren. Dazu gehören insbesondere die Vermeidung von Röntgenstrahlung und anderen ionisierenden Strahlungsquellen wie Computertomographie (CT) oder Magnetresonanztomographie (MRT), solange nicht explizit anders angegeben ist."
+      },
+      "umls_verification": {
+        "therapie": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "therapy": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "PSMA": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "prostate specific membrane antigen": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "Welche": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "muss": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        }
+      }
+    },
+    {
+      "index": 5,
+      "category": "psma_therapy",
+      "question": "Wie wahrscheinlich ist es, dass die PSMA-Therapie eine gute Wirkung erzielt?",
+      "agent_response": {
+        "agent_response": "Die PSMA-Therapie ist eine Behandlungsmethode, die oft zur Behandlung von Prostatakrebs eingesetzt wird. Sie zielt darauf ab, Krebszellen zu identifizieren und zu zerstören. Die Wirksamkeit hängt von verschiedenen Faktoren ab, darunter der Stadium des Krebses, die genaue Art des Tumors und die individuellen Merkmale des Patienten."
+      },
+      "umls_verification": {
+        "therapie": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "therapy": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "PSMA": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "prostate specific membrane antigen": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "wahrscheinlich": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "dass": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        }
+      }
+    },
+    {
+      "index": 6,
+      "category": "psma_therapy",
+      "question": "Wird mir durch die PSMA-Therapie übel werden?",
+      "agent_response": {
+        "agent_response": "Die PSMA-Therapie kann verschiedene Nebenwirkungen haben, darunter auch Übelkeit. Es ist wichtig, dass Sie mit Ihrem Arzt darüber sprechen, wie diese Nebenwirkungen behandelt werden können."
+      },
+      "umls_verification": {
+        "therapie": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "therapy": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "PSMA": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "prostate specific membrane antigen": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "Wird": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "durch": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        }
+      }
+    },
+    {
+      "index": 7,
+      "category": "psma_therapy",
+      "question": "Werden mir durch die PSMA-Therapie die Haare ausfallen?",
+      "agent_response": {
+        "agent_response": "Die PSMA-Therapie, die oft bei Prostatakrebs eingesetzt wird, kann manchmal zu Nebenwirkungen führen, darunter auch Haarausfall. Es ist jedoch wichtig zu verstehen, dass der Haarausfall in diesem Zusammenhang oft nicht dauerhaft ist und sich nach Abschluss der Behandlung normalerweise wieder normalisiert."
+      },
+      "umls_verification": {
+        "therapie": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "therapy": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "PSMA": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "prostate specific membrane antigen": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "durch": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "PSMA-Therapie": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        }
+      }
+    },
+    {
+      "index": 8,
+      "category": "psma_therapy",
+      "question": "Kann ich durch die PSMA-Therapie sterben?",
+      "agent_response": {
+        "agent_response": "Die PSMA-Therapie ist eine Behandlungsmethode für bestimmte Arten von Krebs, insbesondere Prostatakrebs. Sie zielt darauf ab, das Wachstum des Tumors zu verlangsamen oder zu stoppen. Die Überlebensrate hängt stark von verschiedenen Faktoren ab, darunter der Stadium des Krebses, die allgemeine Gesundheit des Patienten und die Reaktion auf die Behandlung. Es ist wichtig, dass Sie sich mit Ihrem behandelnden Arzt über Ihre spezifische Situation und Prognose sprechen."
+      },
+      "umls_verification": {
+        "therapie": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "therapy": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "PSMA": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "prostate specific membrane antigen": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "Kann": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "durch": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        }
+      }
+    },
+    {
+      "index": 9,
+      "category": "psma_therapy",
+      "question": "Wie lange muss ich für eine PSMA-Therapie im Krankenhaus bleiben?",
+      "agent_response": {
+        "agent_response": "Die Dauer der Krankenhausaufenthalte für eine PSMA-Therapie kann variieren und hängt von verschiedenen Faktoren ab, wie zum Beispiel der Art der Therapie, der Schwere des Krebses und den individuellen Gesundheitszustand. Generell können die Aufenthalte jedoch mehrere Tage bis zu einer Woche oder sogar länger betragen."
+      },
+      "umls_verification": {
+        "therapie": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "therapy": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "PSMA": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "prostate specific membrane antigen": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "lange": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "muss": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        }
+      }
+    },
+    {
+      "index": 10,
+      "category": "psma_therapy",
+      "question": "Darf ich während meines Aufenthaltes im Rahmen einer PSMA-Therapie Besuch erhalten?",
+      "agent_response": {
+        "agent_response": "Besuch ist während einer PSMA-Therapie in der Regel möglich, aber die genauen Regeln und Einschränkungen können je nach Klinik oder Behandlungseinrichtung variieren. Es ist ratsam, dies direkt mit dem Pflegepersonal oder dem behandelnden Arzt zu klären."
+      },
+      "umls_verification": {
+        "therapie": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "therapy": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "PSMA": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "prostate specific membrane antigen": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "Darf": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "während": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        }
+      }
+    },
+    {
+      "index": 11,
+      "category": "psma_therapy",
+      "question": "Mein PSA-Wert steigt trotz der PSMA-Therapie weiter an. Ist das ein Problem?",
+      "agent_response": {
+        "agent_response": "Ich verstehe, dass Ihr PSA-Wert trotz der PSMA-Therapie weiter ansteigt und Sie sich fragen, ob das ein Problem ist. Das ist eine häufige Situation bei bestimmten Krebsarten, insbesondere bei Prostatakrebs. Die weitere Steigerung des PSA-Wertes kann auf verschiedene Faktoren hindeuten, wie zum Beispiel die Fortschritteilung des Tumors oder die Wirksamkeit der aktuellen Therapie. Um genau zu verstehen, was das bedeutet und welche nächsten Schritte möglich sind, wäre es wichtig, diese Punkte mit Ihrem behandelnden Arzt zu besprechen."
+      },
+      "umls_verification": {
+        "therapie": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "therapy": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "PSMA": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "prostate specific membrane antigen": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "PSA": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        },
+        "prostate specific antigen": {
+          "found": false,
+          "cui": null,
+          "summary": ""
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "oncology_and_cancer": [
+    "Was ist zielgerichtete Therapie und wie unterscheidet sie sich von traditioneller Chemotherapie?",
+    "Was sind die häufigsten Nebenwirkungen einer zielgerichteten Therapie?",
+    "Wie geht die Präzisionsmedizin an die Krebsbehandlung heran?",
+    "Was sollten Patienten in der ersten Woche einer zielgerichteten Therapie erwarten?",
+    "Gibt es Ernährungseinschränkungen, die ich während einer zielgerichteten Therapie beachten sollte?",
+    "Wie oft benötige ich Bildgebungsstudien während meiner Krebsbehandlung?",
+    "Was bedeutet es, wenn ein Tumor als HER2-positiv beschrieben wird?",
+    "Kann zielgerichtete Therapie mit anderen Krebsbehandlungen kombiniert werden?",
+    "Was ist Immuntherapie und wie unterscheidet sie sich von zielgerichteter Therapie?",
+    "Welche Unterstützungsservices sind für Krebspatienten verfügbar?"
+  ],
+  "nuclear_medicine_theranostics": [
+    "Was ist Theranostik in der Nuklearmedizin?",
+    "Wie funktioniert zielgerichtete Radionuklidtherapie?",
+    "Welche Vorbereitungen benötige ich vor diagnostischer Bildgebung?",
+    "Gibt es Strahlenschutzmaßnahmen, die ich nach der Behandlung zu Hause ergreifen sollte?",
+    "Wie lange dauert das diagnostische Bildgebungsverfahren normalerweise?",
+    "Welchen Zweck hat die Bildgebung zu mehreren Zeitpunkten?",
+    "Kann ich nach meiner Nuklearmedizin-Behandlung Zeit mit Familie und Freunden verbringen?",
+    "Wie wird personalisierte Dosimetrie in der Nuklearmedizin-Behandlungsplanung eingesetzt?",
+    "Welche Bildgebungstypen benötige ich vor Beginn der Behandlung?",
+    "Wie wissen wir, dass die Behandlung wirkt?"
+  ],
+  "symptoms_and_side_effects": [
+    "Ich habe während meiner Behandlung Müdigkeit erlebt. Ist das normal?",
+    "Was kann ich tun, um Übelkeit und Appetitlosigkeit zu bewältigen?",
+    "Warum könnte ich während der Behandlung Hautreaktionen erleben?",
+    "Ist Haarausfall eine Nebenwirkung zielgerichteter Therapie?",
+    "Was sollte ich tun, wenn ich während der Behandlung Fieber entwickle?",
+    "Wie lange halten Nebenwirkungen normalerweise nach Ende der Behandlung an?",
+    "Kann ich während meiner Krebsbehandlung trainieren?",
+    "Welche Schmerzbehandlungsoptionen sind verfügbar?",
+    "Warum könnten sich meine Blutwerte während der Behandlung ändern?",
+    "Beeinflussen die Nebenwirkungen, die ich erlebe, meinen Behandlungsplan?"
+  ],
+  "treatment_planning_and_monitoring": [
+    "Wie wird mein personalisierter Behandlungsplan entwickelt?",
+    "Welche Tests benötige ich vor Beginn meiner Krebsbehandlung?",
+    "Wie oft werde ich Nachuntersuchungen während der Behandlung haben?",
+    "Was passiert während einer Behandlungsplanungssitzung?",
+    "Wie entscheiden Ärzte die richtige Bestrahlungsdosis für mich?",
+    "Welcher Zweck haben CT-Scans in der Behandlungsplanung?",
+    "Wie lange wird mein Behandlungszyklus dauern?",
+    "Was sollte ich tun, wenn ich eine Behandlung verschieben muss?",
+    "Wie werden wir überwachen, ob die Behandlung wirksam ist?",
+    "Was passiert, wenn eine Nebenwirkung während der Behandlung schwerwiegend wird?"
+  ],
+  "psychosocial_and_emotional": [
+    "Ich bin nervös vor meiner bevorstehenden Behandlung. Welche Ressourcen können helfen?",
+    "Wie kann ich mit meiner Familie über meine Krebsdiagnose sprechen?",
+    "Gibt es Selbsthilfegruppen für Patienten, die meine Art von Behandlung erhalten?",
+    "Wird meine Behandlung meine Fähigkeit zu arbeiten beeinträchtigen?",
+    "Wie kann ich während der Behandlung körperliches und emotionales Wohlbefinden bewahren?",
+    "Welche finanziellen Ressourcen sind für Krebspatienten verfügbar?",
+    "Ist es normal, sich von einer Krebsdiagnose überfordert zu fühlen?",
+    "Wie kann ich während der Behandlung Hoffnung und positive Aussichten bewahren?",
+    "Was sollte ich meinen Kindern über meine Diagnose sagen?",
+    "Sind Beratungsdienste verfügbar?"
+  ],
+  "recovery_and_long_term_outcomes": [
+    "Was sollte ich unmittelbar nach Ende der Behandlung erwarten?",
+    "Wie lange dauert die Genesung normalerweise?",
+    "Wann kann ich zu normalen Aktivitäten zurückkehren?",
+    "Welche Langzebitnebenwirkungen sollte ich mir bewusst sein?",
+    "Wie oft benötige ich nach der Behandlung Nachuntersuchungsbildgebung?",
+    "Was ist ein Überlebensplan?",
+    "Kann sich nach meiner Behandlung eine weitere Krebserkrankung entwickeln?",
+    "Wie wichtig ist eine Nachbehandlung nach der Behandlung?",
+    "Welche Lebensstiländerungen können das Wiederauftreten verringern?",
+    "Wann kann ich aufhören, mir Sorgen um eine Rückkehr meines Krebses zu machen?"
+  ],
+  "treatment_modalities": [
+    "Was ist der Unterschied zwischen interner und externer Strahlentherapie?",
+    "Wie funktioniert intensitätsmodulierte Strahlentherapie (IMRT)?",
+    "Was ist Brachytherapie und wann wird sie eingesetzt?",
+    "Wie unterscheidet sich Protontherapie von Standard-Strahlentherapie?",
+    "Was ist Kombinationstherapie und warum könnte sie empfohlen werden?",
+    "Wie funktioniert Hormontherapie für bestimmte Krebsarten?",
+    "Was sind monoklonale Antikörper und wie helfen sie bei der Behandlung?",
+    "Was ist CAR-T-Zell-Therapie?",
+    "Wie lange dauert eine typische Strahlentherapie-Sitzung?",
+    "Was ist der Unterschied zwischen adjuvanter und neoadjuvanter Therapie?"
+  ],
+  "practical_questions": [
+    "Was sollte ich zu meinen Behandlungsterminen mitbringen?",
+    "Kann ich zu meinen Behandlungssitzungen hin- und zurückfahren?",
+    "Welche Kleidung ist am besten, um während der Behandlung getragen zu werden?",
+    "Kann ich Familienmitglieder zu meinen Terminen mitbringen?",
+    "Was sollte ich tun, wenn ich einen geplanten Termin verpasse?",
+    "Gibt es Behandlungsplanungsvergünstigungen?",
+    "Was passiert, wenn ich zwischen den Terminen Nebenwirkungen erlebe?",
+    "Sollte ich während der Behandlung ein Symptom-Tagebuch führen?",
+    "Kann ich während der Behandlung andere Medikamente einnehmen?",
+    "Welche Fragen sollte ich meinem medizinischen Team stellen?"
+  ],
+  "misconceptions_and_clarifications": [
+    "Verursacht Krebsbehandlung immer schwerwiegende Nebenwirkungen?",
+    "Macht mich Strahlentherapie radioaktiv?",
+    "Ist Krebs immer ein Todesurteil?",
+    "Kann alternative Medizin meinen Krebs heilen?",
+    "Verursacht Stress Krebs?",
+    "Ist Krebs ansteckend?",
+    "Kommt mein Krebs sicher zurück?",
+    "Sind alle Krebsbehandlungen gleich wirksam?",
+    "Muss ich mich zwischen Lebensqualität und Behandlung entscheiden?",
+    "Ist es zu spät, mit der Behandlung zu beginnen, wenn ich warte?"
+  ]
+}
