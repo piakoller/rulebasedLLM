@@ -484,12 +484,18 @@ def get_knowledge_graph_fact(query: str, graph: Optional[nx.Graph] = None) -> Kn
     if context:
         answer = f"{answer} Relevant context is available from the graph, but the exact relationship is not confirmed."
 
+    rag_evidence = []
+    for ctx in rag_contexts:
+        src = ctx.get("source", "unknown")
+        txt = ctx.get("text", "")
+        rag_evidence.append(f"[{src}]: {txt[:200]}...")
+
     return KnowledgeGraphFactResult(
         query=query,
         entities=entities,
         verified=False,
         answer=answer,
-        evidence=([context] if context else []) + rag_contexts,
+        evidence=([context] if context else []) + rag_evidence,
     )
 
 
