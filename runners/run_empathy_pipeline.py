@@ -52,7 +52,7 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(description="Run the refactored empathy pipeline on sample questions")
-    parser.add_argument("--questions", "-q", default="data/sample_questions.json", help="Path to sample questions JSON (category -> [questions])")
+    parser.add_argument("--questions", "-q", default="data/psma_sample_questions.json", help="Path to sample questions JSON (category -> [questions])")
     parser.add_argument("--limit", "-l", type=int, default=None, help="Optional maximum number of questions to process (default: all)")
     parser.add_argument("--out", "-o", default=None, help="Optional output JSON file to save results")
     parser.add_argument("--no-agent", dest="use_agent", action="store_false", help="Do not run the full AgentEngine (only run pipeline classification)")
