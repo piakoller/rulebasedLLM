@@ -20,7 +20,7 @@ def export_json_to_csv(json_path: Path, csv_path: Path):
         return
 
     # Determine headers
-    headers = ['Index', 'Category', 'Question', 'Thinking', 'Response']
+    headers = ['Index', 'Category', 'Question', 'Thinking', 'Response', 'Confidence Score', 'Confidence Explanation']
     
     with open(csv_path, 'w', newline='', encoding='utf-8-sig') as f:
         writer = csv.writer(f, dialect='excel')
@@ -39,12 +39,16 @@ def export_json_to_csv(json_path: Path, csv_path: Path):
             if isinstance(agent_resp, str):
                 thinking = ""
                 response = agent_resp
+                conf_score = ""
+                conf_expl = ""
             else:
                 filled_slots = agent_resp.get('filled_slots', {})
                 thinking = filled_slots.get('thinking', '')
                 response = agent_resp.get('agent_response', '')
+                conf_score = agent_resp.get('confidence_score', '')
+                conf_expl = agent_resp.get('confidence_explanation', '')
             
-            writer.writerow([idx, cat, q, thinking, response])
+            writer.writerow([idx, cat, q, thinking, response, conf_score, conf_expl])
 
     print(f"Successfully exported {len(results)} rows to: {csv_path}")
 

@@ -94,6 +94,8 @@ class FrameResponse(BaseModel):
     agent_response: str
     next_frame: Optional[str] = None
     tools_called: list[str] = Field(default_factory=list)
+    confidence_score: Optional[float] = None
+    confidence_explanation: Optional[str] = None
 
 
 class ToolCall(BaseModel):
@@ -410,6 +412,7 @@ class AgentEngine:
         max_reasoning_steps: int = MAX_REASONING_STEPS,
         use_frames: bool = True,
         use_graph_rag: bool = True,
+        calculate_confidence: bool = False,
     ) -> None:
         self.model = model
         self.ollama_url = ollama_url
@@ -417,6 +420,7 @@ class AgentEngine:
         self.max_reasoning_steps = max_reasoning_steps
         self.use_frames = use_frames
         self.use_graph_rag = use_graph_rag
+        self.calculate_confidence = calculate_confidence
         self.system_prompt = load_frame_prompt(prompt_path) if use_frames else "You are a helpful clinical assistant."
         self.frame_specs = parse_frame_specs(self.system_prompt) if use_frames else {}
         self.current_frame = "greeting" if use_frames else None
@@ -708,6 +712,8 @@ class AgentEngine:
                 f"  {labels['extraction']}: List exactly which clinical facts were retrieved and are needed for the answer.\n"
                 f"  {labels['mirroring']}: Identify the patient's emotional state and select a mirroring strategy.\n"
                 f"  {labels['synthesis']}: Outline how you will weave the clinical facts into the empathic response.\n"
+                + (f"  Confidence Rating: Provide a score from 0.0 to 1.0 reflecting your certainty based on the observations.\n"
+                   f"  Reasoning for Confidence: Explain why you chose this score.\n" if self.calculate_confidence else "") +
                 "- REACT RULE: If you call a tool (ACTION:), DO NOT include the final JSON 'response' in the same turn. Wait for the tool observation.\n"
                 f"- Output your final answer as a JSON object with 'thinking' and 'response' keys. THE ENTIRE JSON MUST BE IN {language.upper() if language else 'THE USER LANGUAGE'}.\n"
                 f"Example: {{\"thinking\": \"{labels['extraction']}: ... {labels['mirroring']}: ... {labels['synthesis']}: ...\", \"response\": \"...\"}}\n\n"
@@ -759,9 +765,11 @@ class AgentEngine:
             "- Before providing medical facts, immediately acknowledge the patient's specific concern with an empathetic statement.\n"
             "- Integrate UMLS facts if verified. If not verified, rely on available context and your general medical knowledge to answer factually.\n"
             f"- Always start your response with a '{labels['thinking']}' block that performs {labels['extraction']}, {labels['mirroring']}, and {labels['synthesis']}.\n"
+            + (f"- Include a 'confidence_score' (0.0 to 1.0) and 'confidence_explanation' in your thinking process.\n" if self.calculate_confidence else "") +
             f"- LANGUAGE: Always respond to the user strictly in the language they used: {language}.\n"
             "- Output valid JSON only and follow this schema exactly:\n"
-            '{"active_frame":"...","filled_slots":{...},"agent_response":"...","next_frame":"..."}\n\n'
+            '{"active_frame":"...","filled_slots":{...},"agent_response":"...","next_frame":"..."}'
+            + (', "confidence_score": 0.0, "confidence_explanation": "..."' if self.calculate_confidence else '') + "\n\n"
             f"Empathy Strategy Starters (incorporate these into your plan):\n"
             f"{json.dumps(starters, indent=2, ensure_ascii=False)}\n\n"
             "Available Tools (optional):\n"
@@ -870,7 +878,19 @@ class AgentEngine:
 
             # Case 1: Full FrameResponse schema
             if "agent_response" in payload:
-                return FrameResponse.model_validate(payload)
+                resp = FrameResponse.model_validate(payload)
+                if self.calculate_confidence:
+                    # Try to extract confidence from thinking block if not explicitly in root
+                    thinking = payload.get("thinking", "")
+                    if not resp.confidence_score:
+                        score_match = re.search(r"(?:Confidence Rating|confidence_score):\s*(\d?\.\d+)", thinking)
+                        if score_match:
+                            resp.confidence_score = float(score_match.group(1))
+                    if not resp.confidence_explanation:
+                        reason_match = re.search(r"(?:Reasoning for Confidence|confidence_explanation):\s*([^.\n]+)", thinking)
+                        if reason_match:
+                            resp.confidence_explanation = reason_match.group(1).strip()
+                return resp
             
             # Case 2: Simplified "response" schema (common when use_frames=False)
             if "response" in payload:
@@ -879,12 +899,21 @@ class AgentEngine:
                 if isinstance(thinking, list):
                     thinking = "\n".join(thinking)
 
-                return FrameResponse(
+                resp = FrameResponse(
                     active_frame=self.current_frame,
                     filled_slots={"thinking": thinking},
                     agent_response=payload["response"],
-                    next_frame=self.current_frame
+                    next_frame=self.current_frame,
+                    confidence_score=payload.get("confidence_score"),
+                    confidence_explanation=payload.get("confidence_explanation")
                 )
+                
+                if self.calculate_confidence and not resp.confidence_score:
+                    score_match = re.search(r"(?:Confidence Rating|confidence_score):\s*(\d?\.\d+)", thinking)
+                    if score_match:
+                        resp.confidence_score = float(score_match.group(1))
+                
+                return resp
             
             # Case 3: Partial or mangled payload - convert whatever is there to thinking/response
             thinking = payload.get("thinking", str(payload))
@@ -1028,10 +1057,59 @@ class AgentEngine:
             if allowed and draft_response.next_frame not in allowed:
                 draft_response.next_frame = allowed[0]
 
+        # Ensure consistency in frame memory
         self.current_frame = draft_response.next_frame or self.current_frame
         draft_response.tools_called = list(set(all_tools_called))
+
+        # --- CALCULATE OPTIONAL CONFIDENCE ---
+        if self.calculate_confidence:
+             draft_response.confidence_score, draft_response.confidence_explanation = self._calculate_hybrid_confidence(
+                 draft_response, 
+                 tool_results, 
+                 graph_verification, 
+                 attempt + 1
+             )
+
         self.conversation_history.append({"role": "assistant", "content": draft_response.model_dump_json()})
         return draft_response
+
+    def _calculate_hybrid_confidence(self, response: FrameResponse, tool_results: list[ToolResult], verification: dict, attempts: int) -> tuple[float, str]:
+        """Combine multiple signals into a single confidence metric."""
+        signals = []
+        reasons = []
+
+        # 1. Grounding Signal (Verification & Tools)
+        grounding_score = 0.4  # Base baseline
+        if any(tr.tool_name == "query_umls_ontology" and tr.success for tr in tool_results):
+            grounding_score = 1.0
+            reasons.append("Clinical facts verified via UMLS (Pillar 1)")
+        elif any(tr.tool_name == "search_knowledge_graph" and tr.success for tr in tool_results):
+            grounding_score = 0.8
+            reasons.append("Information found in medical guidelines (Pillar 2)")
+        
+        if verification.get("verified"):
+            grounding_score = max(grounding_score, 0.9)
+            reasons.append("No relationship contradictions found in graph")
+        elif verification.get("flagged_relations"):
+            grounding_score = min(grounding_score, 0.3)
+            reasons.append(f"Flagged potential contradictions: {len(verification['flagged_relations'])}")
+
+        signals.append(grounding_score)
+
+        # 2. Self-Reported Signal
+        if response.confidence_score is not None:
+            signals.append(response.confidence_score)
+            reasons.append(f"LLM self-assessment: {response.confidence_score}")
+        
+        # 3. Consistency/Stability Signal
+        stability_score = 1.0 / attempts
+        signals.append(stability_score)
+        if attempts > 1:
+            reasons.append(f"Required {attempts} reasoning cycles to reach compliance")
+
+        final_score = sum(signals) / len(signals) if signals else 0.5
+        explanation = " | ".join(reasons)
+        return round(final_score, 2), explanation
 
     def handle_message_for_study(self, user_message: str) -> DraftComparison:
         """
@@ -1166,6 +1244,17 @@ class AgentEngine:
                 draft_response.next_frame = allowed[0]
 
         self.current_frame = draft_response.next_frame or self.current_frame
+        
+        # --- CALCULATE OPTIONAL CONFIDENCE ---
+        if self.calculate_confidence:
+             # For study, we calculate confidence on the FINAL response
+             draft_response.confidence_score, draft_response.confidence_explanation = self._calculate_hybrid_confidence(
+                 draft_response, 
+                 tool_results, 
+                 graph_verification, 
+                 attempt + 1
+             )
+
         self.conversation_history.append({"role": "assistant", "content": draft_response.model_dump_json()})
         
         # Ensure we have valid drafts to return

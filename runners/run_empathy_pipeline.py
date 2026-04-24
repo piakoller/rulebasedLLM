@@ -58,6 +58,7 @@ def main():
     parser.add_argument("--no-agent", dest="use_agent", action="store_false", help="Do not run the full AgentEngine (only run pipeline classification)")
     parser.add_argument("--llm-classifier", dest="llm_classifier", action="store_true", help="Use an LLM-based classifier (requires Ollama/medgemma endpoint)")
     parser.add_argument("--no-graph", dest="use_graph", action="store_false", help="Skip GraphRAG build and use basic RAG instead")
+    parser.add_argument("--confidence", action="store_true", help="Calculate and include confidence scores in the output")
     parser.set_defaults(use_graph=True)
     args = parser.parse_args()
 
@@ -67,7 +68,11 @@ def main():
     print(f"\n📚 LOADING {len(sample_questions)} SAMPLE QUESTIONS FROM {args.questions}...\n")
     
     # Initialize agent if requested; run with framing disabled for independent questions
-    agent = AgentEngine(use_frames=False, use_graph_rag=args.use_graph) if args.use_agent else None
+    agent = AgentEngine(
+        use_frames=False, 
+        use_graph_rag=args.use_graph,
+        calculate_confidence=args.confidence
+    ) if args.use_agent else None
 
     # Optionally create an Ollama-based classifier (falls back to heuristics on error)
     llm_classifier = make_ollama_classifier() if args.llm_classifier else None
